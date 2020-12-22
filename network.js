@@ -3,7 +3,7 @@ const Client = require("./client");
 
 window.client = new Client();
 
-window.client.on("ACCEPTED", () => {
+window.client.on("ACCEPTED", (username) => {
 	setInterval(() => { client.send("PING"); }, 1000);
 	window.timer3 = setInterval(finalBoxEnlargeLeave, 10);
 	window.username = username;
