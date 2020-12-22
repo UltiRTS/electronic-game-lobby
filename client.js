@@ -103,7 +103,23 @@ class Client extends EventEmitter {
 		this.socket.destroy();
 		clearInterval(window.timer4);
 	}
-
+	register(username,password){
+		const passwordHash = crypto
+		.createHash("md5")
+		.update(password)
+		.digest("base64");
+		
+		const message =
+		"REGISTER " + username + " " + passwordHash + " non@nonnon.com";
+		this.send(message);		
+	}
+	
+	registerConfirm(){
+	const message =
+		"CONFIRMAGREEMENT ";
+		this.send(message);		
+	}
+	
 	send(message, display = false) {
 		if (display) console.log("Sending: " + message);
 		this.socket.write(message + "\n");

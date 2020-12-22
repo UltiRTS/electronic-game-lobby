@@ -28,7 +28,10 @@ if (isRememberLogin.get('isRemembered')=='true')
 	document.getElementById("usr").value=usernameMem.get('username');
 	document.getElementById("passwd").value=passwordMem.get('password');
 	document.getElementById("rememberName").checked = true;
-	document.getElementById("loginbox").onmousemove = function(){if (window.isLoggedin == true){return;}logMeIn();};
+	document.getElementById("loginbox").onmousemove = function(){
+		if (window.isLoggedin == true)
+		{return;}
+		logMeIn();};
 	}
 
 
@@ -36,30 +39,47 @@ if (isRememberLogin.get('isRemembered')=='true')
 
 
 
-
+function registerMe(){
+	
+	if(document.getElementById("register").checked == true){
+		document.getElementById("loginInputStatus").innerHTML="REGISTER"
+		console.log("checked")
+		
+	}
+	else 
+	{
+		console.log("unchecked")
+		
+		document.getElementById("loginInputStatus").innerHTML="CONNECT"
+	}
+}
 
 function logMeIn(){
 	window.isLoggedin = true;
 	var username = document.getElementById("usr").value;
 	var password = document.getElementById("passwd").value;
 	window.client.connectToServer();
-	window.client.login(username, password);
+	
+	if(document.getElementById("register").checked == true)
+		{
+		window.client.register(username, password);
+		window.client.registerConfirm();
+		}
+	else {
+		window.client.login(username, password);
+		if (document.getElementById("rememberName").checked == true){
+			isRememberLogin.set('isRemembered', 'true');
+			usernameMem.set('username', username);
+			passwordMem.set('password', password);
+		} else {
+			isRememberLogin.set('isRemembered', 'false');
+		}
+		
+	}
 
 	
-	if (document.getElementById("rememberName").checked == true){
-		isRememberLogin.set('isRemembered', 'true');
-		usernameMem.set('username', username);
-		passwordMem.set('password', password);
- 	 } else {
-		isRememberLogin.set('isRemembered', 'false');
-	}
-	window.client.on("ACCEPTED", (username) => {
-		window.timer3 = setInterval(finalBoxEnlargeLeave, 10);
-		window.username = username;
-	});
-	window.client.on("DENIED", (reason) => {
-		window.client.endConnection();
-	});
+	
+
 }
 
 var i = 0;

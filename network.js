@@ -5,6 +5,8 @@ window.client = new Client();
 
 window.client.on("ACCEPTED", () => {
 	setInterval(() => { client.send("PING"); }, 1000);
+	window.timer3 = setInterval(finalBoxEnlargeLeave, 10);
+	window.username = username;
 });
 
 window.client.on("JOIN", (CHANAME) => {
@@ -12,6 +14,9 @@ window.client.on("JOIN", (CHANAME) => {
 });
 
 
+window.client.on("DENIED", (reason) => {
+	//window.client.endConnection();
+});
 
 window.client.on("LEFT", (CHANAME,user) => {
 	if (user==window.username)
