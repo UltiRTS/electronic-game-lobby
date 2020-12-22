@@ -9,10 +9,24 @@ window.client.on("ACCEPTED", (username) => {
 	window.username = username;
 });
 
+window.client.on("AGREEMENT", (agreement) => {
+	document.getElementById("loginTerminal").innerHTML +=agreement
+	console.log("received agreement")
+});
+
+window.client.on("AGREEMENTEND", () => {
+	console.log("!!!!!!!!!!!!!!!!!!trying to set invisible")
+	document.getElementById("loginTerminal").style.visibility = "visible";
+	document.getElementById("loginTerminal").innerHTML +='<p onclick="registerConfirm()">Understood</p>'
+	document.getElementById("loginbox").style.visibility = "hidden";
+	document.getElementById("postLogin").style.visibility = "hidden";
+	
+});
+
+
 window.client.on("JOIN", (CHANAME) => {
 	chatPut(CHANAME)
 });
-
 
 window.client.on("DENIED", (reason) => {
 	//window.client.endConnection();

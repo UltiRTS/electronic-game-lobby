@@ -118,6 +118,8 @@ class Client extends EventEmitter {
 	const message =
 		"CONFIRMAGREEMENT ";
 		this.send(message);		
+		document.getElementById("loginTerminal").style.visibility = "hidden";
+		document.getElementById("postLogin").style.visibility = "visible";
 	}
 	
 	send(message, display = false) {

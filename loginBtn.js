@@ -28,8 +28,7 @@ if (isRememberLogin.get('isRemembered')=='true')
 	document.getElementById("usr").value=usernameMem.get('username');
 	document.getElementById("passwd").value=passwordMem.get('password');
 	document.getElementById("rememberName").checked = true;
-	document.getElementById("loginbox").onmousemove = function(){
-		if (window.isLoggedin == true)
+	document.getElementById("loginbox").onmousemove = function(){if (window.isLoggedin == true)
 		{return;}
 		logMeIn();};
 	}
@@ -68,7 +67,7 @@ function logMeIn(){
 		}
 	else {
 		window.client.login(username, password);
-		window.client.registerConfirm();
+
 		if (document.getElementById("rememberName").checked == true){
 			isRememberLogin.set('isRemembered', 'true');
 			usernameMem.set('username', username);
@@ -119,14 +118,10 @@ function finalBoxEnlargeLeave() {
 	k = k + 1;
 	if (k >= 100) {
 		document.getElementById("loginbox").style.visibility = "hidden";
-		document.getElementById("loginTerminal").style.visibility = "visible";
+		
 
 		clearInterval(window.timer3);
-		document.getElementById("loginTerminal").innerHTML = window.serverReply;
-		document.getElementById("loginTerminal").innerHTML +=
-			"</br>Check Update: ||||||||||||||||||||</br> NONE";
-		document.getElementById("loginTerminal").innerHTML +=
-			"</br>Starting interface renderer</br> 0%";
+		
 		document.getElementById("loginTerminal").style.visibility = "hidden";
 		document.getElementById("postLogin").style.visibility = "visible";
 		document.getElementById("username").innerHTML =window.username
