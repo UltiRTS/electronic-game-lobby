@@ -32,19 +32,21 @@ class Client extends EventEmitter {
 				.forEach((message) => {
 					if (message.length > 0) {
 						console.log("Received: " + message)
-						const commandLength = message.indexOf(" ");
-						const command = message.substring(0, commandLength);
-						const args = message.substring(commandLength, message.length);
+						
+							
+							const commandLength = message.indexOf(" ");
+							const command = message.substring(0, commandLength);
+							const args = message.substring(commandLength, message.length);
+						
 						if (command in regexPatterns) {
 							const pattern = regexPatterns[command];
 							if (pattern) {
 								const result = pattern.exec(args);
 								if (result == null) console.log("Unknown Pattern: " + message);
 								else this.emit(command, ...result.slice(1, result.length));
-							} else {
-								this.emit(command);
 							}
 						}
+						else{this.emit(message)}
 					}
 				});
 		});
@@ -118,8 +120,7 @@ class Client extends EventEmitter {
 	const message =
 		"CONFIRMAGREEMENT ";
 		this.send(message);		
-		document.getElementById("loginTerminal").style.visibility = "hidden";
-		document.getElementById("postLogin").style.visibility = "visible";
+
 	}
 	
 	send(message, display = false) {

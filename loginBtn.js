@@ -6,7 +6,7 @@ const passwordMem = new Store();
 
 document.getElementById("postLogin").style.visibility = "hidden";
 document.getElementById("loginbox").style.visibility = "hidden";
-document.getElementById("loginTerminal").style.visibility = "hidden";
+//document.getElementById("loginTerminal").style.visibility = "hidden";
 var loginBtn = document.getElementById("loginbtn");
 var passwordForm = document.getElementById("passwd");
 

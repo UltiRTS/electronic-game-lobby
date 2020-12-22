@@ -10,14 +10,14 @@ window.client.on("ACCEPTED", (username) => {
 });
 
 window.client.on("AGREEMENT", (agreement) => {
-	document.getElementById("loginTerminal").innerHTML +=agreement
+	document.getElementById("announcement").innerHTML +=agreement
 	console.log("received agreement")
 });
 
 window.client.on("AGREEMENTEND", () => {
-	console.log("!!!!!!!!!!!!!!!!!!trying to set invisible")
 	document.getElementById("loginTerminal").style.visibility = "visible";
-	document.getElementById("loginTerminal").innerHTML +='<p onclick="registerConfirm()">Understood</p>'
+	document.getElementById("loginTerminal").innerHTML +='<p style="position:fixed; top:90%;color:white;padding:0.5%;" id="understood" class="chatClose" onclick="window.client.registerConfirm() ">Understood</p>'
+																		
 	document.getElementById("loginbox").style.visibility = "hidden";
 	document.getElementById("postLogin").style.visibility = "hidden";
 	
