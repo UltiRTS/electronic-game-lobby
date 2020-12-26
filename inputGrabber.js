@@ -17,7 +17,7 @@ window.timer3=setInterval(grabberArise, 0.5);
 function inputReleaser()
 {
 
-	if (window.releasing)
+	if (window.releasing || window.grabbing)
 	{
 		return;
 	}
