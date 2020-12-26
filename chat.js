@@ -17,7 +17,7 @@ function chatProposeBtl(isBattleChat=false,activePass="STDIO") {
 
 			msgQueue[0] = document.getElementById("grabberValue").value
 			console.log("battle chat fired! Submitting cmd "+activePass);
-			window.client.say('bus',"sysctl gem host --title "+msgQueue[0])
+			window.client.say('bus',"sysctl --host "+msgQueue[0])
 			
 		
 }
