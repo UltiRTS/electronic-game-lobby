@@ -16,7 +16,7 @@ function exitGem(bID)
     document.getElementById("prebattle").style.visibility="hidden"
     chatSwt("main", bID)
     chatLeave(bID)
-    
+	chatLeaveBtl()
 }
 
 function donutPut()
