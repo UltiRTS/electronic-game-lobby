@@ -17,14 +17,14 @@ function chatProposeBtl(isBattleChat=false,activePass="STDIO") {
 
 			msgQueue[0] = document.getElementById("grabberValue").value
 			console.log("battle chat fired! Submitting cmd "+activePass);
-			window.client.say('bus',"sysctl --host "+msgQueue[0]+" --user "+window.username)
+			window.client.say('bus',"sysctl --host --title "+msgQueue[0]+" --user "+window.username)
 			}
 			
-function chatLeaveBtl(isBattleChat=false,activePass="STDIO") {
+function chatLeaveBtl() {
 				
 			
-			console.log("leave battle chat fired! Submitting cmd "+activePass);
-			window.client.say('bus',"sysctl --leave --user "+window.username)
+			console.log("leave battle chat fired! Submitting cmd ");
+			window.client.say('bus',"sysctl --leave --bid "+window.nowinBattle)
 			}
 			
 
