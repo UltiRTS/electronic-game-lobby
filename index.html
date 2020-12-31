@@ -3,7 +3,7 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="bgstyle.css">
+<link rel="stylesheet" href="commonstyle.css">
 </head>
 <body>
 
@@ -16,9 +16,9 @@
   		<canvas id='c' style=" z-index:100;"></canvas>
 		<div class="bg" > 
 			
-			<div class="content"  id="loginbtn" style="width:30%; height:20%;">
+			<div class="content "  id="loginbtn" style="width:30%; height:20%;">
 				
-				<a  class="btn btn-outline edgy-link" style="width:30%; height:20%;font-size:4vw;"><span style="">CONNECT</span></a>
+				<a  class="btn btn-outline edgy-link " style="width:30%; height:20%;font-size:4vw;"><span style="">CONNECT</span></a>
 				  	
 			</div>
 		</div>
@@ -40,16 +40,16 @@
 				<p style="top:57%; position:fixed;left:2%;" onclick="registerMe()"><input type="checkbox" id="register">Register this Neural Link</p>
 				
 				<p style="text-shadow: 0px 0px 1.5px black ;top:6%; position:fixed;left:42%;font-size: 150%;text-align: left;font-family: JuneBug4;">Thea Pharmaceuticals <span style="font-size:42%;top:100%;left:0%;position:absolute;text-shadow: 0px 0px 1px black ;">Inc.</span></p>
-				<p id='loginInputStatus' onclick="logMeIn()" style="top:36%; position:fixed;left:-0.5%;font-size: 4vw;text-align: left;font-family: JuneBug;">CONNECT</p>
+				<p class="" id='loginInputStatus' onclick="logMeIn()" style="top:36%; position:fixed;left:-0.5%;font-size: 4vw;text-align: left;font-family: JuneBug; ">CONNECT</p>
 				<p style="text-shadow: 0px 0px 4px black ;top:58%; position:fixed;left:42%;font-size: 0.5vw;text-align: left;">____________</br>Humans live longer, better, for the future.</p>
 		</div>	
 	</div>
 
 <div id="loginTerminal" style="position: absolute; top: 12%; left: 16%; visibility: hidden;">
 
-            <span style="padding: 1.5%;background-color: black;color:white;font-size:200%;position:relative;top:2%;white-space: nowrap;font-family: JuneBug3;">Thea Human Resource</span>
+            <span class='flashit' style="padding: 1.5%;background-color: black;color:white;font-size:200%;position:relative;top:2%;white-space: nowrap;font-family: JuneBug3;">Thea Human Resource</span>
             <div style="position:absolute;left:-4%;top:-80%; transform: translate(-50%, -50%); mix-blend-mode: screen;">
-                <div style="position:absolute;top:2%;left:50%;font-size: 2.2vw;background:white; color:black;white-space: nowrap;">-Contract-
+                <div class='' style="position:absolute;top:2%;left:50%;font-size: 2.2vw;background:white; color:black;white-space: nowrap;">-Contract-
                 </div>
             </div>
     <div id="announcement" style="position:fixed; color:white;top:20%;"> </div>
@@ -69,12 +69,47 @@
 			</div>
 		</div>
 		
-		<div class="fancyButton" style="position: fixed; left: 2%; top: 3%;z-index: 1; height:10%;"><a class="fancyButton_txt" href="#"><span></span><span></span><span></span><span></span>Campaign</a></div>
- 		<div class="fancyButton" style="position: fixed; left: 2%; top: 23%; z-index: 1;height:10%;""><a class="fancyButton_txt"  onclick="multiplayer();" href="#"><span></span><span></span><span></span><span></span>Multi Player</a></div>
- 		<div class="fancyButton" style="position: fixed; left: 2%; top: 43%;z-index: 1;height:10%;""><a class="fancyButton_txt" href="#"><span></span><span></span><span></span><span></span>planet α</a></div>
- 		<div class="fancyButton" style="position: fixed; left: 2%; top: 63%;z-index: 1;height:10%;""><a class="fancyButton_txt" href="#"><span></span><span></span><span></span><span></span>research</a></div>
- 		<div class="fancyButton" style="position: fixed; left: 2%; top: 83%;z-index: 1;height:10%;""><a class="fancyButton_txt" href="#"><span></span><span></span><span></span><span></span>settings</a></div>
-		<img src="assets/leftmenuCircuit.png" style="z-index: 0; left: 1%; top: 8%; height: 100%; position: fixed;">
+
+ 		
+ 		<a href="#" class="btn-wrapper" style="position: fixed; left: 2%; top: 3%;z-index: 1; ">
+			<div class="btn-tail"></div>
+			<div class="btn-body">
+				<p style='font-size: 1rem;'>CAMPAIGN</br><span style='font-size: 0.7rem; margin-left: 5px;'>Main Story</span></p>
+			</div>
+		</a>
+ 		
+		<a href="#" onclick="multiplayer();" class="btn-wrapper" style="position: fixed; left: 2%; top: 23%; z-index: 1;">
+			<div class="btn-tail"></div>
+			<div class="btn-body">
+				<p style='font-size: 1rem;'>GALAXY</br><span style='font-size: 0.7rem; margin-left: 5px;'>Interplanetary Operations</span></p>
+			</div>
+		</a>
+ 		
+ 		<a href="#" class="btn-wrapper" style="position: fixed; left: 2%; top: 43%;z-index: 1;">
+			<div class="btn-tail"></div>
+			<div class="btn-body">
+				<p style='font-size: 1rem;' >PLANET α</br><span style='font-size: 0.7rem; margin-left: 5px;'>Resource Extraction</span></p>
+			</div>
+		</a>
+ 		
+ 		<a href="#" class="btn-wrapper" style="position: fixed; left: 2%; top: 63%;z-index: 1;">
+			<div class="btn-tail"></div>
+			<div class="btn-body">
+				<p style='font-size: 1rem;' >RESEARCH</br><span style='font-size: 0.7rem; margin-left: 5px;'>Resource Extraction II</span></p>
+			</div>
+		</a>
+ 		
+ 		<a href="#" class="btn-wrapper" style="position: fixed; left: 2%; top: 83%;z-index: 1;">
+			<div class="btn-tail"></div>
+			<div class="btn-body">
+				<p style='font-size: 1rem;'>SETTINGS</br><span style='font-size: 0.7rem; margin-left: 5px;'>Local Terminal Setup</span></p>
+			</div>
+		</a>
+ 		
+ 		
+ 		
+ 		
+		<img src="assets/leftmenuCircuit.png" style="z-index: 0; left: 1%; top: 0%; height: 100%; position: fixed;">
 		
 		<div class="lobbyContainer" id="lobbyContainer">
 			<div class="lobbyContent" id="lobbyContent"><h1 style="position: absolute; color: white; top: 0%; left: 9%; font-family: JuneBug2;">Lobby</h1>
@@ -123,6 +158,8 @@
 
 
 <script src="lib/bgNN.js"></script>
+<script src="lib/unitsync.js"></script>
+
 <script src="network.js"></script>
 <script src="preBattlezone.js"></script>
 <script src="loginBtn.js"></script>

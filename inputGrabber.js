@@ -27,7 +27,6 @@ function inputReleaser()
 }
 
 function grabberDel(){
-console.log("grabber deactivating"+timerFrame)
 	document.getElementById("grabberMask").style.opacity=0.7-0.007*2*timerFrame;
 	document.getElementById("grabberBG").style.opacity=0.7-0.007*2*timerFrame;
 	document.getElementById("grabberBG").style.right=0-2*timerFrame+"%";
@@ -45,7 +44,6 @@ console.log("grabber deactivating"+timerFrame)
 }
 
 function grabberArise(){
-console.log("grabber active")
 	document.getElementById("grabberMask").style.opacity=0.007*2*timerFrame;
 	document.getElementById("grabberBG").style.opacity=0.007*2*timerFrame;
 	document.getElementById("grabberBG").style.right=-100+2*timerFrame+"%";

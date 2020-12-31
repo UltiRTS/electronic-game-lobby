@@ -1,0 +1,237 @@
+.gameSubEntry:not(.old-school) {
+	animation: flyin 0.5s ease forwards;
+	opacity: 0;
+	transform: scale(2);
+	/* SEE NOTE IN JAVASCRIPT */
+	-webkit-filter: blur(4px);
+	display:inline;
+	display:inline-block;
+	position: relative;
+}
+
+@keyframes flyin {
+	to {
+		-webkit-filter: blur(0);
+		transform: scale(1);
+		opacity: 0.85;
+		mix-blend-mode: screen;
+	}
+}
+
+/* !!!!!!!!!!!!!!!!!!!!!! */
+/* !!!!!!!!!!!!!!!!!!!!!! */
+/* !!TO USE THE BELOW, DECLARE "flashit" in class!!!! */
+/* !!!!!!!!!!!!!!!!!!!!!! */
+/* !!!!!!!!!!!!!!!!!!!!!! */
+/* !!!!!!!!!!!!!!!!!!!!!! */
+.flashit{
+	-webkit-animation: flash linear 0.11s 4;
+	animation: flash linear 0.11s 4;
+}
+@-webkit-keyframes flash {
+	0% { opacity: 1; } 
+	50% { opacity: .1; } 
+	100% { opacity: 1; }
+}
+@keyframes flash {
+	0% { opacity: 1; } 
+	50% { opacity: .1; } 
+	100% { opacity: 1; }
+}
+
+
+/* !!!!!!!!!!!!!!!!!!!!!! */
+/* !!!!!!!!!!!!!!!!!!!!!! */
+/* !!TO USE THE BELOW, DECLARE "pure-button fuller-button blue" in class!!!! */
+/* !!!!!class name blue can be red and white!!!!!!!! */
+/* !!!!!!!!!!!!!!!!!!!!!! */
+/* !!!!!!!!!!!!!!!!!!!!!! */
+
+.flex-grid-center {
+	display: flex;
+	justify-content: center;
+	margin: 5em 0;
+}
+
+.fuller-button {
+	color: white;
+	background: none;
+	border-radius: 0;
+	padding: 1.2em 5em;
+	letter-spacing: 0.35em;
+	font-size: 0.7em;
+	transition: background-color 0.3s, box-shadow 0.3s, color 0.3s;
+	margin: 1em;
+}
+.fuller-button.blue {
+	box-shadow: inset 0 0 1em rgba(0, 170, 170, 0.5), 0 0 1em rgba(0, 170, 170, 0.5);
+	border: #0dd solid 2px;
+}
+.fuller-button.blue:hover {
+	background-color: #0dd;
+	box-shadow: inset 0 0 0 rgba(0, 170, 170, 0.5), 0 0 1.5em rgba(0, 170, 170, 0.7);
+}
+.fuller-button.red {
+	box-shadow: inset 0 0 1em rgba(251, 81, 81, 0.4), 0 0 1em rgba(251, 81, 81, 0.4);
+	border: #fb5454 solid 2px;
+}
+.fuller-button.red:hover {
+	background-color: #fb5454;
+	box-shadow: inset 0 0 0 rgba(251, 81, 81, 0.4), 0 0 1.5em rgba(251, 81, 81, 0.6);
+}
+.fuller-button.white {
+	box-shadow: inset 0 0 0.8em rgba(255, 255, 255, 0.3), 0 0 0.8em rgba(255, 255, 255, 0.3);
+	border: #fff solid 2px;
+}
+.fuller-button.white:hover {
+	color: rgba(0, 0, 0, 0.8);
+	background-color: #fff;
+	box-shadow: inset 0 0 0 rgba(255, 255, 255, 0.3), 0 0 1.2em rgba(255, 255, 255, 0.5);
+}
+
+.pure-control-group {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	padding: 0 1em 2.6em 1em;
+}
+
+.pure-form .pure-control-group label {
+	text-align: left;
+	position: absolute;
+	left: 0;
+	top: 15%;
+	z-index: 0;
+	letter-spacing: 0;
+	margin: 0 1em;
+}
+
+.pure-form .pure-control-group input {
+	background: none;
+	box-shadow: none;
+	padding-left: 0;
+	border-radius: 0;
+	border: none;
+	border-bottom: 2px solid rgba(255, 255, 255, 0.4);
+	position: relative;
+	z-index: 1;
+	color: #fff;
+}
+
+.pure-form .pure-control-group input:focus {
+	border-bottom: 2px solid white;
+}
+
+.pure-form .pure-control-group textarea {
+	background: none;
+	box-shadow: none;
+	border-radius: 0;
+	border: none;
+	border-left: 2px solid rgba(255, 255, 255, 0.4);
+	resize: none;
+	height: 8em;
+	color: #fff;
+}
+
+.pure-form .pure-control-group textarea:focus {
+	border-left: 2px solid white;
+}
+
+.pure-form .pure-control-group input[type=email]:focus:invalid {
+	color: #fff;
+}
+
+.pure-form .pure-control-group input[type=email]:invalid {
+	color: #fb5454;
+}
+
+.pure-form button {
+	margin: 0.5em 1em;
+}
+
+
+/* !!!!!!!!!!!!!!!!!!!!!! */
+/* !!!!!!!!!!!!!!!!!!!!!! */
+/* !!example usage: 		<a href="#" class="btn-wrapper">
+ < div class="btn-tail"></div>
+ <div class="btn-body">
+ <p>Log in<span style='font-size: 0.7rem; margin-left: 5px;'>CSS Only</span></p>
+ </div>
+ </a> !!!! */
+/* !!!!!!!!!!!!!!!!!!!!!! */
+/* !!!!!!!!!!!!!!!!!!!!!! */
+/* !!!!!!!!!!!!!!!!!!!!!! */
+
+
+
+
+.btn-wrapper:not(:first-child) {
+	margin-top: 15px;
+}
+
+.btn-wrapper {
+	display: grid;
+	grid-template-columns: 20px auto;
+	grid-gap: 10px;
+	min-width: 11%;
+	height: 35px;
+	margin-left: 10px;
+	transform: skewX(-30deg);
+	
+	--bg-color: #2196f3;
+	--font-color: #ffffff;
+	--bg-color-hovered: #ffffff;
+	--font-color-hovered: black;
+}
+
+.btn-wrapper > * {
+	background-color: var(--bg-color);
+}
+
+.btn-wrapper:hover .btn-tail {
+	background-color: var(--bg-color-hovered);
+}
+
+.btn-body {
+	position: relative;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	color: var(--font-color);
+}
+
+.btn-wrapper:hover .btn-body {
+	color: var(--font-color-hovered);
+	
+}
+
+.btn-body::before {
+	content: "";
+	position: absolute;
+	width: 0;
+	height: 100%;
+	left: 0;
+	top: 0;
+	background-color: var(--bg-color-hovered);
+	transition: all 0.3s ease-out;
+	
+}
+
+.btn-wrapper:hover .btn-body::before {
+	width: 100%;
+}
+
+.btn-body p {
+	margin-left: 15px;
+	font-size: 0.75rem;
+	font-weight: bold;
+	transform: skewX(30deg);
+}
+
+.btn-tail {
+	transition: all 0s ease-out 0.3s;
+}
+
+.btn-wrapper:hover .btn-tail {
+	transition: none;
+}
