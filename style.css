@@ -351,6 +351,8 @@ position:relative;
   box-shadow: 0 0 10px #2196f3, 0 0 40px #2196f3, 0 0 80px #2196f3;
   transition-delay: 0s;
   mix-blend-mode: screen;
+  filter: drop-shadow(0 0 0.75rem #2196f3);
+  
 }
 
 .exitGem {

@@ -40,10 +40,12 @@ function chatDel(Name) {
 	document.getElementById('chat'+Name).parentNode.removeChild(document.getElementById('chat'+Name));
 	if (Name==displayedChat)
 	{
-	console.log("this is the only chat/mainchat");
+	console.log("this is the chat that's being displayed");
 	displayedChat="disposed";
+	chatSwt('main',displayedChat)
 	return ;
 	}
+	
 }
 
 function chatLeave(Name) {   
@@ -126,6 +128,7 @@ function chatSwt(toChat,fromChat){
 	document.getElementById("friendFrame"+toChat).style.visibility = "visible";
 	console.log("setting "+"friendFrame"+fromChat+"hidden and "+"friendFrame"+toChat+"visible")
 	displayedChat=toChat;
+	
 }
 
 
