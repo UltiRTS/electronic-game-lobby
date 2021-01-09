@@ -11,26 +11,26 @@ function lobbyFlush(battleid, type, natType, founder, ip, port, maxPlayer, passw
 
 function exitGem(bID)
 {
-    window.client.leaveBattle();
+    window.client.leaveBattle();  //inform lobby server
     document.getElementById("lobbyContent").style.visibility="visible"
     document.getElementById("prebattle").style.visibility="hidden"
     chatSwt("main", bID)
-    chatLeave(bID)
-	chatLeaveBtl()
+    chatLeave(bID)  //inform lobby chat server
+	chatLeaveBtl()  //inform autohost
 }
 
 function donutPut()
 {
-document.getElementById("prebattle").innerHTML +="<div class=\"chart-container\" style=\"position: relative; width:50%\"><canvas id=\"mapPoll\"></canvas></div>"
+document.getElementById("map").innerHTML +="<div class=\"chart-container\" style=\"position: absolute; width:70%;left:27%;\"><canvas id=\"mapPoll\"></canvas></div>"
 
 var ctx = document.getElementById("mapPoll");
 window.mapPoll = new Chart(ctx, {
     type: 'doughnut',
     data: {
-        labels: ['Red', 'Blue'],
+        labels: ['aaa', 'Comet','GRTS','Intersection','Living'],
         datasets: [{
             label: '# of Votes',
-            data: [1,1],
+            data: [1,1,2,3,4],
             backgroundColor: [
                 'rgba(255, 255, 255, 0.2)',
                 'rgba(255, 255, 255, 0.4)',
