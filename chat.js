@@ -13,17 +13,18 @@ function msgPut(Q){
 	document.getElementById("chatUserContent"+Q[2]).innerHTML +="<p style=\"display:inline-block; color: white; font-family: JuneBug2; background-color: rgba(100, 100, 100, 0.5);\">"+Q[0]+">>></p> <p style=\"display:inline-block; color: white; font-family: JuneBug; \">"+ Q[1]+"</p></br>";}
 }
 
-function chatSubmit(activePass="STDIO") {
+function chatSubmit() {
 		msgQueue[0] = document.getElementById("name"+displayedChat).value;
 		console.log("normal chat fired!");
 		window.client.say(displayedChat,msgQueue[0])
 
 }
 
-function chatProposeBtl(isBattleChat=false,activePass="STDIO") {
+function chatProposeBtl(isBattleChat=false) {
 
 			msgQueue[0] = document.getElementById("grabberValue").value
-			console.log("battle chat fired! Submitting cmd "+activePass);
+			//console.log("battle chat fired! Submitting cmd ");
+			if(msgQueue[0].length > 10) msgQueue[0] = msgQueue[0].substring(0,15);
 			window.client.say('bus',"sysctl --host --title "+msgQueue[0]+" --user "+window.username)
 			}
 			
