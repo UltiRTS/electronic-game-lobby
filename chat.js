@@ -2,8 +2,15 @@ var displayedChat="main";
 var msgQueue=["0000"];
 function msgPut(Q){
 	 //if(username == Q[0]) {  } 
-	 console.log("trying to put msg!")
-	document.getElementById("chatUserContent"+Q[2]).innerHTML +="<p style=\"display:inline-block; color: white; font-family: JuneBug2; background-color: rgba(100, 100, 100, 0.5);\">"+Q[0]+">>></p> <p style=\"display:inline-block; color: white; font-family: JuneBug; \">"+ Q[1]+"</p></br>";
+	if (Q[2]=="bus")
+	{
+		if(Q[0].startsWith("Autohost")){
+		document.getElementById("chatUserContent"+Q[2]).innerHTML +="<p style=\"display:inline-block; color: red; font-family: JuneBug2; background-color: rgba(100, 100, 100, 0.5);\">"+Q[0]+">>></p> <p style=\"display:inline-block; color: white; font-family: JuneBug; \">"+ Q[1]+"</p></br>";}
+		else{document.getElementById("chatUserContent"+Q[2]).innerHTML +="<p style=\"display:inline-block; color: green; font-family: JuneBug2; background-color: rgba(100, 100, 100, 0.5);\">"+Q[0]+">>></p> <p style=\"display:inline-block; color: white; font-family: JuneBug; \">"+ Q[1]+"</p></br>";}
+		
+	}
+	else{
+	document.getElementById("chatUserContent"+Q[2]).innerHTML +="<p style=\"display:inline-block; color: white; font-family: JuneBug2; background-color: rgba(100, 100, 100, 0.5);\">"+Q[0]+">>></p> <p style=\"display:inline-block; color: white; font-family: JuneBug; \">"+ Q[1]+"</p></br>";}
 }
 
 function chatSubmit(activePass="STDIO") {
