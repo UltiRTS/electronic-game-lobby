@@ -36,23 +36,22 @@ function chatLeaveBtl() {
 			
 
 function chatDel(Name) {   
-    if(typeof(document.getElementById("chatTag"+Name)) == 'undefined' || document.getElementById("chatTag"+Name) == null){
-       console.log("channel "+Name+" does not exist");
-       return;
-    } 
 
-	console.log("removing "+Name);
+
+	console.log("removing "+Name+"; displayedchat is"+ displayedChat);
 	document.getElementById("chatTag"+Name).parentNode.removeChild(document.getElementById("chatTag"+Name));
 	document.getElementById("friendFrame"+Name).parentNode.removeChild(document.getElementById("friendFrame"+Name));
 	document.getElementById('chat'+Name).parentNode.removeChild(document.getElementById('chat'+Name));
 	if (Name==displayedChat)
 	{
 	console.log("this is the chat that's being displayed");
-	displayedChat="disposed";
+	displayedChat='disposed'
 	chatSwt('main',displayedChat)
 	return ;
 	}
-	
+	else{
+		chatSwt('main',displayedChat)
+	}
 }
 
 function chatLeave(Name) {   
@@ -85,24 +84,6 @@ function chatPut(Name, Desc="Intergalactic Quantum Com", isBattleChat=false) {  
 	
 		document.getElementById("chatContainer").innerHTML +=" <div class=\"chatContent\" id=\"chat"+displayedChat+"\"><h1 style=\"position: absolute; color: white; top: 0%; left: 9%;font-family: JuneBug2;\">"+displayedChat+"</h1><p style=\"color: white; font-family: JuneBug3;\">"+Desc+"</p><div class=\"form__group field\" style=\"bottom:1%; width:100%; position:absolute;left:2%;\"><input onchange=\"chatSubmit()\" type=\"input\" class=\"form__field\" placeholder=\""+window.username+"\" name=\"name\" id=\'name"+displayedChat+"\' required /><label for=\"name"+displayedChat+"\" class=\"form__label\" id=\"formLabel\">"+window.username+"</label></div><div class=\"limitingframe\" style=\"width:107% ;height:78%;top:2%; overflow:scroll; overflow-x: hidden; position:relative;\"><div class=\"chatUserContent\" id=\"chatUserContent"+displayedChat+"\" style =\"bottom: 3%;position: relative; overflow: hidden;\"><!--chat content to be inserted--></div></div></div>";
 }
-/*	else{
-		console.log("adding battleChat"+Name);
-
-			if (displayedChat!="disposed"){
-				document.getElementById("chat"+displayedChat).style.visibility = "hidden";
-				document.getElementById("friendFrame"+displayedChat).style.visibility = "hidden";
-			}
-		
-			document.getElementById("infopanel").innerHTML +="<div class=\"friendFrame\" id=\"friendFrame"+Name+"\" style=\"top:-10%; overflow:visible; position: absolute; width:65%;height:120%; display:inline-block;right:35%;z-index:30;\"><h1 style=\"display:inline-block; position: absolute; color: white; top: -15%; left: -3%;font-family: JuneBug2;\">"+Name+"&gt; </h1><h1 style=\"display:inline-block; position: absolute; color: white; top: -15%; left: 10%;font-family: JuneBug2;\">Personnels _</h1><div class=\"friendlimitingFrame\" id=\"friendlimitingFrame"+Name+"\" style=\"top:3%; overflow:auto; position: relative; width:92%;height:91%; display:inline-block; right: -6.3%;\"></div></div>";
-			
-		displayedChat=Name; //update displayed chat with the new chat
-
-			document.getElementById("chatList").innerHTML +="<p id=\""+displayedChat+"\"><span onclick=\"chatSwt(&#39;"+displayedChat+"&#39;,displayedChat)\"style=\"cursor: pointer; background-color: #2196f3;color: white; padding: 5px;\">"+document.getElementById("title"+Name).innerHTML.substring(0, 6)+"</span><span  id=\"chatClose\" class=\"chatClose\" style=\"cursor: pointer;\">⊟</span></p>";
-
-	
-		document.getElementById("chatContainer").innerHTML +=" <div class=\"chatContent\" id=\"chat"+displayedChat+"\"><h1 style=\"position: absolute; color: white; top: 0%; left: 9%;font-family: JuneBug2;\">"+document.getElementById("title"+Name).innerHTML+"</h1><p style=\"color: white; font-family: JuneBug3;\">"+Desc+"</p><div class=\"form__group field\" style=\"bottom:1%; width:100%; position:absolute;left:2%;\"><input onchange=\"chatSubmit(true)\" type=\"input\" class=\"form__field\" placeholder=\""+window.username+"\" name=\"name\" id=\'name"+displayedChat+"\' required /><label for=\"name"+displayedChat+"\" class=\"form__label\" id=\"formLabel\">"+window.username+"</label></div><div class=\"limitingframe\" style=\"width:107% ;height:78%;top:2%; overflow:scroll; overflow-x: hidden; position:relative;\"><div class=\"chatUserContent\" id=\"chatUserContent"+displayedChat+"\" style =\"bottom: 3%;position: relative; overflow: hidden;\"><!--chat content to be inserted--></div></div></div>";
-	
-}*/
 
 
 

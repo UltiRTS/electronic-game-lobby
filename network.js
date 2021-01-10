@@ -37,7 +37,7 @@ window.client.on("LEFT", (CHANAME,user) => {
 	if (user==window.username)
 	{	
 		chatDel(CHANAME)}
-		else if (CHANAME!="main"){
+	else if (CHANAME!="main"){
 			frdEliminate(CHANAME,user);
 		}
 });
@@ -45,7 +45,7 @@ window.client.on("LEFT", (CHANAME,user) => {
 window.client.on("LEFTBATTLE", (bID,user) => {
 	console.log("received leaving battle"+user)
 	if (user==window.username){
-		chatDel(bID);
+		window.client.leaveChanel(bID);
 		window.isExited=true;
 	}
 	
@@ -134,7 +134,7 @@ window.client.on("BATTLECLOSED",(bID) => {
 	console.log("BATTLE CLOSED!!!!!!!!!!!!!!")
 	
 	if (bID==window.nowinBattle){
-		chatDel(bID);
+		
 		window.isExited=true;
 		document.getElementById("lobbyContent").style.visibility="visible"
 		document.getElementById("prebattle").style.visibility="hidden"

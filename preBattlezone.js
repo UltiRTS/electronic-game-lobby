@@ -14,7 +14,7 @@ function exitGem(bID)
     window.client.leaveBattle();  //inform lobby server
     document.getElementById("lobbyContent").style.visibility="visible"
     document.getElementById("prebattle").style.visibility="hidden"
-    chatSwt("main", bID)
+    
     chatLeave(bID)  //inform lobby chat server
 	chatLeaveBtl()  //inform autohost
 }
