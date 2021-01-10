@@ -47,6 +47,8 @@ window.client.on("LEFTBATTLE", (bID,user) => {
 	if (user==window.username){
 		window.client.leaveChanel(bID);
 		window.isExited=true;
+		document.getElementById("lobbyContent").style.visibility="visible"
+		document.getElementById("prebattle").style.visibility="hidden"
 	}
 	
 });
@@ -138,7 +140,7 @@ window.client.on("BATTLECLOSED",(bID) => {
 		window.isExited=true;
 		document.getElementById("lobbyContent").style.visibility="visible"
 		document.getElementById("prebattle").style.visibility="hidden"
-		
+		window.client.leaveChanel(bID);
 	}
 	document.getElementById("battleEntry"+bID).parentNode.removeChild(document.getElementById("battleEntry"+bID));
 });
