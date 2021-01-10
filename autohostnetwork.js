@@ -6,10 +6,11 @@ function autohostNetwork(msgSaid) {
 		if (window.dbug)
 		{}
 		else {
-			window.nowinBattle=cmdDict['room'];
-			lobbyFlush(cmdDict['room'], 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, document.getElementById("title"+cmdDict['room']).innerHTML, 0, 0);
-			window.client.joinChanel(cmdDict['room']);
-			window.isExited=false;
+
+			
+			window.client.joinBattle(cmdDict['room'])
+			
+			
 		}
 	}
 	
