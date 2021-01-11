@@ -1,5 +1,6 @@
 var displayedChat="main";
-var msgQueue=["0000"];
+
+
 function msgPut(Q){
 	 //if(username == Q[0]) {  } 
 	if (Q[2]=="bus")
@@ -13,39 +14,40 @@ function msgPut(Q){
 	document.getElementById("chatUserContent"+Q[2]).innerHTML +="<p style=\"display:inline-block; color: white; font-family: JuneBug2; background-color: rgba(100, 100, 100, 0.5);\">"+Q[0]+">>></p> <p style=\"display:inline-block; color: white; font-family: JuneBug; \">"+ Q[1]+"</p></br>";}
 }
 
+function chatStartBtl(){
+	window.client.say('bus',"sysctl --start --bid "+window.nowinBattle)
+	}
+
 function chatSubmit() {
-		msgQueue[0] = document.getElementById("name"+displayedChat).value;
-		console.log("normal chat fired!");
-		window.client.say(displayedChat,msgQueue[0])
+	userContent = document.getElementById("name"+displayedChat).value;
+	//console.log("normal chat fired!");
+	window.client.say(displayedChat,userContent)
 
 }
 
 function chatProposeBtl(isBattleChat=false) {
-
-			msgQueue[0] = document.getElementById("grabberValue").value
-			//console.log("battle chat fired! Submitting cmd ");
-			if(msgQueue[0].length > 10) msgQueue[0] = msgQueue[0].substring(0,15);
-			window.client.say('bus',"sysctl --host --title "+msgQueue[0]+" --user "+window.username)
-			}
+	gemTitle = document.getElementById("grabberValue").value
+	//console.log("battle chat fired! Submitting cmd ");
+	if(gemTitle.length > 10) gemTitle = gemTitle.substring(0,15);
+	window.client.say('bus',"sysctl --host --title "+gemTitle+" --user "+window.username)
+	}
 			
 function chatLeaveBtl() {
-				
-			
-			console.log("leave battle chat fired! Submitting cmd ");
-			window.client.say('bus',"sysctl --leave --bid "+window.nowinBattle)
-			}
+	//console.log("leave battle chat fired! Submitting cmd ");
+	window.client.say('bus',"sysctl --leave --bid "+window.nowinBattle)
+	}
 			
 
 function chatDel(Name) {   
 
 
-	console.log("removing "+Name+"; displayedchat is"+ displayedChat);
+	//console.log("removing "+Name+"; displayedchat is"+ displayedChat);
 	document.getElementById("chatTag"+Name).parentNode.removeChild(document.getElementById("chatTag"+Name));
 	document.getElementById("friendFrame"+Name).parentNode.removeChild(document.getElementById("friendFrame"+Name));
 	document.getElementById('chat'+Name).parentNode.removeChild(document.getElementById('chat'+Name));
 	if (Name==displayedChat)
 	{
-	console.log("this is the chat that's being displayed");
+	//console.log("this is the chat that's being displayed");
 	displayedChat='disposed'
 	chatSwt('main',displayedChat)
 	return ;
@@ -56,9 +58,7 @@ function chatDel(Name) {
 }
 
 function chatLeave(Name) {   
-		window.client.leaveChanel(Name)
-
-
+	window.client.leaveChanel(Name)
 }
 
 
@@ -66,7 +66,7 @@ function chatLeave(Name) {
 //  main com is joined automatically without calling any functions
 function chatPut(Name, Desc="Intergalactic Quantum Com", isBattleChat=false) {   //call this function back on joining chat
 	if (isBattleChat == false){
-		console.log("adding regular chat"+Name);
+		//console.log("adding regular chat"+Name);
 		if (Name!="main"){    //prevents those shit from running when called by loginbtn for the first time
 			if (displayedChat!="disposed"){
 				document.getElementById("chat"+displayedChat).style.visibility = "hidden";
@@ -84,12 +84,7 @@ function chatPut(Name, Desc="Intergalactic Quantum Com", isBattleChat=false) {  
 		}
 	
 		document.getElementById("chatContainer").innerHTML +=" <div class=\"chatContent\" id=\"chat"+displayedChat+"\"><h1 style=\"position: absolute; color: white; top: 0%; left: 9%;font-family: JuneBug2;\">"+displayedChat+"</h1><p style=\"color: white; font-family: JuneBug3;\">"+Desc+"</p><div class=\"form__group field\" style=\"bottom:1%; width:100%; position:absolute;left:2%;\"><input onchange=\"chatSubmit()\" type=\"input\" class=\"form__field\" placeholder=\""+window.username+"\" name=\"name\" id=\'name"+displayedChat+"\' required /><label for=\"name"+displayedChat+"\" class=\"form__label\" id=\"formLabel\">"+window.username+"</label></div><div class=\"limitingframe\" style=\"width:107% ;height:78%;top:2%; overflow:scroll; overflow-x: hidden; position:relative;\"><div class=\"chatUserContent\" id=\"chatUserContent"+displayedChat+"\" style =\"bottom: 3%;position: relative; overflow: hidden;\"><!--chat content to be inserted--></div></div></div>";
-}
-
-
-
-
-
+	}
 }
 
 
@@ -97,25 +92,23 @@ function chatPut(Name, Desc="Intergalactic Quantum Com", isBattleChat=false) {  
 
 function chatJoin()
 {
-var CHANAME=document.getElementById("grabberValue").value
-window.client.joinChanel(CHANAME)
-
-
+	var CHANAME=document.getElementById("grabberValue").value
+	window.client.joinChanel(CHANAME)
 }
 
 function chatSwt(toChat,fromChat){
         if(toChat == fromChat) { 
-     	    console.log("already on "+fromChat);
+     	    //console.log("already on "+fromChat);
 	    return;
         }
-	console.log("switching to "+toChat);
+	//console.log("switching to "+toChat);
 	if (fromChat!="disposed") {
 		document.getElementById("chat"+fromChat).style.visibility = "hidden"; 
 		document.getElementById("friendFrame"+fromChat).style.visibility = "hidden";}
 	document.getElementById("chat"+toChat).style.visibility = "visible";
 	
 	document.getElementById("friendFrame"+toChat).style.visibility = "visible";
-	console.log("setting "+"friendFrame"+fromChat+"hidden and "+"friendFrame"+toChat+"visible")
+	//console.log("setting "+"friendFrame"+fromChat+"hidden and "+"friendFrame"+toChat+"visible")
 	displayedChat=toChat;
 	
 }
