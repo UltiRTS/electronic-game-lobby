@@ -1,6 +1,5 @@
 const Client = require("./client");
-
-
+window.roomPort={}
 window.client = new Client();
 
 window.client.on("ACCEPTED", (username) => {
@@ -75,13 +74,19 @@ window.client.on("JOINED",(CHANME, user) => {
 	if (CHANME!="main"&user!=window.username){
 		frdPut(CHANME,user,'A\'s gem');
 	}
+	if (CHANME!="main"&CHANME!="bus"&user.startsWith('Autohost')){
+		window.nowHostedby=user
+	}
 });
 
 //window.client.on("JOINEDBATTLE",(bID, users) => {
 //	frdPut(bID,users,'Combat Group'+bID)
 //});
 
-window.client.on("JOINBATTLE",(bID, user) => {
+window.client.on("JOINBATTLE",(bID, hash) => {
+	//console.log('joining game')
+	//console.log(user)
+	//console.log(window.username)
 	window.nowinBattle=bID;
 	lobbyFlush(bID, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, document.getElementById("title"+bID).innerHTML, 0, 0);
 	window.client.joinChanel(bID);
@@ -106,12 +111,12 @@ window.client.on("SAID", (channel,user,msg) => {
 
 window.client.on("CLIENTSTATUS", (user,status) => {
 	if (user.startsWith("Autohost")){
-		if (status ==1)
+		//console.log(window.nowHostedby)
+		//console.log(status)
+		//console.log(isExited)
+		if (status ==1&user==window.nowHostedby&window.isExited==false)
 		{
-			
-			runCmd('./engine/spring _script.txt', (output) => {
-				console.log(output);
-			});
+			writeScript()
 			
 		}
 	}
@@ -119,7 +124,7 @@ window.client.on("CLIENTSTATUS", (user,status) => {
 
 window.client.on("BATTLEOPENED",(battleid, type, natType, founder, ip, port, maxPlayer, passworded, rank, mapHesh, engineName, engineVersion, map, title, gameName, channel) => {
 	console.log("BATTLE "+title+" opened")
-	
+	window.roomPort[battleid]=port
 	
 	var subEntry = document.createElement('li');
 	subEntry.classList.add('gameSubEntry');
