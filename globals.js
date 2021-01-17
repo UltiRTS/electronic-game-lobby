@@ -6,3 +6,4 @@
 //window.dbug (bool)
 //window.nowHostedby
 //window.roomPort[bid] returns the port of the room
+//removeAllChildNodes(parents)  clears all child node

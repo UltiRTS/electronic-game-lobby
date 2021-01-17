@@ -21,16 +21,28 @@ function startGem(bID)
 	chatStartBtl(bID)
 }
 
-
-function donutPut()
+function preBattleListMap(pool)
 {
-document.getElementById("map").innerHTML +="<div class=\"chart-container\" style=\"position: absolute; width:70%;left:27%;\"><canvas id=\"mapPoll\"></canvas></div>"
+	var map = document.createElement('div');
+	map.className="map";
+	map.setAttribute( "style", "position:relative; height:40%;width:100%;")
+	map.innerHTML="<br><div id=\"title\" style=\"color:white;\"><h1>Maps</h1></div><hr></hr><div class=\"slidingMenu\" style=\"width:20%;height:100%\"><div class=\"slidingMenuSub1\"><span style=\"position:absolute; top:40%;left:25%;\">"+pool[0]+"</span></div><div class=\"slidingMenuSub2\"><span style=\"position:absolute; top:40%;left:25%;\">"+pool[1]+"</span></div><div class=\"slidingMenuSub3\"><span style=\"position:absolute; top:40%;left:25%;\">"+pool[2]+"</span></div><div class=\"slidingMenuSub4\"><span style=\"position:absolute; top:40%;left:25%;\">"+pool[3]+"</span></div><div class=\"slidingMenuSub5\"><span style=\"position:absolute; top:40%;left:25%;\">"+pool[4]+"</span></div></div>"
+	map.id="map"
+	document.getElementById("pregameInfo").appendChild(map);
+	_mapDonutPut(pool)
+}
+
+
+
+function _mapDonutPut(pool)
+{
+document.getElementById("map").innerHTML +="<div class=\"chart-container\" style=\"position: relative; width:70%;left:27%;\"><canvas id=\"mapPoll\"></canvas></div>"
 
 var ctx = document.getElementById("mapPoll");
 window.mapPoll = new Chart(ctx, {
     type: 'doughnut',
     data: {
-        labels: ['aaa', 'Comet','GRTS','Intersection','Living'],
+		labels: [pool[0], pool[1],pool[2],pool[3],pool[4]],
         datasets: [{
             label: '# of Votes',
             data: [1,1,2,3,4],
@@ -80,7 +92,7 @@ window.mapPoll = new Chart(ctx, {
 
 
 
-function pollPut(pollName)
+function _pollPut(pollName)
 {
 var newPoll = document.createElement('div');
 newPoll.className="prebattlePolls";
@@ -92,7 +104,7 @@ document.getElementById("prebattle").appendChild(newPoll);
 }
 
 
-function donutUpdate()
+function _mapDonutUpdate()
 {
 
 	window.mapPoll.data.datasets[0].data[2] = 80;
@@ -104,52 +116,14 @@ function donutUpdate()
 }
 
 
-function donutEvent(event, array)
-{
-if(array[0]){
-        console.log('0 clicked')
-    }
-	
-	if(array[1]){
-        console.log('1 clicked')
-    }
-    if(array[2]){
-        console.log('2 clicked')
-    }
-    if(array[3]){
-        console.log('3 clicked')
-    }
-    if(array[4]){
-        console.log('4 clicked')
-    }
 
 
+
+function removeAllChildNodes(parent) {
+	while (document.getElementById(parent).firstChild) {
+		document.getElementById(parent).removeChild(document.getElementById(parent).firstChild);
+	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 function pollUpdate()

@@ -256,7 +256,7 @@
 	color:black;
 	width:100%;
 	top:0%;
-	height:7.5%;
+	height:12.1%;
 	position:absolute;
 	animation-name: slidingMenuSub1Anime;
 	animation-duration: 0.35s;
@@ -297,8 +297,8 @@
 	background-size: 100% 100%;
 	color:black;
 	width:100%;
-	top:10%;
-	height:7.5%;
+	top:14%;
+	height:12.1%;
 	position:absolute;
 	animation-name: slidingMenuSub2Anime;
 	animation-duration: 0.35s;
@@ -340,8 +340,8 @@
 	background-size: 100% 100%;
 	color:black;
 	width:100%;
-	top:20%;
-	height:7.5%;
+	top:28%;
+	height:12.1%;
 	position:absolute;
 	animation-name: slidingMenuSub3Anime;
 	animation-duration: 0.35s;
@@ -383,8 +383,8 @@
 	background-size: 100% 100%;
 	color:black;
 	width:100%;
-	top:30%;
-	height:7.5%;
+	top:42%;
+	height:12.1%;
 	position:absolute;
 	animation-name: slidingMenuSub4Anime;
 	animation-duration: 0.35s;
@@ -426,8 +426,8 @@
 	background-size: 100% 100%;
 	color:black;
 	width:100%;
-	top:40%;
-	height:7.5%;
+	top:56%;
+	height:12.1%;
 	position:absolute;
 	animation-name: slidingMenuSub5Anime;
 	animation-duration: 0.35s;
@@ -470,7 +470,7 @@
 	color:black;
 	width:100%;
 	top:50%;
-	height:7.5%;
+	height:12.1%;
 	position:absolute;
 	animation-name: slidingMenuSub6Anime;
 	animation-duration: 0.35s;
@@ -513,7 +513,7 @@
 	color:black;
 	width:100%;
 	top:60%;
-	height:7.5%;
+	height:12.1%;
 	position:absolute;
 	animation-name: slidingMenuSub7Anime;
 	animation-duration: 0.35s;
@@ -556,7 +556,7 @@
 	color:black;
 	width:100%;
 	top:70%;
-	height:7.5%;
+	height:12.1%;
 	position:absolute;
 	animation-name: slidingMenuSub8Anime;
 	animation-duration: 0.35s;
@@ -599,7 +599,7 @@
 	color:black;
 	width:100%;
 	top:80%;
-	height:7.5%;
+	height:12.1%;
 	position:absolute;
 	animation-name: slidingMenuSub9Anime;
 	animation-duration: 0.35s;
@@ -642,7 +642,7 @@
 	color:black;
 	width:100%;
 	top:90%;
-	height:7.5%;
+	height:12.1%;
 	position:absolute;
 	animation-name: slidingMenuSub10Anime;
 	animation-duration: 0.45s;
@@ -676,3 +676,11 @@
 	opacity: 1;
 }
 
+hr { 
+	border: 0; 
+	height: 1px; 
+	background-image: -webkit-linear-gradient(left,#8c8b8b, #f0f0f0, #8c8b8b);
+	background-image: -moz-linear-gradient(left,#8c8b8b, #f0f0f0, #8c8b8b);
+	background-image: -ms-linear-gradient(left,#8c8b8b, #f0f0f0, #8c8b8b);
+	background-image: -o-linear-gradient(left,#8c8b8b, #f0f0f0, #8c8b8b);
+}

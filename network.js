@@ -48,6 +48,7 @@ window.client.on("LEFTBATTLE", (bID,user) => {
 		window.isExited=true;
 		document.getElementById("lobbyContent").style.visibility="visible"
 		document.getElementById("prebattle").style.visibility="hidden"
+		removeAllChildNodes('pregameInfo')
 	}
 	
 });
@@ -105,7 +106,7 @@ window.client.on("SAID", (channel,user,msg) => {
 	msgSaid[1]=msg;
 	msgSaid[2]=channel;
 	msgPut(msgSaid)
-	if (channel == 'bus')
+	if (channel == 'bus' & user!=window.username)
 		autohostNetwork(msgSaid)
 });
 
@@ -141,7 +142,7 @@ window.client.on("BATTLECLOSED",(bID) => {
 	console.log("BATTLE CLOSED!!!!!!!!!!!!!!")
 	
 	if (bID==window.nowinBattle){
-		
+		removeAllChildNodes('pregameInfo')
 		window.isExited=true;
 		document.getElementById("lobbyContent").style.visibility="visible"
 		document.getElementById("prebattle").style.visibility="hidden"
