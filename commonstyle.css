@@ -256,7 +256,7 @@
 	color:black;
 	width:100%;
 	top:0%;
-	height:12.1%;
+	height:11.1%;
 	position:absolute;
 	animation-name: slidingMenuSub1Anime;
 	animation-duration: 0.35s;
@@ -270,7 +270,7 @@
 }
 
 @keyframes slidingMenuSub1Anime{
-	0% {left:100%;}
+	0% {left:100%; opacity:0;}
 	30% {
 		left:0%;
 		mix-blend-mode: screen; 
@@ -298,7 +298,7 @@
 	color:black;
 	width:100%;
 	top:14%;
-	height:12.1%;
+	height:11.1%;
 	position:absolute;
 	animation-name: slidingMenuSub2Anime;
 	animation-duration: 0.35s;
@@ -313,7 +313,7 @@
 }
 
 @keyframes slidingMenuSub2Anime{
-	0% {left:100%;}
+	0% {left:100%; opacity:0;}
 	30% {
 		left:0%;
 		mix-blend-mode: screen; 
@@ -341,7 +341,7 @@
 	color:black;
 	width:100%;
 	top:28%;
-	height:12.1%;
+	height:11.1%;
 	position:absolute;
 	animation-name: slidingMenuSub3Anime;
 	animation-duration: 0.35s;
@@ -356,7 +356,7 @@
 }
 
 @keyframes slidingMenuSub3Anime{
-	0% {left:100%;}
+	0% {left:100%; opacity:0;}
 	30% {
 		left:0%;
 		mix-blend-mode: screen; 
@@ -384,7 +384,7 @@
 	color:black;
 	width:100%;
 	top:42%;
-	height:12.1%;
+	height:11.1%;
 	position:absolute;
 	animation-name: slidingMenuSub4Anime;
 	animation-duration: 0.35s;
@@ -399,7 +399,7 @@
 }
 
 @keyframes slidingMenuSub4Anime{
-	0% {left:100%;}
+	0% {left:100%; opacity:0;}
 	30% {
 		left:0%;
 		mix-blend-mode: screen; 
@@ -427,7 +427,7 @@
 	color:black;
 	width:100%;
 	top:56%;
-	height:12.1%;
+	height:11.1%;
 	position:absolute;
 	animation-name: slidingMenuSub5Anime;
 	animation-duration: 0.35s;
@@ -442,7 +442,7 @@
 }
 
 @keyframes slidingMenuSub5Anime{
-	0% {left:100%;}
+	0% {left:100%; opacity:0;}
 	30% {
 		left:0%;
 		mix-blend-mode: screen; 
@@ -470,7 +470,7 @@
 	color:black;
 	width:100%;
 	top:50%;
-	height:12.1%;
+	height:11.1%;
 	position:absolute;
 	animation-name: slidingMenuSub6Anime;
 	animation-duration: 0.35s;
@@ -485,7 +485,7 @@
 }
 
 @keyframes slidingMenuSub6Anime{
-	0% {left:100%;}
+	0% {left:100%; opacity:0;}
 	30% {
 		left:0%;
 		mix-blend-mode: screen; 
@@ -513,7 +513,7 @@
 	color:black;
 	width:100%;
 	top:60%;
-	height:12.1%;
+	height:11.1%;
 	position:absolute;
 	animation-name: slidingMenuSub7Anime;
 	animation-duration: 0.35s;
@@ -528,7 +528,7 @@
 }
 
 @keyframes slidingMenuSub7Anime{
-	0% {left:100%;}
+	0% {left:100%; opacity:0;}
 	30% {
 		left:0%;
 		mix-blend-mode: screen; 
@@ -556,7 +556,7 @@
 	color:black;
 	width:100%;
 	top:70%;
-	height:12.1%;
+	height:11.1%;
 	position:absolute;
 	animation-name: slidingMenuSub8Anime;
 	animation-duration: 0.35s;
@@ -571,7 +571,7 @@
 }
 
 @keyframes slidingMenuSub8Anime{
-	0% {left:100%;}
+	0% {left:100%; opacity:0;}
 	30% {
 		left:0%;
 		mix-blend-mode: screen; 
@@ -599,7 +599,7 @@
 	color:black;
 	width:100%;
 	top:80%;
-	height:12.1%;
+	height:11.1%;
 	position:absolute;
 	animation-name: slidingMenuSub9Anime;
 	animation-duration: 0.35s;
@@ -614,7 +614,7 @@
 }
 
 @keyframes slidingMenuSub9Anime{
-	0% {left:100%;}
+	0% {left:100%; opacity:0;}
 	30% {
 		left:0%;
 		mix-blend-mode: screen; 
@@ -642,7 +642,7 @@
 	color:black;
 	width:100%;
 	top:90%;
-	height:12.1%;
+	height:11.1%;
 	position:absolute;
 	animation-name: slidingMenuSub10Anime;
 	animation-duration: 0.45s;
@@ -657,7 +657,7 @@
 }
 
 @keyframes slidingMenuSub10Anime{
-	0% {left:100%;}
+	0% {left:100%; opacity:0;}
 	30% {
 		left:0%;
 		mix-blend-mode: screen; 

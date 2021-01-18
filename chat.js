@@ -18,11 +18,14 @@ function chatStartBtl(){
 	window.client.say('bus',"sysctl --start --bid "+window.nowinBattle)
 	}
 
+function chatVoteMap(map){
+	window.client.say('bus',"sysctl --bid "+window.nowinBattle +" --map "+map)
+} 
+	
 function chatSubmit() {
 	userContent = document.getElementById("name"+displayedChat).value;
 	//console.log("normal chat fired!");
 	window.client.say(displayedChat,userContent)
-
 }
 
 function chatProposeBtl(isBattleChat=false) {

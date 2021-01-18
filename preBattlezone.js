@@ -26,7 +26,7 @@ function preBattleListMap(pool)
 	var map = document.createElement('div');
 	map.className="map";
 	map.setAttribute( "style", "position:relative; height:40%;width:100%;")
-	map.innerHTML="<br><div id=\"title\" style=\"color:white;\"><h1>Maps</h1></div><hr></hr><div class=\"slidingMenu\" style=\"width:20%;height:100%\"><div class=\"slidingMenuSub1\"><span style=\"position:absolute; top:40%;left:25%;\">"+pool[0]+"</span></div><div class=\"slidingMenuSub2\"><span style=\"position:absolute; top:40%;left:25%;\">"+pool[1]+"</span></div><div class=\"slidingMenuSub3\"><span style=\"position:absolute; top:40%;left:25%;\">"+pool[2]+"</span></div><div class=\"slidingMenuSub4\"><span style=\"position:absolute; top:40%;left:25%;\">"+pool[3]+"</span></div><div class=\"slidingMenuSub5\"><span style=\"position:absolute; top:40%;left:25%;\">"+pool[4]+"</span></div></div>"
+	map.innerHTML="<br><div id=\"title\" style=\"color:white;\"><h1>Maps</h1></div><hr></hr><div class=\"slidingMenu\" style=\"overflow: visible; width:20%;height:100%\"><div style=\"filter: drop-shadow(0.3rem 0.3rem 0.2rem #9B9B9B); overflow: hidden;\" onclick=\"chatVoteMap(\'"+pool[0]+"\')\" class=\"slidingMenuSub1\"><span style=\" font-family: JuneBug2; position:absolute; top:40%;left:25%;\">"+pool[0]+"</span></div><div style=\"filter: drop-shadow(0.3rem 0.3rem 0.2rem #9B9B9B); overflow: hidden; \" onclick=\"chatVoteMap(\'"+pool[1]+"\')\" class=\"slidingMenuSub2\"><span style=\"font-family: JuneBug2; position:absolute; top:40%;left:25%;\">"+pool[1]+"</span></div><div class=\"slidingMenuSub3\" onclick=\"chatVoteMap(\'"+pool[2]+"\')\" style=\"overflow: hidden; filter: drop-shadow(0.3rem 0.3rem 0.2rem #9B9B9B);\"><span style=\"font-family: JuneBug2; position:absolute; top:40%;left:25%;\">"+pool[2]+"</span></div><div onclick=\"chatVoteMap(\'"+pool[3]+"\')\" style=\"filter: drop-shadow(0.3rem 0.3rem 0.2rem #9B9B9B); overflow: hidden;\" class=\"slidingMenuSub4\"><span style=\"font-family: JuneBug2; position:absolute; top:40%;left:25%;\">"+pool[3]+"</span></div><div style=\"filter: drop-shadow(0.3rem 0.3rem 0.2rem #9B9B9B); overflow: hidden;\" class=\"slidingMenuSub5\" onclick=\"chatVoteMap(\'"+pool[4]+"\')\"><span style=\"font-family: JuneBug2; position:absolute; top:40%;left:25%;\">"+pool[4]+"</span></div></div>"
 	map.id="map"
 	document.getElementById("pregameInfo").appendChild(map);
 	_mapDonutPut(pool)
@@ -67,7 +67,9 @@ window.mapPoll = new Chart(ctx, {
     options: {
     legend: {
      onClick: (e, i) => {
-      console.log(i.text+" clicked");
+      //console.log(i.text+" clicked");
+	  chatVoteMap(i.text)
+	  
     },
             display: true,
             labels: {

@@ -106,6 +106,9 @@ window.client.on("SAID", (channel,user,msg) => {
 	msgSaid[1]=msg;
 	msgSaid[2]=channel;
 	msgPut(msgSaid)
+	if (user==window.username){
+		document.getElementById("name"+displayedChat).value=""
+	}
 	if (channel == 'bus' & user!=window.username)
 		autohostNetwork(msgSaid)
 });
