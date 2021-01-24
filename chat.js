@@ -34,6 +34,18 @@ function chatProposeBtl(isBattleChat=false) {
 	if(gemTitle.length > 10) gemTitle = gemTitle.substring(0,15);
 	window.client.say('bus',"sysctl --host --title "+gemTitle+" --user "+window.username)
 	}
+	
+function chatAssignTeam(player){
+	var playerCMD=' '
+
+	for (var key in window.ppl) {
+		// check if the property/key is defined in the object itself, not in parent
+		if (window.ppl.hasOwnProperty(key)) {           
+			playerCMD+=key+' '+window.ppl[key]+' '
+		}
+	}
+	window.client.say('bus',"sysctl --bid "+window.nowinBattle +" --player"+playerCMD)
+}
 			
 function chatLeaveBtl() {
 	//console.log("leave battle chat fired! Submitting cmd ");

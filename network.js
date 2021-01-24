@@ -64,7 +64,18 @@ window.client.on("LEFTBATTLE", (bID,user) => {
 
 var usrinChan = []
 window.client.on("CLIENTS",(CHANME, users) => {
-	if (CHANME!="main"){
+
+	if (CHANME==window.nowinBattle)
+	{
+		usrinChan = users.split(" ");
+		for (var userPtr=0; userPtr<usrinChan.length;userPtr++){
+			frdPut(CHANME,usrinChan[userPtr],'A\'s gem',true);
+			window.ppl[usrinChan[userPtr]]='a';
+			
+		}
+		
+	}
+	else if (CHANME!="main"){
 		usrinChan = users.split(" ");
 		for (var userPtr=0; userPtr<usrinChan.length;userPtr++){
 			frdPut(CHANME,usrinChan[userPtr],'A\'s gem');}
@@ -72,12 +83,19 @@ window.client.on("CLIENTS",(CHANME, users) => {
 });
 
 window.client.on("JOINED",(CHANME, user) => {
-	if (CHANME!="main"&user!=window.username){
+	if (CHANME!="main"&user!=window.username&CHANME==window.nowinBattle)
+	{
+		window.ppl[user]='a';
+		frdPut(CHANME,user,'A\'s gem',true);
+	}
+	
+	else if (CHANME!="main"&user!=window.username){
 		frdPut(CHANME,user,'A\'s gem');
 	}
 	if (CHANME!="main"&CHANME!="bus"&user.startsWith('Autohost')){
 		window.nowHostedby=user
 	}
+
 });
 
 //window.client.on("JOINEDBATTLE",(bID, users) => {

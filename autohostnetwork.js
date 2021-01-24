@@ -1,7 +1,7 @@
 function autohostNetwork(msgSaid) {
 	var cmdDict=autohostParse(msgSaid[1])
 	
-	if (cmdDict['user'][0]==window.username)
+	if (cmdDict['user'][0]==window.username|cmdDict['user'][0]=='all')
 	{
 		if (window.dbug)
 		{}
@@ -20,7 +20,15 @@ function autohostNetwork(msgSaid) {
 					//console.error(error);
 				}
 				
-
+				try {
+					frdTeamUpdate(cmdDict['player'])
+					console.log('trying to update team!!!!!!!!!!!!!!!!'+cmdDict['player'])
+				} catch (error) {
+					
+					console.log('incomplete autohost response!')
+					//console.error(error);
+				}
+				
 			
 		}
 	}
