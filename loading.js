@@ -7,6 +7,10 @@ function loading(activateLoading=true)
 		clearInterval(window.loadingCursor)
 		window.isLoading=false
 		document.getElementById("flashy_cursor").style.visibility="hidden"
+		window.loadingCallback()
+		window.loadingCallback=function (){
+			return
+		}
 	}
 	else {
 		document.getElementById("loading").style.visibility="visible";

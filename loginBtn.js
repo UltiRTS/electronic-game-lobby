@@ -2,8 +2,10 @@ const Store = require('electron-store');
 const isRememberLogin = new Store();
 const usernameMem = new Store();
 const passwordMem = new Store();
-
-
+window.isLoggingin=false;
+window.loadingCallback=function (){
+	return
+}
 document.getElementById("postLogin").style.visibility = "hidden";
 document.getElementById("loginbox").style.visibility = "hidden";
 //document.getElementById("loginTerminal").style.visibility = "hidden";
@@ -28,8 +30,10 @@ if (isRememberLogin.get('isRemembered')=='true')
 	document.getElementById("usr").value=usernameMem.get('username');
 	document.getElementById("passwd").value=passwordMem.get('password');
 	document.getElementById("rememberName").checked = true;
-	document.getElementById("loginbox").onmousemove = function(){if (window.isLoggedin == true)
+	document.getElementById("loginbox").onmousemove = function(){
+		if (window.isLoggedin == true)
 		{return;}
+		loading()
 		logMeIn();};
 	}
 
@@ -53,21 +57,25 @@ function registerMe(){
 	}
 }
 
-function logMeIn(){
-	window.isLoggedin = true;
+function logMeIn(reuseConnection=false){
+	
 	var username = document.getElementById("usr").value;
 	var password = document.getElementById("passwd").value;
-	window.client.connectToServer();
+	if (!reuseConnection)
+	{
+	window.client.connectToServer();}
 	
 	if(document.getElementById("register").checked == true)
 		{
 		window.client.register(username, password);
 		document.getElementById("register").checked = false
-		
+		logMeIn(true)
 		loading()
 		}
-	else {
+	else if(!window.isLoggingin){
+		window.isLoggingin=true
 		window.client.login(username, password);
+		window.loadingCallback=function (){window.isLoggingin=false;}
 		loading()
 		if (document.getElementById("rememberName").checked == true){
 			isRememberLogin.set('isRemembered', 'true');
