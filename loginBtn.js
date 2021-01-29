@@ -63,11 +63,12 @@ function logMeIn(){
 		{
 		window.client.register(username, password);
 		document.getElementById("register").checked = false
-		logMeIn()
+		
+		loading()
 		}
 	else {
 		window.client.login(username, password);
-
+		loading()
 		if (document.getElementById("rememberName").checked == true){
 			isRememberLogin.set('isRemembered', 'true');
 			usernameMem.set('username', username);

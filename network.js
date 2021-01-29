@@ -7,11 +7,13 @@ window.client.on("ACCEPTED", (username) => {
 	window.timer3 = setInterval(finalBoxEnlargeLeave, 10);
 	window.username = username;
 	playSound('lobby_intro.wav',true)
+	loading(false)
 });
 
 window.client.on("AGREEMENT", (agreement) => {
 	document.getElementById("announcement").innerHTML +=agreement
 	console.log("received agreement")
+	loading(false)
 });
 
 window.client.on("AGREEMENTEND", () => {
