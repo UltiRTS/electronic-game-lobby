@@ -33,6 +33,7 @@ function chatProposeBtl(isBattleChat=false) {
 	//console.log("battle chat fired! Submitting cmd ");
 	if(gemTitle.length > 10) gemTitle = gemTitle.substring(0,15);
 	window.client.say('bus',"sysctl --host --title "+gemTitle+" --user "+window.username)
+	loading()
 	}
 	
 function chatAssignTeam(player){

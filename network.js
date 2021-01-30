@@ -113,6 +113,7 @@ window.client.on("JOINBATTLE",(bID, hash) => {
 	lobbyFlush(bID, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, document.getElementById("title"+bID).innerHTML, 0, 0);
 	window.client.joinChanel(bID);
 	window.isExited=false;
+	loading(false)
 });
 
 //window.client.on("CLIENTBATTLESTATUS",(usr, status,teamColor) => {

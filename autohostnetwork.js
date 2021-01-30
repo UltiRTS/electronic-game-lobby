@@ -8,23 +8,25 @@ function autohostNetwork(msgSaid) {
 		else {
 			try {
 				window.client.joinBattle(cmdDict['room'][0])
-				} catch (error) {
+				} 
+			catch (error) {
 				console.log('incomplete autohost response!')
 				//console.error(error);
 				}
 				
-				try {
-					preBattleListMap(cmdDict['available-maps'])
-				} catch (error) {
-					console.log('incomplete autohost response!')
+			try {
+				preBattleListMap(cmdDict['available-maps'])
+				} 
+			catch (error) {
+				console.log('incomplete autohost response!')
 					//console.error(error);
 				}
 				
-				try {
-					frdTeamUpdate(cmdDict['player'])
-					console.log('trying to update team!!!!!!!!!!!!!!!!'+cmdDict['player'])
-				} catch (error) {
-					
+			try {
+				frdTeamUpdate(cmdDict['player'])
+				console.log('trying to update team!!!!!!!!!!!!!!!!'+cmdDict['player'])
+				} 
+				catch (error) {
 					console.log('incomplete autohost response!')
 					//console.error(error);
 				}
