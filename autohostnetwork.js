@@ -51,7 +51,8 @@ function autohostParse(msgReceived){
 	for (var i = 0; i < msgArray.length; i++) {
 		dict[msgArray[i].split(" ")[0]]=msgArray[i].split(" ").slice(1)
 	}
-	console.log("autohost parsed response")
-	console.log(dict)
+	if (window.dbug)
+	{console.log("autohost parsed response")
+	console.log(dict)}
 	return dict
 }
