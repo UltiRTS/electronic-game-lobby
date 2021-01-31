@@ -1,7 +1,7 @@
 function frdPut(page="main",name,battle,isBtlFrd=false){
 	
 	if (isBtlFrd){
-		document.getElementById("friendlimitingFrame"+page).innerHTML +="<div onclick=\"chTeams(\'"+name+"\')\" style=\"margin:1%;\" class=\"userCard\" id=\"userCard"+page+name+"\" ><div style=\"overflow:hidden; position: absolute; height: 100%; top: 0; left:0%; width:15%; background-color: white;display:inline-block;font-size:7vh;\" id=\"cardLabel"+page+name+"\">A</div><div style=\"position:absolute;left:15%;\"><span style=\"font-family: JuneBug2\">"+name+"</span><br><span>In "+battle+"<br> For: -\\- hr  -\\-min</span></div></div>";
+		document.getElementById("friendlimitingFrame"+page).innerHTML +="<div style=\"margin:1%;\" class=\"userCard\" id=\"userCard"+page+name+"\" ><div style=\"overflow:hidden; position: absolute; height: 100%; top: 0; left:0%; width:15%; background-color: white;display:inline-block;font-size:7vh;\" id=\"cardLabel"+page+name+"\">A</div><div onclick=\"chTeams(\'"+name+"\')\" style=\"position:absolute;left:15%;\"><span style=\"font-family: JuneBug2\">"+name+"</span><br><span>In "+battle+"<br> For: -\\- hr  -\\-min</span></div><div class=\"isLeader\" id=\"cardIsLeader"+page+name+"\"onclick=\"chLeader('"+name+"')\" style=\"overflow:visible;position:absolute; bottom:-7%;right:1%;background:white;padding:2%;\">Leader</div></div>";
 	}
 	else{
 		document.getElementById("friendlimitingFrame"+page).innerHTML +="<div class=\"userCard\" style=\"margin:1%;\" id=\"userCard"+page+name+"\" ><div style=\"overflow:hidden; position: absolute; height: 100%; top: 0; left:0%; width:15%; background-color: white;display:inline-block;font-size:7vh;\"></div><div style=\"position:absolute;left:15%;\"><span style=\"font-family: JuneBug2\">"+name+"</span><br><span>In "+battle+"<br> For: -\\- hr  -\\-min</span></div></div>";
@@ -18,6 +18,18 @@ console.log("trying to remove"+ "userCard"+page+name+"")
 function chTeams(player){
 	window.ppl[player]=nextLetter(window.ppl[player])
 	chatAssignTeam()
+}
+
+function chLeader(usr){
+	if(window.teamLeaders[window.ppl[usr]]!=usr){
+		document.getElementById("cardIsLeader"+window.nowinBattle+usr).style.opacity="1"
+		window.teamLeaders[window.ppl[usr]]=usr
+		chatAssignLeader(window.ppl[usr]) //tell the function to look up the leader for this team
+	}
+	else{
+		document.getElementById("cardIsLeader"+window.nowinBattle+usr).style.opacity="0.5"
+		window.teamLeaders[window.ppl[usr]]='None'
+	}
 }
 
 function frdTeamUpdate(playerMatrix){
@@ -46,7 +58,7 @@ function nextLetter(s){
 		}
 	});
 }
-
+window.teamLeaders={}
 window.ppl={};
 frdPut("main",'userA','A\'s gem');
 

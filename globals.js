@@ -12,3 +12,4 @@
 //window.isLoggedin bool if is logged in
 //window.isLoggingin if is logging in 
 //window.loadingCallback //call back func after a loading ends
+//window.teamLeaders[teamLetter] //returns the user that's been designated as the leader

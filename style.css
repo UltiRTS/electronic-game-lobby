@@ -299,7 +299,7 @@ color: #255784;
 /*user cards*/
 
 .userCard{
- overflow: hidden;
+ overflow: visible;
   background-image: linear-gradient(to right, rgba(33,150,243,1), rgba(33,150,243,0));
   mix-blend-mode: screen;
 position: relative; height: 17%; width: 21%;margin:0.1%;heght:20%;display: inline-block;padding:1%;
@@ -312,6 +312,11 @@ position: relative; height: 17%; width: 21%;margin:0.1%;heght:20%;display: inlin
   transition-delay: 0s;
   mix-blend-mode: screen;
 }
+
+.isLeader{
+	opacity: 0.5;
+}
+
 
 .friendlimitingFrame::-webkit-scrollbar {
   width: 12px;
