@@ -30,11 +30,7 @@ if (isRememberLogin.get('isRemembered')=='true')
 	document.getElementById("usr").value=usernameMem.get('username');
 	document.getElementById("passwd").value=passwordMem.get('password');
 	document.getElementById("rememberName").checked = true;
-	document.getElementById("loginbox").onmousemove = function(){
-		if (window.isLoggedin == true)
-		{return;}
-		loading()
-		logMeIn();};
+	
 	}
 
 

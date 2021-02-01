@@ -7,7 +7,9 @@ const regexPatterns = require("./regex-patterns");
 
 const SERVER_URL = "ultirts.net";
 const SERVER_PORT = 8200;
-
+window.addEventListener('beforeunload', function(event) { 
+	window.client.logout()
+});
 class Client extends EventEmitter {
 	constructor() {
 		super();
@@ -101,7 +103,7 @@ class Client extends EventEmitter {
 
 	logout(reason = "unknown") {
 		this.send("EXIT " + reason);
-		self.endConnection();
+		this.endConnection();
 	}
 
 	endConnection() {
@@ -133,7 +135,7 @@ class Client extends EventEmitter {
 		}
 		catch(e){
 			this.endConnection()
-			this.connectToServer()
+			window.isLoggedin=false
 		}
 		
 	}

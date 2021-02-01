@@ -9,6 +9,7 @@ window.client.on("ACCEPTED", (username) => {
 	window.isLoggedin = true;
 	playSound('lobby_intro.wav',true)
 	loading(false)
+
 });
 
 window.client.on("AGREEMENT", (agreement) => {
