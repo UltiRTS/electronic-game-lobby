@@ -8,11 +8,14 @@ function frdPut(page="main",name,battle,isBtlFrd=false){
 	}
 }
 
-function frdEliminate(page="main",name)
+function frdEliminate(page,name)
 {
 console.log("trying to remove"+ "userCard"+page+name+"")
+	try{
 	document.getElementById("userCard"+page+name).parentNode.removeChild(document.getElementById("userCard"+page+name));
-	console.log("MP btn called!")
+	//console.log("MP btn called!")
+	}
+	catch(error){console.log('cant remove a ghost user!')}
 }
 
 function chTeams(player){
