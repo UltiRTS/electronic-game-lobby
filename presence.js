@@ -6,7 +6,7 @@ const rpcClient = new discordRpc.Client({ transport: "ipc"});
 
 rpcClient.on("ready", () => {
 	rpcClient.setActivity({
-                details: "Ultimatum Dev Release",
+                details: "Ultimatum Dev Release"
                 //state: "State"
                 //startTimestamp: new Date()
                 //largeImageKey: "",
@@ -22,14 +22,14 @@ rpcClient.login({
 	clientId: "806697271407280158"
 });
 function lobbyPresence(){
-	rpc.setActivity({
+	rpcClient.setActivity({
 		details: "Ultimatum- Lobby"
 	});
 	
 }
 
 function preBtlPresence(){
-	rpc.setActivity({
+	rpcClient.setActivity({
 		details: "Ultimatum- Proposing Operation"
 	});
 }
