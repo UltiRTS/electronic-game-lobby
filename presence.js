@@ -1,10 +1,12 @@
-const RPC = require("discord-rpc");
-const rpc = new RPC.Client({
-        transport: "ipc"
-});
-rpc.on("ready", () => {
-        rpc.setActivity({
-                details: "In Lobby",
+const discordRpc = require("discord-rpc");
+
+const rpcClient = new discordRpc.Client({ transport: "ipc"});
+
+
+
+rpcClient.on("ready", () => {
+	rpcClient.setActivity({
+                details: "Ultimatum Dev Release",
                 //state: "State"
                 //startTimestamp: new Date()
                 //largeImageKey: "",
@@ -16,6 +18,18 @@ rpc.on("ready", () => {
         console.log("Rich presence is now active");
 });
 
-rpc.login({
-    clientId: "806697271407280158"
+rpcClient.login({
+	clientId: "806697271407280158"
 });
+function lobbyPresence(){
+	rpc.setActivity({
+		details: "Ultimatum- Lobby"
+	});
+	
+}
+
+function preBtlPresence(){
+	rpc.setActivity({
+		details: "Ultimatum- Proposing Operation"
+	});
+}

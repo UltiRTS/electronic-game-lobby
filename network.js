@@ -9,7 +9,7 @@ window.client.on("ACCEPTED", (username) => {
 	window.isLoggedin = true;
 	playSound('lobby_intro.wav',true)
 	loading(false)
-
+	lobbyPresence()
 });
 
 window.client.on("AGREEMENT", (agreement) => {
@@ -115,6 +115,7 @@ window.client.on("JOINBATTLE",(bID, hash) => {
 	window.client.joinChanel(bID);
 	window.isExited=false;
 	loading(false)
+	preBtlPresence()
 });
 
 //window.client.on("CLIENTBATTLESTATUS",(usr, status,teamColor) => {

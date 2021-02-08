@@ -64,9 +64,7 @@ class Client extends EventEmitter {
 	joinBattle(bID) {
 		const message ="JOINBATTLE " +bID;
 		this.send(message);
-         rpc.setActivity({
-                details: "In Pre-Battle Room"
-        });
+        
 	}
 	
 	leaveChanel(chanName) {
@@ -76,9 +74,7 @@ class Client extends EventEmitter {
 	leaveBattle() {
 		const message ="LEAVEBATTLE";
 		this.send(message);
-                 rpc.setActivity({
-                details: "In Lobby"
-        });
+
 	}
 	
 
