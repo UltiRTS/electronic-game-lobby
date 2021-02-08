@@ -4,7 +4,6 @@ const net = require("net");
 const crypto = require("crypto");
 const EventEmitter = require("events");
 const regexPatterns = require("./regex-patterns");
-
 const SERVER_URL = "ultirts.net";
 const SERVER_PORT = 8200;
 window.addEventListener('beforeunload', function(event) { 
@@ -65,6 +64,9 @@ class Client extends EventEmitter {
 	joinBattle(bID) {
 		const message ="JOINBATTLE " +bID;
 		this.send(message);
+         rpc.setActivity({
+                details: "In Pre-Battle Room"
+        });
 	}
 	
 	leaveChanel(chanName) {
@@ -74,6 +76,9 @@ class Client extends EventEmitter {
 	leaveBattle() {
 		const message ="LEAVEBATTLE";
 		this.send(message);
+                 rpc.setActivity({
+                details: "In Lobby"
+        });
 	}
 	
 
