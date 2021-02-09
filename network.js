@@ -10,6 +10,7 @@ window.client.on("ACCEPTED", (username) => {
 	playSound('lobby_intro.wav',true)
 	loading(false)
 	lobbyPresence()
+	window.zone="lobby"
 });
 
 window.client.on("AGREEMENT", (agreement) => {

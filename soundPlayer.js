@@ -1,43 +1,49 @@
+window.isPlaying=false
 function playSound(file='title.mp3',loop=false){
 	window.audiovolumeFade=0
+	
 	if(window.isPlaying)
 	{
-		window.audioTimer = setInterval(_audiofade, 100,file,loop);
-}
+		window.audioTimer = setInterval(_audiofade, 30,file,loop);
+	}
 	else{	
 	window.audio = new Audio('assets/'+file);
-	window.audio.play();
-	window.isPlaying=true
-	if(loop){
-		window.audio.onended = function() {
-			window.audio = new Audio('assets/loop_'+file);
-			window.audio.loop=true
-			window.audio.play();
-			window.isPlaying=true
-		}}
+	window.audio.addEventListener("loadeddata", function() {
+		window.audio.play();
+		window.isPlaying=true
+		if(loop){
+			window.delay=window.audio.duration*1000-20
+			window.audioLoop=setTimeout(_audioLoop, window.delay,file);
+			}
+		});
 	}
 	
 }
 
 function stopSound(){
-	window.audioTimer = setInterval(_audiostop, 100);
+	window.audioTimer = setInterval(_audiostop, 30);
 }
-
+function _audioLoop(file){
+	
+	window.audio = new Audio('assets/loop_'+file);
+	window.audio.addEventListener("loadeddata", function() {
+		window.audio.play();
+		window.isPlaying=true
+	
+		window.delay=window.audio.duration*1000-20
+		window.audioLoop=setTimeout(_audioLoop, window.delay,file);
+	});
+	console.log("audioloop fired"+window.audioLoop)
+}
 function _audiofade(file,loop){
 	if (window.audiovolumeFade>=20){
 		clearInterval(window.audioTimer);
 		window.audio.pause()
-		window.audio = new Audio('assets/'+file);
-		window.audiovolumeFade=0
-		window.audio.play()
-		if(loop){
-			window.audio.onended = function() {
-				window.audio = new Audio('assets/loop_'+file);
-				window.audio.loop=true
-				window.audio.play();
-				window.isPlaying=true
-				}
-		}
+		clearTimeout(window.audioLoop);
+		console.log("audio fade fired")	
+		loading(false)
+		window.isPlaying=false;
+		playSound(file,loop)
 	
 	}
 	else{
