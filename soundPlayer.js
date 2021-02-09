@@ -9,6 +9,7 @@ function playSound(file='title.mp3',loop=false){
 	else{	
 	window.audio = new Audio('assets/'+file);
 	window.audio.addEventListener("loadeddata", function() {
+		window.audio.volume=window.userVolume/100
 		window.audio.play();
 		window.isPlaying=true
 		if(loop){
@@ -27,6 +28,7 @@ function _audioLoop(file){
 	
 	window.audio = new Audio('assets/loop_'+file);
 	window.audio.addEventListener("loadeddata", function() {
+		window.audio.volume=window.userVolume/100
 		window.audio.play();
 		window.isPlaying=true
 	
@@ -49,7 +51,7 @@ function _audiofade(file,loop){
 	else{
 		//console.log('v fade val'+window.audiovolumeFade)
 		
-		window.audio.volume-=0.0475
+		window.audio.volume-=0.0475*window.userVolume/100
 		window.audiovolumeFade+=1
 	}
 	
@@ -65,7 +67,7 @@ function _audiostop(){
 	else{
 		//console.log('v fade val'+window.audiovolumeFade)
 		
-		window.audio.volume-=0.0475
+		window.audio.volume-=0.0475*window.userVolume/100
 		window.audiovolumeFade+=1
 	}
 	

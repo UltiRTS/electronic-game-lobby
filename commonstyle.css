@@ -1,3 +1,97 @@
+/********TO USE THIS, DELCARE PANEL IN CLASS***************/
+
+.panel {
+
+	position: absolute;
+
+	margin-top:0px;
+	margin-left: 0px;
+	border-radius: 8px;
+	box-shadow: 0 10px 20px rgba(100,100,100,0.5);
+	overflow: hidden;
+	z-index: 2;
+	padding: 50px;
+	box-sizing: border-box;
+	
+}
+
+
+.panel::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	-webkit-filter: brightness(70%) blur(20px);
+	-moz-filter: brightness(70%) blur(20px);
+	-ms-filter: brightness(70%) blur(20px);
+	-o-filter: brightness(70%) blur(20px);
+	filter: brightness(70%) blur(20px);
+	
+	z-index: -1;
+	margin: -30px;
+	background-image: url(assets/01warlord_bg.jpeg);
+	background-position: center top;
+	background-size: cover;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	
+}
+
+
+
+/*SLIDER*/
+
+/*Chrome*/
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+	input[type='range'] {
+		overflow: hidden;
+		width: 200%;
+		-webkit-appearance: none;
+		background-color: #ffffff;
+	}
+	
+	input[type='range']::-webkit-slider-runnable-track {
+		height: 5px;
+		-webkit-appearance: none;
+		color: #2196f3;
+		margin-top: -1px;
+	}
+	
+	input[type='range']::-webkit-slider-thumb {
+		width: 0px;
+		-webkit-appearance: none;
+		height: 0px;
+		cursor: ew-resize;
+		background: #2196f3;
+		box-shadow: -80000px 0 0 80000px #2196f3;
+	}
+	
+}
+/** FF*/
+input[type="range"]::-moz-range-progress {
+	background-color: #43e5f7; 
+}
+input[type="range"]::-moz-range-track {  
+	background-color: #9a905d;
+}
+/* IE*/
+input[type="range"]::-ms-fill-lower {
+	background-color: #43e5f7; 
+}
+input[type="range"]::-ms-fill-upper {  
+	background-color: #9a905d;
+}
+
+
+
+
+
+
+
+
+
 .gameSubEntry:not(.old-school) {
 	animation: flyin 0.5s ease forwards;
 	opacity: 0;

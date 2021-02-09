@@ -14,3 +14,6 @@
 //window.loadingCallback //call back func after a loading ends
 //window.teamLeaders[teamLetter] //returns the user that's been designated as the leader
 //window.zone="lobby" currently in what part of the lobby
+//window.userVolume //1 to 100, an user set value that multiplies into window.audio.volume
+//window.audio.volume //lobby volume
+//storage // storage.set('unicorn', '🦄');console.log(storage.get('unicorn'));

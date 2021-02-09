@@ -1,7 +1,7 @@
 const Store = require('electron-store');
-const isRememberLogin = new Store();
-const usernameMem = new Store();
-const passwordMem = new Store();
+
+const storage=new Store();
+
 window.isLoggingin=false;
 window.loadingCallback=function (){
 	return
@@ -25,10 +25,10 @@ loginBtn.addEventListener("mouseup", () => {
 
 
 
-if (isRememberLogin.get('isRemembered')=='true')
+if (storage.get('isRemembered')=='true')
 	{
-	document.getElementById("usr").value=usernameMem.get('username');
-	document.getElementById("passwd").value=passwordMem.get('password');
+		document.getElementById("usr").value=storage.get('username');
+		document.getElementById("passwd").value=storage.get('password');
 	document.getElementById("rememberName").checked = true;
 	
 	}
@@ -74,11 +74,11 @@ function logMeIn(reuseConnection=false){
 		window.loadingCallback=function (){window.isLoggingin=false;}
 		loading()
 		if (document.getElementById("rememberName").checked == true){
-			isRememberLogin.set('isRemembered', 'true');
-			usernameMem.set('username', username);
-			passwordMem.set('password', password);
+			storage.set('isRemembered', 'true');
+			storage.set('username', username);
+			storage.set('password', password);
 		} else {
-			isRememberLogin.set('isRemembered', 'false');
+			storage.set('isRemembered', 'false');
 		}
 		
 	}
