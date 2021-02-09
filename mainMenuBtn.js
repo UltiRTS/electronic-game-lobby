@@ -3,6 +3,8 @@ function multiplayer()
 	{
 	document.getElementById("lobbyContainer").style.visibility="visible"
 	document.getElementById("settings").style.visibility="hidden"
+	document.getElementById("Volpanel").style.visibility="hidden"
+	document.getElementById("FIpanel").style.visibility="hidden"
 	window.zone='lobby'
 	playSound('lobby_intro.wav',true)
 	loading(true)
