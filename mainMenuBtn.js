@@ -1,9 +1,11 @@
 function multiplayer()
-{	if(window.zone=='settings')
+{	if(window.zone!='lobby')
 	{
 	document.getElementById("lobbyContainer").style.visibility="visible"
 	document.getElementById("settings").style.visibility="hidden"
 	window.zone='lobby'
+	playSound('lobby_intro.wav',true)
+	loading(true)
 	}
 	
 	if(document.getElementById("lobbyContent").style.visibility=="hidden" )
@@ -19,13 +21,14 @@ function multiplayer()
 }
 
 function settings(){
-	playSound('generalPurposeAutomatedSolution2196f3.wav',true)
-	loading(true)
-	if (window.zone=="lobby"){
+
+	if (window.zone!="settings"){
 		document.getElementById("lobbyContainer").style.visibility="hidden"
 		document.getElementById("settings").style.visibility="visible"
 		document.getElementById("lobbyContent").style.visibility="hidden"
 		document.getElementById("prebattle").style.visibility="hidden"
 		window.zone="settings"
+		playSound('generalPurposeAutomatedSolution2196f3.wav',true)
+		loading(true)
 	}
 }
