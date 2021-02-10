@@ -37,7 +37,7 @@ function VolumeDone(){
 	document.getElementById("Volpanel").style.visibility="hidden"
 }
 
-function FIDone(){
+function fiDone(){
 	//storage.set('userVolume', window.userVolume)
 	document.getElementById("FIpanel").style.visibility="hidden"
 }

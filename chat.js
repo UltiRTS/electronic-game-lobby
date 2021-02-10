@@ -88,22 +88,21 @@ function chatPut(Name, Desc="Intergalactic Quantum Com", isBattleChat=false) {  
 	if (isBattleChat == false){
 		//console.log("adding regular chat"+Name);
 		if (Name!="main"){    //prevents those shit from running when called by loginbtn for the first time
-			if (displayedChat!="disposed"){
-				document.getElementById("chat"+displayedChat).style.visibility = "hidden";
-				document.getElementById("friendFrame"+displayedChat).style.visibility = "hidden";
-			}
+			
 		
-			document.getElementById("infopanel").innerHTML +="<div class=\"friendFrame\" id=\"friendFrame"+Name+"\" style=\"top:-10%; overflow:visible; position: absolute; width:65%;height:120%; display:inline-block;right:35%;z-index:30;\"><h1 style=\"display:inline-block; position: absolute; color: white; top: -15%; left: -3%;font-family: JuneBug2;\">"+Name+"&gt; </h1><h1 style=\"display:inline-block; position: absolute; color: white; top: -15%; left: 10%;font-family: JuneBug2;\">Personnels _</h1><div class=\"friendlimitingFrame\" id=\"friendlimitingFrame"+Name+"\" style=\"top:3%; overflow:auto; position: relative; width:92%;height:91%; display:inline-block; right: -6.3%;\"></div></div>";
-			}
-		displayedChat=Name; //update displayed chat with the new chat
-		if (Name!='main'){
-			document.getElementById("chatList").innerHTML +="<p style=\"filter: drop-shadow(0.3rem 0.3rem 0.1rem rgba(33,150,243,0.7));\" id=\"chatTag"+displayedChat+"\"><span onclick=\"chatSwt(&#39;"+displayedChat+"&#39;,displayedChat)\"style=\"cursor: pointer; background-color: #2196f3;color: white; padding: 5px;\">"+displayedChat.substring(0, 6)+"</span><span onclick=\"chatLeave(&#39;"+displayedChat+"&#39;)\" id=\"chatClose\" class=\"chatClose\" style=\"cursor: pointer;\">＼</span></p>";
+		document.getElementById("infopanel").innerHTML +="<div class=\"friendFrame\" id=\"friendFrame"+Name+"\" style=\"top:-10%; overflow:visible; position: absolute; width:65%;height:120%; display:inline-block;right:35%;z-index:30;\"><h1 style=\"display:inline-block; position: absolute; color: white; top: -15%; left: -3%;font-family: JuneBug2;\">"+Name+"&gt; </h1><h1 style=\"display:inline-block; position: absolute; color: white; top: -15%; left: 10%;font-family: JuneBug2;\">Personnels _</h1><div class=\"friendlimitingFrame\" id=\"friendlimitingFrame"+Name+"\" style=\"top:3%; overflow:auto; position: relative; width:92%;height:91%; display:inline-block; right: -6.3%;\"></div></div>";
+
+		document.getElementById("chatList").innerHTML +="<p style=\"filter: drop-shadow(0.3rem 0.3rem 0.1rem rgba(33,150,243,0.7));\" id=\"chatTag"+Name+"\"><span onclick=\"chatSwt(&#39;"+Name+"&#39;,displayedChat)\"style=\"cursor: pointer; background-color: #2196f3;color: white; padding: 5px;\">"+Name.substring(0, 6)+"</span><span onclick=\"chatLeave(&#39;"+Name+"&#39;)\" id=\"chatClose\" class=\"chatClose\" style=\"cursor: pointer;\">＼</span></p>";
 		}
 		else {
-			document.getElementById("chatList").innerHTML +="<p style=\"filter: drop-shadow(0.3rem 0.3rem 0.1rem rgba(33,150,243,0.7));\" id=\""+displayedChat+"\"><span onclick=\"chatSwt(&#39;"+displayedChat+"&#39;,displayedChat)\"style=\"cursor: pointer; background-color: #2196f3;color: white; padding: 5px;\">"+displayedChat.substring(0, 6)+"</span><span  id=\"chatClose\" class=\"chatClose\" style=\"cursor: pointer;\">⊟</span></p>";
+			document.getElementById("chatList").innerHTML +="<p style=\"filter: drop-shadow(0.3rem 0.3rem 0.1rem rgba(33,150,243,0.7));\" id=\""+Name+"\"><span onclick=\"chatSwt(&#39;"+Name+"&#39;,displayedChat)\"style=\"cursor: pointer; background-color: #2196f3;color: white; padding: 5px;\">"+Name.substring(0, 6)+"</span><span  id=\"chatClose\" class=\"chatClose\" style=\"cursor: pointer;\">⊟</span></p>";
 		}
 	
-		document.getElementById("chatContainer").innerHTML +=" <div class=\"chatContent\" id=\"chat"+displayedChat+"\"><h1 style=\"position: absolute; color: white; top: 0%; left: 9%;font-family: JuneBug2;\">"+displayedChat+"</h1><p style=\"color: white; font-family: JuneBug3;\">"+Desc+"</p><div class=\"form__group field\" style=\"bottom:1%; width:100%; position:absolute;left:2%;\"><input onchange=\"chatSubmit()\" type=\"input\" class=\"form__field\" placeholder=\""+window.username+"\" name=\"name\" id=\'name"+displayedChat+"\' required /><label for=\"name"+displayedChat+"\" class=\"form__label\" id=\"formLabel\">"+window.username+"</label></div><div class=\"limitingframe\" style=\"width:107% ;height:78%;top:2%; overflow:scroll; overflow-x: hidden; position:relative;\"><div class=\"chatUserContent\" id=\"chatUserContent"+displayedChat+"\" style =\"bottom: 3%;position: relative; overflow: hidden;\"><!--chat content to be inserted--></div></div></div>";
+	document.getElementById("chatContainer").innerHTML +=" <div class=\"chatContent\" id=\"chat"+Name+"\"><h1 style=\"position: absolute; color: white; top: 0%; left: 9%;font-family: JuneBug2;\">"+Name+"</h1><p style=\"color: white; font-family: JuneBug3;\">"+Desc+"</p><div class=\"form__group field\" style=\"bottom:1%; width:100%; position:absolute;left:2%;\"><input onchange=\"chatSubmit()\" type=\"input\" class=\"form__field\" placeholder=\""+window.username+"\" name=\"name\" id=\'name"+Name+"\' required /><label for=\"name"+Name+"\" class=\"form__label\" id=\"formLabel\">"+window.username+"</label></div><div class=\"limitingframe\" style=\"width:107% ;height:78%;top:2%; overflow:scroll; overflow-x: hidden; position:relative;\"><div class=\"chatUserContent\" id=\"chatUserContent"+Name+"\" style =\"bottom: 3%;position: relative; overflow: hidden;\"><!--chat content to be inserted--></div></div></div>";
+		if(Name=='main'){
+		chatSwt(Name,'disposed')}
+		else{chatSwt(Name,displayedChat)}
+		displayedChat=Name;
 	}
 }
 
