@@ -378,7 +378,8 @@ position:absolute;
 }
 
 .settingSubContent{
-	color:white
+	color:white;
+	cursor:pointer;
 }
 .settingSubContent:hover{
 	background:white;
