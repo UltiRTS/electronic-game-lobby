@@ -6,6 +6,7 @@ else{
 }
 
 function volumeEntry(){
+	_entryHighlight('volMenuEntry')
 	if (document.getElementById("Volpanel").style.visibility=="hidden"){
 		document.getElementById("Volpanel").style.visibility="visible"
 		document.getElementById("FIpanel").style.visibility="hidden"
@@ -16,6 +17,7 @@ function volumeEntry(){
 }
 
 function FIEntry(){
+	_entryHighlight('volFIEntry')
 	if (document.getElementById("FIpanel").style.visibility=="hidden"){
 		document.getElementById("FIpanel").style.visibility="visible"
 		document.getElementById("Volpanel").style.visibility="hidden"
@@ -102,7 +104,15 @@ function fiCheckStart(){
 	detectedIntegrity=0;
 }
 
-
+function _entryHighlight(entry){
+	var c = document.getElementById(entry).parentElement.children;
+	var i;
+	for (i = 0; i < c.length; i++) {
+		c[i].className="settingSubContent"
+		
+	} 
+	document.getElementById(entry).className="settingSubContentSel"
+}
 function _fiDonut(){
 
 	document.getElementById("fiChart").innerHTML ="<div class=\"chart-container\" style=\"position: relative; width:70%;left:27%;\"><canvas id=\"fiChartCanvas\"></canvas></div>"

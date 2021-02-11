@@ -384,6 +384,10 @@ position:absolute;
 	background:white;
 	color:black;
 }
+.settingSubContentSel{
+	background:white;
+	color:black;
+}
 .bg {
 	
 	background: linear-gradient(to bottom, #1e5799 -75%, rgba(0, 29, 60, 0) 75%);

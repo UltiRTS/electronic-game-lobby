@@ -170,8 +170,8 @@
 			<h1  style="position: absolute; color: white; top: 6%; left: 17%; font-family: JuneBug2;">Settings</h1>
 			<p  style="color: white; font-family: JuneBug3; position: absolute; top: 12%;left:17%;">localhost~# <span class="cursorFlash">_</span></p>
 			<div  class="settingContent" id="settingContent" style="position:absolute; color: white; top: 16%; left: 17%;">
-				<p class="settingSubContent" onclick="volumeEntry()" >Volume</p>
-				<p class="settingSubContent" onclick="FIEntry()">File Integrity</p>
+				<p id="volMenuEntry" class="settingSubContent" onclick="volumeEntry()" >Volume</p>
+				<p id="volFIEntry" class="settingSubContent" onclick="FIEntry()">File Integrity</p>
 				<p class="settingSubContent">Retrieve More Maps</p>
 				<p class="settingSubContent">Performance</p>
 				<p class="settingSubContent">Connection Delay</p>
@@ -183,6 +183,7 @@
 			<div class="panel" id="Volpanel" style="top:10%;left:30%;height:88%;width:69%;padding:1%;visibility:hidden;">	
 				<img style="position:absolute;opacity:10%;top:-5%;left:70%;width:40%;" src='assets/auth2.png'>
 				<img style="position:absolute;opacity:4%;top:80%;width:40%;" src='assets/thea_auth.png'>
+				<div style="position:absolute; font-family:JuneBug3; color:white;width:40%;opacity:30%;left:60%;top:80%;">Change the ambience of the terminal. Move the histogram to adjust. &lt;DONE&gt; to save.</div>
 				<div style="position:absolute;opacity:8%;top:40%;width:40%;height:40%;"><span style="background:white;color:black;font-size:2rem;font-family:JuneBug">TRANSFECTION RATE:</br></span><span style="color:white;font-size:16rem;" id="volSettingDigit">20%</span></div>
 				<h1 style="position: absolute; color: white;">Volume</h1>
 				<br><br><br><br>
@@ -198,6 +199,7 @@
 			<div class="panel" id="FIpanel" style="top:10%;left:30%;height:88%;width:69%;padding:1%;visibility:hidden;">	
 				<img style="position:absolute;opacity:10%;top:-5%;left:70%;width:40%;" src='assets/auth2.png'>
 				<img style="position:absolute;opacity:4%;top:80%;width:40%;" src='assets/thea_auth.png'>
+				<div style="position:absolute; font-family:JuneBug3; color:white;width:40%;opacity:30%;left:60%;top:80%;">Checks the integrity of your local system. A 100% percentage indicates all components are functioning; while a 0% means your system is failing. Click on &lt;Launch Check&gt; to check, &lt;done&gt; to close this terminal. </div>
 				<div style="position:absolute;opacity:20%;top:40%;width:40%;height:40%;"><span style="background:white;color:black;font-size:2rem;font-family:JuneBug">SYSTEM INTEGRITY:</br></span><span style="color:white;font-size:16rem;" id="fiSettingDigit">20%</span></div>
 				<h1 style="position: absolute; color: white;">Database Integrity</h1>
 				<br><br><br><br><br><br><br>
