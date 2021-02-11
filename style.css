@@ -322,6 +322,13 @@ position: relative; height: 17%; width: 21%;margin:0.1%;heght:20%;display: inlin
 	opacity: 0.5;
 }
 
+.aiKill{
+	opacity: 0.5;
+}
+
+.aiKill:hover{
+	opacity: 1;
+}
 
 .friendlimitingFrame::-webkit-scrollbar {
   width: 12px;

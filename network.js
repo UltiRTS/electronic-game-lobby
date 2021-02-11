@@ -30,7 +30,15 @@ window.client.on("AGREEMENTEND", () => {
 
 
 window.client.on("JOIN", (CHANAME) => {
-	chatPut(CHANAME)
+	if (CHANAME==window.nowinBattle){
+	chatPut(CHANAME,'Encrypted Operation Channel',true)}
+	else if (CHANAME=='bus'){
+		chatPut(CHANAME,'debug channel; unless debugging, please do not post!')
+	}
+	else{
+		chatPut(CHANAME)
+	}
+	
 });
 
 window.client.on("DENIED", (reason) => {

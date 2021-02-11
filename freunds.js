@@ -8,6 +8,22 @@ function frdPut(page="main",name,battle,isBtlFrd=false){
 	}
 }
 
+function aiPut(page,name){
+	
+	
+	window.ppl[name]='a';
+	document.getElementById("friendlimitingFrame"+page).innerHTML +="<div style=\"margin:1%;\" class=\"userCard\" id=\"userCard"+page+name+"\" ><div style=\"overflow:hidden; position: absolute; height: 100%; top: 0; left:0%; width:100%; background-color: rgba(105,105,105,0.3);display:inline-block;font-size:7vh;text-transform: uppercase;filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6));color:white;\" id=\"cardLabel"+page+name+"\">A</div><div class=\"freundBody\" onclick=\"chTeams(\'"+name+"\')\" style=\"opacity:90%;top:0;height:100%;position:absolute;left:15%;background:rgba(33,150,243,1);width:85%;\"><span style=\"font-weight:900;font-size:2rem;\">"+name+"</span><img src=\"assets/theaAI.png\" style=\"position:absolute;width:60%;opacity:30%;top:37%;left:5%;z-index:-1;\"></div><div class=\"isLeader\" id=\"cardIsLeader"+page+name+"\"onclick=\"chLeader('"+name+"')\" style=\"overflow:visible;position:absolute; bottom:-9%;right:-5%;background:white;padding:2%;\">Leader</div><div class=\"aiKill\" onclick=\"frdAIKill('"+page+"','"+name+"')\"style=\"overflow:visible;position:absolute;top:-9%;right:-5%;color:white;padding-left: 2%;padding-right: 2%;\">X</div></div>";
+
+}
+
+function frdAIKill(page,name){
+	try{
+		document.getElementById("userCard"+page+name).parentNode.removeChild(document.getElementById("userCard"+page+name));
+		//console.log("MP btn called!")
+	}
+	catch(error){console.log('cant remove a ghost AI!')}
+}
+
 function frdEliminate(page,name)
 {
 console.log("trying to remove"+ "userCard"+page+name+"")

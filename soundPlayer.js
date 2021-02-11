@@ -13,7 +13,7 @@ function playSound(file='title.mp3',loop=false){
 		window.audio.play();
 		window.isPlaying=true
 		if(loop){
-			window.delay=window.audio.duration*1000-18
+			window.delay=window.audio.duration*1000-20
 			window.audioLoop=setTimeout(_audioLoop, window.delay,file);
 			}
 		});
@@ -32,7 +32,7 @@ function _audioLoop(file){
 		window.audio.play();
 		window.isPlaying=true
 	
-		window.delay=window.audio.duration*1000-18
+		window.delay=window.audio.duration*1000-20
 		window.audioLoop=setTimeout(_audioLoop, window.delay,file);
 	});
 	console.log("audioloop fired"+window.audioLoop)
