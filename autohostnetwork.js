@@ -3,47 +3,27 @@ function autohostNetwork(msgSaid) {
 	
 	if (cmdDict['user'][0]==window.username|cmdDict['user'][0]=='all')
 	{
-		if (window.dbug)
-		{}
-		else {
-			try {
-				window.client.joinBattle(cmdDict['room'][0])
+	if (cmdDict['action'][0]=='listMap'){
+		window.client.joinBattle(cmdDict['room'][0])}
+		console.log(cmdDict)
+		if (cmdDict['action'][0]=='listMap'){
+			preBattleListMap(cmdDict['available-maps'])
 				} 
-			catch (error) {
-				console.log('incomplete autohost response!')
-				//console.error(error);
-				}
-				
-			try {
-				preBattleListMap(cmdDict['available-maps'])
-				} 
-			catch (error) {
-				console.log('incomplete autohost response!')
-					//console.error(error);
-				}
-				
-			try {
+		if (cmdDict['action'][0]=='teamAssign'){
 				frdTeamUpdate(cmdDict['player'])
 				console.log('trying to update team!!!!!!!!!!!!!!!!'+cmdDict['player'])
 				} 
-				catch (error) {
-					console.log('incomplete autohost response!')
-					//console.error(error);
-				}
-				
+
+		if (cmdDict['action'][0]=='aiAdd'){
+				aiPut(cmdDict['room'][0],cmdDict['AI'])
+				console.log('trying to update team!!!!!!!!!!!!!!!!'+cmdDict['player'])
+			} 
+
 			
 		}
 	}
 	
-	
-	
-	
-	
-	
-	
-	return;
-	
-}
+
 
 function autohostParse(msgReceived){
 	msgArray=msgReceived.split("--")
