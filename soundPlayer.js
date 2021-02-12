@@ -67,6 +67,7 @@ function _audiostop(){
 	if (window.audiovolumeFade>=20){
 		clearInterval(window.audioTimer);
 		window.audio.pause()
+		clearTimeout(window.audioLoop);
 		window.isPlaying=false
 		window.audio.volume=1
 	}
