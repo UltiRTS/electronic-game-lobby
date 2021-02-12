@@ -1,4 +1,6 @@
 window.isPlaying=false
+
+	
 function playSound(file='title.mp3',loop=false){
 	window.audiovolumeFade=0
 	
@@ -9,7 +11,11 @@ function playSound(file='title.mp3',loop=false){
 	else{	
 	window.audio = new Audio('assets/'+file);
 	window.audio.addEventListener("loadeddata", function() {
-		window.audio.volume=window.userVolume/100
+		volume=window.userVolume/100
+		console.log('setting volume to '+window.userVolume)
+		console.log('setting volume to '+volume)
+		window.audio.volume=volume
+		
 		window.audio.play();
 		window.isPlaying=true
 		if(loop){

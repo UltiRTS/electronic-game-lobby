@@ -34,6 +34,11 @@ function chatAddAI(name) {
 	window.client.say('bus',"sysctl --AI "+name+" --bid "+window.nowinBattle)
 }
 
+function chatAIKill(bid,AI) {
+	
+	window.client.say('bus',"sysctl --kAI "+AI+" --bid "+window.nowinBattle)
+}
+
 function chatProposeBtl(isBattleChat=false) {
 	gemTitle = document.getElementById("grabberValue").value
 	//console.log("battle chat fired! Submitting cmd ");

@@ -18,7 +18,10 @@ function autohostNetwork(msgSaid) {
 				aiPut(cmdDict['room'][0],cmdDict['AI'])
 				console.log('trying to update team!!!!!!!!!!!!!!!!'+cmdDict['player'])
 			} 
-
+		if (cmdDict['action'][0]=='aiKill'){
+			frdAIKill(cmdDict['room'][0],cmdDict['AI'])
+				console.log('trying to update team!!!!!!!!!!!!!!!!'+cmdDict['player'])
+			} 
 			
 		}
 	}

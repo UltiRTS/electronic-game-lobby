@@ -1,9 +1,4 @@
 window.dbug=false;
-if (storage.has('userVolume')){
-window.userVolume=storage.get('userVolume')}
-else{
-	window.userVolume=50;
-}
 
 function volumeEntry(){
 	_entryHighlight('volMenuEntry')
@@ -56,52 +51,84 @@ function fiCheckStart(){
 		if (err) {
 			document.getElementById("fiTerm").innerHTML+=err+"<br>"
 			document.getElementById("fiTerm").innerHTML+="localVer not present!</br>"
-			return
+			
 		}
+		else{
 		document.getElementById("fiTerm").innerHTML+="localVer present!</br>"
-		detectedIntegrity+=1;
+		detectedIntegrity+=1;}
+		
+		path = process.env.WDIR+'/engine'
+		document.getElementById("fiTerm").innerHTML+="Checking engine:<br>"
+		fs.access(path, fs.F_OK, (err) => {
+			if (err) {
+				document.getElementById("fiTerm").innerHTML+=err+"<br>"
+				document.getElementById("fiTerm").innerHTML+="engine not present!</br>"
+				
+			}
+			else{
+			document.getElementById("fiTerm").innerHTML+="engine present!</br>"
+			detectedIntegrity+=1;}
+			
+			path = process.env.WDIR+'/engine/maps'
+			document.getElementById("fiTerm").innerHTML+="Checking content dir:<br>"
+			fs.access(path, fs.F_OK, (err) => {
+				if (err) {
+					document.getElementById("fiTerm").innerHTML+=err+"<br>"
+					document.getElementById("fiTerm").innerHTML+="content dir not present!</br>"
+					
+				}
+				else{
+				document.getElementById("fiTerm").innerHTML+="content dir present!</br>"
+				detectedIntegrity+=1;}
+				
+				path = process.env.WDIR+'/busybox.exe'
+				document.getElementById("fiTerm").innerHTML+="Checking busybox:<br>"
+				fs.access(path, fs.F_OK, (err) => {
+					if (err) {
+						document.getElementById("fiTerm").innerHTML+=err+"<br>"
+						document.getElementById("fiTerm").innerHTML+="busybox not present!</br>"
+						
+					}
+					else{
+					document.getElementById("fiTerm").innerHTML+="busybox present!</br>"
+					detectedIntegrity+=1;
+					console.log('deIn:'+detectedIntegrity)}
+					
+					finalIntegrity=detectedIntegrity/maxIntegrity*100
+					document.getElementById("fiSettingDigit").innerHTML=finalIntegrity+"%"
+					fiChartCanvas.data.datasets[0].data[1] = finalIntegrity;
+					fiChartCanvas.data.datasets[0].data[0] = 100-finalIntegrity;
+					fiChartCanvas.update();
+					detectedIntegrity=0;
+					
+					
+					
+					
+				})
+				
+				
+				
+			})
+			
+			
+			
+			
+		})
+		
+		
+		
+		
+		
+		
+		
 	})
 	
-	path = process.env.WDIR+'/engine'
-	document.getElementById("fiTerm").innerHTML+="Checking engine:<br>"
-	fs.access(path, fs.F_OK, (err) => {
-		if (err) {
-			document.getElementById("fiTerm").innerHTML+=err+"<br>"
-			document.getElementById("fiTerm").innerHTML+="engine not present!</br>"
-			return
-		}
-		document.getElementById("fiTerm").innerHTML+="engine present!</br>"
-		detectedIntegrity+=1;
-	})
 	
-	path = process.env.WDIR+'/engine/maps'
-	document.getElementById("fiTerm").innerHTML+="Checking content dir:<br>"
-	fs.access(path, fs.F_OK, (err) => {
-		if (err) {
-			document.getElementById("fiTerm").innerHTML+=err+"<br>"
-			document.getElementById("fiTerm").innerHTML+="content dir not present!</br>"
-			return
-		}
-		document.getElementById("fiTerm").innerHTML+="content dir present!</br>"
-		detectedIntegrity+=1;
-	})
 	
-	path = process.env.WDIR+'/busybox.exe'
-	document.getElementById("fiTerm").innerHTML+="Checking busybox:<br>"
-	fs.access(path, fs.F_OK, (err) => {
-		if (err) {
-			document.getElementById("fiTerm").innerHTML+=err+"<br>"
-			document.getElementById("fiTerm").innerHTML+="busybox not present!</br>"
-			return
-		}
-		document.getElementById("fiTerm").innerHTML+="busybox present!</br>"
-		detectedIntegrity+=1;
-	})
-	finalIntegrity=detectedIntegrity/maxIntegrity
-	document.getElementById("fiSettingDigit").innerHTML=finalIntegrity+"%"
-	window.fiChartCanvas.data.datasets[0].data[1] = finalIntegrity;
-	window.fiChartCanvas.update();
-	detectedIntegrity=0;
+
+	
+
+
 }
 
 function _entryHighlight(entry){
