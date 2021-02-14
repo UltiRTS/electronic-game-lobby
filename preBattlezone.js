@@ -26,7 +26,7 @@ function preBattleListMap(pool)
 	var map = document.createElement('div');
 	map.className="map";
 	map.setAttribute( "style", "position:relative; height:40%;width:100%;")
-	map.innerHTML="<br><div id=\"title\" style=\"color:white;\"><h1>Maps</h1></div><hr></hr><div class=\"slidingMenu\" style=\"overflow: visible; width:20%;height:100%\"><div style=\"filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6)); overflow: hidden;\" onclick=\"chatVoteMap(\'"+pool[0]+"\')\" class=\"slidingMenuSub1\"><span style=\" font-family: JuneBug2; position:absolute; top:40%;left:25%;\">"+pool[0]+"</span></div><div style=\"filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6)); overflow: hidden; \" onclick=\"chatVoteMap(\'"+pool[1]+"\')\" class=\"slidingMenuSub2\"><span style=\"font-family: JuneBug2; position:absolute; top:40%;left:25%;\">"+pool[1]+"</span></div><div class=\"slidingMenuSub3\" onclick=\"chatVoteMap(\'"+pool[2]+"\')\" style=\"overflow: hidden; filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6));\"><span style=\"font-family: JuneBug2; position:absolute; top:40%;left:25%;\">"+pool[2]+"</span></div><div onclick=\"chatVoteMap(\'"+pool[3]+"\')\" style=\"filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6)); overflow: hidden;\" class=\"slidingMenuSub4\"><span style=\"font-family: JuneBug2; position:absolute; top:40%;left:25%;\">"+pool[3]+"</span></div><div style=\"filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6)); overflow: hidden;\" class=\"slidingMenuSub5\" onclick=\"chatVoteMap(\'"+pool[4]+"\')\"><span style=\"font-family: JuneBug2; position:absolute; top:40%;left:25%;\">"+pool[4]+"</span></div></div>"
+	map.innerHTML="<br><div id=\"title\" style=\"color:white;\"><h1>Maps</h1></div><hr></hr><div class=\"slidingMenu\" style=\"overflow: visible; width:20%;height:100%\"><div style=\"filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6)); overflow: hidden;\" onclick=\"chatVoteMap(\'"+pool[0]+"\')\" class=\"slidingMenuSub1\"><span style=\" font-family: JuneBug2; position:absolute; top:40%;left:25%;\">"+pool[0].replace(/🦔/g, " ")+"</span></div><div style=\"filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6)); overflow: hidden; \" onclick=\"chatVoteMap(\'"+pool[1]+"\')\" class=\"slidingMenuSub2\"><span style=\"font-family: JuneBug2; position:absolute; top:40%;left:25%;\">"+pool[1].replace(/🦔/g, " ")+"</span></div><div class=\"slidingMenuSub3\" onclick=\"chatVoteMap(\'"+pool[2]+"\')\" style=\"overflow: hidden; filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6));\"><span style=\"font-family: JuneBug2; position:absolute; top:40%;left:25%;\">"+pool[2].replace(/🦔/g, " ")+"</span></div><div onclick=\"chatVoteMap(\'"+pool[3]+"\')\" style=\"filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6)); overflow: hidden;\" class=\"slidingMenuSub4\"><span style=\"font-family: JuneBug2; position:absolute; top:40%;left:25%;\">"+pool[3].replace(/🦔/g, " ")+"</span></div><div style=\"filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6)); overflow: hidden;\" class=\"slidingMenuSub5\" onclick=\"chatVoteMap(\'"+pool[4]+"\')\"><span style=\"font-family: JuneBug2; position:absolute; top:40%;left:25%;\">"+pool[4].replace(/🦔/g, " ")+"</span></div></div>"
 	map.id="map"
 	document.getElementById("pregameInfo").appendChild(map);
 	_mapDonutPut(pool)
@@ -42,7 +42,7 @@ var ctx = document.getElementById("mapPoll");
 window.mapPoll = new Chart(ctx, {
     type: 'doughnut',
     data: {
-		labels: [pool[0], pool[1],pool[2],pool[3],pool[4]],
+		labels: [pool[0].replace(/🦔/g, " "), pool[1].replace(/🦔/g, " "),pool[2].replace(/🦔/g, " "),pool[3].replace(/🦔/g, " "),pool[4].replace(/🦔/g, " ")],
         datasets: [{
             label: '# of Votes',
             data: [1,1,2,3,4],
@@ -68,7 +68,7 @@ window.mapPoll = new Chart(ctx, {
     legend: {
      onClick: (e, i) => {
       //console.log(i.text+" clicked");
-	  chatVoteMap(i.text)
+		 chatVoteMap(i.text.replace(/ /g, "🦔"))
 	  
     },
             display: true,
