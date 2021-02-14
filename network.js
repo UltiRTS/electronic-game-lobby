@@ -142,7 +142,7 @@ window.client.on("SAID", (channel,user,msg) => {
 	if (user==window.username){
 		document.getElementById("name"+displayedChat).value=""
 	}
-	if (channel == 'bus' & user!=window.username)
+	if (channel == 'bus' & user!=window.username &user.startsWith('Autohost'))
 		autohostNetwork(msgSaid)
 });
 
