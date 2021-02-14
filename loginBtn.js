@@ -14,6 +14,7 @@ var passwordForm = document.getElementById("passwd");
 
 loginBtn.addEventListener("mousedown", () => {
 	loginBtn.style.background = "#1a1a1a";
+	playFX('zoomin.wav')
 });
 
 loginBtn.addEventListener("mouseup", () => {
@@ -52,6 +53,7 @@ function registerMe(){
 }
 
 function logMeIn(reuseConnection=false){
+	playFX('zoomout.wav')
 	if (window.isLoggedin){return}
 	var username = document.getElementById("usr").value;
 	var password = document.getElementById("passwd").value;

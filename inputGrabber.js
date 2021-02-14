@@ -1,11 +1,13 @@
 timerFrame=0;
 function inputGrabber(heading="unifiedInputField",subHeading="Things typed will be retrieved by the caller",exampleInput="main",callback)
 {	
+	
 	if (window.grabbing)
 	{
 		return;
 	}
 	window.grabbing=true;
+	playFX()
 window.timer3=setInterval(grabberArise, 0.5);
 	document.getElementById('grabberValue').setAttribute('onchange',callback+'();inputReleaser();');
 	document.getElementById("inputGrabber").style.visibility = "visible";
@@ -21,6 +23,7 @@ function inputReleaser()
 	{
 		return;
 	}
+	playFX()
 	window.releasing=true;
 	document.getElementById("grabberValue").value="";
 	window.timer3=setInterval(grabberDel, 0.5);

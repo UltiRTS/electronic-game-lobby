@@ -1,5 +1,5 @@
-const discordRpc = require("discord-rpc");
 
+const discordRpc = require("discord-rpc");
 const rpcClient = new discordRpc.Client({ transport: "ipc"});
 
 
@@ -21,15 +21,18 @@ rpcClient.on("ready", () => {
 rpcClient.login({
 	clientId: "806697271407280158"
 });
+
 function lobbyPresence(){
+	
 	rpcClient.setActivity({
 		details: "Ultimatum- Lobby"
 	});
-	
 }
 
 function preBtlPresence(){
+	
 	rpcClient.setActivity({
 		details: "Ultimatum- Proposing Operation"
 	});
 }
+

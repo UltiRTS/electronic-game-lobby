@@ -6,3 +6,9 @@
 	 else{
 		 window.userVolume=50;
 	 }
+
+if (storage.has('userFXVolume')){
+	window.userFXVolume=storage.get('userFXVolume')}
+	else{
+		window.userFXVolume=16;
+		}
