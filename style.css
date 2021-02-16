@@ -301,13 +301,13 @@ color: #255784;
 .userCard{
  overflow: visible;
 mix-blend-mode: screen;
-position: relative; height: 17%; width: 21%;margin:0.1%;heght:20%;display: inline-block;padding:1%;
+position: relative; height: 17%; width: 23%;margin:0.1%;heght:20%;display: inline-block;padding:1%;
 }
 
 .userCard:hover{
 	overflow: visible;
 	mix-blend-mode: screen;
-	position: relative; height: 17%; width: 21%;margin:0.1%;heght:20%;display: inline-block;padding:1%;
+	position: relative; height: 17%; width: 23%;margin:0.1%;heght:20%;display: inline-block;padding:1%;
 	animation-fill-mode: forwards;
 	animation-name: userCardInflate;
 	animation-duration: 0.7s;
@@ -317,9 +317,9 @@ position: relative; height: 17%; width: 21%;margin:0.1%;heght:20%;display: inlin
 
 @keyframes userCardInflate {
 	
-	0%   {position: relative; height: 17%; width: 21%;margin:0.1%;heght:20%;display: inline-block;padding:1%; }
-	70%   {position: relative; height: 17%; width: 31%;margin:0.1%;heght:20%;display: inline-block;padding:1%; }
-	100% {position: relative; height: 17%; width: 41%;margin:0.1%;heght:20%;display: inline-block;padding:1%;}
+	0%   {position: relative; height: 17%; width: 23%;margin:0.1%;heght:20%;display: inline-block;padding:1%; }
+	70%   {position: relative; height: 17%; width: 25%;margin:0.1%;heght:20%;display: inline-block;padding:1%; }
+	100% {position: relative; height: 17%; width: 30%;margin:0.1%;heght:20%;display: inline-block;padding:1%;}
 }
 
 
