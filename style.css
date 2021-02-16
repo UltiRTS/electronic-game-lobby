@@ -300,10 +300,112 @@ color: #255784;
 
 .userCard{
  overflow: visible;
- 
-  mix-blend-mode: screen;
+mix-blend-mode: screen;
 position: relative; height: 17%; width: 21%;margin:0.1%;heght:20%;display: inline-block;padding:1%;
 }
+
+.userCard:hover{
+	overflow: visible;
+	mix-blend-mode: screen;
+	position: relative; height: 17%; width: 21%;margin:0.1%;heght:20%;display: inline-block;padding:1%;
+	animation-fill-mode: forwards;
+	animation-name: userCardInflate;
+	animation-duration: 0.7s;
+	animation-iteration-count: 1;
+	animation-delay:0.3s;
+}
+
+@keyframes userCardInflate {
+	
+	0%   {position: relative; height: 17%; width: 21%;margin:0.1%;heght:20%;display: inline-block;padding:1%; }
+	70%   {position: relative; height: 17%; width: 31%;margin:0.1%;heght:20%;display: inline-block;padding:1%; }
+	100% {position: relative; height: 17%; width: 41%;margin:0.1%;heght:20%;display: inline-block;padding:1%;}
+}
+
+
+
+
+.frdSubOptionsAnim1{
+	
+	animation-name: subOptionsFlyIn1;
+	animation-duration: 0.7s;
+	animation-iteration-count: 1;
+	animation-delay:0.1s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes subOptionsFlyIn1 {
+	
+	0%   {position:absolute;left:-55%;top:0%;background:rgba(255,255,255,1);}
+	70% {position:absolute;left:5%;top:0%;background:rgba(255,255,255,1);}
+	100% {position:absolute;left:5%;top:0%;background:rgba(255,255,255,0);}
+}
+
+.frdSubOptionsAnim2{
+	animation-name: subOptionsFlyIn2;
+	animation-duration: 0.7s;
+	animation-iteration-count: 1;
+	animation-delay:0.2s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes subOptionsFlyIn2 {
+	
+	0%   {position:absolute;left:-55%;top:0%;background:rgba(255,255,255,1);}
+	70% {position:absolute;left:5%;top:0%;background:rgba(255,255,255,1);}
+	
+	100% {position:absolute;left:5%;top:25%;background:rgba(255,255,255,0);}
+}
+
+.frdSubOptionsAnim3{
+	animation-name: subOptionsFlyIn3;
+	animation-duration: 0.7s;
+	animation-iteration-count: 1;
+	animation-delay:0.3s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes subOptionsFlyIn3 {
+	
+	0%   {position:absolute;left:-55%;top:0%;background:rgba(255,255,255,1);}
+	70% {position:absolute;left:5%;top:0%;background:rgba(255,255,255,1);}
+	
+	100% {position:absolute;left:5%;top:50%;background:rgba(255,255,255,0);}
+}
+
+.frdSubOptionsAnim4{
+	animation-name: subOptionsFlyIn4;
+	animation-duration: 0.7s;
+	animation-iteration-count: 1;
+	animation-delay:0.4s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes subOptionsFlyIn4 {
+	
+	0%   {position:absolute;left:-55%;top:0%;background:rgba(255,255,255,1);}
+	70% {position:absolute;left:5%;top:0%;background:rgba(255,255,255,1);}
+	
+	100% {position:absolute;left:5%;top:75%;background:rgba(255,255,255,0);}
+}
+
+
+.frdSubOptions{
+	position:absolute;
+	color:white;
+}
+
+.frdSubOptions:hover{
+	color:black;
+}
+
+
+
+
+
+
+
+
 .freundBody{
 	overflow: hidden;
 	
@@ -319,16 +421,10 @@ position: relative; height: 17%; width: 21%;margin:0.1%;heght:20%;display: inlin
 }
 
 .isLeader{
-	opacity: 0.5;
+	opacity: 0;
 }
 
-.aiKill{
-	opacity: 0.5;
-}
 
-.aiKill:hover{
-	opacity: 1;
-}
 
 .friendlimitingFrame::-webkit-scrollbar {
   width: 12px;
