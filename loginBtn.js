@@ -53,7 +53,7 @@ function registerMe(){
 }
 
 function logMeIn(reuseConnection=false){
-	playFX('zoomout.wav')
+	playFX('zoomin.wav')
 	if (window.isLoggedin){return}
 	var username = document.getElementById("usr").value;
 	var password = document.getElementById("passwd").value;

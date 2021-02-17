@@ -4,7 +4,7 @@ function lobbyFlush(battleid, type, natType, founder, ip, port, maxPlayer, passw
 	document.getElementById("lobbyContent").style.visibility = "hidden"; //hide lobby page once user goes to prebattle panel
 	document.getElementById("prebattle").style.visibility = "visible";
 	document.getElementById("pregameTitle").innerHTML ="❱ "+title;
-    document.getElementById("hostSays").innerHTML ="afk 3sec for dinnar";
+    //document.getElementById("hostSays").innerHTML ="afk 3sec for dinnar";
 	document.getElementById('startGem').setAttribute( "onclick", "startGem("+window.nowinBattle+")" );
 	document.getElementById('exitGem').setAttribute( "onclick", "exitGem("+window.nowinBattle+")" );
 }
@@ -32,7 +32,9 @@ function preBattleListMap(pool)
 	_mapDonutPut(pool)
 }
 
-
+function prebattleUpdateMap(mapName){
+	document.getElementById('pregameMap').innerHTML=mapName
+}
 
 function _mapDonutPut(pool)
 {

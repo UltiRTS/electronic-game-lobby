@@ -174,7 +174,10 @@ window.client.on("BATTLEOPENED",(battleid, type, natType, founder, ip, port, max
 window.client.on("UPDATEBATTLEINFO",(bID, spec, isLocked, hash, mapName) => {
 	//console.log("BATTLE CLOSED!!!!!!!!!!!!!!")
 	document.getElementById(bID+'Map').innerHTML=mapName.replace(/🦔/g, " ");
-	
+	if (bID==window.nowinBattle)
+	{
+		prebattleUpdateMap(mapName.replace(/🦔/g, " "))
+	}
 });
 
 
