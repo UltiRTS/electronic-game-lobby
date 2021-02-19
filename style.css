@@ -450,7 +450,6 @@ position: relative; height: 17%; width: 23%;margin:0.1%;heght:20%;display: inlin
 
 .lobbyCTLBTN:hover {
 mix-blend-mode: screen; 
-
 background-image:url('assets/miniWhiteBtn.png');
 background-repeat: no-repeat; 
 background-size: 100% 100%;
@@ -460,15 +459,15 @@ position:absolute;
 
  z-index:4; 
     font-family: JuneBug3;
-	filter: drop-shadow(0 0 0.75rem #2196f3);
-  
+	/*filter: drop-shadow(0 0 0.75rem #2196f3);*/
+	filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6));
   transition-delay: 0s;
   mix-blend-mode: screen;
 }
 
 .lobbyCTLBTN {
 mix-blend-mode: screen; 
-
+filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.3));
 background-image:url('assets/miniCyanBtn.png');
 background-repeat: no-repeat; 
 background-size: 100% 100%;
