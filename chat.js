@@ -28,15 +28,18 @@ function chatSubmit() {
 	window.client.say(displayedChat,userContent)
 }
 window.AICounter=0
+
 function chatAddAI(name) {
 	window.AICounter+=1
 	name=name+window.AICounter
-	window.client.say('bus',"sysctl --AI "+name+" --bid "+window.nowinBattle)
+	window.ppl[name]='a'
+	chatAssignTeam()
+	
 }
 
-function chatAIKill(bid,AI) {
-	
-	window.client.say('bus',"sysctl --kAI "+AI+" --bid "+window.nowinBattle)
+function chatAIKill(AI) {
+	delete window.ppl[AI]
+	chatAssignTeam()
 }
 
 function chatProposeBtl(isBattleChat=false) {
@@ -47,8 +50,8 @@ function chatProposeBtl(isBattleChat=false) {
 	loading()
 	}
 	
-function chatAssignTeam(player){
-	var playerCMD=' '
+function chatAssignTeam(){
+	var playerCMD=''
 
 	for (var key in window.ppl) {
 		// check if the property/key is defined in the object itself, not in parent
@@ -56,7 +59,10 @@ function chatAssignTeam(player){
 			playerCMD+=key+' '+window.ppl[key]+' '
 		}
 	}
-	window.client.say('bus',"sysctl --bid "+window.nowinBattle +" --player"+playerCMD)
+
+	window.client.say('bus',"sysctl --bid "+window.nowinBattle +" --player "+playerCMD)
+
+	
 }
 
 function chatAssignLeader(teamLetter){

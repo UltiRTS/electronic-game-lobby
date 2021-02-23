@@ -24,3 +24,4 @@
 // window.userNotifVolume
 //window.userFXVolume
 //window.isFxPlaying=false
+//window.aiCMD "GPT_1 a GPT_2 b"

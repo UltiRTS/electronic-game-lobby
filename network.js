@@ -58,6 +58,7 @@ window.client.on("LEFTBATTLE", (bID,user) => {
 	console.log("received leaving battle"+user)
 	if (user==window.username){
 		window.client.leaveChanel(bID);
+		window.ppl={}
 		window.isExited=true;
 		document.getElementById("lobbyContent").style.visibility="visible"
 		document.getElementById("prebattle").style.visibility="hidden"
@@ -75,9 +76,9 @@ window.client.on("LEFTBATTLE", (bID,user) => {
  
  });*/
 
-var usrinChan = []
-window.client.on("CLIENTS",(CHANME, users) => {
 
+window.client.on("CLIENTS",(CHANME, users) => {
+	usrinChan = []
 	if (CHANME==window.nowinBattle)
 	{
 		usrinChan = users.split(" ");
@@ -187,13 +188,18 @@ window.client.on("BATTLECLOSED",(bID) => {
 	//console.log("BATTLE CLOSED!!!!!!!!!!!!!!")
 	
 	if (bID==window.nowinBattle){
+		window.ppl={}
 		removeAllChildNodes('pregameInfo')
 		window.isExited=true;
 		document.getElementById("lobbyContent").style.visibility="visible"
 		document.getElementById("prebattle").style.visibility="hidden"
 		window.client.leaveChanel(bID);
 	}
-	document.getElementById("battleEntry"+bID).parentNode.removeChild(document.getElementById("battleEntry"+bID));
+	try{
+	document.getElementById("battleEntry"+bID).parentNode.removeChild(document.getElementById("battleEntry"+bID));}
+	catch(err){
+		console.log('unable to remove a ghost entry!')
+	}
 });
 
 
