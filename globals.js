@@ -9,6 +9,7 @@
 //window.roomPort[bid] returns the port of the room
 //removeAllChildNodes(parents)  clears all child node
 //window.isLoading bool, if is loading
+//loading()
 //window.isLoggedin bool if is logged in
 //window.isLoggingin if is logging in 
 //window.loadingCallback //call back func after a loading ends

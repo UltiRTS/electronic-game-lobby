@@ -20,13 +20,24 @@ function autohostNetwork(msgSaid) {
 		{
 			console.log('the autohost does not contain a player response')
 		}
-		//try{
+		try{
 			preBattleListMap(cmdDict['available-maps'])
-		//}
-		//catch(err)
-		//{
-			//console.log('the autohost does not contain a list map response')
-		//}
+		}
+		catch(err)
+		{
+			console.log('the autohost does not contain a list map response')
+		}
+		try{
+			if (cmdDict['loading'][0]=='false')
+			{
+				loading(false)
+			}
+			else{loading(true)}
+		}
+		catch(err)
+		{
+			console.log('the autohost does not contain a loading response')
+		}
 	}
 	
 }
