@@ -5,20 +5,23 @@ function lobbyFlush(battleid, type, natType, founder, ip, port, maxPlayer, passw
 	document.getElementById("prebattle").style.visibility = "visible";
 	document.getElementById("pregameTitle").innerHTML=title;
     //document.getElementById("hostSays").innerHTML ="afk 3sec for dinnar";
-	document.getElementById('startGem').setAttribute( "onclick", "startGem("+window.nowinBattle+")" );
-	document.getElementById('exitGem').setAttribute( "onclick", "exitGem("+window.nowinBattle+")" );
+	document.getElementById('startGem').setAttribute( "onclick", "preBtlStartGem("+window.nowinBattle+")" );
+	document.getElementById('exitGem').setAttribute( "onclick", "preBtlExitGem("+window.nowinBattle+")" );
 }
 
-function exitGem(bID)
+function preBtlExitGem(bID)
 {
     window.client.leaveBattle();  //inform lobby server
 	chatLeave(bID)  //inform lobby chat server
 	chatLeaveBtl()  //inform autohost
 }
 
-function startGem(bID)
-{
-	chatStartBtl(bID)
+function preBtlStartGem(bID)
+{	if (window.gameStatus){
+	usyncWriteScript()
+}
+	else{
+	chatStartBtl(bID)}
 }
 
 function preBattleListMap(pool)

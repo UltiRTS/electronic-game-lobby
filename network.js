@@ -128,11 +128,13 @@ window.client.on("JOINBATTLE",(bID, hash) => {
 	preBtlPresence()
 });
 
-//window.client.on("CLIENTBATTLESTATUS",(usr, status,teamColor) => {
-//	if (usr==window.username){
-//	window.client.joinChanel(CHANAME)
-//	}
-//});
+window.client.on("CLIENTBATTLESTATUS",(usr, status,teamColor) => {
+	if (parseInt(status).toString(2).endsWith(1) &usr==window.nowHostedby&window.isExited==false)
+	{
+		window.gameStatus=true;
+		
+	}
+});
 
 var msgSaid = [];
 window.client.on("SAID", (channel,user,msg) => {
@@ -154,7 +156,12 @@ window.client.on("CLIENTSTATUS", (user,status) => {
 		//console.log(isExited)
 		if (parseInt(status).toString(2).endsWith(1) &user==window.nowHostedby&window.isExited==false)
 		{
-			writeScript()
+			usyncWriteScript()
+			
+		}
+		if (parseInt(status).toString(2).endsWith(0) &user==window.nowHostedby&window.isExited==false)
+		{
+			window.gameStatus=false
 			
 		}
 	}
