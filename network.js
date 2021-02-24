@@ -152,7 +152,7 @@ window.client.on("CLIENTSTATUS", (user,status) => {
 		//console.log(window.nowHostedby)
 		//console.log(status)
 		//console.log(isExited)
-		if (status ==1&user==window.nowHostedby&window.isExited==false)
+		if (parseInt(status).toString(2).endsWith(1) &user==window.nowHostedby&window.isExited==false)
 		{
 			writeScript()
 			
