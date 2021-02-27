@@ -23,14 +23,28 @@ function FIEntry(){
 }
 
 function setVolume(vol){
-	console.log("vol:"+vol)
+	
 	window.userVolume=vol
 	window.audio.volume=vol/100
 	document.getElementById("volSettingDigit").innerHTML=vol+"%"
 }
 
+function setFXVolume(vol){
+	
+	window.userFXVolume=vol
+	window.FXaudio.volume=vol/100
+	document.getElementById("volSettingDigit").innerHTML=vol+"%"}
+
+function setNotifVolume(vol){
+	
+	window.userNotifVolume=vol
+	window.FXaudio.volume=vol/100
+	document.getElementById("volSettingDigit").innerHTML=vol+"%"}
+
 function VolumeDone(){
 	storage.set('userVolume', window.userVolume)
+	storage.set('userFXVolume', window.userFXVolume)
+	storage.set('userNotifVolume', window.userNotifVolume)
 	document.getElementById("Volpanel").style.visibility="hidden"
 }
 

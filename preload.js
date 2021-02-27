@@ -9,6 +9,12 @@
 
 if (storage.has('userFXVolume')){
 	window.userFXVolume=storage.get('userFXVolume')}
-	else{
-		window.userFXVolume=16;
-		}
+else{
+	window.userFXVolume=16;
+	}
+
+if (storage.has('userNotifVolume')){
+	window.userNotifVolume=storage.get('userNotifVolume')}
+else{
+	window.userNotifVolume=16;
+	}

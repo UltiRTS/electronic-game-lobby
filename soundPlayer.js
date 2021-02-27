@@ -12,8 +12,8 @@ function playSound(file='title.mp3',loop=false){
 	window.audio = new Audio('assets/'+file);
 	window.audio.addEventListener("loadeddata", function() {
 		volume=window.userVolume/100
-		console.log('setting volume to '+window.userVolume)
-		console.log('setting volume to '+volume)
+		//console.log('setting volume to '+window.userVolume)
+		//console.log('setting volume to '+volume)
 		window.audio.volume=volume
 		
 		window.audio.play();
