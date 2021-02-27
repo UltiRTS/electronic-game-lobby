@@ -19,7 +19,7 @@
 //window.userVolume //1 to 100, an user set value that multiplies into window.audio.volume
 //window.audio.volume //lobby volume
 //window.userFXVolume//1 to 100, an user set value that multiplies into window.FXaudio.volume 
-//window.FXaudio.volume  //notif or fx volume
+//window.FXaudio.volume  //notif or FX volume
 //window.userNotifVolume//1 to 100, an user set value that multiplies into window.FXaudio.volume 
 //
 //storage // storage.set('unicorn', '🦄');console.log(storage.get('unicorn'));
@@ -29,7 +29,7 @@
 //clearScreen(parentDiv)
 // window.userNotifVolume
 //window.userFXVolume
-//window.isFxPlaying=false
+//window.isFXPlaying=false
 //playSound()
-//playFx()
+//playFX()
 //displayedChat
