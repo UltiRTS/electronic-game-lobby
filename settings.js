@@ -5,6 +5,12 @@ function volumeEntry(){
 	if (document.getElementById("Volpanel").style.visibility=="hidden"){
 		document.getElementById("Volpanel").style.visibility="visible"
 		document.getElementById("FIpanel").style.visibility="hidden"
+		document.getElementById("Volpanel").innerHTML+="<!--rerun-->"
+		document.getElementById("volAmbSlider").value=window.userVolume
+		console.log("bar val"+document.getElementById("volAmbSlider").value)
+		document.getElementById("volFXSlider").value=window.userFXVolume
+		document.getElementById("volNotifSlider").value=window.userNotifVolume
+		
 	}
 	else{
 		document.getElementById("Volpanel").style.visibility="hidden"

@@ -194,16 +194,16 @@
 				<div style="position:absolute;opacity:0.08;top:40%;width:40%;height:40%;"><span style="background:white;color:black;font-size:2rem;font-family:JuneBug">TRANSFECTION RATE:</br></span><span style="color:white;font-size:16rem;" id="volSettingDigit">20%</span></div>
 				<h1 style="position: absolute; color: white;">Volume</h1>
 				<br><br><br><br>
-				<p style="cursor: default;color:white;">Lobby Ambiance Volume</p>
-				<input style="cursor: pointer;position:absolute;width:50%;" oninput="setVolume(this.value)" type="range"/></br>
+				<p style="cursor: default;color:white;" >Lobby Ambiance Volume</p>
+				<input class="Bar" style="cursor: pointer;position:absolute;" oninput="setVolume(this.value)" id='volAmbSlider' type="range"/></br>
 				<p style="cursor: default;color:white;">Lobby FX Volume</p>
-				<input style="cursor: pointer;position:absolute;width:50%;" oninput="setFXVolume(this.value)" type="range"/></br>
+				<input class="Bar" style="cursor: pointer;position:absolute;" oninput="setFXVolume(this.value)" id='volFXSlider' type="range"/></br>
 				<p style="cursor: default;color:white;">Lobby Notif Volume</p>
-				<input style="cursor: pointer;position:absolute;width:50%;" oninput="setNotifVolume(this.value)" type="range"/></br>
+				<input class="Bar" style="cursor: pointer;position:absolute;" oninput="setNotifVolume(this.value)" id='volNotifSlider' type="range"/></br>
 				<p style="cursor: default;color:white;">Combat Ambiance Volume</p>
-				<input style="cursor: pointer;position:absolute;width:50%;" type="range"/></br>
+				<input class="Bar" style="cursor: pointer;position:absolute;" type="range"/></br>
 				<p style="cursor: default;color:white;">Combat Units Volume</p>
-				<input style="cursor: pointer;position:absolute;width:50%;" type="range"/></br>
+				<input  class="Bar" style="cursor: pointer;position:absolute;" type="range"/></br>
 				<span class="flashit pure-button fuller-button blue" style="cursor: pointer;position:absolute; top:90%;color:white;padding:0.5%;font-weight: bold;" id="volumeDone"  onclick="VolumeDone()">DONE</span>
 			</div>
 			

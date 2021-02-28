@@ -84,7 +84,21 @@ input[type="range"]::-ms-fill-upper {
 	background-color: #9a905d;
 }
 
+.Bar{
+	
+	animation-fill-mode: forwards;
+	animation-name: barFill;
+	animation-duration: 0.7s;
+	animation-iteration-count: 1;
+	animation-delay:0s;
+}
 
+@keyframes barFill {
+	
+	0%   {width: 0%;}
+	70%   {width: 30%;}
+	100%   {width: 60%;}
+}
 
 
 
