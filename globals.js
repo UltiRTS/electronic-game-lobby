@@ -8,6 +8,7 @@
 //window.dbug (bool)
 //window.nowHostedby current btl hosted by which autohost
 //window.roomPort[bid] returns the port of the room
+//window.roomIP[battleid]=ip
 //removeAllChildNodes(parents)  clears all child node
 //window.isLoading bool, if is loading
 //loading()

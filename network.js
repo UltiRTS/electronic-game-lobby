@@ -170,7 +170,7 @@ window.client.on("CLIENTSTATUS", (user,status) => {
 window.client.on("BATTLEOPENED",(battleid, type, natType, founder, ip, port, maxPlayer, passworded, rank, mapHesh, engineName, engineVersion, map, title, gameName, channel) => {
 	console.log("BATTLE "+title+" opened")
 	window.roomPort[battleid]=port
-
+	window.roomIP[battleid]=ip
 	
 	var subEntry = document.createElement('li');
 	subEntry.classList.add('gameSubEntry');
