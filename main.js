@@ -7,14 +7,27 @@ function createWindow() {
 		webPreferences: {
 			nodeIntegration: true,
 			enableRemoteModule:true
-		},
+		},show: false
 	});
 
-	mainWindow.maximize();
+	
 	mainWindow.setMenu(null)
 	mainWindow.loadFile("index.html");
 	mainWindow.webContents.openDevTools();
-
+	
+	splash = new BrowserWindow({transparent: false, frame: false, alwaysOnTop: true});
+	splash.maximize()
+	splash.loadFile("loadingUI.html");
+	
+	
+	mainWindow.webContents.once('did-finish-load', function() {
+		mainWindow.show();
+		mainWindow.maximize();
+		splash.destroy();
+	});
+	
+	
+	
 	mainWindow.on("closed", function () {
 		mainWindow = null;
 	});
