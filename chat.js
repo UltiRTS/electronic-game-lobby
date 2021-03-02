@@ -73,6 +73,10 @@ function chatAssignLeader(teamLetter){
 	window.client.say('bus',"sysctl --bid "+window.nowinBattle +" --leader "+teamLetter+" "+window.teamLeaders[teamLetter])
 }
 
+function chatRejoin(bID){
+	window.client.say('bus',"sysctl --bid "+window.nowinBattle +" --joinasSpec")
+}
+
 function chatLeaveBtl() {
 	//console.log("leave battle chat fired! Submitting cmd ");
 	window.client.say('bus',"sysctl --leave --bid "+window.nowinBattle)

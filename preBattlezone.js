@@ -17,8 +17,8 @@ function preBtlExitGem(bID)
 }
 
 function preBtlStartGem(bID)
-{	if (window.gameStatus){
-	usyncWriteScript()
+{	if (window.gameStatus[window.nowHostedby]){
+	chatRejoin(bID)
 }
 	else{
 	chatStartBtl(bID)}

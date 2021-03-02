@@ -38,6 +38,17 @@ function autohostNetwork(msgSaid) {
 		{
 			console.log('the autohost does not contain a loading response')
 		}
+		try{
+			if (cmdDict['joinasSpec'][0]=='true')
+			{
+				usyncWriteScript()
+			}
+			
+		}
+		catch(err)
+		{
+			console.log('the autohost does not contain a rejoin response')
+		}
 	}
 	
 }

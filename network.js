@@ -1,5 +1,7 @@
 const Client = require("./client");
 window.roomPort={}
+window.roomIP={}
+window.gameStatus={}
 window.client = new Client();
 
 window.client.on("ACCEPTED", (username) => {
@@ -128,13 +130,13 @@ window.client.on("JOINBATTLE",(bID, hash) => {
 	preBtlPresence()
 });
 
-window.client.on("CLIENTBATTLESTATUS",(usr, status,teamColor) => {
-	if (parseInt(status).toString(2).endsWith(1) &usr==window.nowHostedby&window.isExited==false)
-	{
-		window.gameStatus=true;
+//window.client.on("CLIENTBATTLESTATUS",(usr, status,teamColor) => {
+//	if (parseInt(status).toString(2).endsWith(1) &usr==window.nowHostedby&window.isExited==false)
+//	{
+//		window.gameStatus=true;
 		
-	}
-});
+//	}
+//});
 
 var msgSaid = [];
 window.client.on("SAID", (channel,user,msg) => {
@@ -159,10 +161,15 @@ window.client.on("CLIENTSTATUS", (user,status) => {
 			usyncWriteScript()
 			
 		}
-		if (parseInt(status).toString(2).endsWith(0) &user==window.nowHostedby&window.isExited==false)
+		
+		if (parseInt(status).toString(2).endsWith(0) )
 		{
-			window.gameStatus=false
-			
+			window.gameStatus[user]=false
+		}
+		
+		if (parseInt(status).toString(2).endsWith(1) )
+		{
+			window.gameStatus[user]=true
 		}
 	}
 });
