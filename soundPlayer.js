@@ -41,14 +41,14 @@ function _audioLoop(file){
 		window.delay=window.audio.duration*1000-20
 		window.audioLoop=setTimeout(_audioLoop, window.delay,file);
 	});
-	console.log("audioloop fired"+window.audioLoop)
+	//console.log("audioloop fired"+window.audioLoop)
 }
 function _audiofade(file,loop){
 	if (window.audiovolumeFade>=20){
 		clearInterval(window.audioTimer);
 		window.audio.pause()
 		clearTimeout(window.audioLoop);
-		console.log("audio fade fired")	
+		//console.log("audio fade fired")	
 		loading(false)
 		window.isPlaying=false;
 		playSound(file,loop)

@@ -10,7 +10,7 @@ function playFX(file='slidingObject.wav',isNotif=false){
 		return
 	}
 	if (isNotif){
-		console.log('FX playing!!')
+		//console.log('FX playing!!')
 		window.isFXPlaying=true
 		window.FXTmpVolume=0
 		window.FXTmpDmpVolume=1
@@ -23,7 +23,7 @@ function playFX(file='slidingObject.wav',isNotif=false){
 		})
 	}
 	else{
-		console.log('FX playing!!')
+		//console.log('FX playing!!')
 		window.isFXPlaying=true
 		window.FXTmpVolume=0
 		window.FXTmpDmpVolume=1
@@ -45,7 +45,7 @@ function _FXFadeIn(fInDuration,isNotif=false){
 
 function __audioAmp(isNotif){
 	window.FXTmpVolume+=0.1
-	console.log('FX fading in')
+	//console.log('FX fading in')
 	if(window.FXTmpVolume>=1){
 		clearInterval(window.fadeInTimer);
 		window.FXTmpVolume=0
@@ -64,14 +64,14 @@ function _FXFadeOut(fOutDuration,isNotif=false){
 
 function __audioDmp(isNotif){
 	window.FXTmpDmpVolume-=0.1
-	console.log('FX fading out')
+	//console.log('FX fading out')
 	if(window.FXTmpDmpVolume<=0){
 		clearInterval(window.fadeOutTimer);
 		window.FXTmpDmpVolume=1
 		window.isFXPlaying=false
 		return
 	}
-	console.log('out '+window.FXTmpDmpVolume*window.userFXVolume/100)
+	//console.log('out '+window.FXTmpDmpVolume*window.userFXVolume/100)
 	if(isNotif){window.FXaudio.volume=window.FXTmpDmpVolume*window.userNotifVolume/100}
 	else{
 		window.FXaudio.volume=window.FXTmpDmpVolume*window.userFXVolume/100}

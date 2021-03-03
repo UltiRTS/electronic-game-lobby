@@ -105,17 +105,36 @@ window.mapPoll = new Chart(ctx, {
 
 
 
-function _pollPut(pollName)
+function preBtlPollPut(pollName,pollID,count=0.1)
 {
-var newPoll = document.createElement('div');
-newPoll.className="prebattlePolls";
-newPoll.style="height:10%; width:100%; position:relative;";
-newPoll.innerHTML = "<div id=\"theBar\" style=\"height:80%; width:80%; position:absolute;\"><div id=\" "+pollName+"yesYesYes\" style=\"left:0%; height:30%; width:50%; position:absolute;background-color: #FFFFFF\"></div><div id=\""+pollName+"noU\" style=\"right:0; height:30%; width:50%; position:absolute; overflow:hidden\"><span style=\"position: absolute; top: -50%; color: white; font-size:2vw;\">///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////<span></span></span></div></div><p style=\"left:0%;top:10%; position:absolute;color: #FFFFFF\">Satisfying: changing battle name to A?</p>";
-
-document.getElementById("prebattle").appendChild(newPoll);
+	var newPoll = document.createElement('div');
+	//btlType.className="prebattlePolls";
+	newPoll.style="position:relative;width:100%;";
+	
+	newPoll.innerHTML = '<div id="opTypeTitle'+pollID+'" style="cursor: default;color:white;"><h1>Operation Parameter</h1></div><hr></hr></br><span onclick="preBtlVote('+pollID+')" style="cursor: default;color:white; margin: 0px;background:rgb(33,150,243);">'+pollName+'</span><div id="typeTeam" style="cursor: default;filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6)); position:absolute;width:95%; background:white;height:2%;"><div id="'+pollID+'bar" style="cursor: default;position:absolute;height:100%;width:50%;background:rgb(33,150,243);"></div></div>';
+	document.getElementById("pregameInfo").appendChild(newPoll);
 
 }
 
+
+
+function preBtlPollUpdate(id,count=0.1)
+{
+	
+	document.getElementById(id+"bar").style.width=count
+	
+}
+
+
+function preBtlVote(pollID){
+	
+	
+	for (var key in window.polls){
+		if (window.polls[key]['id']==pollID){
+			chatVote(key)
+		}
+	}
+}
 
 function _mapDonutUpdate()
 {
@@ -130,7 +149,19 @@ function _mapDonutUpdate()
 
 
 
+function initPrebtlZone(){
 
+	
+	var btlType = document.createElement('div');
+	//btlType.className="prebattlePolls";
+	btlType.style="position:relative;width:100%;";
+	btlType.innerHTML = '<div id="opTypeTitle" style="cursor: default;color:white;"><h1>Operations</h1></div><hr></hr></br><span style="cursor: default;color:white; margin: 0px;background:rgb(33,150,243);">Autobalance</span><div id="typeTeam" style="cursor: default;filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6)); position:absolute;width:95%; background:white;height:2%;"><div style="cursor: default;position:absolute;height:100%;width:50%;background:rgb(33,150,243);"></div></div></br></br></br><span style="cursor: default;color:white; margin: 0px;background:rgb(33,150,243);">Rogue Teams</span><div id="typeCoop" style="cursor: default;filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6)); position:absolute;width:95%; background:white;height:2%;"><div style="cursor: default;position:absolute;height:100%;width:20%;background:rgb(33,150,243);"></div></div></br></br></br><span style="cursor: default;color:white; margin: 0px;background:rgb(33,150,243);">FFA Balance</span><div id="typeFAFAFA" style="cursor: default;filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6)); position:absolute;width:95%; background:white;height:2%;"><div style="cursor: default;position:absolute;height:100%;width:80%;background:rgb(33,150,243);"></div></div>';
+	document.getElementById("pregameInfo").appendChild(btlType);
+	
+	
+	
+	
+}
 
 function removeAllChildNodes(parent) {
 	while (document.getElementById(parent).firstChild) {

@@ -3,7 +3,7 @@ window.roomPort={}
 window.roomIP={}
 window.gameStatus={}
 window.client = new Client();
-
+window.polls={}
 window.client.on("ACCEPTED", (username) => {
 	setInterval(() => { client.send("PING"); }, 1000);
 	window.timer3 = setInterval(finalBoxEnlargeLeave, 10);
@@ -149,6 +149,8 @@ window.client.on("SAID", (channel,user,msg) => {
 	}
 	if (channel == 'bus' & user!=window.username &user.startsWith('Autohost'))
 		autohostNetwork(msgSaid)
+	if (channel == 'bus' & !user.startsWith('Autohost')&msg.includes('sysctl'))
+		pollNetwork(msgSaid)
 });
 
 window.client.on("CLIENTSTATUS", (user,status) => {

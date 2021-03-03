@@ -2,7 +2,7 @@ function autohostNetwork(msgSaid) {
 	var cmdDict=autohostParse(msgSaid[1])
 	console.log('CMD DICT!!!!!!!!!!!1')
 	console.log(cmdDict)
-	if (cmdDict['user'][0]==window.username|cmdDict['user'][0]=='all')
+	if ( cmdDict['user'][0]==window.username|cmdDict['user'][0]=='all')
 	{
 	
 		try{
@@ -14,53 +14,92 @@ function autohostNetwork(msgSaid) {
 			
 		}
 		try{
-			frdTeamUpdate(cmdDict['teams'])
-		}
-		catch(err)
-		{
-			console.log('the autohost does not contain a player response')
-		}
-		try{
-			preBattleListMap(cmdDict['available-maps'])
-		}
-		catch(err)
-		{
-			console.log('the autohost does not contain a list map response')
-		}
+			if(cmdDict['room']==window.nowinBattle){
+				try{
+					frdTeamUpdate(cmdDict['teams'])
+				}
+				catch(err)
+				{
+					console.log('the autohost does not contain a player response')
+				}
+				try{
+					preBattleListMap(cmdDict['available-maps'])
+				}
+				catch(err)
+				{
+					console.log('the autohost does not contain a list map response')
+				}
 		
-		try{
-			if (cmdDict['loading'][0]=='false')
-			{
-				loading(false)
+				try{
+					if (cmdDict['loading'][0]=='false')
+					{
+						loading(false)
+					}
+					else{loading(true)}
+				}
+				catch(err)
+				{
+					console.log('the autohost does not contain a loading response')
+				}
+		
+				try{
+					window.btlToken=cmdDict['engineToken'][0]
+		
+				}
+				catch(err)
+				{
+					console.log('the autohost does not contain a token response')
+				}
+		
+				try{
+					if (cmdDict['joinasSpec'][0]=='true')
+					{
+						usyncWriteScript()
+					}
+			
+				}
+				catch(err)
+				{
+				console.log('the autohost does not contain a rejoin response')
+				}
+			
+				try{
+					window.totalPpl=cmdDict['totalPpl'][0]
+			
+				
+				}
+				catch(err)
+				{
+					console.log('the autohost does not contain a totalPpl response')
+				}
 			}
-			else{loading(true)}
 		}
-		catch(err)
-		{
-			console.log('the autohost does not contain a loading response')
-		}
-		
-		try{
-			window.btlToken=cmdDict['engineToken'][0]
+		catch(err){console.log('does not contain room cmd!')}
+	}
+	
+}
 
-		}
-		catch(err)
+function pollNetwork(msgSaid){
+	var cmdDict=autohostParse(msgSaid[1])
+	
+		if (cmdDict['bid'][0]==window.nowinBattle)
 		{
-			console.log('the autohost does not contain a token response')
-		}
-		
-		try{
-			if (cmdDict['joinasSpec'][0]=='true')
+			try{
+				window.polls[msgSaid[1]]['ppl']=window.polls[msgSaid[1]]['ppl']+msgSaid[0]+' '
+				cmdSupporter=new Set(window.polls[msgSaid[1]]['ppl'].split(" ")).size
+				preBtlPollUpdate(window.polls[msgSaid[1]]['id'],cmdSupporter/window.totalPpl)
+			}
+			catch(err)
 			{
-				usyncWriteScript()
+				console.log(err)
+				window.polls[msgSaid[1]]={'id':Object.keys(window.polls).length+1,'ppl':msgSaid[0]+' '}
+				preBtlPollPut(msgSaid[1],window.polls[msgSaid[1]]['id'],1/window.totalPpl)
 			}
 			
+			
+		
 		}
-		catch(err)
-		{
-			console.log('the autohost does not contain a rejoin response')
-		}
-	}
+	
 	
 }
 
