@@ -27,6 +27,7 @@ function autohostNetwork(msgSaid) {
 		{
 			console.log('the autohost does not contain a list map response')
 		}
+		
 		try{
 			if (cmdDict['loading'][0]=='false')
 			{
@@ -38,6 +39,16 @@ function autohostNetwork(msgSaid) {
 		{
 			console.log('the autohost does not contain a loading response')
 		}
+		
+		try{
+			window.btlToken=cmdDict['engineToken'][0]
+
+		}
+		catch(err)
+		{
+			console.log('the autohost does not contain a token response')
+		}
+		
 		try{
 			if (cmdDict['joinasSpec'][0]=='true')
 			{
