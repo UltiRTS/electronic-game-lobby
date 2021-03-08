@@ -2,19 +2,20 @@ function autohostNetwork(msgSaid) {
 	var cmdDict=autohostParse(msgSaid[1])
 	console.log('CMD DICT!!!!!!!!!!!1')
 	console.log(cmdDict)
-	if ( cmdDict['user'][0]==window.username|cmdDict['user'][0]=='all')
-	{
+	try{
+		if ( cmdDict['user'][0]==window.username|cmdDict['user'][0]=='all')
+		{
 	
-		try{
-			window.client.joinBattle(cmdDict['join'][0])
-			preBattleListMap(cmdDict['available-maps'])
-		}
-		catch(err){   //already in the room
-			console.log('not a inviting cmd!')
+			try{
+				window.client.joinBattle(cmdDict['join'][0])
+				preBattleListMap(cmdDict['available-maps'])
+			}
+			catch(err){   //already in the room
+				console.log('not a inviting cmd!')
 			
-		}
-		try{
-			if(cmdDict['room']==window.nowinBattle){
+			}
+			if(cmdDict['room']==window.nowinBattle)
+			{
 				try{
 					frdTeamUpdate(cmdDict['teams'])
 				}
@@ -36,7 +37,7 @@ function autohostNetwork(msgSaid) {
 						loading(false)
 					}
 					else{loading(true)}
-				}
+					}
 				catch(err)
 				{
 					console.log('the autohost does not contain a loading response')
@@ -57,31 +58,52 @@ function autohostNetwork(msgSaid) {
 						usyncWriteScript()
 					}
 			
-				}
+					}
 				catch(err)
 				{
-				console.log('the autohost does not contain a rejoin response')
+					console.log('the autohost does not contain a rejoin response')
 				}
 			
 				try{
 					window.totalPpl=cmdDict['totalPpl'][0]
-			
-				
 				}
 				catch(err)
 				{
 					console.log('the autohost does not contain a totalPpl response')
 				}
+				
+				
+				try{
+					document.getElementById("cardIsLeader"+window.nowinBattle+window.teamLeaders).style.opacity="0"
+					document.getElementById("cardIsLeader"+window.nowinBattle+cmdDict['leader'][0]).style.opacity="1"
+					window.teamLeaders=cmdDict['leader'][0]
+					}
+				catch(err)
+				{
+					console.log('the autohost does not contain a leader response')
+				}
+				
+				try{
+					window.nowHostingPlayer=cmdDict['hoster'][0]
+					}
+				catch(err)
+				{
+					console.log('the autohost does not contain a hosting player response')
+				}
+				
 			}
 		}
-		catch(err){console.log('does not contain room cmd!')}
+		
 	}
-	
+	catch(err){console.log('does not contain room cmd!')}
 }
 
 function pollNetwork(msgSaid){
 	var cmdDict=autohostParse(msgSaid[1])
-	
+	/*	msgSaid[0]=user;
+	 msgSaid[1]=msg;    *
+	 msgSaid[2]=channel;*/
+	try{
 		if (cmdDict['bid'][0]==window.nowinBattle)
 		{
 			try{
@@ -91,14 +113,20 @@ function pollNetwork(msgSaid){
 			}
 			catch(err)
 			{
-				console.log(err)
-				window.polls[msgSaid[1]]={'id':Object.keys(window.polls).length+1,'ppl':msgSaid[0]+' '}
-				preBtlPollPut(msgSaid[1],window.polls[msgSaid[1]]['id'],1/window.totalPpl)
+				
+				if(msgSaid[0]!=window.nowHostingPlayer){
+					window.polls[msgSaid[1]]={'id':Object.keys(window.polls).length+1,'ppl':msgSaid[0]+' '}
+					preBtlPollPut(msgSaid[1],window.polls[msgSaid[1]]['id'],1/window.totalPpl)
+					console.log('putting new poll!')
+				} //no need to put up a new vote when this msg is from the hosting player
+				else{return}
 			}
 			
 			
 		
-		}
+		}}
+		catch(err)
+		{console.log('a initial hosting request no need to parse!')}
 	
 	
 }

@@ -59,14 +59,14 @@ function chTeams(player){
 }
 
 function chLeader(usr){
-	if(window.teamLeaders[window.ppl[usr]]!=usr){
-		document.getElementById("cardIsLeader"+window.nowinBattle+usr).style.opacity="1"
-		window.teamLeaders[window.ppl[usr]]=usr
+	if(window.teamLeaders!=usr){
+		
+		
 		chatAssignLeader(window.ppl[usr]) //tell the function to look up the leader for this team
 	}
 	else{
 		document.getElementById("cardIsLeader"+window.nowinBattle+usr).style.opacity="0"
-		window.teamLeaders[window.ppl[usr]]='None'
+		window.teamLeaders='None'
 	}
 }
 
@@ -106,7 +106,7 @@ function nextLetter(s){
 		}
 	});
 }
-window.teamLeaders={}
+window.teamLeaders=''
 window.ppl={};
 frdPut("main",'userA','A\'s gem');
 

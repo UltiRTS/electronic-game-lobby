@@ -7,6 +7,7 @@
 //window.displayedChat (int, which chat is being displayed)
 //window.dbug (bool)
 //window.nowHostedby current btl hosted by which autohost
+//window.nowHostingPlayer current btl hosted by which player
 //window.roomPort[bid] returns the port of the room
 //window.roomIP[battleid]=ip
 //removeAllChildNodes(parents)  clears all child node
@@ -15,7 +16,7 @@
 //window.isLoggedin bool if is logged in
 //window.isLoggingin if is logging in 
 //window.loadingCallback //call back func after a loading ends
-//window.teamLeaders[teamLetter] //returns the user that's been designated as the leader
+//window.teamLeaders //returns the user that's been designated as the leader
 //window.zone="lobby" currently in what part of the lobby
 //window.userVolume //1 to 100, an user set value that multiplies into window.audio.volume
 //window.audio.volume //lobby volume

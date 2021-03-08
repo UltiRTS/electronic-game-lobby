@@ -54,6 +54,9 @@ window.client.on("LEFT", (CHANAME,user) => {
 	else if (CHANAME!="main"){
 			frdEliminate(CHANAME,user);
 		}
+		if (user==window.window.nowHostedby){
+			window.gameStatus[window.username]=false
+		}
 });
 
 window.client.on("LEFTBATTLE", (bID,user) => {
