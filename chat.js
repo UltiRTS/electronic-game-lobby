@@ -112,8 +112,8 @@ function chatLeave(Name) {
 }
 
 function chatNotesSubmit(){
-	window.client.say('bus',"sysctl --notes "+document.getElementById("hostSays").value+" --bid "+window.nowinBattle)
-	
+	window.client.say('bus',"sysctl --comments "+document.getElementById("hostSays").value+" --bid "+window.nowinBattle)
+	document.getElementById("hostSays").value=cmdDict['comments'][0]=''
 }
 
 //  main com is joined automatically without calling any functions
