@@ -75,6 +75,7 @@ function chatAssignTeam(){
 
 function chatAssignLeader(teamLeader){
 	window.client.say('bus',"sysctl --bid "+window.nowinBattle +" --leader "+teamLeader)
+	chatAssignTeam()
 }
 
 function chatRejoin(bID){
