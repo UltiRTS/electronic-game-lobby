@@ -74,10 +74,12 @@ function autohostNetwork(msgSaid) {
 				
 				
 				try{
-					document.getElementById("cardIsLeader"+window.nowinBattle+window.teamLeaders).style.opacity="0"
 					document.getElementById("cardIsLeader"+window.nowinBattle+cmdDict['leader'][0]).style.opacity="1"
+					document.getElementById("cardIsLeader"+window.nowinBattle+window.teamLeaders).style.opacity="0"
+					
 					window.teamLeaders=cmdDict['leader'][0]
 					}
+					
 				catch(err)
 				{
 					console.log('the autohost does not contain a leader response')

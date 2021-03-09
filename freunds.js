@@ -62,7 +62,7 @@ function chLeader(usr){
 	if(window.teamLeaders!=usr){
 		
 		
-		chatAssignLeader(window.ppl[usr]) //tell the function to look up the leader for this team
+		chatAssignLeader(usr) //tell the function to look up the leader for this team
 	}
 	else{
 		document.getElementById("cardIsLeader"+window.nowinBattle+usr).style.opacity="0"
