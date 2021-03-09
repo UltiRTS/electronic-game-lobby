@@ -86,6 +86,19 @@ function autohostNetwork(msgSaid) {
 				}
 				
 				try{
+					document.getElementById("hostSays").value=cmdDict['comment'][0]
+					
+				}
+				
+				catch(err)
+				{
+					console.log('the autohost does not contain a comment response')
+				}
+				
+				
+				
+				
+				try{
 					window.nowHostingPlayer=cmdDict['hoster'][0]
 					}
 				catch(err)
