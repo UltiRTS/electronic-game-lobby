@@ -5,25 +5,18 @@
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="commonstyle.css">
 <link rel="stylesheet" href="loading.css">
-
 </head>
 <body style="overflow:hidden;">
 
 
 <div id="image-container" class="image-container">
 
-
-
-  
 	<canvas id='c' style=" z-index:100;"></canvas>
 	<div class="bg" > 
 		<div class="content " id="loginbtn" style="width:30%; height:20%;">
 			<a  class="btn-outline edgy-link " style="width:30%; height:20%;font-size:4vw;"><span style="">CONNECT</span></a>
 		</div>
 	</div>
-
-
-
 
 	<div class="loginbox"  id = "loginbox">
 		<div class="shader" id="shader"></div>
@@ -55,6 +48,23 @@
 			<img class="theaSelf" style="z-index:5; filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6));" src="assets/thea.png"></img>
 			<img class="theaFrame" style="z-index:5;" src="assets/thea_frame.png"></img>
 			<div style="position:absolute;left:53%; color:white;font-size:2rem;top:50%;font-weight:900; z-index:5;"><span>PROPAGATING </span><span class="flashyCursor" id="flashy_cursor">_</span></div>
+		</div>
+	</div>
+	
+	<div class="infoDialog" id="infoDialog" style="position:fixed; height:120%;width:120%;top:-10%;left:-10%;background:rgba(155,155,155,0.8);z-index:100; visibility:hidden;" onclick="notice(false)">
+		<div style="font-family: JuneBug;background:rgba(0,0,0,0.8);position:fixed; height:25%;left:-20%;width:120%;overflow:visible;top:40%;">
+		
+			<img class="theaSelf" style="z-index:5; filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6));" src="assets/thea.png">
+			<img class="theaFrame" style="z-index:5;" src="assets/thea_frame.png">
+			<div style="position:absolute;left:53%; color:white;font-size:2rem;top:20%;font-weight:900; z-index:5;"><span id="infoTitle">&gt; Action Pending </span><span class="flashyCursor" id="flashy_cursor">_</span>
+				<p style="font-size:0.8vw;" class="settingSubContent" >Acknowledge</p>
+				<p style="font-size:0.8vw;" class="settingSubContent" onclick="notice(false)">Cancel</p>
+				<p style="font-size:0.8vw;" class="settingSubContent">Help</p>
+			</div>
+			<p style="position:absolute;width:35%;left:50%;color:rgba(255,255,255,0.5);font-weight:800;font-family:sans-serif;font-size:0.6vw;top:25%;height:30%;overflow-y:hidden;">
+				<marquee id='noticeTxt' behavior="scroll" direction="up" scrollamount="1" style="position:absolute;height:100%;width:100%;" >reasons for halting reasons for haltingreasons for haltingreasons for haltingreasons for haltingreasons for haltingreasons for haltingreasons for haltingreasons for haltingreasons for haltingreasons for haltingreasons for haltingreasons for haltingreasons for haltingreasons for haltingreasons for halting</marquee>
+
+			</p>
 		</div>
 	</div>
 		
@@ -237,7 +247,7 @@
 <script src="loginBtn.js"></script>
 <script src="settings.js"></script>
 <script src="notif.js"></script>
-
+<script  src="noticeGrabber.js"></script>
 <script  src="chat.js"></script>
 <script  src="freunds.js"></script>
 <script src="autohostnetwork.js"></script>

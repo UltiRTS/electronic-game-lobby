@@ -112,7 +112,7 @@ function chatLeave(Name) {
 }
 
 function chatNotesSubmit(){
-	window.client.say('bus',"sysctl --comments "+document.getElementById("hostSays").value+" --bid "+window.nowinBattle)
+	window.client.say('bus',"sysctl --comment "+document.getElementById("hostSays").value+" --bid "+window.nowinBattle)
 	document.getElementById("hostSays").value=''
 }
 

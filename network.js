@@ -44,7 +44,8 @@ window.client.on("JOIN", (CHANAME) => {
 });
 
 window.client.on("DENIED", (reason) => {
-	//window.client.endConnection();
+	notice(true,'ACCESS DENIED ',reason)
+	loading(false)
 });
 
 window.client.on("LEFT", (CHANAME,user) => {

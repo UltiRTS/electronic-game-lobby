@@ -86,7 +86,7 @@ function autohostNetwork(msgSaid) {
 				}
 				
 				try{
-					document.getElementById("hostSays").value=cmdDict['comment'][0]
+					document.getElementById("hostSays").value=cmdDict['comment'].join(' ')
 					
 				}
 				
