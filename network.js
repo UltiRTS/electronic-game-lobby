@@ -73,6 +73,8 @@ window.client.on("LEFTBATTLE", (bID,user) => {
 	
 });
 
+
+
 /*var usrinBattle = []*/
 /*window.client.on("JOINEDBATTLE",(id, users) => {
  i f* (users==window.username){
@@ -112,9 +114,7 @@ window.client.on("JOINED",(CHANME, user) => {
 	else if (CHANME!="main"&user!=window.username){
 		frdPut(CHANME,user,'A\'s gem');
 	}
-	if (CHANME!="main"&CHANME!="bus"&user.startsWith('Autohost')){
-		window.nowHostedby=user
-	}
+	
 
 });
 
@@ -134,13 +134,16 @@ window.client.on("JOINBATTLE",(bID, hash) => {
 	preBtlPresence()
 });
 
-//window.client.on("CLIENTBATTLESTATUS",(usr, status,teamColor) => {
-//	if (parseInt(status).toString(2).endsWith(1) &usr==window.nowHostedby&window.isExited==false)
-//	{
-//		window.gameStatus=true;
-		
-//	}
-//});
+window.client.on("CLIENTBATTLESTATUS",(usr, status,teamColor) => {
+if (usr.startsWith('Autohost')){
+	window.nowHostedby=usr
+	if(window.gameStatus[window.nowHostedby]){
+		document.getElementById('gameProgress').style.visibility="visible";
+	}
+	else{document.getElementById('gameProgress').style.visibility="hidden";}
+	
+}
+});
 
 var msgSaid = [];
 window.client.on("SAID", (channel,user,msg) => {
@@ -162,7 +165,8 @@ window.client.on("CLIENTSTATUS", (user,status) => {
 		//console.log(window.nowHostedby)
 		//console.log(status)
 		//console.log(isExited)
-		if (parseInt(status).toString(2).endsWith(1) &user==window.nowHostedby&window.isExited==false)
+		
+		if (parseInt(status).toString(2).endsWith(1) &window.isExited==false)
 		{
 			usyncWriteScript()
 			
@@ -177,6 +181,8 @@ window.client.on("CLIENTSTATUS", (user,status) => {
 		{
 			window.gameStatus[user]=true
 		}
+		
+
 	}
 });
 

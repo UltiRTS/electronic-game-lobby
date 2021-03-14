@@ -7,6 +7,10 @@ function lobbyFlush(battleid, type, natType, founder, ip, port, maxPlayer, passw
     //document.getElementById("hostSays").innerHTML ="afk 3sec for dinnar";
 	document.getElementById('startGem').setAttribute( "onclick", "preBtlStartGem("+window.nowinBattle+")" );
 	document.getElementById('exitGem').setAttribute( "onclick", "preBtlExitGem("+window.nowinBattle+")" );
+	if(window.gameStatus[window.nowHostedby]){
+		document.getElementById('gameProgress').style.visibility="visible";
+	}
+	else{document.getElementById('gameProgress').style.visibility="hidden";}
 }
 
 function preBtlExitGem(bID)
@@ -19,6 +23,7 @@ function preBtlExitGem(bID)
 function preBtlStartGem(bID)
 {	if (window.gameStatus[window.nowHostedby]){
 	chatRejoin(bID)
+	
 }
 	else{
 	chatStartBtl(bID)}
