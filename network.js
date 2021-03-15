@@ -166,10 +166,15 @@ window.client.on("CLIENTSTATUS", (user,status) => {
 		//console.log(status)
 		//console.log(isExited)
 		
-		if (parseInt(status).toString(2).endsWith(1) &window.isExited==false)
+		if (parseInt(status).toString(2).endsWith(1) &window.isExited==false&user==window.nowHostedby )
 		{
 			usyncWriteScript()
-			
+			document.getElementById('gameProgress').style.visibility="visible";
+		}
+		
+		if (parseInt(status).toString(2).endsWith(0) &window.isExited==false&user==window.nowHostedby )
+		{
+			document.getElementById('gameProgress').style.visibility="hidden";
 		}
 		
 		if (parseInt(status).toString(2).endsWith(0) )
