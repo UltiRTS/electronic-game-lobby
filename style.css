@@ -24,8 +24,6 @@ a {
 }
 
 .understood {
-
-	
 }
 
 .understood:hover {
@@ -33,6 +31,13 @@ background:white;
 color: black;
 }
 
+.killGem {
+	opacity:0.1;
+}
+
+.killGem:hover {
+	opacity:1;
+}
 
 
 .loginbox{

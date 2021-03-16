@@ -66,6 +66,11 @@ function chatProposeBtl(isBattleChat=false) {
 	loading()
 	}
 	
+function chatExitGem() {
+	window.client.say('bus',"sysctl --exit --bid "+window.nowinBattle)
+	loading(true)
+}
+	
 function chatAssignTeam(){
 	var playerCMD=''
 

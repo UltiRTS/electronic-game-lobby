@@ -15,6 +15,10 @@ function refreshBtlFrd(){
 		}
 		
 	}
+	try{
+		document.getElementById("cardIsLeader"+window.nowinBattle+window.teamLeaders).style.opacity="1"
+	}
+	catch(err){console.log('cant find the leader!')}
 }
 
 function frdPut(page="main",name,battle,isBtlFrd=false){
@@ -30,10 +34,6 @@ function frdPut(page="main",name,battle,isBtlFrd=false){
 function showFrdOptions(optionID)
 {
 
-
-	
-	
-	
 	console.log('mouse over')
 	window.revealFrdSubOptions=setTimeout(function(){ document.getElementById(optionID).style.visibility='visible' }, 200);
 	

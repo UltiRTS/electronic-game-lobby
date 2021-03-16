@@ -186,6 +186,7 @@ window.client.on("CLIENTSTATUS", (user,status) => {
 		if (parseInt(status).toString(2).endsWith(0) &window.isExited==false&user==window.nowHostedby )
 		{
 			document.getElementById('gameProgress').style.visibility="hidden";
+			loading(false)
 		}
 		
 		if (parseInt(status).toString(2).endsWith(0) )
