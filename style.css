@@ -203,17 +203,16 @@ color: #255784;
 }
 
 .Add{
-  background-color:rgba(105,105,105,0.3);
-   color: #ffffff; 
+  
+   color: rgba(255,255,255,0.6);
 
   
 
 }
 
 .Add:hover{
-  color: #ffffff;
-  background: #2196f3;
-  background-color:#2196f3;
+	color: rgba(255,255,255,1);
+  
   box-shadow: 0 0 10px #2196f3, 0 0 40px #2196f3, 0 0 80px #2196f3;
   transition-delay: 0s;
 

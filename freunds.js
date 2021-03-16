@@ -1,3 +1,22 @@
+
+function refreshBtlFrd(){
+	removeAllChildNodes('friendlimitingFrame'+window.nowinBattle)
+	for (var usr in window.ppl){
+		if(usr.startsWith('GPT')||usr.startsWith('Chicken')){
+			aiPut(window.nowinBattle,usr)
+			document.getElementById("cardLabel"+window.nowinBattle+usr).innerHTML=window.ppl[usr]
+		}
+		else if (usr.startsWith('Autohost')){
+			console.log('not showing autohost account')
+		}
+		else{
+			frdPut(window.nowinBattle,usr,'A\'s gem',true);
+			document.getElementById("cardLabel"+window.nowinBattle+usr).innerHTML=window.ppl[usr]
+		}
+		
+	}
+}
+
 function frdPut(page="main",name,battle,isBtlFrd=false){
 	
 	if (isBtlFrd){
@@ -70,30 +89,25 @@ function chLeader(usr){
 	}
 }
 
-function frdTeamUpdate(playerMatrix){
-	i=0
-	removeAllChildNodes('friendlimitingFrame'+window.nowinBattle)
-	console.log('frdTeamUpdate called!')
-	while (i<playerMatrix.length)
-	{
-		
-			if(playerMatrix[i].startsWith('GPT')){
-				aiPut(window.nowinBattle,playerMatrix[i])
-				document.getElementById("cardLabel"+window.nowinBattle+playerMatrix[i]).innerHTML=playerMatrix[i+1]
-			}
-			else if (playerMatrix[i].startsWith('Autohost')){
-				console.log('not showing autohost account')
-			}
-			else{
-				frdPut(window.nowinBattle,playerMatrix[i],'A\'s gem',true);
-				document.getElementById("cardLabel"+window.nowinBattle+playerMatrix[i]).innerHTML=playerMatrix[i+1]
+function frdTeamUpdatefromAutohost(playerMatrix){
+	for (var usr in window.ppl){  //apply human player config from the autohost but not sync
+		i=0
+		while (i<playerMatrix.length)
+		{
+			if(playerMatrix[i]==usr){
+				window.ppl[usr]=playerMatrix[i+1]
 			}
 			
-			
-		
-		
-		i=i+2
+			i=i+2
+		}
 	}
+	while (i<playerMatrix.length)   //sync the gpts from the autohost but not ppl
+	{
+		if(playerMatrix[i].startsWith('GPT')||playerMatrix[i].startsWith('Chicken')){
+			window.ppl[playerMatrix[i]]=playerMatrix[i]+1
+		}
+	}
+	refreshBtlFrd()
 }
 
 function nextLetter(s){

@@ -49,14 +49,24 @@ window.client.on("DENIED", (reason) => {
 });
 
 window.client.on("LEFT", (CHANAME,user) => {
-	if (user==window.username)
+	if (user==window.username)   //remove the chat if the user leaves the channel
 	{	
 		chatDel(CHANAME)}
 	else if (CHANAME!="main"){
-			frdEliminate(CHANAME,user);
+			frdEliminate(CHANAME,user);   //in some other cases its other user leaving the chat, remove them if they are not in main neither, since main chat user is not drawn
 		}
-		if (user==window.window.nowHostedby){
+		if (user==window.window.nowHostedby){   //and if the autohost leaves chat, we assume the game is not running
 			window.gameStatus[window.username]=false
+		}
+		if (CHANAME==window.nowinBattle){
+			try{
+			delete window.ppl[user]
+			}
+			catch(err){
+				console.log('trying to remove an user thats never joined!')
+			}
+		
+			
 		}
 });
 
@@ -91,11 +101,11 @@ window.client.on("CLIENTS",(CHANME, users) => {
 	{
 		usrinChan = users.split(" ");
 		for (var userPtr=0; userPtr<usrinChan.length;userPtr++){
-			frdPut(CHANME,usrinChan[userPtr],'A\'s gem',true);
+			
 			window.ppl[usrinChan[userPtr]]='a';
 			
 		}
-		
+		refreshBtlFrd()
 	}
 	else if (CHANME!="main"){
 		usrinChan = users.split(" ");
@@ -108,7 +118,7 @@ window.client.on("JOINED",(CHANME, user) => {
 	if (CHANME!="main"&user!=window.username&CHANME==window.nowinBattle)
 	{
 		window.ppl[user]='a';
-		frdPut(CHANME,user,'A\'s gem',true);
+		refreshBtlFrd()
 	}
 	
 	else if (CHANME!="main"&user!=window.username){
@@ -126,6 +136,7 @@ window.client.on("JOINBATTLE",(bID, hash) => {
 	//console.log('joining game')
 	//console.log(user)
 	//console.log(window.username)
+	window.ppl={}
 	window.nowinBattle=bID;
 	lobbyFlush(bID, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, document.getElementById("title"+bID).innerHTML, 0, 0);
 	window.client.joinChanel(bID);

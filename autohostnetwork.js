@@ -17,7 +17,7 @@ function autohostNetwork(msgSaid) {
 			if(cmdDict['room']==window.nowinBattle)
 			{
 				try{
-					frdTeamUpdate(cmdDict['teams'])
+					frdTeamUpdatefromAutohost(cmdDict['teams'])
 				}
 				catch(err)
 				{
