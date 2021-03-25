@@ -3,7 +3,7 @@
 @font-face { font-family: JuneBug3; src: url('assets/Envy Code R.ttf'); }
 body {font-family: "Roboto Condensed", sans-serif;}
 @font-face { font-family: JuneBug4; src: url('assets/good_times_rg.ttf'); }
-
+@font-face { font-family: JuneBug5; src: url('assets/URWGothic-Book.otf'); }
 a {
 	text-decoration: none;
 	color: inherit;
