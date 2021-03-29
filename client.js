@@ -28,9 +28,13 @@ class Client extends EventEmitter {
 				this.emit("disconnected");
 			});
 			this.socket.on("data", (data) => {
-				data
-					.toString()
-					.split("\n")
+				data=data.toString()+window.networkBuffer
+                if (!data.endsWith("\n"){
+                    window.networkBuffer=data
+                    return()
+                }
+                window.networkBuffer=""
+                data.split("\n")
 					.forEach((message) => {
 						if (message.length > 0) {
 							console.log("Received: " + message)
