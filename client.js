@@ -29,9 +29,9 @@ class Client extends EventEmitter {
 			});
 			this.socket.on("data", (data) => {
 				data=data.toString()+window.networkBuffer
-                if (!data.endsWith("\n"){
+                if (!data.endsWith("\n")){
                     window.networkBuffer=data
-                    return()
+                    return
                 }
                 window.networkBuffer=""
                 data.split("\n")
