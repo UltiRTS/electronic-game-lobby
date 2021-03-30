@@ -28,7 +28,7 @@ class Client extends EventEmitter {
 				this.emit("disconnected");
 			});
 			this.socket.on("data", (data) => {
-				data=data.toString()+window.networkBuffer
+				data=window.networkBuffer+data.toString()
                 if (!data.endsWith("\n")){
                     window.networkBuffer=data
                     return
