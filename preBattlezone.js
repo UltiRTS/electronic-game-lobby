@@ -116,7 +116,7 @@ function preBtlPollPut(pollName,pollID,count=0.1)
 	//btlType.className="prebattlePolls";
 	newPoll.style="position:relative;width:100%;";
 	
-	newPoll.innerHTML = '<div id="opTypeTitle'+pollID+'" style="cursor: default;color:white;"><h1>Operation Parameter</h1></div><hr></hr></br><span onclick="preBtlVote('+pollID+')" style="cursor: default;color:white; margin: 0px;background:rgb(33,150,243);">'+pollName+'</span><div id="typeTeam" style="cursor: default;filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6)); position:absolute;width:95%; background:white;height:2%;"><div id="'+pollID+'bar" style="cursor: default;position:absolute;height:100%;width:50%;background:rgb(33,150,243);"></div></div>';
+	newPoll.innerHTML = '<br><div id="opTypeTitle'+pollID+'" style=\"filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6)); mix-blend-mode: screen;height:3vw;color:white;background:rgba(255,255,255,0.5);\"><h1 style=\"color:black;position:absolute;left:4vw;bottom:0vw;margin:0vw;font-size:1.9vw;\">Poll</h1><img src=\"assets/checks.png\" style=\"position:absolute;width:5vw;left:-1vw;top:-0.3vw;\"></div></br><span onclick="preBtlVote('+pollID+')" style="cursor: default;color:white; margin: 0px;background:rgb(33,150,243);">'+pollName+'</span><div id="typeTeam" style="cursor: default;filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6)); position:absolute;width:95%; background:white;height:2%;"><div id="'+pollID+'bar" style="cursor: default;position:absolute;height:100%;width:50%;background:rgb(33,150,243);"></div></div>';
 	document.getElementById("pregameInfo").appendChild(newPoll);
 
 }

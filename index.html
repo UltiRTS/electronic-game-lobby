@@ -21,13 +21,13 @@
 	<div class="loginbox"  id = "loginbox">
 		<div class="shader" id="shader"></div>
 		<div class="logininput" id="logininput">
-			<p style="cursor: default;top:5%;position:fixed;left:2%;font-size:175%;background-color:black;color:white;">Dr.</p> <input id="usr" style="cursor: text;top:17.5%;position:fixed;left:10%;font-size:175%; display: inline;border-width:0px;border:none;outline:none;" type="text" placeholder="Name" name="uname" required="">
+			<p  style="cursor: default;top:5%;position:fixed;left:2%;font-size:175%;background-color:black;color:white;">Dr. </p> <input id="usr"  style="cursor: text;top:17.5%;position:fixed;left:10%;font-size:175%; display: inline;border-width:0px;border:none;outline:none;" type="text" placeholder="Name" name="uname" required="">
 			</br>
 			<input id="passwd" style="cursor: text;top:38%;position:fixed;left:2%;border-width:0px;border:none;outline:none;" type="password" placeholder="Password" name="psw" required="">
-			<p style="cursor: default;top:47%; position:fixed;left:2%;"><input type="checkbox" id="rememberName" style="cursor: pointer;">Persistent Neural Link</p>
-			<p style="cursor: default;top:57%; position:fixed;left:2%;" onclick="registerMe()"><input type="checkbox" id="register" style="cursor: pointer;">Register this Neural Link</p>
+			<p style="cursor: default;top:47%; position:fixed;left:2%;" class="tooltip"><input type="checkbox" id="rememberName" style="cursor: pointer;">Persistent Neural Link<span class="tooltiptext">Remember credentials</span></p>
+			<p style="cursor: default;top:57%; position:fixed;left:2%;" class="tooltip" onclick="registerMe()"><input type="checkbox" id="register" style="cursor: pointer;">Register this Neural Link<span class="tooltiptext">Register credentials</span></p>
 			<p style="cursor: default;text-shadow: 0px 0px 1.5px black ;top:6%; position:fixed;left:42%;font-size: 150%;text-align: left;font-family: JuneBug4;">Thea Pharmaceuticals <span style="font-size:42%;top:100%;left:0%;position:absolute;text-shadow: 0px 0px 1px black ;">Inc.</span></p>
-			<p class="" id='loginInputStatus' onclick="logMeIn()" style="cursor: pointer;top:36%; position:fixed;left:-0.5%;font-size: 4vw;text-align: left;font-family: JuneBug; ">CONNECT</p>
+			<p class="tooltip" id='loginInputStatus' onclick="logMeIn()" style="cursor: pointer;top:36%; position:fixed;left:-0.5%;font-size: 4vw;text-align: left;font-family: JuneBug; ">CONNECT<span class="tooltiptext">Log in.</span></p>
 			<p style="cursor: default;text-shadow: 0px 0px 4px black ;top:58%; position:fixed;left:42%;font-size: 0.5vw;text-align: left;">____________</br>Humans live longer, better, for the future.</p>
 		</div>	
 	</div>
@@ -124,7 +124,7 @@
 		
 		<div class="lobbyContainer" id="lobbyContainer">
 			<div class="lobbyContent" id="lobbyContent"><h1 style="cursor: default;position: absolute; color: white; top: 0%; left: 9%; font-family: JuneBug2;">Lobby</h1>
-				<div id="hostGem" class="lobbyCTLBTN" style="left:75%; top:2%;cursor: pointer;"  onclick="inputGrabber(&#39;Operation Manuscript&#39;,&#39;Propose an Operation&#39;,&#39;All Welcome&#39;,&#39;chatProposeBtl&#39;);this.visibility=hidden;"><span style="font-size:1.2vh; pointer-events: none; position:relative; top:13%; left:10%;">Operation</span><span style="font-size:2.2vh; pointer-events: none; position:relative; top:11%; left:10%;"></br> Manuscript</span>
+				<div id="hostGem" class="lobbyCTLBTN tooltip" style="left:75%; top:2%;cursor: pointer;"  onclick="inputGrabber(&#39;Operation Manuscript&#39;,&#39;Propose an Operation&#39;,&#39;All Welcome&#39;,&#39;chatProposeBtl&#39;);this.visibility=hidden;"><span style="font-size:1.2vh; pointer-events: none; position:relative; top:13%; left:10%;">Operation</span><span style="font-size:2.2vh; pointer-events: none; position:relative; top:11%; left:10%;"></br> Manuscript</span><span class="tooltiptext">Host a game</span>
 				</div>
 				<p style="cursor: default;color: white; font-family: JuneBug3; position: absolute; top: 6%;">What's happening around the galaxy</p>
 				
@@ -161,7 +161,7 @@
 				</div>
 				
 				
-				<div id="pregameInfo" style=" overflow:auto; overflow-x: hidden; position:absolute; width:92%; height:84%; top:14%;" class="limitingframe">
+				<div id="pregameInfo" style=" overflow:auto; overflow-x: hidden; position:absolute; width:92%; height:80%; top:18%;" class="limitingframe">
 
 				<!--to be inserted by js-->
 					
@@ -173,7 +173,7 @@
 				<div id="chatList" class="chatList" align="right" style="z-index:4 ;position:absolute;top:48%; left:61%; width: 4%; overflow: visible; ">
 				</div>
  			<!--to be inserted by js-->
-				<div id="chatAdd" class="Add" onclick="inputGrabber(&#39;Join a chat&#39;,&#39;logoandCompanySlogen&#39;,&#39;comName&#39;,&#39;chatJoin&#39;)" style="font-size: 1.2vw; position: absolute; top:47.7%; left:66%;z-index:3;  cursor: pointer;"> █ </div>
+				<div id="chatAdd" class="Add tooltip" onclick="inputGrabber(&#39;Join a chat&#39;,&#39;logoandCompanySlogen&#39;,&#39;comName&#39;,&#39;chatJoin&#39;)" style="font-size: 1.2vw; position: absolute; top:47.7%; left:66%;z-index:3;  cursor: pointer;"> █ <span class="tooltiptext">Join a new chat</span> </div>
  			<!--chat join calls chatAdd upon the successful join of a chat. chat add does not trigger the actual chatjoin event!!!-->
 			</div>
 			<div class="infopanel" id="infopanel" style="left: 60%; position: absolute; top:10%; width:60%;height:33%">

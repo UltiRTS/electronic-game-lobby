@@ -215,6 +215,17 @@ color: #255784;
 
 }
 
+.chatTagBodyDisplayed{
+background-color: rgba(33,150,243,0.9)
+}
+
+.chatTagBody{
+background-color: rgba(33,150,243,0.5)
+}
+.chatTagBody:hover{
+background-color: rgba(33,150,243,0.9)
+}
+
 .Add:hover{
 	color: rgba(255,255,255,1);
   
