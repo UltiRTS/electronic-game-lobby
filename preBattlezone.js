@@ -32,17 +32,43 @@ function preBtlStartGem(bID)
 function preBattleListMap(pool)
 {
 	
-		if(document.getElementById('pregameInfo').contains(document.getElementsByClassName('map')[0]) ){
-			console.log('map already listed')
-		}
-		else{var map = document.createElement('div');
-			map.className="map";
-			map.setAttribute( "style", "position:relative; height:40%;width:100%;")
-			map.innerHTML="<br><div id=\"title\" style=\"filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6)); mix-blend-mode: screen;height:3vw;color:white;background:rgba(255,255,255,0.5);\"><h1 style=\"color:black;position:absolute;left:4vw;bottom:0vw;margin:0vw;font-size:1.9vw;\">Maps</h1><img src=\"assets/checks.png\" style=\"position:absolute;width:5vw;left:-1vw;top:-0.3vw;\"></div><div class=\"slidingMenu\" style=\"overflow: visible; width:20%;height:100%;top:5vw;\"><div style=\"filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6)); overflow: hidden;\" onclick=\"chatVoteMap(\'"+pool[0]+"\')\" class=\"slidingMenuSub1\"><span style=\" font-family: JuneBug2; position:absolute; top:40%;left:25%;\">"+pool[0].replace(/🦔/g, " ")+"</span></div><div style=\"filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6)); overflow: hidden; \" onclick=\"chatVoteMap(\'"+pool[1]+"\')\" class=\"slidingMenuSub2\"><span style=\"font-family: JuneBug2; position:absolute; top:40%;left:25%;\">"+pool[1].replace(/🦔/g, " ")+"</span></div><div class=\"slidingMenuSub3\" onclick=\"chatVoteMap(\'"+pool[2]+"\')\" style=\"overflow: hidden; filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6));\"><span style=\"font-family: JuneBug2; position:absolute; top:40%;left:25%;\">"+pool[2].replace(/🦔/g, " ")+"</span></div><div onclick=\"chatVoteMap(\'"+pool[3]+"\')\" style=\"filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6)); overflow: hidden;\" class=\"slidingMenuSub4\"><span style=\"font-family: JuneBug2; position:absolute; top:40%;left:25%;\">"+pool[3].replace(/🦔/g, " ")+"</span></div><div style=\"filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6)); overflow: hidden;\" class=\"slidingMenuSub5\" onclick=\"chatVoteMap(\'"+pool[4]+"\')\"><span style=\"font-family: JuneBug2; position:absolute; top:40%;left:25%;\">"+pool[4].replace(/🦔/g, " ")+"</span></div></div>"
-			map.id="map"
-			document.getElementById("pregameInfo").appendChild(map);
-			_mapDonutPut(pool)}
 	
+		
+			
+	
+		
+	if(document.getElementById('mapLabel1').innerHTML!=pool[0].replace(/🦔/g, " ")||document.getElementById('mapLabel2').innerHTML!=pool[1].replace(/🦔/g, " ")||document.getElementById('mapLabel3').innerHTML!=pool[2].replace(/🦔/g, " ")||document.getElementById('mapLabel4').innerHTML!=pool[3].replace(/🦔/g, " ")||document.getElementById('mapLabel5').innerHTML!=pool[4].replace(/🦔/g, " ")){
+		document.getElementById('mapLabel1').innerHTML=pool[0].replace(/🦔/g, " ")
+		document.getElementById('mapLabel2').innerHTML=pool[1].replace(/🦔/g, " ")
+		document.getElementById('mapLabel3').innerHTML=pool[2].replace(/🦔/g, " ")
+		document.getElementById('mapLabel4').innerHTML=pool[3].replace(/🦔/g, " ")
+		document.getElementById('mapLabel5').innerHTML=pool[4].replace(/🦔/g, " ")
+	
+		   
+	
+		document.getElementById('mapLabel1Btn').className = 'flashit'
+		document.getElementById('mapLabel2Btn').className = 'flashit'
+		document.getElementById('mapLabel3Btn').className = 'flashit'
+		document.getElementById('mapLabel4Btn').className = 'flashit'
+		document.getElementById('mapLabel5Btn').className = 'flashit'
+	
+		document.getElementById('mapLabel1Btn').className = 'slidingMenuSub1'
+		document.getElementById('mapLabel2Btn').className = 'slidingMenuSub2'
+		document.getElementById('mapLabel3Btn').className = 'slidingMenuSub3'
+		document.getElementById('mapLabel4Btn').className = 'slidingMenuSub4'
+		document.getElementById('mapLabel5Btn').className = 'slidingMenuSub5'
+	_mapDonutPut(pool)
+	
+	
+	}
+	document.getElementById('mapLabel1Btn').onclick = function() {chatVoteMap(pool[0])}	
+	document.getElementById('mapLabel2Btn').onclick = function() {chatVoteMap(pool[1])}
+	document.getElementById('mapLabel3Btn').onclick = function() {chatVoteMap(pool[2])}
+	document.getElementById('mapLabel4Btn').onclick = function() {chatVoteMap(pool[3])}
+	document.getElementById('mapLabel5Btn').onclick = function() {chatVoteMap(pool[4])}
+	
+	
+
 	
 }
 
@@ -52,7 +78,7 @@ function prebattleUpdateMap(mapName){
 
 function _mapDonutPut(pool)
 {
-document.getElementById("map").innerHTML +="<div class=\"chart-container\" style=\"position: relative; width:70%;left:27%;\"><canvas id=\"mapPoll\"></canvas></div>"
+document.getElementById("mapTitle").innerHTML +="<div class=\"chart-container\" style=\"position: absolute; width:70%;left:12vw;top:5vw;height:20vw;\"><canvas id=\"mapPoll\"></canvas></div>"
 
 var ctx = document.getElementById("mapPoll");
 window.mapPoll = new Chart(ctx, {
