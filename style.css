@@ -210,10 +210,144 @@ color: #255784;
 .Add{
   
    color: rgba(255,255,255,0.6);
+}
 
+.Add:hover{
+	color: rgba(255,255,255,1);
   
+  box-shadow: 0 0 10px #2196f3, 0 0 40px #2196f3, 0 0 80px #2196f3;
+  transition-delay: 0s;
 
 }
+
+.mapBrwsViewOff{
+left:0%;
+animation-fill-mode: forwards;
+	animation-name: preBtlBrwsDisp;
+	animation-duration: 0.7s;
+	animation-iteration-count: 1;
+	animation-delay:0s;
+}
+
+.mapListViewOff{
+left:0%;
+animation-fill-mode: forwards;
+	animation-name: preBtlListDisp;
+	animation-duration: 0.7s;
+	animation-iteration-count: 1;
+	animation-delay:0s;
+}
+
+@keyframes preBtlListDisp {
+	
+	0%   {left:-1%;}
+	10%   {left:-2.05%;}
+	20%   {left:-4.125%;}
+	30%   {left:-8.25%;}
+	40%   {left:-17.5%;}
+50%   {left:-25%;}
+	100%   {left:-200%;}
+}
+
+@keyframes preBtlBrwsDisp {
+	
+	0%   {left:1%;}
+	10%   {left:2.05%;}
+	20%   {left:4.125%;}
+	30%   {left:8.25%;}
+	40%   {left:17.5%;}
+50%   {left:25%;}
+	100%   {left:200%;}
+}
+
+.moreMap{
+	border-left: 2vw solid transparent;
+	border-top: 3vw solid rgba(200,200,200,0.6);
+	width:14vw;filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6));
+	mix-blend-mode: screen;
+	height:0vw;
+	color:white;
+	z-index:6;
+
+}
+.moreMap:hover{
+border-left: 2vw solid transparent;
+	border-top: 3vw solid rgba(200,200,200,1);
+	width:14vw;filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.7));
+	mix-blend-mode: screen;
+	height:0vw;
+	color:white;
+	z-index:6;
+
+
+
+}
+.moreMapActive{border-left: 2vw solid transparent;
+	border-top: 3vw solid rgba(200,200,200,1);
+	width:14vw;filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.7));
+	mix-blend-mode: screen;
+	height:0vw;
+	color:white;
+	z-index:6;
+	}
+
+.mapType{
+	border-left: 0vw solid transparent; 
+	border-top: 3vw solid rgba(200,200,200,0.6);
+	width:2vw;
+	filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6)); 
+	mix-blend-mode: screen;
+	height:0vw;
+	color:white;
+
+}
+.mapType:hover{
+border-left: 0vw solid transparent; 
+	border-top: 3vw solid rgba(200,200,200,1);
+	width:2vw;
+	filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.7)); 
+	mix-blend-mode: screen;
+	height:0vw;
+	color:white;
+}
+.mapTypeActive{border-left: 0vw solid transparent; 
+	border-top: 3vw solid rgba(200,200,200,1);
+	width:2vw;
+	filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.7)); 
+	mix-blend-mode: screen;
+	height:0vw;
+	color:white;}
+
+.mapList{
+	border-right: 2vw solid transparent;
+	 border-bottom: 3vw solid rgba(200,200,200,0.6);
+	 width:10vw;
+	 filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6)); 
+	 mix-blend-mode: screen;
+	 height:0vw;
+	 color:white;
+z-index:6;
+}
+.mapList:hover{
+border-right: 2vw solid transparent;
+	 border-bottom: 3vw solid rgba(200,200,200,1);
+	 width:10vw;
+	 filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.7)); 
+	 mix-blend-mode: screen;
+	 height:0vw;
+	 color:white;
+z-index:6;
+
+}
+.mapListActive{border-right: 2vw solid transparent;
+	 border-bottom: 3vw solid rgba(200,200,200,1);
+	 width:10vw;
+	 filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.7)); 
+	 mix-blend-mode: screen;
+	 height:0vw;
+	 color:white;
+	 z-index:6;
+	 }
 
 .chatTagBodyDisplayed{
 background-color: rgba(33,150,243,0.9)
@@ -226,13 +360,7 @@ background-color: rgba(33,150,243,0.5)
 background-color: rgba(33,150,243,0.9)
 }
 
-.Add:hover{
-	color: rgba(255,255,255,1);
-  
-  box-shadow: 0 0 10px #2196f3, 0 0 40px #2196f3, 0 0 80px #2196f3;
-  transition-delay: 0s;
 
-}
 
 .form__group {
 	position: relative;
@@ -346,13 +474,6 @@ position: relative; height: 17%; width: 23%;margin:0.1%;heght:20%;display: inlin
 	animation-delay:1s;
 }
 
-@keyframes spinningIconAni {
-	
-	0%   {transform: rotate(0deg); }
-	85%   {transform: rotate(360deg); }
-
-	100%   {transform: rotate(360deg); }
-}
 
 
 

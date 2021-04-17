@@ -76,9 +76,23 @@ function prebattleUpdateMap(mapName){
 	document.getElementById('pregameMap').innerHTML=mapName
 }
 
+function preBtlToggMoreMap(){
+	document.getElementById('mapListView').className='mapListViewOff'
+	document.getElementById('mapBrwsView').className=''
+	document.getElementById('moreMap').className='moreMapActive'
+document.getElementById('mapList').className='mapList'
+}
+
+function preBtlToggListMap(){
+document.getElementById('mapBrwsView').className='mapBrwsViewOff'
+document.getElementById('mapListView').className=''
+document.getElementById('moreMap').className='moreMap'
+document.getElementById('mapList').className='mapListActive'
+}
+
 function _mapDonutPut(pool)
 {
-document.getElementById("mapTitle").innerHTML +="<div class=\"chart-container\" style=\"position: absolute; width:70%;left:12vw;top:5vw;height:20vw;\"><canvas id=\"mapPoll\"></canvas></div>"
+document.getElementById("mapListView").innerHTML +="<div class=\"chart-container\" style=\"position: absolute; width:70%;left:12vw;top:0vw;height:20vw;\"><canvas id=\"mapPoll\"></canvas></div>"
 
 var ctx = document.getElementById("mapPoll");
 window.mapPoll = new Chart(ctx, {

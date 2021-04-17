@@ -22,6 +22,8 @@ function chatStartBtl(){
 	window.client.say('bus',"sysctl --start --bid "+window.nowinBattle)
 	}
 
+
+
 function chatVote(cmd){
 	window.client.say('bus',cmd)
 }
@@ -29,6 +31,11 @@ function chatVote(cmd){
 function chatVoteMap(map){
 	window.client.say('bus',"sysctl --bid "+window.nowinBattle +" --map "+map)
 } 
+	
+function chatSelectCustomMap(){
+	map = document.getElementById("grabberValue").value
+	window.client.say('bus',"sysctl --bid "+window.nowinBattle +" --map "+map)
+}
 	
 function chatSubmit() {
 	userContent = document.getElementById("name"+displayedChat).value;

@@ -160,22 +160,28 @@
 					<span style="position:absolute;width:200vw;top:1.7vw;left:1.8vw;font-size:0.8vw;">Click Operation Start to attempt rejoining.</span>
 					
 				</div>
-				<div id="mapTitle" style="top:10vw;position:absolute;height:30vw;width:35vw;">
-					<div id="mapHeader" style="position:absolute;top:0;border-right: 2vw solid transparent; border-bottom: 3vw solid rgba(200,200,200,0.6);width:10vw;filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6)); mix-blend-mode: screen;height:0vw;color:white;">
+				<div  id="mapTitle" style="top:10vw;position:absolute;height:20vw;width:35vw;">
+					<div id="mapList" class="mapListActive" onclick="preBtlToggListMap()" style="position:absolute;top:0;z-index:6;will-change: opacity;">
 						<h1 style="top:0.8vw;color:black;position:absolute;left:4vw;bottom:0vw;margin:0vw;font-size:1.9vw;">Maps</h1>
 						<img src="assets/checks.png" style="position:absolute;width:5vw;left:-1vw;top:-0.3vw;">
 					</div>
 				
-					<div id="more" style="top:0;position:absolute;left:12vw;border-left: 2vw solid transparent; border-top: 3vw solid rgba(200,200,200,0.6);width:14vw;filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6)); mix-blend-mode: screen;height:0vw;color:white;" onclick="mapBwrs()">
-						<h1 style="color:black;position:absolute;left:2vw;bottom:0vw;margin:0vw;font-size:1.9vw;">Intl Archive</h1>
+					<div id="moreMap" class="moreMap" onclick="preBtlToggMoreMap()" style="top:0;position:absolute;left:12vw;z-index:6;" >
+						<h1  style="color:black;position:absolute;left:2vw;bottom:0vw;margin:0vw;font-size:1.9vw;">Intl Archive</h1>
 					</div>
 				
-					<div id="mapType" style="top:0;position:absolute;left:30vw;border-left: 0vw solid transparent; border-top: 3vw solid rgba(200,200,200,0.6);width:2vw;filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6)); mix-blend-mode: screen;height:0vw;color:white;"></div>
+					<div  class="mapType" onclick="inputGrabber('Maps','Select an arbitrary map','comet catcher redux','chatSelectCustomMap')" id="mapType" style="top:0;position:absolute;left:30vw;"></div>
 					
-					<div class="slidingMenu" style="overflow: visible; width:10vw;;height:20vw;top:5vw;"><div style="filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6)); overflow: hidden;" id='mapLabel1Btn' class="slidingMenuSub1"><span id="mapLabel1" style=" font-family: JuneBug2; position:absolute; top:40%;left:25%;">map1</span></div><div style="filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6)); overflow: hidden; " id='mapLabel2Btn' class="slidingMenuSub2"><span id="mapLabel2" style="font-family: JuneBug2; position:absolute; top:40%;left:25%;">map2</span></div><div class="slidingMenuSub3" id='mapLabel3Btn' style="overflow: hidden; filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6));"><span id="mapLabel3" style="font-family: JuneBug2; position:absolute; top:40%;left:25%;">map3</span></div><div id='mapLabel4Btn' style="filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6)); overflow: hidden;" class="slidingMenuSub4"><span id="mapLabel4" style="font-family: JuneBug2; position:absolute; top:40%;left:25%;">map4</span></div><div style="filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6)); overflow: hidden;" class="slidingMenuSub5" id='mapLabel5Btn'><span id="mapLabel5" style="font-family: JuneBug2; position:absolute; top:40%;left:25%;">map5</span></div></div>
+					<div id="mapListView" style="overflow:hidden;position:absolute;top:4vw;width:100%;height:15vw;">
+						<div class="slidingMenu" style="overflow: visible; width:10vw;height:120%;top:0;"><div style="filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6)); overflow: hidden;" id='mapLabel1Btn' class="slidingMenuSub1"><span id="mapLabel1" style=" font-family: JuneBug2; position:absolute; top:40%;left:25%;">map1</span></div><div style="filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6)); overflow: hidden; " id='mapLabel2Btn' class="slidingMenuSub2"><span id="mapLabel2" style="font-family: JuneBug2; position:absolute; top:40%;left:25%;">map2</span></div><div class="slidingMenuSub3" id='mapLabel3Btn' style="overflow: hidden; filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6));"><span id="mapLabel3" style="font-family: JuneBug2; position:absolute; top:40%;left:25%;">map3</span></div><div id='mapLabel4Btn' style="filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6)); overflow: hidden;" class="slidingMenuSub4"><span id="mapLabel4" style="font-family: JuneBug2; position:absolute; top:40%;left:25%;">map4</span></div><div style="filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6)); overflow: hidden;" class="slidingMenuSub5" id='mapLabel5Btn'><span id="mapLabel5" style="font-family: JuneBug2; position:absolute; top:40%;left:25%;">map5</span></div>
+						</div>
+					</div>
+					<div id="mapBrwsView" class="mapBrwsViewOff" style="overflow:hidden;position:absolute;top:4vw;width:100%;height:15vw;">
+					</div>
+				
 				</div>
 				
-				<div id="pregameInfo" style=" overflow:auto; overflow-x: hidden; position:absolute; width:36vw; height:22vw; top:37vw;" class="limitingframe">
+				<div id="pregameInfo" style=" overflow:auto; overflow-x: hidden; position:absolute; width:36vw; height:32vw; top:27vw;" class="limitingframe">
 				
 				<!--to be inserted by js-->
 					
