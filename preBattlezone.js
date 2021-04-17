@@ -78,14 +78,20 @@ function prebattleUpdateMap(mapName){
 
 function preBtlToggMoreMap(){
 	document.getElementById('mapListView').className='mapListViewOff'
-	document.getElementById('mapBrwsView').className=''
+	document.getElementById('mapBrwsView').className='mapBrwsViewOn'
+	
+	document.getElementById('brwsName').className='brwsNameActive'
+	document.getElementById('brwsRandInfo').className='brwsRandInfoActive'
+	
 	document.getElementById('moreMap').className='moreMapActive'
 document.getElementById('mapList').className='mapList'
 }
 
 function preBtlToggListMap(){
+document.getElementById('brwsName').className=''
+document.getElementById('brwsRandInfo').className=''
 document.getElementById('mapBrwsView').className='mapBrwsViewOff'
-document.getElementById('mapListView').className=''
+document.getElementById('mapListView').className='mapListViewOn'
 document.getElementById('moreMap').className='moreMap'
 document.getElementById('mapList').className='mapListActive'
 }

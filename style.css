@@ -224,7 +224,7 @@ color: #255784;
 left:0%;
 animation-fill-mode: forwards;
 	animation-name: preBtlBrwsDisp;
-	animation-duration: 0.7s;
+	animation-duration: 0.5s;
 	animation-iteration-count: 1;
 	animation-delay:0s;
 }
@@ -233,32 +233,68 @@ animation-fill-mode: forwards;
 left:0%;
 animation-fill-mode: forwards;
 	animation-name: preBtlListDisp;
-	animation-duration: 0.7s;
+	animation-duration: 0.5s;
 	animation-iteration-count: 1;
 	animation-delay:0s;
 }
 
 @keyframes preBtlListDisp {
 	
-	0%   {left:-1%;}
+	0%   {left:-1%;opacity:0.9;}
 	10%   {left:-2.05%;}
 	20%   {left:-4.125%;}
 	30%   {left:-8.25%;}
 	40%   {left:-17.5%;}
-50%   {left:-25%;}
-	100%   {left:-200%;}
+50%   {left:-25%;opacity:0.5;}
+	100%   {left:-200%;opacity:0.0;}
 }
 
 @keyframes preBtlBrwsDisp {
 	
-	0%   {left:1%;}
+	0%   {left:1%;opacity:0.9;}
 	10%   {left:2.05%;}
 	20%   {left:4.125%;}
 	30%   {left:8.25%;}
 	40%   {left:17.5%;}
-50%   {left:25%;}
-	100%   {left:200%;}
+50%   {left:25%;opacity:0.5;}
+	100%   {left:200%;opacity:0;}
 }
+
+
+.mapListViewOn{
+left:0%;
+animation-fill-mode: forwards;
+	animation-name: preBtlListOnAnime;
+	animation-duration: 0.5s;
+	animation-iteration-count: 1;
+	animation-delay:0.5s;
+	left:-200%;
+}
+
+@keyframes preBtlListOnAnime {
+	
+	0%   {left:-200%;opacity:0;}
+
+	100%   {left:0%;opacity:0.9;}
+}
+
+.mapBrwsViewOn{
+left:0%;
+animation-fill-mode: forwards;
+	animation-name: preBtlBrwsOnAnime;
+	animation-duration: 0.5s;
+	animation-iteration-count: 1;
+	animation-delay:0.5s;
+	left:200%;
+}
+
+@keyframes preBtlBrwsOnAnime {
+	
+	0%   {left:200%;opacity:0;}
+
+	100%   {left:0%;opacity:0.9;}
+}
+
 
 .moreMap{
 	border-left: 2vw solid transparent;
@@ -348,6 +384,57 @@ z-index:6;
 	 color:white;
 	 z-index:6;
 	 }
+
+
+.brwsNameActive{
+left:-50%;
+animation-fill-mode: forwards;
+	animation-name: brwsTextAnime;
+	animation-duration: 0.25s;
+	animation-iteration-count: 1;
+	animation-delay:1.5s;
+	
+	opacity:0;
+
+
+}
+.brwsRandInfoActive{
+left:-50%;
+animation-fill-mode: forwards;
+	animation-name: brwsTextAnime;
+	animation-duration: 0.25s;
+	animation-iteration-count: 1;
+	animation-delay:1.6s;
+	
+	opacity:0;
+}
+
+
+@keyframes brwsTextAnime {
+	
+	0%   {left:-10%;opacity:0;}
+
+	100%   {left:0%;opacity:0.9;}
+}
+
+
+.minimap{
+filter: grayscale(100%);opacity:80%;float:left;margin:0.2vw;
+
+
+}
+
+.minimap:hover{
+outline-style: solid;
+outline-color: #CCC;
+}
+
+
+
+
+
+
+
 
 .chatTagBodyDisplayed{
 background-color: rgba(33,150,243,0.9)
