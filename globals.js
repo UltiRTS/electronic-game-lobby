@@ -4,6 +4,7 @@
 // window.gameStatus  (bool, true means the game is in progress if the game is in progress)
 //  window.runningEngineCount (how many engines currently running)
 // window.username (string, user using the lobby)
+//inputGrabber(heading="unifiedInputField",subHeading="Things typed will be retrieved by the caller",exampleInput="main",callback)
 // window.nowinBattle (int, which battle the user is in)
 //window.displayedChat (int, which chat is being displayed)
 //window.dbug (bool)
