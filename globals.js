@@ -39,3 +39,4 @@
 //window.polls[cmd]   returns {'id':123,'ppl':'xxx fvg rdg'} by querrying their cmd
 //window.totalPpl   total number of ppl in game
 //window.minimapCache={}
+//notice(true,'ACCESS DENIED ',reason)

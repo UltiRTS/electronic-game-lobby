@@ -1,5 +1,5 @@
 var messenger = require('messenger');
-window.minimapCache={}
+//window.minimapCache={}
 var ipcclient = messenger.createSpeaker(3141);
 
 
@@ -7,14 +7,30 @@ var ipcclient = messenger.createSpeaker(3141);
 
 
 function ipcGetMap(mapInternalName){
-	window.requestedminimapname=mapInternalName
-	ipcclient.request('dMap', mapInternalName, function(data){
+	//window.requestedminimapname=mapInternalName
+	window.minimapCache=storage.get('mapCache')
+	
+	if (!storage.has('mapCache')){
+		//console.log('storage init ran!!!!!!!1')
+		storage.set('mapCache',{'1':'2'})
+		window.minimapCache=storage.get('mapCache')
 		
-		window.minimapCache[window.requestedminimapname]=data
-		storage.set('minimapCache', window.minimapCache)
-		console.log('data from ipc:'+ String(data))
-loading(false)
-  });
+	}
+	
+	else{   //3 possibilities when it has a cache: 1, unable to get cache, this should cancel loading very fast since usync returns fast
+		if (window.minimapCache[mapInternalName]=='noMap4u'){	notice(true,'Unable To Get MiniMap ','An unknown error has occured')} 
+		else if (mapInternalName in window.minimapCache){	notice(true,'Map Change ','The Map Has Changed ');loading(false)} //2, cache hit, cancel loading right away, prepare for a game
+		else{notice(true,'Map Downloading ','A map is being downloaded to the cache');} 
+		
+	}
+	ipcclient.request('dMap', mapInternalName, function(data){
+		//window.minimapCache[window.requestedminimapname]=data
+		window.minimapCache[mapInternalName]=data
+		storage.set('mapCache',window.minimapCache)
+		//console.log('data from ipc:'+ String(data))
+		loading(false)
+		if (String(data)=='noMap4u'){	notice(true,'Unable To Get MiniMap ',data);}
+	});
 	
 }
 
