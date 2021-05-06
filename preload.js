@@ -1,6 +1,7 @@
  const Store = require('electron-store');
  window.runningEngineCount=0
  window.networkBuffer=""
+ window.minimapCache={}
  const storage=new Store();
  if (storage.has('userVolume')){
 	 window.userVolume=storage.get('userVolume')}
@@ -19,3 +20,4 @@ if (storage.has('userNotifVolume')){
 else{
 	window.userNotifVolume=16;
 	}
+

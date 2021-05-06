@@ -1,5 +1,5 @@
 window.isLoading=false
-function loading(activateLoading=true)
+function loading(activateLoading=true,shortLoading=true)
 {
 	if(window.isLoading||!activateLoading){
 		document.getElementById("loading").style.visibility="hidden";
@@ -14,7 +14,8 @@ function loading(activateLoading=true)
 	}
 	else {
 		document.getElementById("loading").style.visibility="visible";
-		window.loadingTimer=setInterval(loading, 10000);
+		if(shortLoading){
+		window.loadingTimer=setTimeout(loading, 10000);}
 		window.isLoading=true
 		window.loadingCursor=setInterval(animateCur, 100);
 	}

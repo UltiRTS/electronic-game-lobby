@@ -47,7 +47,7 @@
 		
 			<img class="theaSelf" style="z-index:5; filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6));" src="assets/thea.png"></img>
 			<img class="theaFrame" style="z-index:5;" src="assets/thea_frame.png"></img>
-			<div style="position:absolute;left:53%; color:white;font-size:2rem;top:50%;font-weight:900; z-index:5;"><span>PROPAGATING </span><span class="flashyCursor" id="flashy_cursor">_</span></div>
+			<div style="position:absolute;left:53%; color:white;font-size:2rem;top:50%;font-weight:900; z-index:5;"><span>Submitting Feedbacks to the NeuralNetwork </span><span class="flashyCursor" id="flashy_cursor">_</span></div>
 		</div>
 	</div>
 	
@@ -178,19 +178,15 @@
 					</div>
 					<div style="overflow:hidden;position:absolute;top:4vw;width:100%;height:15vw;color:white;" class="mapBrwsViewOff" id="mapBrwsView">
     						<div style="position:absolute;height:15vw;width:100%;">
-       						<img src="assets/minimapSample.png" style="left:2vw; position:absolute;height:12vw;width:12vw;">
+								<canvas style="height:1px;width:1px;"></canvas>
+								<div style="left:2vw; position:absolute;height:12vw;width:12vw;overflow:hidden;"><img id="minimapIMG" src="assets/minimapSample.png" style="position:absolute;height:100%;width:200%;"></div>
         						<p id='brwsName' class='brwsName' style="top:9vw; position:absolute;color:white;background:rgba(100,100,100,0.2);width:8vw;backdrop-filter: blur(6px);padding:0.4vw;">Comet Catcher Redux</p>
-                               			<p id='brwsRandInfo' class='brwsRandInfo' style="top:7.5vw;position:absolute;color:white;font-family:JuneBug2;">MAP_0xFFF</p>
+								<p id='brwsRandInfo' class='brwsRandInfo' style="top:7.5vw;position:absolute;color:white;font-family:JuneBug2;">MAP_0xFFF</p>
     						</div>
-    						<div class="mapPile" style="position:absolute;top:0vw;left:16vw;height:15vw;width:12vw;perspective:400px;">
-    <div class="minimap" style="width:2vw;height:2vw;background: red;transform: rotateY(45deg);"><img src="assets/minimapSample.png" style="position:absolute;width:100%;height:100%;"></div>
-    <div class="minimap" style="filter: grayscale(100%);opacity:80%;float:left;margin:0.2vw;width:2vw;height:2vw;background: red;transform: rotateY(45deg);"><img src="assets/minimapSample.png" style="position:absolute;width:100%;height:100%;"></div>	
-    <div class="minimap" style="filter: grayscale(100%);opacity:80%;float:left;margin:0.2vw;width:2vw;height:2vw;background: red;transform: rotateY(45deg);"><img src="assets/minimapSample.png" style="position:absolute;width:100%;height:100%;"></div>
-    <div class="minimap" style="filter: grayscale(100%);opacity:80%;float:left;margin:0.2vw;width:2vw;height:2vw;background: red;transform: rotateY(45deg);"><img src="assets/minimapSample.png" style="position:absolute;width:100%;height:100%;"></div>
-    <div class="minimap" style="filter: grayscale(100%);opacity:80%;float:left;margin:0.2vw;width:2vw;height:2vw;background: red;transform: rotateY(45deg);"><img src="assets/minimapSample.png" style="position:absolute;width:100%;height:100%;"></div>
-    <div class="minimap" style="filter: grayscale(100%);opacity:80%;float:left;margin:0.2vw;width:2vw;height:2vw;background: red;transform: rotateY(45deg);"><img src="assets/minimapSample.png" style="position:absolute;width:100%;height:100%;"></div>
-    <div class="minimap" style="filter: grayscale(100%);opacity:80%;float:left;margin:0.2vw;width:2vw;height:2vw;background: red;transform: rotateY(45deg);"><img src="assets/minimapSample.png" style="position:absolute;width:100%;height:100%;"></div>
-    <div class="minimap" style="filter: grayscale(100%);opacity:80%;float:left;margin:0.2vw;width:2vw;height:2vw;background: red;transform: rotateY(45deg);"><img src="assets/minimapSample.png" style="position:absolute;width:100%;height:100%;"></div>
+    						<div class="mapPile" id='mapPile' style="position:absolute;top:0vw;left:16vw;height:15vw;width:12vw;perspective:400px;">
+								
+								
+
 						</div>    
 					</div>
 				
@@ -282,7 +278,7 @@
 <script src="preload.js"></script>
 <script src="loading.js"></script>
 <script src="soundPlayer.js"></script>
-
+<script src="ipcclient.js"></script>
 <script src="lib/unitsync.js"></script>
 <script src="presence.js"></script>
 <script src="lib/bgNN.js"></script>

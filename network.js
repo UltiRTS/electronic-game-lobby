@@ -13,6 +13,7 @@ window.client.on("ACCEPTED", (username) => {
 	loading(false)
 	lobbyPresence()
 	window.zone="lobby"
+	loading(false)
 });
 
 window.client.on("AGREEMENT", (agreement) => {
@@ -223,6 +224,8 @@ window.client.on("UPDATEBATTLEINFO",(bID, spec, isLocked, hash, mapName) => {
 	if (bID==window.nowinBattle)
 	{
 		prebattleUpdateMap(mapName.substring(0,17).replace(/🦔/g, " "))
+		loading(true,false)
+		ipcGetMap(mapName)
 	}
 });
 

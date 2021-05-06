@@ -4,7 +4,7 @@ const net = require("net");
 const crypto = require("crypto");
 const EventEmitter = require("events");
 const regexPatterns = require("./regex-patterns");
-const SERVER_URL = "ultirts.net";
+const SERVER_URL = "ulti-wiki.eterea.uk";
 const SERVER_PORT = 8200;
 window.addEventListener('beforeunload', function(event) { 
 	window.client.logout()
@@ -129,7 +129,8 @@ class Client extends EventEmitter {
 	registerConfirm(){
 	const message =
 		"CONFIRMAGREEMENT ";
-		this.send(message);		
+		this.send(message);	
+		loading(true)
 
 	}
 	

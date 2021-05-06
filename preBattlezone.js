@@ -31,12 +31,6 @@ function preBtlStartGem(bID)
 
 function preBattleListMap(pool)
 {
-	
-	
-		
-			
-	
-		
 	if(document.getElementById('mapLabel1').innerHTML!=pool[0].replace(/🦔/g, " ")||document.getElementById('mapLabel2').innerHTML!=pool[1].replace(/🦔/g, " ")||document.getElementById('mapLabel3').innerHTML!=pool[2].replace(/🦔/g, " ")||document.getElementById('mapLabel4').innerHTML!=pool[3].replace(/🦔/g, " ")||document.getElementById('mapLabel5').innerHTML!=pool[4].replace(/🦔/g, " ")){
 		document.getElementById('mapLabel1').innerHTML=pool[0].replace(/🦔/g, " ")
 		document.getElementById('mapLabel2').innerHTML=pool[1].replace(/🦔/g, " ")
@@ -83,18 +77,38 @@ function preBtlToggMoreMap(){
 	document.getElementById('brwsName').className='brwsNameActive'
 	document.getElementById('brwsRandInfo').className='brwsRandInfoActive'
 	
-	document.getElementById('moreMap').className='moreMapActive'
-document.getElementById('mapList').className='mapList'
+	document.getElementById('moreMap').className='moreMapActive' //update toggle btn
+	document.getElementById('mapList').className='mapList' //update toggle btn
+	
+	//allMaps=listAllLocalMapNames().slice();
+	//console.log(allMaps)
+	mapPileContent=''
+	
+	for (maps in window.minimapCache) {
+    mapPileContent+=window.minimapCache[maps]
+	}
+	
+	
+	
+
+	document.getElementById('mapPile').innerHTML=mapPileContent
 }
 
 function preBtlToggListMap(){
-document.getElementById('brwsName').className=''
-document.getElementById('brwsRandInfo').className=''
-document.getElementById('mapBrwsView').className='mapBrwsViewOff'
-document.getElementById('mapListView').className='mapListViewOn'
-document.getElementById('moreMap').className='moreMap'
-document.getElementById('mapList').className='mapListActive'
+	document.getElementById('brwsName').className=''
+	document.getElementById('brwsRandInfo').className=''
+
+	document.getElementById('mapBrwsView').className='mapBrwsViewOff'
+	document.getElementById('mapListView').className='mapListViewOn'
+
+	document.getElementById('moreMap').className='moreMap'   //update toggle btn
+	document.getElementById('mapList').className='mapListActive' //update toggle btn
+	
+
+	
 }
+
+
 
 function _mapDonutPut(pool)
 {

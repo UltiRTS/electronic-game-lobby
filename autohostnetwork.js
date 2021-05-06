@@ -24,6 +24,17 @@ function autohostNetwork(msgSaid) {
 					console.log('the autohost does not contain a player response')
 				}
 				try{
+					cmdDict['available-maps'][0]=cmdDict['available-maps'][0].replace(/maps\//g, "")
+					cmdDict['available-maps'][1]=cmdDict['available-maps'][1].replace(/maps\//g, "")
+					cmdDict['available-maps'][2]=cmdDict['available-maps'][2].replace(/maps\//g, "")
+					cmdDict['available-maps'][3]=cmdDict['available-maps'][3].replace(/maps\//g, "")
+					cmdDict['available-maps'][4]=cmdDict['available-maps'][4].replace(/maps\//g, "")
+					
+					cmdDict['available-maps'][0]=cmdDict['available-maps'][0].replace(/.smf/g, "")
+					cmdDict['available-maps'][1]=cmdDict['available-maps'][1].replace(/.smf/g, "")
+					cmdDict['available-maps'][2]=cmdDict['available-maps'][2].replace(/.smf/g, "")
+					cmdDict['available-maps'][3]=cmdDict['available-maps'][3].replace(/.smf/g, "")
+					cmdDict['available-maps'][4]=cmdDict['available-maps'][4].replace(/.smf/g, "")
 					preBattleListMap(cmdDict['available-maps'])
 				}
 				catch(err)
