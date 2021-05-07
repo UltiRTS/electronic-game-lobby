@@ -561,7 +561,13 @@ position: relative; height: 17%; width: 23%;margin:0.1%;heght:20%;display: inlin
 	animation-delay:1s;
 }
 
+@keyframes spinningIconAni {
 
+	0%   {transform: rotate(0deg); }
+	85%   {transform: rotate(360deg); }
+
+	100%   {transform: rotate(360deg); }
+}
 
 
 
