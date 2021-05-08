@@ -16,7 +16,7 @@ function lobbyFlush(battleid, type, natType, founder, ip, port, maxPlayer, passw
 function preBtlExitGem(bID)
 {
     window.client.leaveBattle();  //inform lobby server
-	chatLeave(bID)  //inform lobby chat server
+	//chatLeave(bID)  //inform lobby chat server
 	chatLeaveBtl()  //inform autohost
 }
 

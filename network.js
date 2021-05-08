@@ -73,13 +73,18 @@ window.client.on("LEFT", (CHANAME,user) => {
 
 window.client.on("LEFTBATTLE", (bID,user) => {
 	console.log("received leaving battle"+user)
+	window.gameStatus[user]=false
 	if (user==window.username){
 		window.client.leaveChanel(bID);
 		window.ppl={}
 		window.isExited=true;
+		document.getElementById('gameProgress').style.visibility="hidden";
 		document.getElementById("lobbyContent").style.visibility="visible"
 		document.getElementById("prebattle").style.visibility="hidden"
 		removeAllChildNodes('pregameInfo')
+		
+		
+		
 	}
 	
 });
@@ -148,11 +153,8 @@ window.client.on("JOINBATTLE",(bID, hash) => {
 
 window.client.on("CLIENTBATTLESTATUS",(usr, status,teamColor) => {
 if (usr.startsWith('Autohost')){
-	window.nowHostedby=usr
-	if(window.gameStatus[window.nowHostedby]){
-		document.getElementById('gameProgress').style.visibility="visible";
-	}
-	else{document.getElementById('gameProgress').style.visibility="hidden";}
+	window.nowHostedby=usr   //this is spilled out first when users join a game. this could be used to tell lobby which autohost is hosting the game
+	
 	
 }
 });
@@ -181,7 +183,7 @@ window.client.on("CLIENTSTATUS", (user,status) => {
 		if (parseInt(status).toString(2).endsWith(1) &window.isExited==false&user==window.nowHostedby )
 		{
 			usyncWriteScript()
-			document.getElementById('gameProgress').style.visibility="visible";
+			document.getElementById('gameProgress').style.visibility="";
 		}
 		
 		if (parseInt(status).toString(2).endsWith(0) &window.isExited==false&user==window.nowHostedby )
@@ -220,12 +222,13 @@ window.client.on("BATTLEOPENED",(battleid, type, natType, founder, ip, port, max
 
 window.client.on("UPDATEBATTLEINFO",(bID, spec, isLocked, hash, mapName) => {
 	//console.log("BATTLE CLOSED!!!!!!!!!!!!!!")
+	
 	document.getElementById(bID+'Map').innerHTML=mapName.substring(0,17).replace(/🦔/g, " ");
 	if (bID==window.nowinBattle)
-	{
+	{	ipcGetMap(mapName)
 		prebattleUpdateMap(mapName.substring(0,17).replace(/🦔/g, " "))
 		loading(true,false)
-		ipcGetMap(mapName)
+		
 	}
 });
 
@@ -237,6 +240,7 @@ window.client.on("BATTLECLOSED",(bID) => {
 		window.ppl={}
 		removeAllChildNodes('pregameInfo')
 		window.isExited=true;
+		document.getElementById('gameProgress').style.visibility="hidden";
 		document.getElementById("lobbyContent").style.visibility="visible"
 		document.getElementById("prebattle").style.visibility="hidden"
 		window.client.leaveChanel(bID);

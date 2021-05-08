@@ -1,7 +1,7 @@
 // window.client (obj)
 // window.ppl[usr]   returns teams 
 // window.isExited  (bool, if is in prebattlezone)
-// window.gameStatus  (bool, true means the game is in progress if the game is in progress)
+// window.gameStatus[user]  (bool, true means the game is in progress if the game is in progress)
 //  window.runningEngineCount (how many engines currently running)
 // window.username (string, user using the lobby)
 //inputGrabber(heading="unifiedInputField",subHeading="Things typed will be retrieved by the caller",exampleInput="main",callback)
