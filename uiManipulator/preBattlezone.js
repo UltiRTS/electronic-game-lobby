@@ -99,7 +99,7 @@ function preBtlToggMoreMap(){
 	document.getElementById('mapPile').innerHTML=mapPileContent
 }
 
-function preBtlMoreMapBlowUp(map=document.getElementById('pregameMap').innerHTML.replace(/ /g, "🦔")){
+function preBtlMoreMapBlowUp(map=document.getElementById('pregameMap').innerHTML){
 	try{
 	_img=getMinimapfromMapName(map)}
 	catch{
