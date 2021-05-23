@@ -299,7 +299,7 @@ animation-fill-mode: forwards;
 .moreMap{
 	border-left: 2vw solid transparent;
 	border-top: 3vw solid rgba(200,200,200,0.6);
-	width:14vw;filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6));
+	width:16vw;filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6));
 	mix-blend-mode: screen;
 	height:0vw;
 	color:white;
@@ -309,7 +309,7 @@ animation-fill-mode: forwards;
 .moreMap:hover{
 border-left: 2vw solid transparent;
 	border-top: 3vw solid rgba(200,200,200,1);
-	width:14vw;filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.7));
+	width:16vw;filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.7));
 	mix-blend-mode: screen;
 	height:0vw;
 	color:white;
@@ -320,7 +320,7 @@ border-left: 2vw solid transparent;
 }
 .moreMapActive{border-left: 2vw solid transparent;
 	border-top: 3vw solid rgba(200,200,200,1);
-	width:14vw;filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.7));
+	width:16vw;filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.7));
 	mix-blend-mode: screen;
 	height:0vw;
 	color:white;
@@ -357,7 +357,7 @@ border-left: 0vw solid transparent;
 .mapList{
 	border-right: 2vw solid transparent;
 	 border-bottom: 3vw solid rgba(200,200,200,0.6);
-	 width:10vw;
+	 width:12vw;
 	 filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6)); 
 	 mix-blend-mode: screen;
 	 height:0vw;
@@ -367,7 +367,7 @@ z-index:6;
 .mapList:hover{
 border-right: 2vw solid transparent;
 	 border-bottom: 3vw solid rgba(200,200,200,1);
-	 width:10vw;
+	 width:12vw;
 	 filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.7)); 
 	 mix-blend-mode: screen;
 	 height:0vw;
@@ -377,7 +377,7 @@ z-index:6;
 }
 .mapListActive{border-right: 2vw solid transparent;
 	 border-bottom: 3vw solid rgba(200,200,200,1);
-	 width:10vw;
+	 width:12vw;
 	 filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.7)); 
 	 mix-blend-mode: screen;
 	 height:0vw;

@@ -2,21 +2,30 @@ var displayedChat="main";
 
 
 function msgPut(Q){
-	 //if(username == Q[0]) {  } 
-	if (Q[2]=="bus")
-	{
-		if(Q[0].startsWith("Autohost")){
-		document.getElementById("chatUserContent"+Q[2]).innerHTML +="<p style=\"display:inline-block; color: red; font-family: JuneBug2; background-color: rgba(100, 100, 100, 0.5);\">"+Q[0]+">>></p> <p style=\"display:inline-block; color: white; font-family: JuneBug; \">"+ Q[1]+"</p></br>";}
-		else{document.getElementById("chatUserContent"+Q[2]).innerHTML +="<p style=\"display:inline-block; color: green; font-family: JuneBug2; background-color: rgba(100, 100, 100, 0.5);\">"+Q[0]+">>></p> <p style=\"display:inline-block; color: white; font-family: JuneBug; \">"+ Q[1]+"</p></br>";}
+	 //Q[0]=user;1=msg;2=channel
+	if (!document.getElementById("chatUserContent"+Q[2]).offsetParent === null){
+		chatWindow = document.getElementById("chatUserContent"+Q[2]); 
+	var xH = chatWindow.scrollHeight; 
+	chatWindow.scrollTo(0, xH);
+		
+	}
+	
+	
+	if(Q[2]=='bus'){
+		if (Q[0].startsWith("Autohost"))
+		{document.getElementById("chatUserContent"+Q[2]).innerHTML +='<div class="singleUserMsg" style="position:relative;width:100%;left:0%;"><p style="mix-blend-mode:screen;z-index:1; left:8px; padding:2px;font-size:15px;height:15px;position:relative;top:0px;display:inline-block; color: black;background-color:rgba(33,150,243,1);">THEA</p><div style="left:8px;position:relative;top:3px;height:0;display:inline-block;border-top: 9.5px solid transparent;border-bottom: 9.5px solid transparent;border-left: 10px solid rgba(33,150,243,0.9);filter: drop-shadow(0.5px 3px 1px rgba(0,0,0,0.5));"></div><p style="mix-blend-mode:screen;padding:2px;padding-left:19px;font-size:15px;height:15px;left:-2px;position:relative;top:0px;display:inline-block; color: black;background-color:rgba(255,150,33,1);z-index:-1;">SYS</p><div style="left:-2px;position:relative;top:3px;height:0;display:inline-block;border-top: 9.5px solid transparent;border-bottom: 9.5px solid transparent;border-left: 10px solid rgba(255,150,33,1);"></div><p style="position:relative;left:8px;color: white;margin:0px;width:90%;word-wrap: break-word;">'+Q[1]+'</p><br><div style="position:absolute;left:-2px;height:100%;width:5px;background:rgba(255,255,255,0.5);top:0;"></div></div>';}
+		else{document.getElementById("chatUserContent"+Q[2]).innerHTML +='<div class="singleUserMsg" style="position:relative;width:100%;left:0%;"><p style="z-index:1;left:8px;padding:2px;font-size:15px;height:15px;position:relative;top:0px;display:inline-block;color: black;mix-blend-mode:screen;background-color:rgba(33,150,243,1);">'+Q[0]+'</p><div style="left:8px;position:relative;top:3px;height:0;display:inline-block;border-top: 9.5px solid transparent;border-bottom: 9.5px solid transparent;border-left: 10px solid rgba(33,150,243,0.9);filter: drop-shadow(0.5px 3px 1px rgba(0,0,0,0.5));"></div><p style="mix-blend-mode:screen;padding:2px;padding-left:19px;font-size:15px;height:15px;left:-2px;position:relative;top:0px;display:inline-block; color: black;background-color:rgba(200,200,200,1);z-index:-1;">THEA_EXEC()</p><div style="left:-2px;position:relative;top:3px;height:0;display:inline-block;border-top: 9.5px solid transparent;border-bottom: 9.5px solid transparent;border-left: 10px solid rgba(200,200,200,1);"></div><p style="position:relative;left:8px;color: white;margin:0px;width:90%;word-wrap: break-word;">'+Q[1]+'</p><br><div style="position:absolute;left:-2px;height:100%;width:5px;background:rgba(255,150,33,1);top:0;"></div></div>';}
 		
 	}
 	else{
-	document.getElementById("chatUserContent"+Q[2]).innerHTML +="<p style=\"display:inline-block; color: white; font-family: JuneBug2; background-color: rgba(100, 100, 100, 0.5);\">"+Q[0]+">>></p> <p style=\"display:inline-block; color: white; font-family: JuneBug; \">"+ Q[1]+"</p></br>";}
-	if (Q[2]!=displayedChat||document.hidden)
+	document.getElementById("chatUserContent"+Q[2]).innerHTML +='<div class="singleUserMsg" style="position:relative;width:100%;left:0%;"><p style="z-index:1;left:8px;padding:2px;font-size:15px;height:15px;position:relative;top:0px;display:inline-block;color: black;mix-blend-mode:screen;background-color:rgba(33,150,243,1);">'+Q[0]+'</p><div style="left:8px;position:relative;top:3px;height:0;display:inline-block;border-top: 9.5px solid transparent;border-bottom: 9.5px solid transparent;border-left: 10px solid rgba(33,150,243,0.9);filter: drop-shadow(0.5px 3px 1px rgba(0,0,0,0.5));"></div><p style="mix-blend-mode:screen;padding:2px;padding-left:19px;font-size:15px;height:15px;left:-2px;position:relative;top:0px;display:inline-block; color: black;background-color:rgba(200,200,200,1);z-index:-1;">EMPLOYEE</p><div style="left:-2px;position:relative;top:3px;height:0;display:inline-block;border-top: 9.5px solid transparent;border-bottom: 9.5px solid transparent;border-left: 10px solid rgba(200,200,200,1);"></div><p style="position:relative;left:8px;color: white;margin:0px;width:90%;word-wrap: break-word;">'+Q[1]+'</p><br><div style="position:absolute;left:-2px;height:100%;width:5px;background:rgba(255,150,33,1);top:0;"></div></div>';}
+	if ((Q[2]!=displayedChat||document.hidden)&&Q[2]!='bus')
 	{
 		playFX('notif.ogg',true)
 	}
 }
+
+
 
 function chatStartBtl(){
 	window.client.say('bus',"sysctl --start --bid "+window.nowinBattle)

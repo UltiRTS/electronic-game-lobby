@@ -40,3 +40,4 @@
 //window.totalPpl   total number of ppl in game
 //window.minimapCache={}
 //notice(true,'ACCESS DENIED ',reason)
+//window.currentMap=mapName

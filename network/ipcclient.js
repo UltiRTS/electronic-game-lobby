@@ -9,7 +9,7 @@ var ipcclient = messenger.createSpeaker(3141);
 function ipcGetMap(mapInternalName){
 	//console.log('IPC CALLED ONCE!!!!!!!!!')
 	//window.requestedminimapname=mapInternalName
-	loading(true,false)
+	loading(true)
 	console.log('initial dowloading map'+String(window.minimapCache[mapInternalName]))
 	//window.minimapCache=storage.get('mapCache')
 	preBtlUpdateSelfStats(false)
@@ -25,12 +25,11 @@ function ipcGetMap(mapInternalName){
 				
 						window.minimapCache[mapInternalName]=data
 						storage.set('mapCache',window.minimapCache)
-					//console.log('data from ipc:'+ String(data))
-					preBtlUpdateSelfStats(true)
-					console.log('ipc response'+String(data)+String(mapInternalName))
+					if (mapInternalName==window.currentMap){preBtlUpdateSelfStats(true)
+					preBtlMoreMapBlowUp()
+					//console.log('ipc response'+String(data)+String(mapInternalName))
 					loading(false)
-					notice(true,'New Map Loaded ',mapInternalName)
-					console.log('fucker 2 canceling loading')
+					notice(true,'New Map Loaded ',mapInternalName)}
 				}
 				
 				else if (String(data).startsWith('error|'+mapInternalName)){
@@ -52,11 +51,12 @@ function ipcGetMap(mapInternalName){
 					window.minimapCache[mapInternalName]=data
 					storage.set('mapCache',window.minimapCache)
 					//console.log('data from ipc:'+ String(data))
-					preBtlUpdateSelfStats(true)
-					console.log('ipc response'+String(data)+String(mapInternalName))
+					if (mapInternalName==window.currentMap){preBtlUpdateSelfStats(true)
+					preBtlMoreMapBlowUp()
+					//console.log('ipc response'+String(data)+String(mapInternalName))
 					loading(false)
-					notice(true,'New Map Loaded ',mapInternalName)
-					console.log('fucker 3 canceling loading')
+					notice(true,'New Map Loaded ',mapInternalName)}
+					//console.log('fucker 3 canceling loading')
 				}
 				
 				else if (String(data).startsWith('error|'+mapInternalName)){

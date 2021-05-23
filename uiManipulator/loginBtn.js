@@ -1,12 +1,13 @@
+/*
 
-
-window.isLoggingin=false;
+window.isLoggingin=false;*/
 window.loadingCallback=function (){
 	return
 }
-document.getElementById("postLogin").style.visibility = "hidden";
-document.getElementById("loginbox").style.visibility = "hidden";
+//document.getElementById("postLogin").style.visibility = "hidden";
+//document.getElementById("loginbox").style.visibility = "hidden";
 //document.getElementById("loginTerminal").style.visibility = "hidden";
+/*
 var loginBtn = document.getElementById("loginbtn");
 var passwordForm = document.getElementById("passwd");
 
@@ -20,9 +21,13 @@ loginBtn.addEventListener("mousedown", () => {
 loginBtn.addEventListener("mouseup", () => {
 	loginBtn.style.background = "white";
 	window.timer = setInterval(fadeLeave, 10);
-});
+});*/
 
-
+function loginConnect(){
+	playFX('zoomin.wav')
+	window.timer = setInterval(fadeLeave, 10);
+	
+}
 
 if (storage.get('isRemembered')=='true')
 	{
@@ -54,7 +59,7 @@ function registerMe(){
 
 function logMeIn(reuseConnection=false){
 	playFX('zoomin.wav')
-	if (window.isLoggedin){return}
+	loading(true)
 	var username = document.getElementById("usr").value;
 	var password = document.getElementById("passwd").value;
 	if (!reuseConnection)
@@ -65,14 +70,15 @@ function logMeIn(reuseConnection=false){
 		{
 		window.client.register(username, password);
 		document.getElementById("register").checked = false
+		loading(true)
 		logMeIn(true)
-		loading()
+		
 		}
 	else if(!window.isLoggingin){
-		window.isLoggingin=true
+		
 		window.client.login(username, password);
 		window.loadingCallback=function (){window.isLoggingin=false;}
-		loading()
+		loading(true)
 		if (document.getElementById("rememberName").checked == true){
 			storage.set('isRemembered', 'true');
 			storage.set('username', username);
@@ -93,6 +99,7 @@ var j = 0;
 var k = 0;
 
 function fadeLeave() {
+	loginBtn=document.getElementById('loginbtn')
 	loginBtn.style.opacity = 1 - i * 0.04;
 	loginBtn.style.left = 50 - 2 * i + "%";
 	i = i + 1;

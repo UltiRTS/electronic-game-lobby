@@ -32,7 +32,8 @@ function settings(){
 
 	if (window.zone!="settings"){
 		clearScreen(document.getElementById("lobbyContainer"))
-		document.getElementById("settings").style.visibility="visible"
+		
+		document.getElementById("settings").style.visibility=""
 		document.getElementById("lobbyContainer").style.visibility="hidden"
 
 		window.zone="settings"

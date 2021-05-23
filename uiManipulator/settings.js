@@ -3,14 +3,14 @@ window.dbug=false;
 function volumeEntry(){
 	_entryHighlight('volMenuEntry')
 	if (document.getElementById("Volpanel").style.visibility=="hidden"){
-		document.getElementById("Volpanel").style.visibility="visible"
+		document.getElementById("Volpanel").style.visibility=""
 		document.getElementById("FIpanel").style.visibility="hidden"
 		document.getElementById("Volpanel").innerHTML+="<!--rerun-->"
 		document.getElementById("volAmbSlider").value=window.userVolume
-		console.log("bar val"+document.getElementById("volAmbSlider").value)
+		//console.log("bar val"+document.getElementById("volAmbSlider").value)
 		document.getElementById("volFXSlider").value=window.userFXVolume
 		document.getElementById("volNotifSlider").value=window.userNotifVolume
-		
+		document.getElementById("MapPanel").style.visibility="hidden"
 	}
 	else{
 		document.getElementById("Volpanel").style.visibility="hidden"
@@ -20,11 +20,26 @@ function volumeEntry(){
 function FIEntry(){
 	_entryHighlight('volFIEntry')
 	if (document.getElementById("FIpanel").style.visibility=="hidden"){
-		document.getElementById("FIpanel").style.visibility="visible"
+		document.getElementById("FIpanel").style.visibility=""
 		document.getElementById("Volpanel").style.visibility="hidden"
+		document.getElementById("FIpanel").innerHTML+="<!--rerun-->"
+		document.getElementById("MapPanel").style.visibility="hidden"
 	}
 	else{
 		document.getElementById("FIpanel").style.visibility="hidden"
+	}
+}
+
+function settingsMapEntry(){
+	_entryHighlight('mapEntry')
+	if (document.getElementById("MapPanel").style.visibility=="hidden"){
+		document.getElementById("MapPanel").style.visibility=""
+		document.getElementById("Volpanel").style.visibility="hidden"
+		document.getElementById("MapPanel").innerHTML+="<!--rerun-->"
+		document.getElementById("FIpanel").style.visibility="hidden"
+	}
+	else{
+		document.getElementById("MapPanel").style.visibility="hidden"
 	}
 }
 
@@ -33,6 +48,12 @@ function setVolume(vol){
 	window.userVolume=vol
 	window.audio.volume=vol/100
 	document.getElementById("volSettingDigit").innerHTML=vol+"%"
+}
+
+function settingRMMapDict(){
+	storage.set('mapCache',{'1':'2'})
+	window.minimapCache=storage.get('mapCache')
+	notice(runNotice=true,'Cache Deleted','Altered maps will be treated as missing! ')
 }
 
 function setFXVolume(vol){
@@ -58,6 +79,12 @@ function fiDone(){
 	//storage.set('userVolume', window.userVolume)
 	document.getElementById("FIpanel").style.visibility="hidden"
 }
+
+function mapDone(){
+	//storage.set('userVolume', window.userVolume)
+	document.getElementById("MapPanel").style.visibility="hidden"
+}
+
 
 function fiCheckStart(){
 	_fiDonut()

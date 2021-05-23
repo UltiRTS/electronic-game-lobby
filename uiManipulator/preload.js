@@ -28,4 +28,12 @@ else{
 		
 		
 	}
+	
+	if (typeof(process.env.WDIR)=='undefined'){
+		process.env.WDIR=storage.get('wDIR')
+	}
+	else{
+		
+		storage.set('wDIR',process.env.WDIR)
+	}
 window.minimapCache=storage.get('mapCache')

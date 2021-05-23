@@ -84,15 +84,32 @@ function preBtlToggMoreMap(){
 	//console.log(allMaps)
 	mapPileContent=''
 	
-	for (maps in window.minimapCache) {
-    mapPileContent+=window.minimapCache[maps]
+	for (map in window.minimapCache) {
+		try{
+		_img=getMinimapfromMapName(map)
+			mapPileContent+='<div class="tooltip" onclick="chatVoteMap(\''+map+'\')" onmouseover="preBtlMoreMapBlowUp(\''+map+'\')" onmouseleave="preBtlMoreMapBlowUp()" style="display:inline-block; position:relative;width:2vw;height:2vw;margin:0.2vw;"><img style="position:absolute;width:100%;height:100%;" src="data:image/png;base64,' + _img + '" /><span class="tooltiptext">'+map.replace(/🦔/g, " ")+'</span></div>';
+			
+		}
+		catch{
+			
+		}
+		
 	}
 	
-	
-	
-
 	document.getElementById('mapPile').innerHTML=mapPileContent
 }
+
+function preBtlMoreMapBlowUp(map=document.getElementById('pregameMap').innerHTML.replace(/ /g, "🦔")){
+	try{
+	_img=getMinimapfromMapName(map)}
+	catch{
+		//
+	}
+	document.getElementById('minimapIMG').innerHTML='<img style="position:absolute;width:100%;height:100%;" src="data:image/png;base64,' + _img + '" />'
+	document.getElementById('brwsName').innerHTML=map.replace(/🦔/g, " ")
+	
+}
+
 
 function preBtlToggListMap(){
 	document.getElementById('brwsName').className=''
