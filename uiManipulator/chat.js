@@ -1,5 +1,5 @@
 var displayedChat="main";
-
+window.channelLastAuthor={}
 
 function msgPut(Q){
 	 //Q[0]=user;1=msg;2=channel
@@ -12,34 +12,73 @@ function msgPut(Q){
 	
 	timeLocal=''
 	
-	if (document.getElementById("chatUserContent"+Q[2]).needTimeStamp){
+	
+	if (window.chatUpdate["chatUserContent"+Q[2]]){
 		var d = new Date(); // for now
 		d.getHours(); // => 9
 		d.getMinutes(); // =>  30
 		d.getSeconds();
 		timeLocal=String(d.getHours())+':'+String(d.getMinutes())
-		document.getElementById("chatUserContent"+Q[2]).needTimeStamp=false
-		setTimeout(()=>{document.getElementById("chatUserContent"+Q[2]).needTimeStamp=true}, 30000)
-		console.log('logging time for '+"chatUserContent"+Q[2])
+		window.chatUpdate["chatUserContent"+Q[2]]=false
+		setTimeout(()=>{window.chatUpdate["chatUserContent"+Q[2]]=true}, 30000)
+		//console.log('logging time for '+"chatUserContent"+Q[2])
 	}
 	
 	if(Q[2]=='bus'){
-		if (Q[0].startsWith("Autohost"))
-		{document.getElementById("chatUserContent"+Q[2]).innerHTML +='<div class="singleUserMsg" style="position:relative;width:100%;left:0%;"><p style="mix-blend-mode:screen;z-index:1; left:8px; padding:2px;font-size:15px;height:15px;position:relative;top:0px;display:inline-block; color: black;background-color:rgba(33,150,243,1);">THEA</p><div style="left:8px;position:relative;top:3px;height:0;display:inline-block;border-top: 9.5px solid transparent;border-bottom: 9.5px solid transparent;border-left: 10px solid rgba(33,150,243,0.9);filter: drop-shadow(0.5px 3px 1px rgba(0,0,0,0.5));"></div><p style="mix-blend-mode:screen;padding:2px;padding-left:19px;font-size:15px;height:15px;left:-2px;position:relative;top:0px;display:inline-block; color: black;background-color:rgba(255,150,33,1);z-index:-1;">SYS</p><div style="left:-2px;position:relative;top:3px;height:0;display:inline-block;border-top: 9.5px solid transparent;border-bottom: 9.5px solid transparent;border-left: 10px solid rgba(255,150,33,1);"></div><p style="position:relative;left:8px;color: white;margin:0px;width:90%;word-wrap: break-word;">'+Q[1]+'</p><br><div style="position:absolute;left:-2px;height:100%;width:5px;background:rgba(255,255,255,0.5);top:0;"></div><div style="top:0;right:0;position:absolute;color:white;opacity:0.1;font-size:99px;z-index:-1;font-weight:900;">'+timeLocal+'</div></div>';}
-		else{document.getElementById("chatUserContent"+Q[2]).innerHTML +='<div class="singleUserMsg" style="position:relative;width:100%;left:0%;"><p style="z-index:1;left:8px;padding:2px;font-size:15px;height:15px;position:relative;top:0px;display:inline-block;color: black;mix-blend-mode:screen;background-color:rgba(33,150,243,1);">'+Q[0]+'</p><div style="left:8px;position:relative;top:3px;height:0;display:inline-block;border-top: 9.5px solid transparent;border-bottom: 9.5px solid transparent;border-left: 10px solid rgba(33,150,243,0.9);filter: drop-shadow(0.5px 3px 1px rgba(0,0,0,0.5));"></div><p style="mix-blend-mode:screen;padding:2px;padding-left:19px;font-size:15px;height:15px;left:-2px;position:relative;top:0px;display:inline-block; color: black;background-color:rgba(200,200,200,1);z-index:-1;">THEA_EXEC()</p><div style="left:-2px;position:relative;top:3px;height:0;display:inline-block;border-top: 9.5px solid transparent;border-bottom: 9.5px solid transparent;border-left: 10px solid rgba(200,200,200,1);"></div><p style="position:relative;left:8px;color: white;margin:0px;width:90%;word-wrap: break-word;">'+Q[1]+'</p><br><div style="position:absolute;left:-2px;height:100%;width:5px;background:rgba(255,150,33,1);top:0;"></div><div style="top:0;right:0;position:absolute;color:white;opacity:0.1;font-size:99px;z-index:-1;font-weight:900;">'+timeLocal+'</div></div>';}
 		
+		if(window.channelLastAuthor[Q[2]]==Q[0]){_msgWrite(Q[2],Q[0],'THEA_EXEC()',Q[1],timeLocal,false)}
+		else{_msgWrite(Q[2],Q[0],'THEA_EXEC()',Q[1],timeLocal,true)}
 	}
 	else{
-	document.getElementById("chatUserContent"+Q[2]).innerHTML +='<div class="singleUserMsg" style="position:relative;width:100%;left:0%;"><p style="z-index:1;left:8px;padding:2px;font-size:15px;height:15px;position:relative;top:0px;display:inline-block;color: black;mix-blend-mode:screen;background-color:rgba(33,150,243,1);">'+Q[0]+'</p><div style="left:8px;position:relative;top:3px;height:0;display:inline-block;border-top: 9.5px solid transparent;border-bottom: 9.5px solid transparent;border-left: 10px solid rgba(33,150,243,0.9);filter: drop-shadow(0.5px 3px 1px rgba(0,0,0,0.5));"></div><p style="mix-blend-mode:screen;padding:2px;padding-left:19px;font-size:15px;height:15px;left:-2px;position:relative;top:0px;display:inline-block; color: black;background-color:rgba(200,200,200,1);z-index:-1;">EMPLOYEE</p><div style="left:-2px;position:relative;top:3px;height:0;display:inline-block;border-top: 9.5px solid transparent;border-bottom: 9.5px solid transparent;border-left: 10px solid rgba(200,200,200,1);"></div><p style="position:relative;left:8px;color: white;margin:0px;width:90%;word-wrap: break-word;">'+Q[1]+'</p><br><div style="position:absolute;left:-2px;height:100%;width:5px;background:rgba(255,150,33,1);top:0;"></div><div style="right:0;position:absolute;color:white;opacity:0.1;font-size:99px;z-index:-1;font-weight:900;top:0;">'+timeLocal+'</div></div>';}
+		if(window.channelLastAuthor[Q[2]]==Q[0]){_msgWrite(Q[2],Q[0],'Thea Pharmaeuticals Inc.',Q[1],timeLocal,false)}
+		else{_msgWrite(Q[2],Q[0],'Thea Pharmaeuticals Inc.',Q[1],timeLocal,true)}
+	}
+	
 	if ((Q[2]!=displayedChat||document.hidden)&&Q[2]!='bus')
 	{
 		playFX('notif.ogg',true)
 	}
 	
-	
+	window.channelLastAuthor[Q[2]]=Q[0]
 }
 
-
+function _msgWrite(channel,author,label,msg,timeLocal,isNewAuthor=true){
+	if (isNewAuthor){
+		if (author.startsWith("Autohost")){
+			
+		
+			newLiner=document.createElement("div"); 
+			newLiner.innerHTML='<p style="mix-blend-mode:screen;z-index:1; left:8px; padding:2px;font-size:15px;height:15px;position:relative;top:0px;display:inline-block; color: black;background-color:rgba(33,150,243,1);">'+'THEA'+'</p><div style="left:8px;position:relative;top:3px;height:0;display:inline-block;border-top: 9.5px solid transparent;border-bottom: 9.5px solid transparent;border-left: 10px solid rgba(33,150,243,0.9);filter: drop-shadow(0.5px 3px 1px rgba(0,0,0,0.5));"></div><p style="mix-blend-mode:screen;padding:2px;padding-left:19px;font-size:15px;height:15px;left:-2px;position:relative;top:0px;display:inline-block; color: black;background-color:rgba(255,150,33,1);z-index:-1;">'+'SYSTEM'+'</p><div style="left:-2px;position:relative;top:3px;height:0;display:inline-block;border-top: 9.5px solid transparent;border-bottom: 9.5px solid transparent;border-left: 10px solid rgba(255,150,33,1);"></div><p class="actualMsg" style="position:relative;color: white;margin:0px;width:90%;word-wrap: break-word;">'+msg+'</p><div class="ordinaryMsg" style="position:absolute;left:-2px;height:100%;width:5px;top:4%;"></div><div style="right:2.5vw;position:absolute;color:white;opacity:0.1;font-size:5vw;z-index:-1;font-weight:900;bottom:-1.5vw;;">'+timeLocal+'</div>'
+			newLiner.className='singleUserMsg'
+			newLiner.style.cssText='position:relative;width:100%;left:0%;'
+			document.getElementById("chatUserContent"+channel).appendChild(newLiner)
+			newLiner=document.createElement("br"); 
+			document.getElementById("chatUserContent"+channel).appendChild(newLiner)}
+		
+		
+		
+		else{
+			
+		
+			newLiner=document.createElement("div"); 
+			newLiner.innerHTML='<p style="mix-blend-mode:screen;z-index:1; left:8px; padding:2px;font-size:15px;height:15px;position:relative;top:0px;display:inline-block; color: black;background-color:rgba(33,150,243,1);">'+author+'</p><div style="left:8px;position:relative;top:3px;height:0;display:inline-block;border-top: 9.5px solid transparent;border-bottom: 9.5px solid transparent;border-left: 10px solid rgba(33,150,243,0.9);filter: drop-shadow(0.5px 3px 1px rgba(0,0,0,0.5));"></div><p style="mix-blend-mode:screen;padding:2px;padding-left:19px;font-size:15px;height:15px;left:-2px;position:relative;top:0px;display:inline-block; color: black;background-color:rgba(200,200,200,1);z-index:-1;">'+label+'</p><div style="left:-2px;position:relative;top:3px;height:0;display:inline-block;border-top: 9.5px solid transparent;border-bottom: 9.5px solid transparent;border-left: 10px solid rgba(200,200,200,1);"></div><p class="actualMsg" style="position:relative;color: white;margin:0px;width:90%;word-wrap: break-word;">'+msg+'</p><div class="ordinaryMsg" style="position:absolute;left:-2px;height:100%;width:5px;top:4%;"></div><div style="right:2.5vw;position:absolute;color:white;opacity:0.1;font-size:5vw;z-index:-1;font-weight:900;bottom:-1.5vw;">'+timeLocal+'</div>'
+			
+			newLiner.style.cssText='position:relative;width:100%;left:0%;'
+			newLiner.className='singleUserMsg'
+			document.getElementById("chatUserContent"+channel).appendChild(newLiner)
+			newLiner=document.createElement("br"); 
+			document.getElementById("chatUserContent"+channel).appendChild(newLiner)
+			
+		}
+	}
+	
+	else{ // insert the thing into the last singleuser msg
+		newLiner=document.createElement("p"); 
+		newLiner.innerHTML=msg
+		newLiner.style.cssText='position:relative;left:8px;color: white;margin:0px;width:90%;word-wrap: break-word;'
+		document.getElementById("chatUserContent"+channel).childNodes[document.getElementById("chatUserContent"+channel).childNodes.length-2].appendChild(newLiner)
+	}
+}
 
 function chatStartBtl(){
 	window.client.say('bus',"sysctl --start --bid "+window.nowinBattle)
@@ -70,22 +109,35 @@ window.AICounter=0
 function chatAddAI(name) {
 	window.AICounter+=1
 	name=name+window.AICounter
-	window.ppl[name]='a'
-	chatAssignTeam()
-	
+	cmd=''
+	//window.ppl[name]='a'
+	//chatAssignTeam()
+	for (key in window.ppl){cmd+=key+' '+window.ppl[key]+' '}
+	chatAssignTeam(cmd+name+' a')
 }
 
 function chatAddChicken(name) {
 	window.AICounter+=1
 	name=name+window.AICounter
-	window.ppl[name]='a'
-	chatAssignTeam()
+	cmd=''
+	//window.ppl[name]='a'
+	for (key in window.ppl){cmd+=key+' '+window.ppl[key]+' '}
+	chatAssignTeam(cmd+name+' a')
 	
 }
 
 function chatAIKill(AI) {
-	delete window.ppl[AI]
-	chatAssignTeam()
+	//delete window.ppl[AI]
+	
+	for (key in window.ppl){if(key!=AI){cmd+=key+' '+window.ppl[key]}}
+	chatAssignTeam(cmd)
+}
+
+function chatDismiss(name) {
+	//delete window.ppl[AI]
+	if (window.specppl.includes(name)){
+	window.client.say('bus',"sysctl --despec --bid "+window.nowinBattle)}
+	else{window.client.say('bus',"sysctl --spec --bid "+window.nowinBattle)}
 }
 
 function chatProposeBtl(isBattleChat=false) {
@@ -93,7 +145,7 @@ function chatProposeBtl(isBattleChat=false) {
 	//console.log("battle chat fired! Submitting cmd ");
 	if(gemTitle.length > 10) gemTitle = gemTitle.substring(0,15);
 	window.client.say('bus',"sysctl --host --title "+gemTitle+" --user "+window.username)
-	loading()
+	loading(true)
 	}
 	
 function chatExitGem() {
@@ -101,15 +153,10 @@ function chatExitGem() {
 	loading(true)
 }
 	
-function chatAssignTeam(){
-	var playerCMD=''
+function chatAssignTeam(playerCMD){
+	
 
-	for (var key in window.ppl) {
-		// check if the property/key is defined in the object itself, not in parent
-		if (window.ppl.hasOwnProperty(key)) {           
-			playerCMD+=key+' '+window.ppl[key]+' '
-		}
-	}
+	
 
 	window.client.say('bus',"sysctl --bid "+window.nowinBattle +" --player "+playerCMD)
 
@@ -118,7 +165,7 @@ function chatAssignTeam(){
 
 function chatAssignLeader(teamLeader){
 	window.client.say('bus',"sysctl --bid "+window.nowinBattle +" --leader "+teamLeader)
-	chatAssignTeam()
+	//chatAssignTeam()
 }
 
 function chatRejoin(bID){
@@ -183,7 +230,8 @@ function chatPut(Name, Desc="Intergalactic Quantum Com", isBattleChat=false) {  
 		else{chatSwt(Name,displayedChat)}
 		displayedChat=Name;
 		//document.getElementById("chatUserContent"+Name).needTimeStamp=true
-	setTimeout(()=>{document.getElementById("chatUserContent"+Name).needTimeStamp=true}, 30000)
+	//setTimeout(()=>{window.chatUpdate["chatUserContent"+Name]=true}, 30000)
+		window.chatUpdate["chatUserContent"+Name]=true
 }
 
 
@@ -207,12 +255,15 @@ function chatSwt(toChat,fromChat){
 		document.getElementById("chatTxt"+fromChat).classList.add("chatTagBody");
 		document.getElementById("chatTxt"+fromChat).classList.remove("chatTagBodyDisplayed");
 	}
-	document.getElementById("chat"+toChat).style.visibility = "visible";
+	document.getElementById("chat"+toChat).style.visibility = "";
 	document.getElementById("chatTxt"+toChat).classList.remove("chatTagBody");
 	document.getElementById("chatTxt"+toChat).classList.add("chatTagBodyDisplayed");
-	document.getElementById("friendFrame"+toChat).style.visibility = "visible";
+	document.getElementById("friendFrame"+toChat).style.visibility = "";
 	//console.log("setting "+"friendFrame"+fromChat+"hidden and "+"friendFrame"+toChat+"visible")
 	displayedChat=toChat;
+	
+
+	
 	
 }
 

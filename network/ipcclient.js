@@ -16,8 +16,8 @@ function ipcGetMap(mapInternalName){
 	console.log('initial dowloading map'+String(window.minimapCache[mapInternalName]))
 	console.log('initial dowloading map stor'+String(storage.get('mapCache')[mapInternalName]))
 	try{
-		if (!window.minimapCache[mapInternalName].startsWith('retrieved') && !window.minimapCache[mapInternalName]=='beingRetrieved'){
-			
+		//if (!window.minimapCache[mapInternalName].startsWith('retrieved') && !window.minimapCache[mapInternalName]=='beingRetrieved'){
+		if (!window.minimapCache[mapInternalName].startsWith('retrieved') ){
 			window.minimapCache[mapInternalName]='beingRetrieved'
 			ipcclient.request('dMap', mapInternalName, function(data){
 				

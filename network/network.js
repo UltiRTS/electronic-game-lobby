@@ -78,6 +78,7 @@ window.client.on("LEFTBATTLE", (bID,user) => {
 		window.client.leaveChanel(bID);
 		window.ppl={}
 		window.isExited=true;
+		window.specppl=[]
 		document.getElementById('gameProgress').style.visibility="hidden";
 		document.getElementById("lobbyContent").style.visibility="visible"
 		document.getElementById("prebattle").style.visibility="hidden"
@@ -143,6 +144,7 @@ window.client.on("JOINBATTLE",(bID, hash) => {
 	//console.log(user)
 	//console.log(window.username)
 	window.ppl={}
+	window.specppl=['']
 	window.nowinBattle=bID;
 	lobbyFlush(bID, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, document.getElementById("title"+bID).innerHTML, 0, 0);
 	window.client.joinChanel(bID);
@@ -162,10 +164,10 @@ else{             //this code here is generously contributed by MasterBel from s
     console.log("Don't know if synced!") 
 	} else if (syncStatus == 1) {
     console.log("Synced!")
-	preBtlUpdateUStats(usr, true)
+	freundsUpdateUStats(usr, true)
 	} else if (syncStatus == 2) {
     console.log("Not synced!")
-	preBtlUpdateUStats(usr, false)
+	freundsUpdateUStats(usr, false)
 	} else {
     console.log("Oops, we got " + syncStatus.toString() + ", and that's not a valid syncStatus!")
 	}

@@ -245,24 +245,7 @@ function initPrebtlZone(){
 	
 }
 
-function preBtlUpdateUStats(usr,doTheyHaveMap){
-	//console.log('prebtl updateStatus Called '+usr)
-	try{
-	if(doTheyHaveMap){
-	
-	console.log('prebtl updateStatus Called '+'freundBody'+window.nowinBattle+usr)
-	
-	document.getElementById('freundBody'+window.nowinBattle+usr).style.backgroundColor='rgba(33,150,243,1)'
-	
-	}
-	else{console.log('prebtl updateStatus Called '+'freundBody'+window.nowinBattle+usr);
-		document.getElementById('freundBody'+window.nowinBattle+usr).style.backgroundColor='rgba(243,33,33,1)'}
-		
-	}
-	
-	catch{console.log('unable to update status')}
-		
-	}
+
 	
 
 

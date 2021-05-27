@@ -16,13 +16,7 @@ function autohostNetwork(msgSaid) {
 			}
 			if(cmdDict['room']==window.nowinBattle)
 			{
-				try{
-					frdTeamUpdatefromAutohost(cmdDict['teams'])
-				}
-				catch(err)
-				{
-					//console.log('the autohost does not contain a player response')
-				}
+				
 				try{
 					cmdDict['available-maps'][0]=cmdDict['available-maps'][0].replace(/maps\//g, "")
 					cmdDict['available-maps'][1]=cmdDict['available-maps'][1].replace(/maps\//g, "")
@@ -53,6 +47,36 @@ function autohostNetwork(msgSaid) {
 				{
 					//console.log('the autohost does not contain a loading response')
 				}
+				
+				try{
+					window.specppl=cmdDict['spectator']
+					}
+				catch(err)
+				{
+					//console.log('the autohost does not contain a loading response')
+				}
+		try{
+					frdTeamUpdatefromAutohost(cmdDict['teams'])
+				}
+				catch(err)
+				{
+					//console.log('the autohost does not contain a player response')
+				}
+				try{
+					Q=[]
+					if (!cmdDict['ingameChat'][0]==''){
+					Q[0]=cmdDict['ingameChat'][0]
+					Q[1]=cmdDict['ingameChat'].slice(1).join(' ')
+					Q[2]=cmdDict['room'][0]
+					msgPut(Q)}}
+				catch(err)
+				{
+					console.log('err')
+				}
+		
+		
+		
+		
 		
 				try{
 					window.btlToken=cmdDict['engineToken'][0]

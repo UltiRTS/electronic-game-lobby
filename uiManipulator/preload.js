@@ -2,6 +2,7 @@
  window.runningEngineCount=0
  window.networkBuffer=""
  window.minimapCache={}
+ window.specppl=[]
  const storage=new Store();
  //const mapStorage=new Store();
  if (storage.has('userVolume')){
@@ -37,3 +38,4 @@ else{
 		storage.set('wDIR',process.env.WDIR)
 	}
 window.minimapCache=storage.get('mapCache')
+window.chatUpdate={}

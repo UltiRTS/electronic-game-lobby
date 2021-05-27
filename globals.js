@@ -41,3 +41,5 @@
 //window.minimapCache={}
 //notice(true,'ACCESS DENIED ',reason)
 //window.currentMap=mapName
+//window.channelLastAuthor[chanName] returns the latest poster of a channel
+//window.specppl spectator list
