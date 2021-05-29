@@ -57,7 +57,7 @@ class Client extends EventEmitter {
 					});
 			});
 		}
-		catch (e){console.log("UNABLE TO INIT CONNECTION!")}
+		catch (e){console.log('disconnected')}
 	}
 	
 	joinChanel(chanName) {
@@ -148,6 +148,8 @@ class Client extends EventEmitter {
 		}
 		catch(e){
 			this.endConnection()
+			this.emit("disconnected");
+			console.log('disconnected')
 			window.isLoggedin=false
 		}
 		

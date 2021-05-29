@@ -68,6 +68,7 @@ function preBattleListMap(pool)
 
 function prebattleUpdateMap(mapName){
 	document.getElementById('pregameMap').innerHTML=mapName
+	preBattleHeaderUpdate()
 }
 
 function preBtlToggMoreMap(){
@@ -86,8 +87,8 @@ function preBtlToggMoreMap(){
 	
 	for (map in window.minimapCache) {
 		try{
-		_img=getMinimapfromMapName(map)
-			mapPileContent+='<div class="tooltip" onclick="chatVoteMap(\''+map+'\')" onmouseover="preBtlMoreMapBlowUp(\''+map+'\')" onmouseleave="preBtlMoreMapBlowUp()" style="display:inline-block; position:relative;width:2vw;height:2vw;margin:0.2vw;"><img style="position:absolute;width:100%;height:100%;" src="data:image/png;base64,' + _img + '" /><span class="tooltiptext">'+map.replace(/🦔/g, " ")+'</span></div>';
+		_img=window.minimapCache[map]
+		mapPileContent+='<div class="tooltip" onclick="chatVoteMap(\''+map+'\')" onmouseover="preBtlMoreMapBlowUp(\''+map+'\')" onmouseleave="preBtlMoreMapBlowUp()" style="display:inline-block; position:relative;width:2vw;height:2vw;margin:0.2vw;"><img style="position:absolute;width:100%;height:100%;" src="data:image/png;base64,' + _img + '" /><span class="tooltiptext">'+map.replace(/🦔/g, " ")+'</span></div>';
 			
 		}
 		catch{
@@ -99,9 +100,9 @@ function preBtlToggMoreMap(){
 	document.getElementById('mapPile').innerHTML=mapPileContent
 }
 
-function preBtlMoreMapBlowUp(map=document.getElementById('pregameMap').innerHTML){
+function preBtlMoreMapBlowUp(map=window.currentMap){
 	try{
-	_img=getMinimapfromMapName(map)}
+	_img=window.minimapCache[map]}
 	catch{
 		//
 	}
@@ -125,7 +126,9 @@ function preBtlToggListMap(){
 	
 }
 
-
+function preBattleHeaderUpdate(){
+	document.getElementById('gameHeader').innerHTML+='<!-- rerun -->'
+}
 
 function _mapDonutPut(pool)
 {

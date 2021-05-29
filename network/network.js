@@ -270,4 +270,5 @@ window.client.on("BATTLECLOSED",(bID) => {
 	}
 });
 
+window.client.on("disconnected",(bID) => {notice('Data Expired','Please Relogin')})
 
