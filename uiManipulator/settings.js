@@ -5,12 +5,14 @@ function volumeEntry(){
 	if (document.getElementById("Volpanel").style.visibility=="hidden"){
 		document.getElementById("Volpanel").style.visibility=""
 		document.getElementById("FIpanel").style.visibility="hidden"
+		document.getElementById("MapPanel").style.visibility="hidden"
 		document.getElementById("Volpanel").innerHTML+="<!--rerun-->"
 		document.getElementById("volAmbSlider").value=window.userVolume
 		//console.log("bar val"+document.getElementById("volAmbSlider").value)
 		document.getElementById("volFXSlider").value=window.userFXVolume
 		document.getElementById("volNotifSlider").value=window.userNotifVolume
-		document.getElementById("MapPanel").style.visibility="hidden"
+		document.getElementById("PerformanceSettingsPanel").style.visibility="hidden"
+		
 	}
 	else{
 		document.getElementById("Volpanel").style.visibility="hidden"
@@ -24,11 +26,28 @@ function FIEntry(){
 		document.getElementById("Volpanel").style.visibility="hidden"
 		document.getElementById("FIpanel").innerHTML+="<!--rerun-->"
 		document.getElementById("MapPanel").style.visibility="hidden"
+		document.getElementById("PerformanceSettingsPanel").style.visibility="hidden"
 	}
 	else{
 		document.getElementById("FIpanel").style.visibility="hidden"
 	}
 }
+
+function performanceEntry(){
+	_entryHighlight('performanceEntry')
+	if (document.getElementById("PerformanceSettingsPanel").style.visibility="hidden"){
+		document.getElementById("PerformanceSettingsPanel").style.visibility=""
+		document.getElementById("Volpanel").style.visibility="hidden"
+		document.getElementById("FIpanel").style.visibility="hidden"
+		document.getElementById("PerformanceSettingsPanel").innerHTML+="<!--rerun-->"
+		document.getElementById("MapPanel").style.visibility="hidden"
+		listPerformanceSettings()
+	}
+	else{
+		document.getElementById("PerformanceSettingsPanel").style.visibility="hidden"
+	}
+}
+
 
 function settingsMapEntry(){
 	_entryHighlight('mapEntry')
@@ -37,11 +56,14 @@ function settingsMapEntry(){
 		document.getElementById("Volpanel").style.visibility="hidden"
 		document.getElementById("MapPanel").innerHTML+="<!--rerun-->"
 		document.getElementById("FIpanel").style.visibility="hidden"
+		document.getElementById("PerformanceSettingsPanel").style.visibility="hidden"
 	}
 	else{
 		document.getElementById("MapPanel").style.visibility="hidden"
 	}
 }
+
+
 
 function setVolume(vol){
 	
@@ -51,7 +73,7 @@ function setVolume(vol){
 }
 
 function settingRMMapDict(){
-	storage.set('mapCache',{'1':'2'})
+	storage.set('mapCache',{})
 	window.minimapCache=storage.get('mapCache')
 	notice(runNotice=true,'Cache Deleted','Altered maps will be treated as missing! ')
 }
@@ -60,13 +82,16 @@ function setFXVolume(vol){
 	
 	window.userFXVolume=vol
 	window.FXaudio.volume=vol/100
-	document.getElementById("volSettingDigit").innerHTML=vol+"%"}
+	document.getElementById("volSettingDigit").innerHTML=vol+"%"
+	
+}
 
 function setNotifVolume(vol){
-	
 	window.userNotifVolume=vol
 	window.FXaudio.volume=vol/100
-	document.getElementById("volSettingDigit").innerHTML=vol+"%"}
+	document.getElementById("volSettingDigit").innerHTML=vol+"%"
+	
+}
 
 function VolumeDone(){
 	storage.set('userVolume', window.userVolume)
@@ -84,7 +109,6 @@ function mapDone(){
 	//storage.set('userVolume', window.userVolume)
 	document.getElementById("MapPanel").style.visibility="hidden"
 }
-
 
 function fiCheckStart(){
 	_fiDonut()
@@ -147,35 +171,27 @@ function fiCheckStart(){
 					fiChartCanvas.data.datasets[0].data[0] = 100-finalIntegrity;
 					fiChartCanvas.update();
 					detectedIntegrity=0;
-					
-					
-					
-					
 				})
-				
-				
-				
 			})
-			
-			
-			
-			
 		})
-		
-		
-		
-		
-		
-		
-		
 	})
-	
-	
-	
+}
 
-	
+function listPerformanceSettingsAdv(){
+	content=''
+	for (settingItem in window.springSettings){
+		content+='<span>'+settingItem+'&nbsp&nbsp&nbsp</span><span>'+window.springSettings[settingItem]['isEnabled']+'&nbsp&nbsp</span><span>'+window.springSettings[settingItem]['defaultValue']+'</span><br>'
+	}
+	document.getElementById('performanceSettingsContent').innerHTML=content
+}
 
-
+function listPerformanceSettings(){
+	content=''
+	for (settingItem in window.springSettings){
+		
+		if(window.springSettings[settingItem]['isCommon']=='1') content+='<span>'+settingItem+'&nbsp&nbsp&nbsp</span><span>'+window.springSettings[settingItem]['isEnabled']+'&nbsp&nbsp</span><span>'+window.springSettings[settingItem]['defaultValue']+'</span><br>'
+	}
+	document.getElementById('performanceSettingsContent').innerHTML=content
 }
 
 function _entryHighlight(entry){
@@ -187,6 +203,7 @@ function _entryHighlight(entry){
 	} 
 	document.getElementById(entry).className="settingSubContentSel"
 }
+
 function _fiDonut(){
 
 	document.getElementById("fiChart").innerHTML ="<div class=\"chart-container\" style=\"position: relative; width:70%;left:27%;\"><canvas id=\"fiChartCanvas\"></canvas></div>"
@@ -237,5 +254,9 @@ function _fiDonut(){
 		});
 		
 	
+	
+}
+
+function engineSettings(){
 	
 }

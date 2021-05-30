@@ -2,13 +2,13 @@ function lobbyFlush(battleid, type, natType, founder, ip, port, maxPlayer, passw
 {
 	//console.log("joined battle"+title)
 	document.getElementById("lobbyContent").style.visibility = "hidden"; //hide lobby page once user goes to prebattle panel
-	document.getElementById("prebattle").style.visibility = "visible";
+	document.getElementById("prebattle").style.visibility = "";
 	document.getElementById("pregameTitle").innerHTML=title;
     //document.getElementById("hostSays").innerHTML ="afk 3sec for dinnar";
 	document.getElementById('startGem').setAttribute( "onclick", "preBtlStartGem("+window.nowinBattle+")" );
 	document.getElementById('exitGem').setAttribute( "onclick", "preBtlExitGem("+window.nowinBattle+")" );
 	if(window.gameStatus[window.nowHostedby]){
-		document.getElementById('gameProgress').style.visibility="visible";
+		document.getElementById('gameProgress').style.visibility="";
 	}
 	else{document.getElementById('gameProgress').style.visibility="hidden";}
 }

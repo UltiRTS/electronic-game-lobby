@@ -85,7 +85,7 @@ function showFrdOptions(optionID)
 {
 
 	console.log('mouse over')
-	window.revealFrdSubOptions=setTimeout(function(){ document.getElementById(optionID).style.visibility='visible' }, 200);
+	window.revealFrdSubOptions=setTimeout(function(){ document.getElementById(optionID).style.visibility='' }, 200);
 	
 	//document.getElementById(optionID).innerHTML+='<! -- -->'
 }

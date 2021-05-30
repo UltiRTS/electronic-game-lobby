@@ -203,16 +203,20 @@
             </div>
             <div class="chatContainer" id="chatContainer">
 				<div id="chatList" class="chatList" align="right" style="z-index:4 ;position:absolute;top:48%; left:61%; width: 4%; overflow: visible; ">
+				<!--to be inserted by js-->
 				</div>
- 			<!--to be inserted by js-->
+ 			
 				<div id="chatAdd" class="Add tooltip" onclick="inputGrabber(&#39;Join a chat&#39;,&#39;logoandCompanySlogen&#39;,&#39;comName&#39;,&#39;chatJoin&#39;)" style="font-size: 1.2vw; position: absolute; top:47.7%; left:66%;z-index:3;  cursor: pointer;"> █ <span class="tooltiptext">Join a new chat</span> </div>
+				<div id="chatFrames" style="position:absolute;width:100%;height:100%;top:0%;left:0%;"></div>
  			<!--chat join calls chatAdd upon the successful join of a chat. chat add does not trigger the actual chatjoin event!!!-->
 			</div>
 			<div class="infopanel" id="infopanel" style="left: 60%; position: absolute; top:10%; width:60%;height:33%">
 				<img src="assets/chatCircuit.png" style="position: absolute; left: -16%; height:330%; width:40%; top: -38%;">
-				<div class="friendFrame " id="friendFramemain" style="top:-10%; overflow:visible; position: relative; width:65%;height:120%; display:inline-block;">
-					<h1 style="cursor: default;display:inline-block; position: absolute; color: white; top: -15%; left: -3%;font-family: JuneBug2;">█ </h1><h1 style="cursor: default;display:inline-block; position: absolute; color: white; top: -15%; left: 1%;font-family: JuneBug2;">Freunds _</h1>
-					<div class="friendlimitingFrame" id="friendlimitingFramemain" style="top:3%; overflow:auto; position: relative; width:92%;height:91%; display:inline-block; right: -6.3%;"></div>
+				<div id='freundFrames' style='top:-10%; overflow:visible; position: relative; width:65%;height:120%; display:inline-block;'>
+					<div class="friendFrame " id="friendFramemain" style="position:absolute,top:0;left:0;height:100%;width:100%;visibility=''">
+						<h1 style="cursor: default;display:inline-block; position: absolute; color: white; top: -15%; left: -3%;font-family: JuneBug2;">█ </h1><h1 style="cursor: default;display:inline-block; position: absolute; color: white; top: -15%; left: 1%;font-family: JuneBug2;">Freunds _</h1>
+						<div class="friendlimitingFrame" id="friendlimitingFramemain" style="top:3%; overflow:auto; position: relative; width:92%;height:91%; display:inline-block; right: -6.3%;"></div>
+					</div>
 				</div>
 			</div>
  		</div>
@@ -224,7 +228,7 @@
 				<p id="volMenuEntry" class="settingSubContent" onclick="volumeEntry()" >Volume</p>
 				<p id="volFIEntry" class="settingSubContent" onclick="FIEntry()">File Integrity</p>
 				<p id="mapEntry" class="settingSubContent" onclick="settingsMapEntry()">Maps</p>
-				<p class="settingSubContent">Performance</p>
+				<p id='performanceEntry' class="settingSubContent" onclick="performanceEntry()">Performance Settings</p>
 				<p class="settingSubContent">Connection Delay</p>
 				<p class="settingSubContent">Widgets</p>
 				<p class="settingSubContent">Import Configs</p>
@@ -248,7 +252,7 @@
 				<input class="Bar" style="cursor: pointer;position:absolute;" type="range"/></br>
 				<p style="cursor: default;color:white;">Combat Units Volume</p>
 				<input  class="Bar" style="cursor: pointer;position:absolute;" type="range"/></br>
-				<span class="flashit pure-button fuller-button blue" style="cursor: pointer;position:absolute; top:90%;color:white;padding:0.5%;font-weight: bold;" id="volumeDone"  onclick="VolumeDone()">DONE</span>
+				<span class="flashit pure-button fuller-button blue" style="left:0%;cursor: pointer;position:absolute; top:90%;color:white;padding:0.5%;font-weight: bold;" id="volumeDone"  onclick="VolumeDone()">DONE</span>
 			</div>
 			
 			<div class="panel" id="FIpanel" style="top:10%;left:30%;height:88%;width:69%;padding:1%;visibility:hidden;">	
@@ -262,7 +266,7 @@
 				<div id="fiTerm" style="display: flex;flex-direction: column-reverse; position:absolute;font-family:JuneBug3;color:white;bottom:13%;height:70%;overflow:auto;width:200%;">64 bytes from localhost (127.0.0.1): icmp_seq=1 ttl=64 time=0.028 ms</br></div>
 				<span class="cursorFlash" style="position:absolute;bottom:10%;color:white;"> _</span>
 				<span class="flashit pure-button fuller-button red" style="position:absolute; top:10%;color:white;padding:0.5%;font-weight: bold;" id="FIStart"  onclick="fiCheckStart()">Launch Check</span>
-				<span class="flashit pure-button fuller-button blue" style="position:absolute; top:90%;color:white;padding:0.5%;font-weight: bold;" id="FIDone"  onclick="fiDone()">DONE</span>
+				<span class="flashit pure-button fuller-button blue" style="left:0%;position:absolute; top:90%;color:white;padding:0.5%;font-weight: bold;" id="FIDone"  onclick="fiDone()">DONE</span>
 			</div>
 			
 			<div class="panel" id="MapPanel" style="top:10%;left:30%;height:88%;width:69%;padding:1%;visibility:hidden;">	
@@ -276,8 +280,22 @@
 				<span class="flashit pure-button fuller-button red" style="width:9vw;position:absolute; top:10%;color:white;padding:0.5%;font-weight: bold;" id="FIStart" onclick="settingRMMapDict()">Delete Indexer</span>
                 <span class="flashit pure-button fuller-button blue" style="width:9vw;position:absolute; top:30%;color:white;padding:0.5%;font-weight: bold;" id="FIStart" onclick="settingDLMaps()">Download All Maps</span>
     
-				<span class="flashit pure-button fuller-button blue" style="position:absolute; top:90%;color:white;padding:0.5%;font-weight: bold;" id="FIDone" onclick="mapDone()">DONE</span>
+				<span class="flashit pure-button fuller-button blue" style="left:0%;position:absolute; top:90%;color:white;padding:0.5%;font-weight: bold;" id="FIDone" onclick="mapDone()">DONE</span>
 			</div>
+			
+			<div class="panel" id="PerformanceSettingsPanel" style="top:10%;left:30%;height:88%;width:69%;padding:1%;visibility:hidden;">	
+				<img style="position:absolute;opacity:0.1;top:-5%;left:70%;width:40%;" src="assets/auth2.png">
+				<img style="position:absolute;opacity:0.04;top:80%;width:40%;" src="assets/thea_auth.png">
+				<div style="position:absolute; font-family:JuneBug3; color:white;width:40%;opacity:0.3;left:60%;top:80%;">You can either change the settings or import existing settings from springconfig.cfg</div>
+				<div style="position:absolute;opacity:0.2;top:40%;width:100%;height:40%;"><span style="background:white;color:black;font-size:2rem;font-family:JuneBug">Settings Management<br></span><span style="color:white;font-size:16rem;" id="fiSettingDigit">-\-</span></div>
+				<h1 style="position: absolute; color: white;">Settings</h1>
+				<span class="flashit pure-button fuller-button red" style="top:12%;position:relative; color:white;padding:0.5%;font-weight: bold;" id="FIStart" onclick="settingRMMaps()">Restore All Deafault Settings</span>
+				<span class="flashit pure-button fuller-button blue" style="top:12%;position:relative; color:white;padding:0.5%;font-weight: bold;" id="FIStart" onclick="settingDLMaps()">Import Settings</span>
+                <span class="flashit pure-button fuller-button blue" style="top:12%;position:relative; color:white;padding:0.5%;font-weight: bold;" id="FIStart" onclick="settingDLMaps()">Toggle Advanced Settings</span>
+				<span class="flashit pure-button fuller-button blue" style="left:0%;position:absolute; top:90%;color:white;padding:0.5%;font-weight: bold;" id="FIDone" onclick="mapDone()">DONE</span>
+				<div id='performanceSettingsContent' style='position:absolute;top:25%;color:white;height:65%;width:90%;left:2%;overflow:auto;'></div>
+			</div>
+			
 			
  		</div>
  		
@@ -291,6 +309,8 @@
 	</div>  <!--post login closure-->
 </div> <!--canvas closure-->
 <script src="uiManipulator/preload.js"></script>
+<script src="ultils.js"></script>
+
 <script src="uiManipulator/loading.js"></script>
 <script src="uiManipulator/soundPlayer.js"></script>
 <script src="network/ipcclient.js"></script>

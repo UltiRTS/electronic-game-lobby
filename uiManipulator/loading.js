@@ -3,7 +3,7 @@ function loading(activateLoading='undefined',shortLoading=true)
 
 {
 	if(activateLoading=='undefined'&&window.isLoading==false){
-				document.getElementById("loading").style.visibility="visible";
+				document.getElementById("loading").style.visibility="";
 		if(shortLoading){window.loadingTimer=setTimeout(loading, 10000);}
 		window.isLoading=true
 		window.loadingCursor=setInterval(animateCur, 100);
@@ -23,7 +23,7 @@ function loading(activateLoading='undefined',shortLoading=true)
 	}
 	
 	if(activateLoading==true){
-				document.getElementById("loading").style.visibility="visible";
+				document.getElementById("loading").style.visibility="";
 		if(shortLoading){window.loadingTimer=setTimeout(loading, 10000);}
 		window.isLoading=true
 		window.loadingCursor=setInterval(animateCur, 100);
@@ -49,9 +49,9 @@ function loading(activateLoading='undefined',shortLoading=true)
 }
 
 function animateCur(){
-	if (document.getElementById("flashy_cursor").style.visibility=="visible")
+	if (document.getElementById("flashy_cursor").style.visibility=="")
 		{document.getElementById("flashy_cursor").style.visibility="hidden"}
 	else{
-		document.getElementById("flashy_cursor").style.visibility="visible"
+		document.getElementById("flashy_cursor").style.visibility=""
 	}
 }
