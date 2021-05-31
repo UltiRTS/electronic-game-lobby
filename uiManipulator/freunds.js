@@ -126,22 +126,20 @@ function chTeams(player){
 	//window.ppl[player]=nextLetter(window.ppl[player])
 	//console.log('now its '+window.ppl[player])
 	playerCMD=''
-	if (window.ppl.hasOwnProperty(player)) {  
+	 try{
 	for (var key in window.ppl) {
 		if(key==player){playerCMD+=key+' '+nextLetter(window.ppl[key]) +' '}
 		else{playerCMD+=key+' '+window.ppl[key] +' '}
 			
 		}
-	}
-	else{
-		try{
+	
 			for (var key in window.ai) {
 				if(key==player){playerCMD+=key+' '+nextLetter(window.ai[key]) +' '}
 				else{playerCMD+=key+' '+window.ai[key] +' '}
 			}
 		}
 		catch{}
-	}
+	
 	chatAssignTeam(playerCMD)
 }
 function chTeamsDown(player){

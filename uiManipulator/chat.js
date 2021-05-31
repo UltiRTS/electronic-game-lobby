@@ -19,7 +19,7 @@ function msgPut(Q){
 		d.getSeconds();
 		timeLocal=String(d.getHours())+':'+String(d.getMinutes())
 		window.chatUpdate["chatUserContent"+Q[2]]=false
-		setTimeout(()=>{window.chatUpdate["chatUserContent"+Q[2]]=true}, 30000)
+		setTimeout(()=>{window.chatUpdate["chatUserContent"+Q[2]]=true}, 10000)
 		//console.log('logging time for '+"chatUserContent"+Q[2])
 	}
 	

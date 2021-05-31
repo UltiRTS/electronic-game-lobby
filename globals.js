@@ -2,7 +2,7 @@
 // window.ppl[usr]   returns teams, self update and maintained
 // window.ai[aiName] returns ai teams, returned by autohost
 //window.specppl spectator list
-
+//window.chatUpdate which chat needs update
 // window.isExited  (bool, if is in prebattlezone)
 // window.gameStatus[user]  (bool, true means the game is in progress if the game is in progress)
 //  window.runningEngineCount (how many engines currently running)
