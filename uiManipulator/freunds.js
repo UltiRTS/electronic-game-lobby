@@ -2,19 +2,21 @@
 function refreshBtlFrd(){
 	removeAllChildNodes('friendlimitingFrame'+window.nowinBattle)
 	for (var usr in window.ppl){
-		if(usr.startsWith('GPT')||usr.startsWith('Chicken')){
-			aiPut(window.nowinBattle,usr)
-		
-		}
-		else if (usr.startsWith('Autohost')){
+		if (usr.startsWith('Autohost')){
 			//console.log('not showing autohost account')
 		}
-		else{
-			if (window.specppl.includes(usr)){frdPut(window.nowinBattle,usr,'A\'s gem',true,true);}
-			else {frdPut(window.nowinBattle,usr,'A\'s gem',true,false);}
+		else if (window.specppl.includes(usr)){frdPut(window.nowinBattle,usr,'A\'s gem',true,true);}
+		else if (!usr.startsWith('GPT')||!usr.startsWith('Chicken')){frdPut(window.nowinBattle,usr,'A\'s gem',true,false);}
 		}
 		
-	}
+	for (var usr in window.ai){
+		aiPut(window.nowinBattle,usr);
+		}
+		
+	
+
+	
+	
 	try{
 		document.getElementById("cardIsLeader"+window.nowinBattle+window.teamLeaders).style.opacity="1"
 	}
@@ -38,12 +40,13 @@ function frdTeamUpdatefromAutohost(playerMatrix){
 		}
 	}
 	i=0
+	window.ai={}
 	while (i<playerMatrix.length)   //sync the gpts from the autohost but not ppl
 	{
 		if(playerMatrix[i].startsWith('GPT')||playerMatrix[i].startsWith('Chicken')){
-			window.ppl[playerMatrix[i]]=playerMatrix[i+1]
+			window.ai[playerMatrix[i]]=playerMatrix[i+1]
 		}
-		i=i+1
+		i=i+2
 	}
 	refreshBtlFrd()
 	console.log('bf being refreshed!!')
@@ -100,11 +103,9 @@ function hideFrdOptions(optionID){
 
 function aiPut(page,name){
 	
-	if (!window.ppl.hasOwnProperty(name)){
-		window.ppl[name]='a';
-	}
 	
-	document.getElementById("friendlimitingFrame"+page).innerHTML +="<div style=\"margin:1%;\" class=\"userCard\" onmouseenter=\"showFrdOptions('frdOptions"+page+name+"')\" onmouseleave=\"hideFrdOptions('frdOptions"+page+name+"')\" id=\"userCard"+page+name+"\" ><div style=\"overflow:hidden; position: absolute; height: 100%; top: 0; left:0%; width:100%; background-color: rgba(105,105,105,0.3);display:inline-block;font-size:7vh;text-transform: uppercase;filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6));color:white;\" onclick=\"chTeams(\'"+name+"\')\" oncontextmenu=\"chTeamsDown(\'"+name+"\')\" id=\"cardLabel"+page+name+"\">"+window.ppl[name]+"</div><div class=\"freundBody\"  style=\"opacity:0.9;top:0;height:100%;position:absolute;left:15%;background:rgba(33,150,243,1);width:85%;\"><span style=\"font-weight:900;font-size:2rem;\">"+name+"</span><img src=\"assets/theaAI.png\" style=\"position:absolute;width:60%;opacity:0.3;top:37%;left:5%;z-index:-1;\"></div><div class=\"frdOptions\" id=\"frdOptions"+page+name+"\" style=\"overflow:hidden; background:rgba(33,150,243,0.8);visibility:hidden; top:0;position:absolute;right:0%;width:70%;height:100%;\"><div style=\"height:90%;top:5%;width:2px;background-color:white;top:5%;position:absolute;\" class=\"verticalLine\"></div><div  id='frdSubOptions1'  class=\"frdSubOptions \"  style=\"width:200%; position:absolute;left:8%;\">-/-</div><div id='frdSubOptions2' class=\"frdSubOptions \" style=\"top:25%;width:200%; position:absolute;left:8%;\">Attach</div><div id='frdSubOptions3' class=\"frdSubOptions \" onclick=\"chatAIKill('"+name+"')\" style=\"top:50%;width:200%; position:absolute;left:8%;\">Uninit</div><div id='frdSubOptions4' class=\" frdSubOptions\" style=\"top:75%;width:200%; position:absolute;left:8%;\">-/-</div></div></div>";
+	
+	document.getElementById("friendlimitingFrame"+page).innerHTML +="<div style=\"margin:1%;\" class=\"userCard\" onmouseenter=\"showFrdOptions('frdOptions"+page+name+"')\" onmouseleave=\"hideFrdOptions('frdOptions"+page+name+"')\" id=\"userCard"+page+name+"\" ><div style=\"overflow:hidden; position: absolute; height: 100%; top: 0; left:0%; width:100%; background-color: rgba(105,105,105,0.3);display:inline-block;font-size:7vh;text-transform: uppercase;filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6));color:white;\" onclick=\"chTeams(\'"+name+"\')\" oncontextmenu=\"chTeamsDown(\'"+name+"\')\" id=\"cardLabel"+page+name+"\">"+window.ai[name]+"</div><div class=\"freundBody\"  style=\"opacity:0.9;top:0;height:100%;position:absolute;left:15%;background:rgba(33,150,243,1);width:85%;\"><span style=\"font-weight:900;font-size:2rem;\">"+name+"</span><img src=\"assets/theaAI.png\" style=\"position:absolute;width:60%;opacity:0.3;top:37%;left:5%;z-index:-1;\"></div><div class=\"frdOptions\" id=\"frdOptions"+page+name+"\" style=\"overflow:hidden; background:rgba(33,150,243,0.8);visibility:hidden; top:0;position:absolute;right:0%;width:70%;height:100%;\"><div style=\"height:90%;top:5%;width:2px;background-color:white;top:5%;position:absolute;\" class=\"verticalLine\"></div><div  id='frdSubOptions1'  class=\"frdSubOptions \"  style=\"width:200%; position:absolute;left:8%;\">-/-</div><div id='frdSubOptions2' class=\"frdSubOptions \" style=\"top:25%;width:200%; position:absolute;left:8%;\">Attach</div><div id='frdSubOptions3' class=\"frdSubOptions \" onclick=\"chatAIKill('"+name+"')\" style=\"top:50%;width:200%; position:absolute;left:8%;\">Uninit</div><div id='frdSubOptions4' class=\" frdSubOptions\" style=\"top:75%;width:200%; position:absolute;left:8%;\">-/-</div></div></div>";
 
 }
 
@@ -132,6 +133,15 @@ function chTeams(player){
 			
 		}
 	}
+	else{
+		try{
+			for (var key in window.ai) {
+				if(key==player){playerCMD+=key+' '+nextLetter(window.ai[key]) +' '}
+				else{playerCMD+=key+' '+window.ai[key] +' '}
+			}
+		}
+		catch{}
+	}
 	chatAssignTeam(playerCMD)
 }
 function chTeamsDown(player){
@@ -145,6 +155,15 @@ if (window.ppl.hasOwnProperty(player)) {
 		else{playerCMD+=key+' '+window.ppl[key] +' '}
 			
 		}
+	}
+	else{
+		try{
+			for (var key in window.ai) {
+				if(key==player){playerCMD+=key+' '+previousLetter(window.ai[key]) +' '}
+				else{playerCMD+=key+' '+window.ai[key] +' '}
+			}
+		}
+		catch{}
 	}
 	chatAssignTeam(playerCMD)
 }

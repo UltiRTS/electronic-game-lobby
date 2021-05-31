@@ -112,6 +112,7 @@ function chatAddAI(name) {
 	//window.ppl[name]='a'
 	//chatAssignTeam()
 	for (key in window.ppl){cmd+=key+' '+window.ppl[key]+' '}
+	for (key in window.ai){cmd+=key+' '+window.ai[key]+' '}
 	chatAssignTeam(cmd+name+' a')
 }
 
@@ -121,14 +122,27 @@ function chatAddChicken(name) {
 	cmd=''
 	//window.ppl[name]='a'
 	for (key in window.ppl){cmd+=key+' '+window.ppl[key]+' '}
+	for (key in window.ai){cmd+=key+' '+window.ai[key]+' '}
 	chatAssignTeam(cmd+name+' a')
 	
 }
 
 function chatAIKill(AI) {
 	//delete window.ppl[AI]
+	cmd=''
+	for (key in window.ai){
+		if(key!=AI)
+		{
+			cmd+=key+' '+window.ai[key]+' '
+		}
+		
+	}
 	
-	for (key in window.ppl){if(key!=AI){cmd+=key+' '+window.ppl[key]}}
+	for (key in window.ppl){
+		cmd+=key+' '+window.ppl[key]+' '
+		
+		
+	}
 	chatAssignTeam(cmd)
 }
 

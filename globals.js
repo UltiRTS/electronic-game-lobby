@@ -1,5 +1,8 @@
 // window.client (obj)
-// window.ppl[usr]   returns teams 
+// window.ppl[usr]   returns teams, self update and maintained
+// window.ai[aiName] returns ai teams, returned by autohost
+//window.specppl spectator list
+
 // window.isExited  (bool, if is in prebattlezone)
 // window.gameStatus[user]  (bool, true means the game is in progress if the game is in progress)
 //  window.runningEngineCount (how many engines currently running)
@@ -35,11 +38,9 @@
 //window.isFXPlaying=false
 //playSound()
 //playFX()
-//displayedChat
 //window.polls[cmd]   returns {'id':123,'ppl':'xxx fvg rdg'} by querrying their cmd
 //window.totalPpl   total number of ppl in game
 //window.minimapCache={}
 //notice(true,'ACCESS DENIED ',reason)
 //window.currentMap=mapName
 //window.channelLastAuthor[chanName] returns the latest poster of a channel
-//window.specppl spectator list

@@ -3,6 +3,7 @@
  window.networkBuffer=""
  window.minimapCache={}
  window.specppl=[]
+ window.ai={}
  const storage=new Store();
  //const mapStorage=new Store();
  if (storage.has('userVolume')){
