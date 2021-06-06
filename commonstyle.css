@@ -44,9 +44,96 @@ animation-name: toolTipAnime;
 
 
 
+/*to use this, 
+<div class="button-block">
+    <button id="random">Random</button>
+</div>*/
+
+.button-block {
+  display: inline-block;
+  border-left: 10px solid rgba(70, 66, 47, 0.75);
+  padding: 0 30px;
+  position: relative;
+}
+.button-block::before {
+  content: "";
+  position: absolute;
+  width: 4px;
+  top: 0;
+  height: 100%;
+  left: 4px;
+  background: rgba(70, 66, 47, 0.75);
+}
+
+button {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  border: 2px solid transparent;
+  color: #46422f;
+  background: transparent;
+  border-style: solid none;
+  margin: 0 auto;
+  display: block;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 1em;
+  padding: 10px 20px;
+  min-width: 200px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.25s;
+  text-align: left;
+}
+button::before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: calc(100% - 10px);
+  left: 0px;
+  top: 5px;
+  background: transparent linear-gradient(to right, #46422f 50%, rgba(70, 66, 47, 0.75) 50%, rgba(70, 66, 47, 0.25) 100%) 100% 0/200% 100% no-repeat;
+  transition: all 0.35s;
+  z-index: -1;
+}
+button::after {
+  content: "";
+  display: inline-block;
+  float: left;
+  width: 15px;
+  height: 15px;
+  margin: 2.5px 10px 2.5px 0;
+  background: currentColor;
+  border-right: 0.1x solid #46422f;
+}
+button:hover, button:focus,.button-clicked {
+  color: #c9c3ab;
+  border-color: #46422f;
+}
+button:focus ,button-clicked {
+  border-color: transparent;
+  opacity: 0.8;
+  outline: none;
+}
+button:hover::before, button:focus::before,.button-clicked:before {
+  background-position-x: 0;
+}
+button:focus::before,.button-clicked:before {
+  padding-right: 30px;
+}
 
 
 
+button + button {
+  margin-top: 10px;
+}
+
+@media (max-width: 800px) {
+  select, option {
+    text-align: center;
+    text-align-last: center;
+  }
+}
 
 
 

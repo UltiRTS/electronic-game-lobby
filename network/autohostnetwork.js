@@ -49,13 +49,28 @@ function autohostNetwork(msgSaid) {
 				}
 				
 				try{
-					window.specppl=cmdDict['spectator']
-					}
+					
+					if (!cmdDict['spectator']=='' || !cmdDict['spectator']==' '){window.specppl=cmdDict['spectator']}
+					
+					
+				}
 				catch(err)
 				{
 					//console.log('the autohost does not contain a loading response')
 				}
-		try{
+				
+				
+				try{
+					window.teamLeaders=cmdDict['leader'][0]
+					}
+					
+				catch(err)
+				{
+					//console.log('the autohost does not contain a leader response')
+				}
+				
+				
+				try{
 					frdTeamUpdatefromAutohost(cmdDict['teams'])
 				}
 				catch(err)
@@ -108,14 +123,6 @@ function autohostNetwork(msgSaid) {
 				}
 				
 				
-				try{
-					window.teamLeaders=cmdDict['leader'][0]
-					}
-					
-				catch(err)
-				{
-					//console.log('the autohost does not contain a leader response')
-				}
 				
 				try{
 					document.getElementById("hostSays").value=cmdDict['comment'].join(' ')

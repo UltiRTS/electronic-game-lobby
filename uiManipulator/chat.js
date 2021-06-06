@@ -19,7 +19,7 @@ function msgPut(Q){
 		d.getSeconds();
 		timeLocal=String(d.getHours())+':'+String(d.getMinutes())
 		window.chatUpdate["chatUserContent"+Q[2]]=false
-		setTimeout(()=>{window.chatUpdate["chatUserContent"+Q[2]]=true}, 10000)
+		setTimeout(()=>{window.chatUpdate["chatUserContent"+Q[2]]=true}, 20000)
 		//console.log('logging time for '+"chatUserContent"+Q[2])
 	}
 	
@@ -29,8 +29,11 @@ function msgPut(Q){
 		else{_msgWrite(Q[2],Q[0],'THEA_EXEC()',Q[1],timeLocal,true)}
 	}
 	else{
-		if(window.channelLastAuthor[Q[2]]==Q[0]){_msgWrite(Q[2],Q[0],'Thea Pharmaeuticals Inc.',Q[1],timeLocal,false)}
-		else{_msgWrite(Q[2],Q[0],'Thea Pharmaeuticals Inc.',Q[1],timeLocal,true)}
+		label='Thea Pharmaeuticals Inc.'
+		if (Q[1].includes(window.username)&&Q[0]!=window.username){label='REPLY'}
+		
+		if(window.channelLastAuthor[Q[2]]==Q[0]){_msgWrite(Q[2],Q[0],label,Q[1],timeLocal,false)}
+		else{_msgWrite(Q[2],Q[0],label,Q[1],timeLocal,true)}
 	}
 	
 	if (document.hidden && Q[2]!='bus')
@@ -56,10 +59,21 @@ function _msgWrite(channel,author,label,msg,timeLocal,isNewAuthor=true){
 		
 		
 		
-		else{
+		else if (label=='REPLY'){
 			
 		
 			newLiner=document.createElement("div"); 
+			newLiner.innerHTML='<p style="mix-blend-mode:screen;z-index:1; left:8px; padding:2px;font-size:15px;height:15px;position:relative;top:0px;display:inline-block; color: black;background-color:rgba(33,150,243,1);">'+author+'</p><div style="left:8px;position:relative;top:3px;height:0;display:inline-block;border-top: 9.5px solid transparent;border-bottom: 9.5px solid transparent;border-left: 10px solid rgba(33,150,243,0.9);filter: drop-shadow(0.5px 3px 1px rgba(0,0,0,0.5));"></div><p style="mix-blend-mode:screen;padding:2px;padding-left:19px;font-size:15px;height:15px;left:-2px;position:relative;top:0px;display:inline-block; color: black;background-color:rgba(255,150,33,1);z-index:-1;">'+label+'</p><div style="left:-2px;position:relative;top:3px;height:0;display:inline-block;border-top: 9.5px solid transparent;border-bottom: 9.5px solid transparent;border-left: 10px solid rgba(255,150,33,1);"></div><p class="actualMsg" style="position:relative;color: white;margin:0px;width:90%;word-wrap: break-word;">'+msg+'</p><div class="ordinaryMsg" style="position:absolute;left:-2px;height:100%;width:5px;top:4%;"></div><div style="right:2.5vw;position:absolute;color:white;opacity:0.1;font-size:5vw;z-index:-1;font-weight:900;bottom:-1.5vw;">'+timeLocal+'</div>'
+			
+			newLiner.style.cssText='position:relative;width:100%;left:0%;'
+			newLiner.className='singleUserMsg'
+			document.getElementById("chatUserContent"+channel).appendChild(newLiner)
+			newLiner=document.createElement("br"); 
+			document.getElementById("chatUserContent"+channel).appendChild(newLiner)
+			
+		}
+		else{
+				newLiner=document.createElement("div"); 
 			newLiner.innerHTML='<p style="mix-blend-mode:screen;z-index:1; left:8px; padding:2px;font-size:15px;height:15px;position:relative;top:0px;display:inline-block; color: black;background-color:rgba(33,150,243,1);">'+author+'</p><div style="left:8px;position:relative;top:3px;height:0;display:inline-block;border-top: 9.5px solid transparent;border-bottom: 9.5px solid transparent;border-left: 10px solid rgba(33,150,243,0.9);filter: drop-shadow(0.5px 3px 1px rgba(0,0,0,0.5));"></div><p style="mix-blend-mode:screen;padding:2px;padding-left:19px;font-size:15px;height:15px;left:-2px;position:relative;top:0px;display:inline-block; color: black;background-color:rgba(200,200,200,1);z-index:-1;">'+label+'</p><div style="left:-2px;position:relative;top:3px;height:0;display:inline-block;border-top: 9.5px solid transparent;border-bottom: 9.5px solid transparent;border-left: 10px solid rgba(200,200,200,1);"></div><p class="actualMsg" style="position:relative;color: white;margin:0px;width:90%;word-wrap: break-word;">'+msg+'</p><div class="ordinaryMsg" style="position:absolute;left:-2px;height:100%;width:5px;top:4%;"></div><div style="right:2.5vw;position:absolute;color:white;opacity:0.1;font-size:5vw;z-index:-1;font-weight:900;bottom:-1.5vw;">'+timeLocal+'</div>'
 			
 			newLiner.style.cssText='position:relative;width:100%;left:0%;'
@@ -67,6 +81,7 @@ function _msgWrite(channel,author,label,msg,timeLocal,isNewAuthor=true){
 			document.getElementById("chatUserContent"+channel).appendChild(newLiner)
 			newLiner=document.createElement("br"); 
 			document.getElementById("chatUserContent"+channel).appendChild(newLiner)
+			
 			
 		}
 	}
@@ -218,10 +233,10 @@ function chatPut(Name, Desc="Intergalactic Quantum Com", isBattleChat=false) {  
 		if (Name!="main"){    //prevents those shit from running when called by loginbtn for the first time
 			
 			if(isBattleChat){  //to differentiate battleChat freund and online users in a normal chat
-				document.getElementById("freundFrames").innerHTML +="<div class=\"friendFrame\" id=\"friendFrame"+Name+"\" style=\"top:0%;position:absolute;left: 0px; height: 100%; width: 100%;\"><h1 style=\"display:inline-block; position: absolute; color: white; top: -15%; left: -3%;font-family: JuneBug2;\">"+Name+" <span class=\"Add\" onclick='chatAddAI(&#39GPT_&#39)'>█</span> <span class=\"Add\" onclick='chatAddChicken(&#39Chicken_&#39)'>█</span> </h1><h1 style=\"display:inline-block; position: absolute; color: white; top: -15%; left: 30%;font-family: JuneBug2;\">Personnels _</h1><div class=\"friendlimitingFrame\" id=\"friendlimitingFrame"+Name+"\" style=\"overflow-x:hidden;top:3%; y-overflow:auto; position: relative; width:92%;height:91%; display:inline-block; right: -6.3%;\"></div></div>";
+				document.getElementById("freundFrames").innerHTML +="<div class=\"friendFrame\" id=\"friendFrame"+Name+"\" style=\"top:0%;position:absolute;left: 0px; height: 100%; width: 100%;\"><h1 style=\"display:inline-block; position: absolute; color: white; top: -15%; left: -3%;font-family: JuneBug2;\">"+Name+" <span class=\"Add\" onclick='chatAddAI(&#39GPT_&#39)'>█</span> <span class=\"Add\" onclick='chatAddChicken(&#39Chicken_&#39)'>█</span> </h1><h1 style=\"display:inline-block; position: absolute; color: white; top: -15%; left: 30%;font-family: JuneBug2;\">Personnel _</h1><div class=\"friendlimitingFrame\" id=\"friendlimitingFrame"+Name+"\" style=\"overflow-x:hidden;top:3%; y-overflow:auto; position: relative; width:92%;height:91%; display:inline-block; right: -6.3%;\"></div></div>";
 			}
 			else{
-				document.getElementById("freundFrames").innerHTML +="<div class=\"friendFrame\" id=\"friendFrame"+Name+"\" style=\"top:0%;position:absolute;left: 0px; height: 100%; width: 100%;\"><h1 style=\"display:inline-block; position: absolute; color: white; top: -15%; left: -3%;font-family: JuneBug2;\">"+Name+" █ </h1><h1 style=\"display:inline-block; position: absolute; color: white; top: -15%; left: 30%;font-family: JuneBug2;\">Personnels _</h1><div class=\"friendlimitingFrame\" id=\"friendlimitingFrame"+Name+"\" style=\"overflow-x:hidden;top:3%; y-overflow:auto; position: relative; width:92%;height:91%; display:inline-block; right: -6.3%;\"></div></div>";
+				document.getElementById("freundFrames").innerHTML +="<div class=\"friendFrame\" id=\"friendFrame"+Name+"\" style=\"top:0%;position:absolute;left: 0px; height: 100%; width: 100%;\"><h1 style=\"display:inline-block; position: absolute; color: white; top: -15%; left: -3%;font-family: JuneBug2;\">"+Name+" █ </h1><h1 style=\"display:inline-block; position: absolute; color: white; top: -15%; left: 30%;font-family: JuneBug2;\">Personnel _</h1><div class=\"friendlimitingFrame\" id=\"friendlimitingFrame"+Name+"\" style=\"overflow-x:hidden;top:3%; y-overflow:auto; position: relative; width:92%;height:91%; display:inline-block; right: -6.3%;\"></div></div>";
 			}
 		document.getElementById("chatList").innerHTML +="<p  style=\"filter: drop-shadow(0.3rem 0.3rem 0.1rem rgba(33,150,243,0.7));\" id=\"chatTag"+Name+"\"><span id=\"chatTxt"+Name+"\" class=\"chatTagBody chatTagAnchor\" onclick=\"chatSwt(&#39;"+Name+"&#39;)\"style=\"cursor: pointer; color: white; padding: 5px;\">"+Name.substring(0, 6)+"</span><span onclick=\"chatLeave(&#39;"+Name+"&#39;)\" id=\"chatClose\" class=\"chatClose tooltip\" style=\"cursor: pointer;\">＼<span class=\"tooltiptext\">Close this chat</span></span></p>";
 		}

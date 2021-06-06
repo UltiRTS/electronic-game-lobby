@@ -12,25 +12,54 @@
 <div id="image-container" class="image-container">
 
 	<canvas id='c' style=" z-index:100;"></canvas>
-	<div class="bg" > 
-		<div class="content " id="loginbtn" onclick='loginConnect()' style="width:30%; height:20%;">
-			<a  class="btn-outline edgy-link " style="width:30%; height:20%;font-size:4vw;"><span style="">CONNECT</span></a>
+	<div class="bg" style="width:100%; height:100%;position:absolute;top:0%;left:0%;"> 
+		<div class="loginbtn " id="loginbtn" style="width:100%; height:100%;position:absolute;top:0%;">
+			<a class="btn-outline edgy-link "  onclick="loginConnect();this.onclick=''" style="width:30%; height:20%;font-size:4vw;top:50%;left:40%;"><span style="">CONNECT</span></a>
 		</div>
 	</div>
-
-	<div class="loginbox" style="visibility:hidden;" id = "loginbox">
-		<div class="shader" id="shader"></div>
-		<div class="logininput" id="logininput">
-			<p  style="cursor: default;top:5%;position:fixed;left:2%;font-size:175%;background-color:black;color:white;">Dr. </p> <input id="usr"  style="cursor: text;top:17.5%;position:fixed;left:10%;font-size:175%; display: inline;border-width:0px;border:none;outline:none;" type="text" placeholder="Name" name="uname" required="">
-			</br>
-			<input id="passwd" style="cursor: text;top:38%;position:fixed;left:2%;border-width:0px;border:none;outline:none;" type="password" placeholder="Password" name="psw" required="">
-			<p style="cursor: default;top:47%; position:fixed;left:2%;" class="tooltip"><input type="checkbox" id="rememberName" style="cursor: pointer;">Persistent Neural Link<span class="tooltiptext">Remember credentials</span></p>
-			<p style="cursor: default;top:57%; position:fixed;left:2%;" class="tooltip" onclick="registerMe()"><input type="checkbox" id="register" style="cursor: pointer;">Register this Neural Link<span class="tooltiptext">Register credentials</span></p>
-			<p style="cursor: default;text-shadow: 0px 0px 1.5px black ;top:6%; position:fixed;left:42%;font-size: 150%;text-align: left;font-family: JuneBug4;">Thea Pharmaceuticals <span style="font-size:42%;top:100%;left:0%;position:absolute;text-shadow: 0px 0px 1px black ;">Inc.</span></p>
-			<p class="tooltip" id='loginInputStatus' onclick="logMeIn()" style="cursor: pointer;top:36%; position:fixed;left:-0.5%;font-size: 4vw;text-align: left;font-family: JuneBug; ">CONNECT<span class="tooltiptext">Log in.</span></p>
-			<p style="cursor: default;text-shadow: 0px 0px 4px black ;top:58%; position:fixed;left:42%;font-size: 0.5vw;text-align: left;">____________</br>Humans live longer, better, for the future.</p>
-		</div>	
+<div class="loginbox" style="position: absolute; height: 100%; width: 100%; mix-blend-mode: screen;visibility:hidden;" id="loginbox">
+	<div style="position:absolute;top:45%;color:white;margin:0;left:30%;height:6vw;width:12vw;overflow:hidden;">
+		<div style="background:white;position:absolute;top:0;width:100%;height:2px;"></div>
+		<p id='prtsLOGO' class="" style="position:absolute;margin:0;top:0.5vw;font-family:JuneBug4;font-weight:900;font-size:2vw;">THEA </p>
+		<p id='prtsPharma' class='' style="position:absolute;margin:0;top:3vw;">PHARMACEUTICALS</p>
+		
+		<div style="position:absolute;margin:0;font-size:1vw;width:100%;"  class='' ><span id="prtsOS">Analysis&nbsp;</span><span id="prtsOS1" style="font-weight:900;">OS</span><span id="prtsVer" style="font-size:0.6vw;position:absolute;right:0;top:4px">&nbsp;LTS BUILD V11.04</span></div>
+		<div class="" id='underlinePRTS' style="background:white;position:absolute;width:100%;height:2px;"></div>
 	</div>
+	<div class="" id="logininput" style="position:absolute;height:6vw;top:45%;filter: drop-shadow(10px 10px 2px rgba(255,255,255,0.5));">
+		<p style="cursor: default;top:1.2vw;position:absolute;left:1.2vw;font-size:1.5vw;background-color:black;color:white;margin:0;padding:0;">Dr.&nbsp;</p> <input id="usr" style="cursor: text;top:1.2vw;position:absolute;left:3.5vw;font-size:1.5vw; display: inline;border:none;outline:none;width:7vw" type="text" placeholder="Name" name="uname" required="">
+			
+		<input id="passwd" style="font-size:1.5vw;margin:0;cursor: text;top:3.2vw;position:absolute;left:1.2vw;border:none;outline:none;" type="password" placeholder="Password" name="psw" required="">
+    
+		<p class="tooltip connect" id="loginInputStatus" onclick="logMeIn();this.onclick=''" style="cursor: pointer;top:3.2vw;position:absolute;/* left:16.2vw; */left:85%;font-size: 1vw;margin:0;color:black;font-weight:900;">▶</p>
+	</div>	
+	
+    <div style="position:absolute;top:80%;left:30%;height:10vw;width:37vw;font-size:0.8vw;height:100%;overflow:hidden;">
+        <div class="button-block" style="position:absolute;top:0%;width:100%;" id="" onclick="rememberMe()">
+		    <button style="width:100%;height:3vw;" id="rememberName" class=''>Persistent Neural Link</button>
+	    </div>
+	    <div class="button-block"  style="position:absolute;top:4vw;width:100%;" onclick="registerMe()">
+		    <button style="width:100%;height:3vw;" id="register" class=''>Register this Neural Link</button>
+	    </div>
+    </div>
+    
+    <div style="position:absolute;left:48%;height:6vw;top:45%;color:white;width:100%;overflow:hidden;visibility:hidden; " class="welcomeMsg" id="welcomeMsg">
+		<div class='' id='welcomeHeading' style="font-size:6vw;weight:900;visibility:hidden;top:-2vw;">歓迎</div>
+    
+		<div id='welcomeUser' class='' style="font-size:3vw;weight:900;position:absolute;visibility:hidden;"><span style="font-size:3vw;weight:900;opacity:0.4">Dr. &nbsp;</span></div>
+   
+		<div id='welcomeSubline1' style="font-size:0.5vw;position: absolute; top: 3vw;visibility:hidden;">UDEV/URANDOM System Entropy: 100%</div>
+		<div id='welcomeSubline2' style="font-size:0.5vw;position: absolute; top: 3.5vw;visibility:hidden;">INIT.RC Neural Connectivity: 100%</div>
+		<div id='welcomeSubline3' style="font-size:0.5vw;position: absolute; top: 4vw;visibility:hidden;">PAM Authenticating</div>
+		<div id='welcomeSubline4' style="font-size:0.5vw;position: absolute; top: 4.5vw;visibility:hidden;">Authority: 42</div>
+		<div id='welcomeSubline5' style="font-size:0.5vw;position: absolute; top: 5vw;visibility:hidden;">Neural UART Logging In</div>
+   
+	</div>
+    
+    
+    
+    
+</div>
 
 	<div id="loginTerminal" style="position: absolute; top: 12%; left: 16%; visibility: hidden;">
 		<span class='flashit' style="padding: 1.5%;background-color: black;color:white;font-size:200%;position:relative;top:2%;white-space: nowrap;font-family: JuneBug3;">Thea Human Resource</span>
@@ -313,8 +342,9 @@
 
 <script src="uiManipulator/loading.js"></script>
 <script src="uiManipulator/soundPlayer.js"></script>
+
 <script src="network/ipcclient.js"></script>
-<script src="lib/unitsync.js"></script>
+<script src="lib/unitsync.js"></script>'
 <script src="network/presence.js"></script>
 <script src="lib/bgNN.js"></script>
 <script src="network/network.js"></script>

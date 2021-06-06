@@ -6,7 +6,7 @@ window.client = new Client();
 window.polls={}
 window.client.on("ACCEPTED", (username) => {
 	setInterval(() => { client.send("PING"); }, 1000);
-	window.timer3 = setInterval(finalBoxEnlargeLeave, 10);
+	
 	window.username = username;
 	window.isLoggedin = true;
 	playSound('lobby_intro.wav',true)
@@ -14,6 +14,7 @@ window.client.on("ACCEPTED", (username) => {
 	lobbyPresence()
 	window.zone="lobby"
 	loading(false)
+	finalBoxEnlargeLeave()
 });
 
 window.client.on("AGREEMENT", (agreement) => {
@@ -140,7 +141,7 @@ window.client.on("JOINED",(CHANME, user) => {
 //});
 
 window.client.on("JOINBATTLE",(bID, hash) => {
-	//console.log('joining game')
+	
 	//console.log(user)
 	//console.log(window.username)
 	window.ppl={}
@@ -149,6 +150,8 @@ window.client.on("JOINBATTLE",(bID, hash) => {
 	lobbyFlush(bID, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, document.getElementById("title"+bID).innerHTML, 0, 0);
 	window.client.joinChanel(bID);
 	window.isExited=false;
+	//console.log('joining game')
+	//console.log(	window.isExited)
 	loading(false)
 	preBtlPresence()
 });
