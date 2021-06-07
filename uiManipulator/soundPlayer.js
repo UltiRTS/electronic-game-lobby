@@ -39,22 +39,31 @@ function playSound(file, loop) {
 		var bufferIntro = toArrayBuffer(fs.readFileSync(prefix + file));
 		var bufferLoop = toArrayBuffer(fs.readFileSync(prefix + 'loop_' + file));
 
-		function playLoop() {
-			console.log("Playing loop");
+		function playLoop(duration) {
+			// delay here
+			var delayNode = context.createDelay(duration-2);
+			delayNode.delayTime.value = duration-2;
+			delayNode.connect(context.destination);
+			
 			context.decodeAudioData(bufferLoop, buf => {
 				sourceLoop.buffer = buf;
-				sourceLoop.connect(context.destination);
 				sourceLoop.loop = true;
+
+				sourceLoop.connect(delayNode);
+
 				sourceLoop.start(0);
+
 				window.currentLooping = sourceLoop;
 			});
 		}
 
 		context.decodeAudioData(bufferIntro, buf => {
+			var duration = buf.duration;
 			sourceIntro.buffer = buf;
 			sourceIntro.connect(context.destination);
 			sourceIntro.start(0);
-			sourceIntro.addEventListener('ended', () => playLoop());
+
+			playLoop(duration);
 		});
 
 	} else {
