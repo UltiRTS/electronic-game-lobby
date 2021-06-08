@@ -82,6 +82,8 @@ function setFXVolume(vol){
 	
 	window.userFXVolume=vol
 	window.FXaudio.volume=vol/100
+	// set volume
+	window.contextGain.gain.setValueAtTime(vol/100, window.audioCtx.currentTime);
 	document.getElementById("volSettingDigit").innerHTML=vol+"%"
 	
 }

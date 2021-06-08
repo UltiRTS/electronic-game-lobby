@@ -14,10 +14,24 @@ function toArrayBuffer(buf) {
 // new one
 function playSound(file, loop) {
 	var context;
+	var contextGainNode;
 	if(!window.audioCtx) {
 		context = new AudioContext();
 		window.audioCtx = context;
-	} else context = window.audioCtx;
+		contextGainNode = context.createGain();
+		window.contextGain = contextGainNode;
+		// connect to context
+		contextGainNode.connect(context.destination);
+		if(window.FXaudio && window.FXaudio.volume) {
+			contextGainNode.gain.setValueAtTime(window.FXaudio.volume, context.currentTime);
+		} else {
+			contextGainNode.gain.setValueAtTime(1, context.currentTime);
+		}
+	} else {
+		context = window.audioCtx;
+		contextGainNode = window.contextGain;
+	}
+
 
 	var prefix = 'assets/';
 
@@ -26,7 +40,8 @@ function playSound(file, loop) {
 	if(loop) {
 		// if is playing disconnect it
 		if(window.isPlaying) {
-			window.currentLooping.disconnect(context.destination);
+			window.audioIntro.disconnect(window.contextGain);
+			window.audioDelay.disconnect(window.contextGain);
 		}
 
 		window.isPlaying = true;
@@ -34,36 +49,46 @@ function playSound(file, loop) {
 		var sourceIntro = context.createBufferSource();
 		var sourceLoop = context.createBufferSource();
 
-		window.currentLooping = sourceIntro;
 
 		var bufferIntro = toArrayBuffer(fs.readFileSync(prefix + file));
 		var bufferLoop = toArrayBuffer(fs.readFileSync(prefix + 'loop_' + file));
 
-		function playLoop(duration) {
-			// delay here
-			var delayNode = context.createDelay(duration-2);
-			delayNode.delayTime.value = duration-2;
-			delayNode.connect(context.destination);
-			
-			context.decodeAudioData(bufferLoop, buf => {
-				sourceLoop.buffer = buf;
-				sourceLoop.loop = true;
-
-				sourceLoop.connect(delayNode);
-
-				sourceLoop.start(0);
-
-				window.currentLooping = sourceLoop;
-			});
-		}
 
 		context.decodeAudioData(bufferIntro, buf => {
 			var duration = buf.duration;
 			sourceIntro.buffer = buf;
-			sourceIntro.connect(context.destination);
-			sourceIntro.start(0);
+			var gainIntro = context.createGain();
 
-			playLoop(duration);
+			sourceIntro.connect(gainIntro);
+			// intro fade in
+			gainIntro.connect(contextGainNode);
+			// set to disconnect
+			window.audioIntro = gainIntro;
+
+			gainIntro.gain.setValueAtTime(0, context.currentTime);
+			gainIntro.gain.linearRampToValueAtTime(1, context.currentTime + 10);
+			
+			var delayNode = context.createDelay(duration-0.03);
+			//var delayNode = context.createDelay()
+			delayNode.delayTime.value = duration-0.03;
+			delayNode.connect(contextGainNode);
+
+			context.decodeAudioData(bufferLoop, buf => {
+				var gainLoop = context.createGain();
+				sourceLoop.buffer = buf;
+				sourceLoop.loop = true;
+
+				// set loop fade in
+				gainLoop.gain.setValueAtTime(0, context.currentTime);
+				gainLoop.gain.linearRampToValueAtTime(1, context.currentTime + 1);
+
+				sourceLoop.connect(gainLoop);
+				gainLoop.connect(delayNode);
+				window.audioDelay = delayNode;
+
+				sourceLoop.start(0);
+				sourceIntro.start(0);
+			});
 		});
 
 	} else {
@@ -71,7 +96,7 @@ function playSound(file, loop) {
 		var buffer = toArrayBuffer(fs.readFileSync(prefix + file));
 		context.decodeAudioData(buffer, buf => {
 			source.buffer = buf;
-			source.connect(context.destination);
+			source.connect(contextGainNode);
 			source.start(0);
 		});
 	}
