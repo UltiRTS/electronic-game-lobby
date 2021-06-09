@@ -1,4 +1,5 @@
  const Store = require('electron-store');
+ const fs = require('fs');
  window.runningEngineCount=0
  window.networkBuffer=""
  window.minimapCache={}
@@ -11,6 +12,7 @@
 	 else{
 		 window.userVolume=50;
 	 }
+	 
 
 if (storage.has('userFXVolume')){
 	window.userFXVolume=storage.get('userFXVolume')}

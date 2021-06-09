@@ -66,9 +66,9 @@ function settingsMapEntry(){
 
 
 function setVolume(vol){
-	
+	window.contextGain.gain.setValueAtTime(window.userVolume/100, window.audioCtx.currentTime);
 	window.userVolume=vol
-	window.audio.volume=vol/100
+	//window.audio.volume=vol/100
 	document.getElementById("volSettingDigit").innerHTML=vol+"%"
 }
 
@@ -82,6 +82,8 @@ function setFXVolume(vol){
 	
 	window.userFXVolume=vol
 	window.FXaudio.volume=vol/100
+	// set volume
+	window.contextGain.gain.setValueAtTime(vol/100, window.audioCtx.currentTime);
 	document.getElementById("volSettingDigit").innerHTML=vol+"%"
 	
 }
