@@ -10,10 +10,10 @@ window.client.on("ACCEPTED", (username) => {
 	window.username = username;
 	window.isLoggedin = true;
 	playSound('lobby_intro.wav',true)
-	loading(false)
+	//loading(false)
 	lobbyPresence()
 	window.zone="lobby"
-	loading(false)
+	
 	finalBoxEnlargeLeave()
 });
 

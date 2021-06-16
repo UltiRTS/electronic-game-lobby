@@ -147,22 +147,19 @@ function chTeamsDown(player){
 	//window.ppl[player]=previousLetter(window.ppl[player])
 	//console.log('now its '+window.ppl[player])
 	playerCMD=''
-if (window.ppl.hasOwnProperty(player)) {  
+ 
 	for (var key in window.ppl) {
 		if(key==player){playerCMD+=key+' '+previousLetter(window.ppl[key]) +' '}
 		else{playerCMD+=key+' '+window.ppl[key] +' '}
 			
 		}
-	}
-	else{
-		try{
-			for (var key in window.ai) {
+	
+	for (var key in window.ai) {
 				if(key==player){playerCMD+=key+' '+previousLetter(window.ai[key]) +' '}
 				else{playerCMD+=key+' '+window.ai[key] +' '}
 			}
-		}
-		catch{}
-	}
+		
+	
 	chatAssignTeam(playerCMD)
 }
 

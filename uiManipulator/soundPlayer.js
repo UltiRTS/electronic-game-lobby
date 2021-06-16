@@ -13,101 +13,106 @@ function toArrayBuffer(buf) {
 
 // new one
 function playSound(file, loop) {
-	var context;
-	var contextGainNode;
-	fadeDuration=2
+	
+	
+	
 	if(!window.audioCtx) {
-		context = new AudioContext();
-		window.audioCtx = context;
-		contextGainNode = context.createGain();
-		window.contextGain = contextGainNode;
+		window.audioCtx = new AudioContext();
+		
+		window.contextGain = window.audioCtx.createGain();
+		
 		// connect to context
-		contextGainNode.connect(context.destination);
+		window.contextGain.connect(window.audioCtx.destination);
 		actuallyPlay()
 		
 	} else {
-		context = window.audioCtx;
-		contextGainNode = window.contextGain;
+		
+		
 		//window.contextGain.gain.linearRampToValueAtTime(0, context.currentTime+fadeDuration);
 		var instaVolDuringFade=50
+		loading(true)
 		window.ramp=setInterval(
 			function(){
 				if(instaVolDuringFade<=0){clearInterval(window.ramp);actuallyPlay()}
-				else{instaVolDuringFade-=4;window.contextGain.gain.setValueAtTime((window.userVolume/100)*(instaVolDuringFade/50), context.currentTime)}
+				else{instaVolDuringFade-=4;window.contextGain.gain.setValueAtTime((window.userVolume/100)*(instaVolDuringFade/50), window.audioCtx.currentTime)}
 				
 			},100)
 		
 	}
 	function actuallyPlay(){
 	//window.contextGain.gain.setValueAtTime(window.userVolume/100, window.audioCtx.currentTime);
-		contextGainNode.gain.setValueAtTime(window.userVolume/100, window.audioCtx.currentTime);
+		window.contextGain.gain.setValueAtTime(window.userVolume/100, window.audioCtx.currentTime);
 		var prefix = 'assets/';
-		try{loading(false)}
-		catch{}
-		// only when looping then 
-		// set `window.isPlaying` -> true
+		
+		try {
+				window.sourceIntro.disconnect(window.contextGain);
+				window.sourceLoop.disconnect(window.audioDelay);
+				
+			}
+			catch{}
+			window.isPlaying = true;
 		if(loop) {
 			// if is playing disconnect it
-			if(window.isPlaying) {
-				window.audioIntro.disconnect(window.contextGain);
-				window.audioDelay.disconnect(window.contextGain);
-			}
+			
 
-			window.isPlaying = true;
+			
 
-			var sourceIntro = context.createBufferSource();
-			var sourceLoop = context.createBufferSource();
+			window.sourceIntro = window.audioCtx.createBufferSource();
+			window.sourceLoop = window.audioCtx.createBufferSource();
 
 
 			var bufferIntro = toArrayBuffer(fs.readFileSync(prefix + file));
 			var bufferLoop = toArrayBuffer(fs.readFileSync(prefix + 'loop_' + file));
 
 
-			context.decodeAudioData(bufferIntro, buf => {
+			window.audioCtx.decodeAudioData(bufferIntro, buf => {
 				var duration = buf.duration;
-				sourceIntro.buffer = buf;
-				var gainIntro = context.createGain();
+				//sourceIntro.buffer = buf;
+				window.sourceIntro.buffer = buf
 
-				sourceIntro.connect(gainIntro);
+				//window.sourceIntro.connect(window.sourceIntro);
 				// intro fade in
-				gainIntro.connect(contextGainNode);
+				window.sourceIntro.connect(window.contextGain);
 				// set to disconnect
-				window.audioIntro = gainIntro;
+				//window.sourceIntro = gainIntro;
 
 				//gainIntro.gain.setValueAtTime(0, context.currentTime+10);
 				
 				
 				
-				var delayNode = context.createDelay(duration-0.03);
+				window.audioDelay = window.audioCtx.createDelay(duration-0.03);
 				//var delayNode = context.createDelay()
-				delayNode.delayTime.value = duration-0.03;
-				delayNode.connect(contextGainNode);
+				window.audioDelay.delayTime.value = duration-0.03;
+				window.audioDelay.connect(window.contextGain);
 
-				context.decodeAudioData(bufferLoop, buf => {
-					var gainLoop = context.createGain();
-					sourceLoop.buffer = buf;
+				window.audioCtx.decodeAudioData(bufferLoop, buf => {
+					
+					window.sourceLoop.buffer = buf;
 					sourceLoop.loop = true;
 
 					// set loop fade in
 					//gainLoop.gain.setValueAtTime(0, context.currentTime);
 					//gainLoop.gain.linearRampToValueAtTime(1, context.currentTime + 1);
 
-					sourceLoop.connect(gainLoop);
-					gainLoop.connect(delayNode);
-					window.audioDelay = delayNode;
-					sourceLoop.start(0);sourceIntro.start(0);
+					window.sourceLoop.connect(window.audioDelay);
+					try{loading(false)}
+					catch{}
+					
+					window.sourceLoop.start(0);window.sourceIntro.start(0);
 					
 				});
 			});
 
 		} else {
-			var source = context.createBufferSource();
+			window.sourceIntro = window.audioCtx.createBufferSource();
 			var buffer = toArrayBuffer(fs.readFileSync(prefix + file));
-			context.decodeAudioData(buffer, buf => {
-				source.buffer = buf;
-				source.connect(contextGainNode);
+			window.audioCtx.decodeAudioData(buffer, buf => {
+				window.sourceIntro.buffer = buf;
+				window.sourceIntro.connect(window.contextGain);
 				//window.contextGain.gain.setValueAtTime(window.userVolume/100, window.audioCtx.currentTime);source.start(0);},fadeDuration*1000
-				
+				try{loading(false)}
+		catch{}
+				window.sourceIntro.start(0)
 			});
 		}
 	
