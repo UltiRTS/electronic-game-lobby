@@ -1,5 +1,5 @@
 // window.client (obj)
-// window.ppl[usr]   returns teams, self update and maintained
+// window.ppl[usr],[map],[team]   returns teams, self update and maintained
 // window.ai[aiName] returns ai teams, returned by autohost
 //window.specppl spectator list
 //window.chatUpdate which chat needs update

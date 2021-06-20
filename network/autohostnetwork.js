@@ -9,6 +9,7 @@ function autohostNetwork(msgSaid) {
 			try{
 				window.client.joinBattle(cmdDict['join'][0])
 				preBattleListMap(cmdDict['available-maps'])
+				pushSmolNotif('Battle','You have been invited to a battle.')
 			}
 			catch(err){   //already in the room
 				//console.log('not a inviting cmd!')
@@ -75,7 +76,7 @@ function autohostNetwork(msgSaid) {
 				}
 				catch(err)
 				{
-					//console.log('the autohost does not contain a player response')
+					//console.log(err)
 				}
 				try{
 					Q=[]

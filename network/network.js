@@ -34,13 +34,19 @@ window.client.on("AGREEMENTEND", () => {
 
 
 window.client.on("JOIN", (CHANAME) => {
+	
 	if (CHANAME==window.nowinBattle){
-	chatPut(CHANAME,'Encrypted Operation Channel',true)}
+		chatPut(CHANAME,'Encrypted Operation Channel',true)
+		pushSmolNotif('bCOM','You have been invited to a battle chat.')
+		
+	}
 	else if (CHANAME=='bus'){
 		chatPut(CHANAME,'debug channel; unless debugging, please do not post!')
+		pushSmolNotif('dCOM','You have been invited to a debug chat.')
 	}
 	else{
 		chatPut(CHANAME)
+		pushSmolNotif('cCOM','You have been invited to an encrypted chat.')
 	}
 	
 });
@@ -110,7 +116,8 @@ window.client.on("CLIENTS",(CHANME, users) => {
 		usrinChan = users.split(" ");
 		for (var userPtr=0; userPtr<usrinChan.length;userPtr++){
 			
-			window.ppl[usrinChan[userPtr]]='a';
+			window.ppl[usrinChan[userPtr]]={}
+			window.ppl[usrinChan[userPtr]]['team']='a'
 			
 		}
 		refreshBtlFrd()
@@ -124,8 +131,10 @@ window.client.on("CLIENTS",(CHANME, users) => {
 
 window.client.on("JOINED",(CHANME, user) => {
 	if (CHANME!="main"&user!=window.username&CHANME==window.nowinBattle)
-	{
-		window.ppl[user]='a';
+	{	
+		window.ppl[user]={}
+		window.ppl[user]['team']='a';
+		window.ppl[user]['haveMap']=true
 		refreshBtlFrd()
 	}
 	
@@ -167,8 +176,10 @@ else{             //this code here is generously contributed by MasterBel from s
     console.log("Don't know if synced!") 
 	} else if (syncStatus == 1) {
     console.log("Synced!")
+	
 	freundsUpdateUStats(usr, true)
 	} else if (syncStatus == 2) {
+		
     console.log("Not synced!")
 	freundsUpdateUStats(usr, false)
 	} else {
@@ -245,7 +256,8 @@ window.client.on("UPDATEBATTLEINFO",(bID, spec, isLocked, hash, mapName) => {
 	
 	document.getElementById(bID+'Map').innerHTML=mapName.substring(0,17).replace(/🦔/g, " ");
 	if (bID==window.nowinBattle)
-	{	ipcGetMap(mapName)
+	{	pushSmolNotif('Map ',"Retrieving map!")
+		ipcGetMap(mapName)
 		window.currentMap=mapName
 		prebattleUpdateMap(mapName.substring(0,17).replace(/🦔/g, " "))
 		//loading(true,false)

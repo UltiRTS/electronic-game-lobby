@@ -5,9 +5,9 @@ function refreshBtlFrd(){
 		if (usr.startsWith('Autohost')){
 			//console.log('not showing autohost account')
 		}
-		else if (window.specppl.includes(usr)){frdPut(window.nowinBattle,usr,'A\'s gem',true,true);}
-		else if (!usr.startsWith('GPT')||!usr.startsWith('Chicken')){frdPut(window.nowinBattle,usr,'A\'s gem',true,false);}
-		}
+		else {frdPut(window.nowinBattle,usr,'A\'s gem',true,window.specppl.includes(usr),window.ppl[usr]['haveMap']);}}
+		
+		
 		
 	for (var usr in window.ai){
 		aiPut(window.nowinBattle,usr);
@@ -33,7 +33,7 @@ function frdTeamUpdatefromAutohost(playerMatrix){
 		while (i<playerMatrix.length)
 		{
 			if(playerMatrix[i]==usr){
-				window.ppl[usr]=playerMatrix[i+1]
+				window.ppl[usr]['team']=playerMatrix[i+1]
 			}
 			
 			i=i+2
@@ -54,31 +54,25 @@ function frdTeamUpdatefromAutohost(playerMatrix){
 
 function freundsUpdateUStats(usr,doTheyHaveMap){
 	//console.log('prebtl updateStatus Called '+usr)
-	try{
-	if(doTheyHaveMap){
-	
-	console.log('prebtl updateStatus Called '+'freundBody'+window.nowinBattle+usr)
-	
-	//document.getElementById('freundBody'+window.nowinBattle+usr).style.backgroundColor='rgba(33,150,243,1)'
-	refreshBtlFrd()
-	
-	}
-	else{console.log('prebtl updateStatus Called '+'freundBody'+window.nowinBattle+usr);
-		document.getElementById('freundBody'+window.nowinBattle+usr).style.backgroundColor='rgba(243,33,33,1)'}
-		
-	}
-	
-	catch{console.log('unable to update status')}
-		
-	}
+	window.ppl[usr]['haveMap']=doTheyHaveMap
+	refreshBtlFrd()}
 
-function frdPut(page="main",name,battle,isBtlFrd=false,isSpec=false){
+
+function frdPut(page="main",name,battle,isBtlFrd=false,isSpec=false,haveMap=true){
 	
 	if (isBtlFrd){
-		if(isSpec){document.getElementById("friendlimitingFrame"+page).innerHTML +="<div style=\"margin:1%;\" class=\"userCard\" onmouseenter=\"showFrdOptions('frdOptions"+page+name+"')\" onmouseleave=\"hideFrdOptions('frdOptions"+page+name+"')\" id=\"userCard"+page+name+"\" ><div style=\"overflow:hidden; position: absolute; height: 100%; top: 0; left:0%; width:100%; background-color: rgba(105,105,105,0.3);display:inline-block;font-size:7vh;text-transform: uppercase;filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6));color:white;\" onclick=\"chTeams(\'"+name+"\')\" oncontextmenu=\"chTeamsDown(\'"+name+"\')\" id=\"cardLabel"+page+name+"\">"+window.ppl[name]+"</div><div class=\"freundBody\" id='freundBody"+page+name+"' style=\"opacity:0.9;top:0;height:100%;position:absolute;right:0;background:rgba(150,150,150,1);width:85%;\"><span style=\"font-weight:900;font-size:2rem;\">"+name+"</span><img src=\"assets/thea.png\" style=\"position:absolute;width:80%;opacity:0.3;top:37%;left:5%;z-index:-1;\"></div><div class=\"isLeader\" id=\"cardIsLeader"+page+name+"\"  style=\"overflow:visible;position:absolute; bottom:-9%;right:-5%;background:white;padding:2%;\">Leader</div><div class=\"frdOptions\" id=\"frdOptions"+page+name+"\" style=\"overflow:hidden;background:rgba(33,150,243,0.8);visibility:hidden; top:0;position:absolute;right:0%;width:70%;height:100%;\"><div style=\"height:90%;top:5%;width:2px;background-color:white;top:5%;position:absolute;\" class=\"verticalLine\"></div><div  id='frdSubOptions1'  class=\"frdSubOptions frdSubOptionsAnim1\" onclick=\"chLeader('"+name+"')\" oncontextmenu=\"chLeader('"+name+"')\" style=\"width:200%; position:absolute;left:8%;\">Leader Status</div><div id='frdSubOptions2' class=\"frdSubOptions frdSubOptionsAnim2\" style=\"width:200%; position:absolute;left:8%;top:25%;\">Joint Tactics</div><div id='frdSubOptions3' class=\"frdSubOptions frdSubOptionsAnim3\" onclick=\"chatDismiss('"+name+"')\" style=\"width:200%; position:absolute;left:8%;top:50%;\">Dismiss Personel</div><div id='frdSubOptions4' class=\"frdSubOptionsAnim4 frdSubOptions\" style=\"width:200%; position:absolute;left:8%;top:75%;\">Save Colleague</div></div></div>";}
+		if(isSpec){
+			console.log('spec')
+			document.getElementById("friendlimitingFrame"+page).innerHTML +="<div style=\"margin:1%;\" class=\"userCard\" onmouseenter=\"showFrdOptions('frdOptions"+page+name+"')\" onmouseleave=\"hideFrdOptions('frdOptions"+page+name+"')\" id=\"userCard"+page+name+"\" ><div style=\"overflow:hidden; position: absolute; height: 100%; top: 0; left:0%; width:100%; background-color: rgba(105,105,105,0.3);display:inline-block;font-size:7vh;text-transform: uppercase;filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6));color:white;\" onclick=\"chTeams(\'"+name+"\')\" oncontextmenu=\"chTeamsDown(\'"+name+"\')\" id=\"cardLabel"+page+name+"\">"+window.ppl[name]['team']+"</div><div class=\"freundBody\" id='freundBody"+page+name+"' style=\"opacity:0.9;top:0;height:100%;position:absolute;right:0;background:rgba(150,150,150,1);width:85%;\"><span style=\"font-weight:900;font-size:2rem;\">"+name+"</span><img src=\"assets/thea.png\" style=\"position:absolute;width:80%;opacity:0.3;top:37%;left:5%;z-index:-1;\"></div><div class=\"isLeader\" id=\"cardIsLeader"+page+name+"\"  style=\"overflow:visible;position:absolute; bottom:-9%;right:-5%;background:white;padding:2%;\">Leader</div><div class=\"frdOptions\" id=\"frdOptions"+page+name+"\" style=\"overflow:hidden;background:rgba(33,150,243,0.8);visibility:hidden; top:0;position:absolute;right:0%;width:70%;height:100%;\"><div style=\"height:90%;top:5%;width:2px;background-color:white;top:5%;position:absolute;\" class=\"verticalLine\"></div><div  id='frdSubOptions1'  class=\"frdSubOptions frdSubOptionsAnim1\" onclick=\"chLeader('"+name+"')\" oncontextmenu=\"chLeader('"+name+"')\" style=\"width:200%; position:absolute;left:8%;\">Leader Status</div><div id='frdSubOptions2' class=\"frdSubOptions frdSubOptionsAnim2\" style=\"width:200%; position:absolute;left:8%;top:25%;\">Joint Tactics</div><div id='frdSubOptions3' class=\"frdSubOptions frdSubOptionsAnim3\" onclick=\"chatDismiss('"+name+"')\" style=\"width:200%; position:absolute;left:8%;top:50%;\">Dismiss Personel</div><div id='frdSubOptions4' class=\"frdSubOptionsAnim4 frdSubOptions\" style=\"width:200%; position:absolute;left:8%;top:75%;\">Save Colleague</div></div></div>";}
+		else if (haveMap){ 
+			console.log('habe map')
+		document.getElementById("friendlimitingFrame"+page).innerHTML +="<div style=\"margin:1%;\" class=\"userCard\" onmouseenter=\"showFrdOptions('frdOptions"+page+name+"')\" onmouseleave=\"hideFrdOptions('frdOptions"+page+name+"')\" id=\"userCard"+page+name+"\" ><div style=\"overflow:hidden; position: absolute; height: 100%; top: 0; left:0%; width:100%; background-color: rgba(105,105,105,0.3);display:inline-block;font-size:7vh;text-transform: uppercase;filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6));color:white;\" onclick=\"chTeams(\'"+name+"\')\" oncontextmenu=\"chTeamsDown(\'"+name+"\')\" id=\"cardLabel"+page+name+"\">"+window.ppl[name]['team']+"</div><div class=\"freundBody\" id='freundBody"+page+name+"' style=\"opacity:0.9;top:0;height:100%;position:absolute;right:0;background:rgba(33,150,243,1);width:85%;\"><span style=\"font-weight:900;font-size:2rem;\">"+name+"</span><img src=\"assets/thea.png\" style=\"position:absolute;width:80%;opacity:0.3;top:37%;left:5%;z-index:-1;\"></div><div class=\"isLeader\" id=\"cardIsLeader"+page+name+"\"  style=\"overflow:visible;position:absolute; bottom:-9%;right:-5%;background:white;padding:2%;\">Leader</div><div class=\"frdOptions\" id=\"frdOptions"+page+name+"\" style=\"overflow:hidden;background:rgba(33,150,243,0.8);visibility:hidden; top:0;position:absolute;right:0%;width:70%;height:100%;\"><div style=\"height:90%;top:5%;width:2px;background-color:white;top:5%;position:absolute;\" class=\"verticalLine\"></div><div  id='frdSubOptions1'  class=\"frdSubOptions frdSubOptionsAnim1\" onclick=\"chLeader('"+name+"')\" oncontextmenu=\"chLeader('"+name+"')\" style=\"width:200%; position:absolute;left:8%;\">Leader Status</div><div id='frdSubOptions2' class=\"frdSubOptions frdSubOptionsAnim2\" style=\"width:200%; position:absolute;left:8%;top:25%;\">Joint Tactics</div><div id='frdSubOptions3' class=\"frdSubOptions frdSubOptionsAnim3\" onclick=\"chatDismiss('"+name+"')\" style=\"width:200%; position:absolute;left:8%;top:50%;\">Dismiss Personel</div><div id='frdSubOptions4' class=\"frdSubOptionsAnim4 frdSubOptions\" style=\"width:200%; position:absolute;left:8%;top:75%;\">Save Colleague</div></div></div>";}
 		else{
-		document.getElementById("friendlimitingFrame"+page).innerHTML +="<div style=\"margin:1%;\" class=\"userCard\" onmouseenter=\"showFrdOptions('frdOptions"+page+name+"')\" onmouseleave=\"hideFrdOptions('frdOptions"+page+name+"')\" id=\"userCard"+page+name+"\" ><div style=\"overflow:hidden; position: absolute; height: 100%; top: 0; left:0%; width:100%; background-color: rgba(105,105,105,0.3);display:inline-block;font-size:7vh;text-transform: uppercase;filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6));color:white;\" onclick=\"chTeams(\'"+name+"\')\" oncontextmenu=\"chTeamsDown(\'"+name+"\')\" id=\"cardLabel"+page+name+"\">"+window.ppl[name]+"</div><div class=\"freundBody\" id='freundBody"+page+name+"' style=\"opacity:0.9;top:0;height:100%;position:absolute;right:0;background:rgba(33,150,243,1);width:85%;\"><span style=\"font-weight:900;font-size:2rem;\">"+name+"</span><img src=\"assets/thea.png\" style=\"position:absolute;width:80%;opacity:0.3;top:37%;left:5%;z-index:-1;\"></div><div class=\"isLeader\" id=\"cardIsLeader"+page+name+"\"  style=\"overflow:visible;position:absolute; bottom:-9%;right:-5%;background:white;padding:2%;\">Leader</div><div class=\"frdOptions\" id=\"frdOptions"+page+name+"\" style=\"overflow:hidden;background:rgba(33,150,243,0.8);visibility:hidden; top:0;position:absolute;right:0%;width:70%;height:100%;\"><div style=\"height:90%;top:5%;width:2px;background-color:white;top:5%;position:absolute;\" class=\"verticalLine\"></div><div  id='frdSubOptions1'  class=\"frdSubOptions frdSubOptionsAnim1\" onclick=\"chLeader('"+name+"')\" oncontextmenu=\"chLeader('"+name+"')\" style=\"width:200%; position:absolute;left:8%;\">Leader Status</div><div id='frdSubOptions2' class=\"frdSubOptions frdSubOptionsAnim2\" style=\"width:200%; position:absolute;left:8%;top:25%;\">Joint Tactics</div><div id='frdSubOptions3' class=\"frdSubOptions frdSubOptionsAnim3\" onclick=\"chatDismiss('"+name+"')\" style=\"width:200%; position:absolute;left:8%;top:50%;\">Dismiss Personel</div><div id='frdSubOptions4' class=\"frdSubOptionsAnim4 frdSubOptions\" style=\"width:200%; position:absolute;left:8%;top:75%;\">Save Colleague</div></div></div>";}
-	}
+			console.log('no map')
+			document.getElementById("friendlimitingFrame"+page).innerHTML +="<div style=\"margin:1%;\" class=\"userCard\" onmouseenter=\"showFrdOptions('frdOptions"+page+name+"')\" onmouseleave=\"hideFrdOptions('frdOptions"+page+name+"')\" id=\"userCard"+page+name+"\" ><div style=\"overflow:hidden; position: absolute; height: 100%; top: 0; left:0%; width:100%; background-color: rgba(105,105,105,0.3);display:inline-block;font-size:7vh;text-transform: uppercase;filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6));color:white;\" onclick=\"chTeams(\'"+name+"\')\" oncontextmenu=\"chTeamsDown(\'"+name+"\')\" id=\"cardLabel"+page+name+"\">"+window.ppl[name]['team']+"</div><div class=\"freundBody\" id='freundBody"+page+name+"' style=\"opacity:0.9;top:0;height:100%;position:absolute;right:0;background:rgba(243,33,33,1);width:85%;\"><span style=\"font-weight:900;font-size:2rem;\">"+name+"</span><img src=\"assets/thea.png\" style=\"position:absolute;width:80%;opacity:0.3;top:37%;left:5%;z-index:-1;\"></div><div class=\"isLeader\" id=\"cardIsLeader"+page+name+"\"  style=\"overflow:visible;position:absolute; bottom:-9%;right:-5%;background:white;padding:2%;\">Leader</div><div class=\"frdOptions\" id=\"frdOptions"+page+name+"\" style=\"overflow:hidden;background:rgba(33,150,243,0.8);visibility:hidden; top:0;position:absolute;right:0%;width:70%;height:100%;\"><div style=\"height:90%;top:5%;width:2px;background-color:white;top:5%;position:absolute;\" class=\"verticalLine\"></div><div  id='frdSubOptions1'  class=\"frdSubOptions frdSubOptionsAnim1\" onclick=\"chLeader('"+name+"')\" oncontextmenu=\"chLeader('"+name+"')\" style=\"width:200%; position:absolute;left:8%;\">Leader Status</div><div id='frdSubOptions2' class=\"frdSubOptions frdSubOptionsAnim2\" style=\"width:200%; position:absolute;left:8%;top:25%;\">Joint Tactics</div><div id='frdSubOptions3' class=\"frdSubOptions frdSubOptionsAnim3\" onclick=\"chatDismiss('"+name+"')\" style=\"width:200%; position:absolute;left:8%;top:50%;\">Dismiss Personel</div><div id='frdSubOptions4' class=\"frdSubOptionsAnim4 frdSubOptions\" style=\"width:200%; position:absolute;left:8%;top:75%;\">Save Colleague</div></div></div>";
+		}
+	
+}
 	else{
 		document.getElementById("friendlimitingFrame"+page).innerHTML +="<div class=\"userCard\" style=\"margin:1%;\" id=\"userCard"+page+name+"\" ><div style=\"overflow:hidden; position: absolute; height: 100%; top: 0; left:0%; width:100%; background-color: rgba(105,105,105,0.3);display:inline-block;font-size:7vh;\"></div><div class=\"freundBody\" style=\"opacity:0.9;width:85%;top:0;height:100%; background:rgba(33,150,243,1);position:absolute;left:15%;\"><span style=\"font-family: JuneBug2\">"+name+"</span><br><span>In "+battle+"<br> For: -\\- hr  -\\-min</span></div></div>";
 	}
@@ -122,14 +116,12 @@ function frdEliminate(page,name)
 }
 
 function chTeams(player){
-	//console.log('!!!!!!!!!!!!!!!!!!!!updating '+player+' to '+window.ppl[player]+' the next letter is '+nextLetter(window.ppl[player]))
-	//window.ppl[player]=nextLetter(window.ppl[player])
-	//console.log('now its '+window.ppl[player])
+
 	playerCMD=''
 	 try{
 	for (var key in window.ppl) {
-		if(key==player){playerCMD+=key+' '+nextLetter(window.ppl[key]) +' '}
-		else{playerCMD+=key+' '+window.ppl[key] +' '}
+		if(key==player){playerCMD+=key+' '+nextLetter(window.ppl[key]['team']) +' '}
+		else{playerCMD+=key+' '+window.ppl[key]['team'] +' '}
 			
 		}
 	
@@ -149,8 +141,8 @@ function chTeamsDown(player){
 	playerCMD=''
  
 	for (var key in window.ppl) {
-		if(key==player){playerCMD+=key+' '+previousLetter(window.ppl[key]) +' '}
-		else{playerCMD+=key+' '+window.ppl[key] +' '}
+		if(key==player){playerCMD+=key+' '+previousLetter(window.ppl[key]['team']) +' '}
+		else{playerCMD+=key+' '+window.ppl[key]['team'] +' '}
 			
 		}
 	

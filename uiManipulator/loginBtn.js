@@ -62,6 +62,7 @@ function logMeIn(){
 	document.getElementById("welcomeMsg").style.visibility=''	
 	document.getElementById("welcomeHeading").style.visibility=''
 	document.getElementById("welcomeHeading").className='welcomeHeading'
+	ipcCheck()
 	setTimeout(function(){
 		
 		document.getElementById("welcomeHeading").className='welcomeHeadingOut'
@@ -113,7 +114,7 @@ function finalBoxEnlargeLeave() {
 		window.isExited=true;
 		window.client.joinChanel("main")
         window.client.joinChanel("bus")
-
+		pushSmolNotif('Dr. '+window.username,'Welcome')
 
 }
 

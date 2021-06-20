@@ -39,10 +39,13 @@ function playSound(file, loop) {
 			},100)
 		
 	}
+	
+
+	
 	function actuallyPlay(){
 	//window.contextGain.gain.setValueAtTime(window.userVolume/100, window.audioCtx.currentTime);
 		window.contextGain.gain.setValueAtTime(window.userVolume/100, window.audioCtx.currentTime);
-		var prefix = 'assets/';
+		var prefix = __dirname+'/assets/';
 		
 		try {
 				window.sourceIntro.disconnect(window.contextGain);
@@ -118,6 +121,15 @@ function playSound(file, loop) {
 	
 	}
 }
-
+	function stopSound(){
+		var instaVolDuringFade=50
+		window.ramp=setInterval(
+			function(){
+				if(instaVolDuringFade<=0){clearInterval(window.ramp);}
+				else{instaVolDuringFade-=4;window.contextGain.gain.setValueAtTime((window.userVolume/100)*(instaVolDuringFade/50), window.audioCtx.currentTime)}
+				
+			},100)
+		
+	}
 
 playSound('title.wav',true)
