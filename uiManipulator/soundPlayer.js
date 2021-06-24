@@ -15,14 +15,11 @@ function toArrayBuffer(buf) {
 
 // new one
 function playSound(file, loop) {
-<<<<<<< HEAD
 	
 	
 	
 	if(!window.isPlaying) {
-=======
-	if(!window.audioCtx) {
->>>>>>> 8992acbbfa421c777842dc92d13cf75fb5092b03
+	
 		window.audioCtx = new AudioContext();
 		window.contextGain = window.audioCtx.createGain();
 		// connect to context
@@ -111,7 +108,7 @@ function playSound(file, loop) {
 		}
 	}
 }
-<<<<<<< HEAD
+
 	function stopSound(){
 		var instaVolDuringFade=50
 		window.ramp=setInterval(
@@ -122,8 +119,7 @@ function playSound(file, loop) {
 			},100)
 		
 	}
-=======
->>>>>>> 8992acbbfa421c777842dc92d13cf75fb5092b03
+
 
 function stopSound(){
 	var instaVolDuringFade = 50;
