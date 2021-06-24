@@ -16,7 +16,7 @@ function playSound(file, loop) {
 	
 	
 	
-	if(!window.audioCtx) {
+	if(!window.isPlaying) {
 		window.audioCtx = new AudioContext();
 		
 		window.contextGain = window.audioCtx.createGain();
@@ -125,7 +125,7 @@ function playSound(file, loop) {
 		var instaVolDuringFade=50
 		window.ramp=setInterval(
 			function(){
-				if(instaVolDuringFade<=0){clearInterval(window.ramp);}
+				if(instaVolDuringFade<=0){clearInterval(window.ramp);try {window.sourceIntro.disconnect(window.contextGain);window.sourceLoop.disconnect(window.audioDelay);window.isPlaying=false}catch{}}
 				else{instaVolDuringFade-=4;window.contextGain.gain.setValueAtTime((window.userVolume/100)*(instaVolDuringFade/50), window.audioCtx.currentTime)}
 				
 			},100)

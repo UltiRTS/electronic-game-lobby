@@ -14,7 +14,7 @@ function ipcCheck(){
 
 function ipcGetMap(mapInternalName){
 
-	preBtlUpdateSelfStats(false)
+	
 	ipcclient.request('dMap', mapInternalName, function(data){
 		if (String(data)=='retrieved|'+mapInternalName){
 	//getMinimapfromMapName(map)

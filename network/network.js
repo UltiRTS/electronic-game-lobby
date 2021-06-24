@@ -83,13 +83,7 @@ window.client.on("LEFTBATTLE", (bID,user) => {
 	window.gameStatus[user]=false
 	if (user==window.username){
 		window.client.leaveChanel(bID);
-		window.ppl={}
-		window.isExited=true;
-		window.specppl=[]
-		document.getElementById('gameProgress').style.visibility="hidden";
-		document.getElementById("lobbyContent").style.visibility=""
-		document.getElementById("prebattle").style.visibility="hidden"
-		removeAllChildNodes('pregameInfo')
+		prebtlUnflush()
 		
 		
 		
@@ -257,6 +251,7 @@ window.client.on("UPDATEBATTLEINFO",(bID, spec, isLocked, hash, mapName) => {
 	document.getElementById(bID+'Map').innerHTML=mapName.substring(0,17).replace(/🦔/g, " ");
 	if (bID==window.nowinBattle)
 	{	pushSmolNotif('Map ',"Retrieving map!")
+		preBtlUpdateSelfStats(false)
 		ipcGetMap(mapName)
 		window.currentMap=mapName
 		prebattleUpdateMap(mapName.substring(0,17).replace(/🦔/g, " "))
@@ -270,13 +265,7 @@ window.client.on("BATTLECLOSED",(bID) => {
 	//console.log("BATTLE CLOSED!!!!!!!!!!!!!!")
 	
 	if (bID==window.nowinBattle){
-		window.ppl={}
-		removeAllChildNodes('pregameInfo')
-		window.isExited=true;
-		document.getElementById('gameProgress').style.visibility="hidden";
-		document.getElementById("lobbyContent").style.visibility=""
-		document.getElementById("prebattle").style.visibility="hidden"
-		window.client.leaveChanel(bID);
+		prebtlUnflush()
 	}
 	try{
 	document.getElementById("battleEntry"+bID).parentNode.removeChild(document.getElementById("battleEntry"+bID));}

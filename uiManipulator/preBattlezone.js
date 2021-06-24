@@ -13,6 +13,17 @@ function lobbyFlush(battleid, type, natType, founder, ip, port, maxPlayer, passw
 	else{document.getElementById('gameProgress').style.visibility="hidden";}
 }
 
+function prebtlUnflush(){
+		window.ai={}
+			window.ppl={}
+		window.isExited=true;
+		window.specppl=[]
+		document.getElementById('gameProgress').style.visibility="hidden";
+		document.getElementById("lobbyContent").style.visibility=""
+		document.getElementById("prebattle").style.visibility="hidden"
+		removeAllChildNodes('pregameInfo')
+}
+
 function preBtlExitGem(bID)
 {
     window.client.leaveBattle();  //inform lobby server
@@ -231,7 +242,7 @@ function _mapDonutUpdate()
     window.mapPoll.update();
 
 }
-
+/*
 
 
 function initPrebtlZone(){
@@ -247,7 +258,7 @@ function initPrebtlZone(){
 	
 	
 }
-
+*/
 
 	
 

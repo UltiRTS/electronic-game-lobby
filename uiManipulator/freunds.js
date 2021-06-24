@@ -54,8 +54,12 @@ function frdTeamUpdatefromAutohost(playerMatrix){
 
 function freundsUpdateUStats(usr,doTheyHaveMap){
 	//console.log('prebtl updateStatus Called '+usr)
-	window.ppl[usr]['haveMap']=doTheyHaveMap
+	try{window.ppl[usr]['haveMap']=doTheyHaveMap
 	refreshBtlFrd()}
+	catch{
+		console.log('cannot update freunds map status!')
+	}
+}
 
 
 function frdPut(page="main",name,battle,isBtlFrd=false,isSpec=false,haveMap=true){
