@@ -236,6 +236,7 @@ window.client.on("BATTLEOPENED",(battleid, type, natType, founder, ip, port, max
 	window.roomPort[battleid]=port
 	window.roomIP[battleid]=ip
 	ipcGetMap(map)
+	window.mapDic[battleid]=map
 	var subEntry = document.createElement('li');
 	subEntry.classList.add('gameSubEntry');
 	subEntry.style.width="14vw"
@@ -247,13 +248,14 @@ window.client.on("BATTLEOPENED",(battleid, type, natType, founder, ip, port, max
 
 window.client.on("UPDATEBATTLEINFO",(bID, spec, isLocked, hash, mapName) => {
 	//console.log("BATTLE CLOSED!!!!!!!!!!!!!!")
-	
+	window.mapDic[bID]=mapName
 	document.getElementById(bID+'Map').innerHTML=mapName.substring(0,17).replace(/🦔/g, " ");
 	if (bID==window.nowinBattle)
 	{	pushSmolNotif('Map ',"Retrieving map!")
 		preBtlUpdateSelfStats(false)
 		ipcGetMap(mapName)
-		window.currentMap=mapName
+		
+		
 		prebattleUpdateMap(mapName.substring(0,17).replace(/🦔/g, " "))
 		//loading(true,false)
 		

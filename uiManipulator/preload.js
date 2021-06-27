@@ -5,6 +5,7 @@
  window.minimapCache={}
  window.specppl=[]
  window.ai={}
+ window.mapDic=[]
  const storage=new Store();
  //const mapStorage=new Store();
  if (storage.has('userVolume')){

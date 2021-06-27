@@ -42,5 +42,5 @@
 //window.totalPpl   total number of ppl in game
 //window.minimapCache={}
 //notice(true,'ACCESS DENIED ',reason)
-//window.currentMap=mapName
+//window.mapDic[bid]=mapName records maps of each room
 //window.channelLastAuthor[chanName] returns the latest poster of a channel

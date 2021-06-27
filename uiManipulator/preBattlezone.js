@@ -4,6 +4,7 @@ function lobbyFlush(battleid, type, natType, founder, ip, port, maxPlayer, passw
 	document.getElementById("lobbyContent").style.visibility = "hidden"; //hide lobby page once user goes to prebattle panel
 	document.getElementById("prebattle").style.visibility = "";
 	document.getElementById("pregameTitle").innerHTML=title;
+	document.getElementById("pregameMap").innerHTML=window.mapDic[battleid].replace(/🦔/g, " ");
     //document.getElementById("hostSays").innerHTML ="afk 3sec for dinnar";
 	document.getElementById('startGem').setAttribute( "onclick", "preBtlStartGem("+window.nowinBattle+")" );
 	document.getElementById('exitGem').setAttribute( "onclick", "preBtlExitGem("+window.nowinBattle+")" );
@@ -83,6 +84,7 @@ function prebattleUpdateMap(mapName){
 }
 
 function preBtlToggMoreMap(){
+	
 	document.getElementById('mapListView').className='mapListViewOff'
 	document.getElementById('mapBrwsView').className='mapBrwsViewOn'
 	
@@ -109,9 +111,10 @@ function preBtlToggMoreMap(){
 	}
 	
 	document.getElementById('mapPile').innerHTML=mapPileContent
+	
 }
 
-function preBtlMoreMapBlowUp(map=window.currentMap){
+function preBtlMoreMapBlowUp(map=window.mapDic[window.nowinBattle]){
 	try{
 	_img=window.minimapCache[map]}
 	catch{
