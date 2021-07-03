@@ -200,26 +200,11 @@ window.client.on("SAID", (channel,user,msg) => {
 });
 
 window.client.on("CLIENTSTATUS", (user,status) => {
-	if (user.startsWith("Autohost")){
-		//console.log(window.nowHostedby)
-		//console.log(status)
-		//console.log(isExited)
-		
-		if (parseInt(status).toString(2).endsWith(1) &window.isExited==false&user==window.nowHostedby )
-		{
-			usyncWriteScript()
-			document.getElementById('gameProgress').style.visibility="";
-		}
-		
-		if (parseInt(status).toString(2).endsWith(0) &window.isExited==false&user==window.nowHostedby )
-		{
-			document.getElementById('gameProgress').style.visibility="hidden";
-			loading(false)
-		}
-		
-		if (parseInt(status).toString(2).endsWith(0) )
+
+	if (parseInt(status).toString(2).endsWith(0) ) //this is needed whenever other rooms uodate their autohost status
 		{
 			window.gameStatus[user]=false
+			//prebtlUnflush()
 		}
 		
 		if (parseInt(status).toString(2).endsWith(1) )
@@ -227,7 +212,22 @@ window.client.on("CLIENTSTATUS", (user,status) => {
 			window.gameStatus[user]=true
 		}
 		
-
+	if (window.nowHostedby==user){ //this is needed to detect the room the user's in
+		//console.log(window.nowHostedby)
+		//console.log(status)
+		//console.log(isExited)
+		
+		if (parseInt(status).toString(2).endsWith(1) &window.isExited==false&user==window.nowHostedby )
+		{
+			usyncWriteScript()
+			lobbyFlush(bID, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, document.getElementById("title"+bID).innerHTML, 0, 0);
+		}
+		
+		if (parseInt(status).toString(2).endsWith(0) &window.isExited==false&user==window.nowHostedby )
+		{
+			lobbyFlush(bID, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, document.getElementById("title"+bID).innerHTML, 0, 0);
+			loading(false)
+		}
 	}
 });
 
@@ -262,6 +262,7 @@ window.client.on("UPDATEBATTLEINFO",(bID, spec, isLocked, hash, mapName) => {
 	}
 });
 
+window.client.on("JOINBATTLEFAILED",(reason) => {notice(true,'Failed to join a battle.',reason+' [CANCEL] to leave the current battle and try again. ',preBtlExitGem)})
 
 window.client.on("BATTLECLOSED",(bID) => {
 	//console.log("BATTLE CLOSED!!!!!!!!!!!!!!")
@@ -276,5 +277,11 @@ window.client.on("BATTLECLOSED",(bID) => {
 	}
 });
 
-window.client.on("disconnected",(bID) => {notice('Data Expired','Please Relogin')})
+window.client.on("disconnected",(bID) => {
+	notice(true,'Data Expired','Please Relogin')
+
+	
+	
+	
+})
 

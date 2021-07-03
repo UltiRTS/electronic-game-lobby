@@ -107,6 +107,7 @@ function autohostNetwork(msgSaid) {
 					if (cmdDict['joinasSpec'][0]=='true')
 					{
 						usyncWriteScript()
+						lobbyFlush(window.nowinBattle, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, document.getElementById("title"+window.nowinBattle).innerHTML, 0, 0);
 					}
 			
 					}

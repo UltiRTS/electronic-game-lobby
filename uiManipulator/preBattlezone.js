@@ -16,7 +16,7 @@ function lobbyFlush(battleid, type, natType, founder, ip, port, maxPlayer, passw
 
 function prebtlUnflush(){
 		window.ai={}
-			window.ppl={}
+		window.ppl={}
 		window.isExited=true;
 		window.specppl=[]
 		document.getElementById('gameProgress').style.visibility="hidden";
