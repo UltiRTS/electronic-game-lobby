@@ -54,6 +54,7 @@ window.client.on("JOIN", (CHANAME) => {
 window.client.on("DENIED", (reason) => {
 	notice(true,'ACCESS DENIED ',reason)
 	loading(false)
+	reverseLogin()
 });
 
 window.client.on("LEFT", (CHANAME,user) => {
@@ -220,12 +221,12 @@ window.client.on("CLIENTSTATUS", (user,status) => {
 		if (parseInt(status).toString(2).endsWith(1) &window.isExited==false&user==window.nowHostedby )
 		{
 			usyncWriteScript()
-			lobbyFlush(bID, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, document.getElementById("title"+bID).innerHTML, 0, 0);
+			lobbyFlush(window.nowinBattle, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, document.getElementById("title"+window.nowinBattle).innerHTML, 0, 0);
 		}
 		
 		if (parseInt(status).toString(2).endsWith(0) &window.isExited==false&user==window.nowHostedby )
 		{
-			lobbyFlush(bID, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, document.getElementById("title"+bID).innerHTML, 0, 0);
+			lobbyFlush(window.nowinBattle, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, document.getElementById("title"+window.nowinBattle).innerHTML, 0, 0);
 			loading(false)
 		}
 	}
@@ -278,7 +279,7 @@ window.client.on("BATTLECLOSED",(bID) => {
 });
 
 window.client.on("disconnected",(bID) => {
-	notice(true,'Data Expired','Please Relogin')
+	notice(true,'Data Expired','Press cancel to relogin.',actuallyLogMeIn)
 
 	
 	

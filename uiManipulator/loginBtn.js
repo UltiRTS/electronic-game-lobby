@@ -67,7 +67,7 @@ function logMeIn(){
 		
 		document.getElementById("welcomeHeading").className='welcomeHeadingOut'
 		document.getElementById("welcomeUser").style.visibility=''
-		document.getElementById("welcomeUser").innerHTML+=document.getElementById("usr").value
+		document.getElementById("welcomeUser").innerHTML='<span style="font-size:3vw;weight:900;opacity:0.4">Dr. &nbsp;</span>'+document.getElementById("usr").value
 		document.getElementById("welcomeUser").className='welcomeUser'
 		
 		setTimeout(function(){document.getElementById("welcomeSubline1").style.visibility='';},2000)
@@ -98,7 +98,19 @@ function actuallyLogMeIn(){
 	
 }
 	
-
+function reverseLogin(){
+	document.getElementById("loginbtn").className='loginbtnClicked'
+	document.getElementById("underlinePRTS").className='underlinePRTS'
+	document.getElementById("prtsOS1").className='prtsOS'
+	document.getElementById("prtsOS").className='prtsOS'
+	document.getElementById("prtsVer").className='prtsVer'
+	document.getElementById("prtsPharma").className='prtsPharma'
+	document.getElementById("prtsLOGO").className='prtsLOGO'
+	document.getElementById("logininput").className='logininput'
+	document.getElementById("loginbox").style.visibility = "";
+	
+	document.getElementById("loginInputStatus").setAttribute('onclick',"logMeIn();this.onclick=''")
+}
 
 
 

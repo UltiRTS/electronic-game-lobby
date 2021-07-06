@@ -20,7 +20,7 @@ function ipcGetMap(mapInternalName){
 	//getMinimapfromMapName(map)
 			window.minimapCache[mapInternalName]=getMinimapfromMapName(mapInternalName)
 			storage.set('mapCache',window.minimapCache)
-			if (mapInternalName==window.currentMap){
+			if (mapInternalName==window.mapDic[window.nowinBattle]){
 				preBtlUpdateSelfStats(true)
 				preBtlMoreMapBlowUp()
 				//console.log('ipc response'+String(data)+String(mapInternalName))

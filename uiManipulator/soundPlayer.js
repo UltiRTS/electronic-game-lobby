@@ -113,7 +113,7 @@ function playSound(file, loop) {
 		var instaVolDuringFade=50
 		window.ramp=setInterval(
 			function(){
-				if(instaVolDuringFade<=0){clearInterval(window.ramp);try {window.sourceIntro.disconnect(window.contextGain);window.sourceLoop.disconnect(window.audioDelay);window.isPlaying=false}catch{}}
+				if(instaVolDuringFade<=0){clearInterval(window.ramp);window.isPlaying=false;try {window.sourceIntro.disconnect(window.contextGain);window.sourceLoop.disconnect(window.audioDelay);}catch{}}
 				else{instaVolDuringFade-=4;window.contextGain.gain.setValueAtTime((window.userVolume/100)*(instaVolDuringFade/50), window.audioCtx.currentTime)}
 				
 			},100)
