@@ -113,7 +113,13 @@ function playSound(file, loop) {
 		var instaVolDuringFade=50
 		window.ramp=setInterval(
 			function(){
-				if(instaVolDuringFade<=0){clearInterval(window.ramp);window.isPlaying=false;try {window.sourceIntro.disconnect(window.contextGain);window.sourceLoop.disconnect(window.audioDelay);}catch{}}
+				if(instaVolDuringFade<=0){
+					clearInterval(window.ramp);
+					window.isPlaying=false;
+					try {window.sourceIntro.disconnect(window.contextGain)}catch{}
+					try {window.sourceLoop.disconnect(window.audioDelay)}catch{}
+					
+				}
 				else{instaVolDuringFade-=4;window.contextGain.gain.setValueAtTime((window.userVolume/100)*(instaVolDuringFade/50), window.audioCtx.currentTime)}
 				
 			},100)
@@ -121,20 +127,6 @@ function playSound(file, loop) {
 	}
 
 
-function stopSound(){
-	var instaVolDuringFade = 50;
-	window.ramp=setInterval(
-		() => {
-			if(instaVolDuringFade <= 0){
-				clearInterval(window.ramp);
-			} else {
-				instaVolDuringFade -= 4;
-				window.contextGain.gain.setValueAtTime(
-					(window.userVolume/100) * (instaVolDuringFade/50),
-					window.audioCtx.currentTime
-				);
-			}
-	}, 100);
-}
+
 
 playSound('title.wav',true);

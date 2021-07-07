@@ -125,11 +125,16 @@ window.client.on("CLIENTS",(CHANME, users) => {
 });
 
 window.client.on("JOINED",(CHANME, user) => {
+		if (CHANME!="main"&user==window.username&CHANME==window.nowinBattle)
+	{	
+		lobbyFlush(CHANME, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, document.getElementById("title"+CHANME).innerHTML, 0, 0);
+	}
 	if (CHANME!="main"&user!=window.username&CHANME==window.nowinBattle)
 	{	
 		window.ppl[user]={}
 		window.ppl[user]['team']='a';
 		window.ppl[user]['haveMap']=true
+		window.specppl=['']
 		refreshBtlFrd()
 	}
 	
@@ -148,10 +153,10 @@ window.client.on("JOINBATTLE",(bID, hash) => {
 	
 	//console.log(user)
 	//console.log(window.username)
-	window.ppl={}
-	window.specppl=['']
+	
+	
 	window.nowinBattle=bID;
-	lobbyFlush(bID, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, document.getElementById("title"+bID).innerHTML, 0, 0);
+	
 	window.client.joinChanel(bID);
 	window.isExited=false;
 	//console.log('joining game')
