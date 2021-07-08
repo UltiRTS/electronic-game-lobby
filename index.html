@@ -98,7 +98,7 @@
 		</div>
 	</div>
 
-	<div class="smolInfo" id="smolInfo" style="position:fixed;right:0;height:95%;width:250px;top:5%;z-index:100;">
+	<div class="smolInfo" id="smolInfo" style="pointer-events: none;position:fixed;right:0;height:95%;width:250px;top:5%;z-index:100;">
 		
 
 
@@ -243,7 +243,7 @@
 				</div>
  			
 				<div id="chatAdd" class="Add tooltip" onclick="inputGrabber(&#39;Join a chat&#39;,&#39;logoandCompanySlogen&#39;,&#39;comName&#39;,&#39;chatJoin&#39;)" style="font-size: 1.2vw; position: absolute; top:47.7%; left:66%;z-index:3;  cursor: pointer;"> █ <span class="tooltiptext">Join a new chat</span> </div>
-				<div id="chatFrames" style="position:absolute;width:100%;height:100%;top:0%;left:0%;"></div>
+				<div id="chatFrames" style="position:absolute;width:35%;height:51%;top:45%;left:64%;"></div>
  			<!--chat join calls chatAdd upon the successful join of a chat. chat add does not trigger the actual chatjoin event!!!-->
 			</div>
 			<div class="infopanel" id="infopanel" style="left: 60%; position: absolute; top:10%; width:60%;height:33%">
@@ -344,12 +344,12 @@
  		
 	</div>  <!--post login closure-->
 </div> <!--canvas closure-->
-<script src="uiManipulator/preload.js"></script>
-<script src="ultils.js"></script>
+<script src="lib/preload.js"></script>
+<script src="lib/ultils.js"></script>
 
-<script src="uiManipulator/loading.js"></script>
-<script src="uiManipulator/smolNotif.js"></script>
-<script src="uiManipulator/soundPlayer.js"></script>
+<script src="lib/loading.js"></script>
+<script src="lib/smolNotif.js"></script>
+<script src="lib/soundPlayer.js"></script>
 
 <script src="network/ipcclient.js"></script>
 <script src="lib/unitsync.js"></script>'
@@ -357,17 +357,17 @@
 <script src="lib/bgNN.js"></script>
 <script src="network/network.js"></script>
 <script src="network/autohostnetwork.js"></script>
-<script src="uiManipulator/preBattlezone.js"></script>
-<script src="uiManipulator/loginBtn.js"></script>
-<script src="uiManipulator/settings.js"></script>
-<script src="uiManipulator/notif.js"></script>
-<script  src="uiManipulator/noticeGrabber.js"></script>
-<script  src="uiManipulator/chat.js"></script>
-<script  src="uiManipulator/freunds.js"></script>
+<script src="lobbyUIManipulator/preBattlezone.js"></script>
+<script src="lobbyUIManipulator/loginBtn.js"></script>
+<script src="settingUIManipulator/settings.js"></script>
+<script src="lib/notif.js"></script>
+<script  src="lib/noticeGrabber.js"></script>
+<script  src="lobbyUIManipulator/chat.js"></script>
+<script  src="lobbyUIManipulator/freunds.js"></script>
 <script src="network/autohostnetwork.js"></script>
 <script src="lib/Chart.min.js"></script>
-<script src="uiManipulator/inputGrabber.js"></script>
-<script src="uiManipulator/mainMenuBtn.js"></script>
+<script src="lib/inputGrabber.js"></script>
+<script src="lib/mainMenuBtn.js"></script>
 
 
 <audio src='assets/generalPurposeAutomatedSolution2196f3.wav'></audio>
