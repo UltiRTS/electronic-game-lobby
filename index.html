@@ -7,6 +7,9 @@
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="commonstyle.css">
 <link rel="stylesheet" href="loading.css">
+<link rel="stylesheet" href="lib/toolTipCSS.css">
+
+
 </head>
 <body style="overflow:hidden;">
 
@@ -99,16 +102,25 @@
 	</div>
 
 	<div class="smolInfo" id="smolInfo" style="pointer-events: none;position:fixed;right:0;height:95%;width:250px;top:5%;z-index:100;">
+	</div>
+
+	<div class="toolTipWindow" id="toolTipWindow" style="backdrop-filter: blur(7.2px); pointer-events: none; z-index: 100; left: 1197px; top: 170px; width: 600px; height: 224px; mix-blend-mode: screen;">
+		<div id="actualHelp" style="overflow: hidden;background: rgba(150, 150, 150, 0.4);height:200px;width:100%;position:absolute;top:24px;filter: drop-shadow(10px 10px 4px rgba(255,255,255,0.5));">
+			<div style="display: inline-block;color:white;transform: skew(-0.312rad);margin:5px;width:10px;height:10px;background:white;margin-bottom:0px;"></div>
+			<p class="helperTxts" style="display: inline-block;color:white;transform: skew(-0.312rad);margin: 2px;font-size: 15px;width:560px;margin-bottom:3px;"></p><br>
+		</div>
 		
-
-
-
+		<div style="pointer-events:initial;background: white;top:0;left:0;height:20px;width:20%;position:absolute;mix-blend-mode:screen;filter: drop-shadow(10px 10px 4px rgba(255,255,255,0.2));">
+		</div>
+		
+		<div style="mix-blend-mode: screen;pointer-events:initial; background: #2196f3;top:0;left:20%;height:20px;width:80%;position:absolute;mix-blend-mode: screen;filter: drop-shadow(10px 10px 2px rgba(97, 185, 255,0.4));">
+			<p style="margin:0;transform:skew(-0.312rad);color:black;right:5px;font-size:15px;position:absolute;">Neural UART Console®</p>
+		</div>
+	
 	</div>
 </div>
-<!--LOBBY container-->
-
-	<div id="postLogin" style="visibility:hidden;">
-		<div class="inputGrabber" id="inputGrabber" style="z-index:100; position: absolute;left:0%; top: 0%;width:100%; height:100%; visibility:hidden;z-index:100;">
+<div id="postLogin" style="visibility:hidden;">
+	<div class="inputGrabber" id="inputGrabber" style="z-index:100; position: absolute;left:0%; top: 0%;width:100%; height:100%; visibility:hidden;z-index:100;">
 			<div class="grabberMask" onclick=" inputReleaser();" id="grabberMask" style="background-color: rgb(1,1,1); position: absolute;left:0%; top: 0%;width:100%; height:100%; "></div>
 			<div id="grabberBG" style="background:rgb(33,150,243); position: absolute; top:40%; right:-100%; height:25%; width:100%;"></div>
 			<h1 id="grabberTitle" style="position:absolute; top:35%; left:20%; font-size: 4vw; color:white;">GRABBER TITTLE</h1>
@@ -117,48 +129,48 @@
 				<input onchange="aaa()" type="input" class="form__field" placeholder="aaa" name="name" id='grabberValue' required />
 				<label for="name" class="form__label" id="exampleForm">desc</label>
 			</div>
-		</div>
+	</div>
 		
-		<h1 class="username" id="username" style="cursor: pointer;right:1%; mix-blend-mode: screen;background: #2196f3;text-align: center;position: absolute; padding:4px;">UserName</h1>
+	<h1 class="username" id="username" style="cursor: pointer;right:1%; mix-blend-mode: screen;background: #2196f3;text-align: center;position: absolute; padding:4px;">UserName</h1>
  		
- 		<a href="#" class="btn-wrapper" style="position: fixed; left: 2%; top: 3%;z-index: 1; ">
+ 	<a href="#" class="btn-wrapper" style="position: fixed; left: 2%; top: 3%;z-index: 1; ">
 			<div class="btn-tail"></div>
 			<div class="btn-body">
 				<p style='font-size: 1rem;'>CAMPAIGN</br><span style='font-size: 0.7rem; margin-left: 5px;'>Main Story</span></p>
 			</div>
-		</a>
+	</a>
  		
-		<a href="#" onclick="multiplayer();" class="btn-wrapper" style="position: fixed; left: 2%; top: 23%; z-index: 1;">
+	<a href="#" onclick="multiplayer();" class="btn-wrapper" style="position: fixed; left: 2%; top: 23%; z-index: 1;">
 			<div class="btn-tail"></div>
 			<div class="btn-body">
 				<p style='font-size: 1rem;'>GALAXY</br><span style='font-size: 0.7rem; margin-left: 5px;'>Interplanetary Operations</span></p>
 			</div>
-		</a>
+	</a>
  		
- 		<a href="#" class="btn-wrapper" style="position: fixed; left: 2%; top: 43%;z-index: 1;">
+ 	<a href="#" class="btn-wrapper" style="position: fixed; left: 2%; top: 43%;z-index: 1;">
 			<div class="btn-tail"></div>
 			<div class="btn-body">
 				<p style='font-size: 1rem;' >PLANET α</br><span style='font-size: 0.7rem; margin-left: 5px;'>Resource Extraction</span></p>
 			</div>
-		</a>
+	</a>
  		
- 		<a href="#" class="btn-wrapper" style="position: fixed; left: 2%; top: 63%;z-index: 1;">
+ 	<a href="#" class="btn-wrapper" style="position: fixed; left: 2%; top: 63%;z-index: 1;">
 			<div class="btn-tail"></div>
 			<div class="btn-body">
 				<p style='font-size: 1rem;' >RESEARCH</br><span style='font-size: 0.7rem; margin-left: 5px;'>Resource Extraction II</span></p>
 			</div>
-		</a>
+	</a>
  		
- 		<a href="#" class="btn-wrapper" onclick="settings();" style="position: fixed; left: 2%; top: 83%;z-index: 1;">
+ 	<a href="#" class="btn-wrapper" onclick="settings();" style="position: fixed; left: 2%; top: 83%;z-index: 1;">
 			<div class="btn-tail"></div>
 			<div class="btn-body">
 				<p style='font-size: 1rem;'>SETTINGS</br><span style='font-size: 0.7rem; margin-left: 5px;'>Local Terminal Setup</span></p>
 			</div>
-		</a>
+	</a>
  		
- 		<img src="assets/leftmenuCircuit.png" style="z-index: 0; left: 1%; top: 0%; height: 100%; position: fixed;">
+ 	<img src="assets/leftmenuCircuit.png" style="z-index: 0; left: 1%; top: 0%; height: 100%; position: fixed;">
 		
-		<div class="lobbyContainer" id="lobbyContainer">
+	<div class="lobbyContainer" id="lobbyContainer">
 			<div class="lobbyContent" id="lobbyContent"><h1 style="cursor: default;position: absolute; color: white; top: 0%; left: 9%; font-family: JuneBug2;">Lobby</h1>
 				<div id="hostGem" class="lobbyCTLBTN tooltip" style="left:75%; top:2%;cursor: pointer;"  onclick="inputGrabber(&#39;Operation Manuscript&#39;,&#39;Propose an Operation&#39;,&#39;All Welcome&#39;,&#39;chatProposeBtl&#39;);this.visibility=hidden;"><span style="font-size:1.2vh; pointer-events: none; position:relative; top:13%; left:10%;">Operation</span><span style="font-size:2.2vh; pointer-events: none; position:relative; top:11%; left:10%;"></br> Manuscript</span><span class="tooltiptext">Host a game</span>
 				</div>
@@ -214,13 +226,13 @@
 						</div>
 					</div>
 					<div style="overflow:visible;position:absolute;top:4vw;width:100%;height:13vw;color:white;" class="mapBrwsViewOff" id="mapBrwsView">
-    						<div style="position:absolute;height:100%;width:100%;">
+							<div style="position:absolute;height:100%;width:100%;">
 								
 								<div id="minimapIMG" style="left:2vw; position:absolute;height:12vw;width:12vw;overflow:hidden;"><img  src="assets/minimapSample.png" style="position:absolute;height:100%;width:200%;"></div>
-        						<p id='brwsName' class='brwsName' style="top:9vw; position:absolute;color:white;background:rgba(100,100,100,0.2);width:8vw;backdrop-filter: blur(6px);padding:0.4vw;">Comet Catcher Redux</p>
+								<p id='brwsName' class='brwsName' style="top:9vw; position:absolute;color:white;background:rgba(100,100,100,0.2);width:8vw;backdrop-filter: blur(6px);padding:0.4vw;">Comet Catcher Redux</p>
 								<p id='brwsRandInfo' class='brwsRandInfo' style="top:7.5vw;position:absolute;color:white;font-family:JuneBug2;">MAP_0xFFF</p>
-    						</div>
-    						<div class="mapPile" id='mapPile' style="position:absolute;top:0vw;left:16vw;height:100%;width:20vw;perspective:400px;overflow-y:auto;overflow-x:hidden;">
+							</div>
+							<div class="mapPile" id='mapPile' style="position:absolute;top:0vw;left:16vw;height:100%;width:20vw;perspective:400px;overflow-y:auto;overflow-x:hidden;">
 								
 								
 
@@ -236,8 +248,8 @@
 					
 					
 				</div>
-            </div>
-            <div class="chatContainer" id="chatContainer">
+			</div>
+			<div class="chatContainer" id="chatContainer">
 				<div id="chatList" class="chatList" align="right" style="z-index:4 ;position:absolute;top:48%; left:61%; width: 4%; overflow: visible; ">
 				<!--to be inserted by js-->
 				</div>
@@ -255,9 +267,9 @@
 					</div>
 				</div>
 			</div>
- 		</div>
+ 	</div>
  		
-		<div class="settings" id="settings" style="visibility: hidden; position: fixed; width: 100%; height: 90%; top: 10%;">
+	<div class="settings" id="settings" style="visibility: hidden; position: fixed; width: 100%; height: 90%; top: 10%;">
 			<h1  style="position: absolute; color: white; top: 6%; left: 17%; font-family: JuneBug2;">Settings</h1>
 			<p  style="color: white; font-family: JuneBug3; position: absolute; top: 12%;left:17%;">localhost~# <span class="cursorFlash">_</span></p>
 			<div  class="settingContent" id="settingContent" style="position:absolute; color: white; top: 16%; left: 17%;">
@@ -314,8 +326,8 @@
 				
 				<span class="flashit pure-button fuller-button red" style="width:9vw;position:absolute; top:20%;color:white;padding:0.5%;font-weight: bold;" id="FIStart" onclick="settingRMMaps()">Delete Maps</span>
 				<span class="flashit pure-button fuller-button red" style="width:9vw;position:absolute; top:10%;color:white;padding:0.5%;font-weight: bold;" id="FIStart" onclick="settingRMMapDict()">Delete Indexer</span>
-                <span class="flashit pure-button fuller-button blue" style="width:9vw;position:absolute; top:30%;color:white;padding:0.5%;font-weight: bold;" id="FIStart" onclick="settingDLMaps()">Download All Maps</span>
-    
+				<span class="flashit pure-button fuller-button blue" style="width:9vw;position:absolute; top:30%;color:white;padding:0.5%;font-weight: bold;" id="FIStart" onclick="settingDLMaps()">Download All Maps</span>
+	
 				<span class="flashit pure-button fuller-button blue" style="left:0%;position:absolute; top:90%;color:white;padding:0.5%;font-weight: bold;" id="FIDone" onclick="mapDone()">DONE</span>
 			</div>
 			
@@ -327,29 +339,22 @@
 				<h1 style="position: absolute; color: white;">Settings</h1>
 				<span class="flashit pure-button fuller-button red" style="top:12%;position:relative; color:white;padding:0.5%;font-weight: bold;" id="FIStart" onclick="settingRMMaps()">Restore All Deafault Settings</span>
 				<span class="flashit pure-button fuller-button blue" style="top:12%;position:relative; color:white;padding:0.5%;font-weight: bold;" id="FIStart" onclick="settingDLMaps()">Import Settings</span>
-                <span class="flashit pure-button fuller-button blue" style="top:12%;position:relative; color:white;padding:0.5%;font-weight: bold;" id="FIStart" onclick="settingDLMaps()">Toggle Advanced Settings</span>
+				<span class="flashit pure-button fuller-button blue" style="top:12%;position:relative; color:white;padding:0.5%;font-weight: bold;" id="FIStart" onclick="settingDLMaps()">Toggle Advanced Settings</span>
 				<span class="flashit pure-button fuller-button blue" style="left:0%;position:absolute; top:90%;color:white;padding:0.5%;font-weight: bold;" id="FIDone" onclick="mapDone()">DONE</span>
 				<div id='performanceSettingsContent' style='position:absolute;top:25%;color:white;height:65%;width:90%;left:2%;overflow:auto;'></div>
 			</div>
 			
 			
- 		</div>
- 		
- 		
- 		
- 		
- 		
- 		
+ 	</div>
+</div>  <!--post login closure-->
 
- 		
-	</div>  <!--post login closure-->
-</div> <!--canvas closure-->
 <script src="lib/preload.js"></script>
 <script src="lib/ultils.js"></script>
 
 <script src="lib/loading.js"></script>
 <script src="lib/smolNotif.js"></script>
 <script src="lib/soundPlayer.js"></script>
+<script src="lib/toolTip.js"></script>
 
 <script src="network/ipcclient.js"></script>
 <script src="lib/unitsync.js"></script>'
