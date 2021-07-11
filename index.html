@@ -1,279 +1,381 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta charset="UTF-8">
 
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="commonstyle.css">
-<link rel="stylesheet" href="loading.css">
-<link rel="stylesheet" href="lib/toolTipCSS.css">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="lobbyUIManipulator/lobbyStyle.css">
+	<link rel="stylesheet" href="campaignUIManipulator/campaignStyle.css">
+	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="commonstyle.css">
+	<link rel="stylesheet" href="loading.css">
+	<link rel="stylesheet" href="lib/toolTipCSS.css">
 
 
 </head>
+
 <body style="overflow:hidden;">
 
 
-<div id="image-container" class="image-container">
-	<canvas id='c' style=" z-index:100;"></canvas>
-	<div class="bg" style="width:100%; height:100%;position:absolute;top:0%;left:0%;"> 
-		<div class="loginbtn " id="loginbtn" style="width:100%; height:100%;position:absolute;top:0%;">
-			<a class="btn-outline edgy-link "  onclick="loginConnect();this.onclick=''" style="width:30%; height:20%;font-size:4vw;top:50%;left:40%;"><span style="">CONNECT</span></a>
-		</div>
-	</div>
-	<div class="loginbox" style="position: absolute; height: 100%; width: 100%; mix-blend-mode: screen;visibility:hidden;" id="loginbox">
-		<div style="position:absolute;top:45%;color:white;margin:0;left:30%;height:6vw;width:12vw;overflow:hidden;">
-			<div style="background:white;position:absolute;top:0;width:100%;height:2px;"></div>
-			<p id='prtsLOGO' class="" style="position:absolute;margin:0;top:0.5vw;font-family:JuneBug4;font-weight:900;font-size:2vw;">THEA </p>
-			<p id='prtsPharma' class='' style="position:absolute;margin:0;top:3vw;">PHARMACEUTICALS</p>
-			
-			<div style="position:absolute;margin:0;font-size:1vw;width:100%;"  class='' ><span id="prtsOS">Analysis&nbsp;</span><span id="prtsOS1" style="font-weight:900;">OS</span><span id="prtsVer" style="font-size:0.6vw;position:absolute;right:0;top:4px">&nbsp;LTS BUILD V11.04</span></div>
-			<div class="" id='underlinePRTS' style="background:white;position:absolute;width:100%;height:2px;"></div>
-		</div>
-		<div class="" id="logininput" style="position:absolute;height:6vw;top:45%;filter: drop-shadow(10px 10px 2px rgba(255,255,255,0.5));z-index:1;">
-			<p style="cursor: default;top:1.2vw;position:absolute;left:1.2vw;font-size:1.5vw;background-color:black;color:white;margin:0;padding:0;">Dr.&nbsp;</p> <input id="usr" style="cursor: text;top:1.2vw;position:absolute;left:3.5vw;font-size:1.5vw; display: inline;border:none;outline:none;width:7vw" type="text" placeholder="Name" name="uname" required="">
-				
-			<input id="passwd" style="font-size:1.5vw;margin:0;cursor: text;top:3.2vw;position:absolute;left:1.2vw;border:none;outline:none;" type="password" placeholder="Password" name="psw" required="">
-		
-			<p class="tooltip connect" id="loginInputStatus" onclick="logMeIn();this.onclick=''" style="cursor: pointer;top:3.2vw;position:absolute;/* left:16.2vw; */left:85%;font-size: 1vw;margin:0;color:black;font-weight:900;">▶</p>
-		</div>	
-		
-		<div style="position:absolute;top:80%;left:30%;height:10vw;width:37vw;font-size:0.8vw;height:100%;overflow:hidden;">
-			<div class="button-block" style="position:absolute;top:0%;width:100%;" id="" onclick="rememberMe()">
-				<button style="width:100%;height:3vw;" id="rememberName" class=''>Persistent Neural Link</button>
-			</div>
-			<div class="button-block"  style="position:absolute;top:4vw;width:100%;" onclick="registerMe()">
-				<button style="width:100%;height:3vw;" id="register" class=''>Register this Neural Link</button>
+	<div id="preLogin" class="preLogin">
+		<canvas id='c' style=" z-index:100;"></canvas>
+		<div class="bg" style="width:100%; height:100%;position:absolute;top:0%;left:0%;">
+			<div class="loginbtn " id="loginbtn" style="width:100%; height:100%;position:absolute;top:0%;">
+				<a class="btn-outline edgy-link " onclick="loginConnect();this.onclick=''"
+					style="width:30%; height:20%;font-size:4vw;top:50%;left:40%;"><span style="">CONNECT</span></a>
 			</div>
 		</div>
-		
-		<div style="position:absolute;left:48%;height:6vw;top:45%;color:white;width:100%;overflow:hidden;visibility:hidden; " class="welcomeMsg" id="welcomeMsg">
-			<div class='' id='welcomeHeading' style="font-size:6vw;weight:900;visibility:hidden;top:-2vw;">歓迎</div>
-		
-			<div id='welcomeUser' class='' style="font-size:3vw;weight:900;position:absolute;visibility:hidden;"><span style="font-size:3vw;weight:900;opacity:0.4">Dr. &nbsp;</span></div>
-	
-			<div id='welcomeSubline1' style="font-size:0.5vw;position: absolute; top: 3vw;visibility:hidden;">UDEV/URANDOM System Entropy: 100%</div>
-			<div id='welcomeSubline2' style="font-size:0.5vw;position: absolute; top: 3.5vw;visibility:hidden;">INIT.RC Neural Connectivity: 100%</div>
-			<div id='welcomeSubline3' style="font-size:0.5vw;position: absolute; top: 4vw;visibility:hidden;">PAM Authenticating</div>
-			<div id='welcomeSubline4' style="font-size:0.5vw;position: absolute; top: 4.5vw;visibility:hidden;">Authority: 42</div>
-			<div id='welcomeSubline5' style="font-size:0.5vw;position: absolute; top: 5vw;visibility:hidden;">Neural UART Logging In</div>
-	
-		</div>
-		
-		
-		
-		
-	</div>
+		<div class="loginbox"
+			style="position: absolute; height: 100%; width: 100%; mix-blend-mode: screen;visibility:hidden;"
+			id="loginbox">
+			<div style="position:absolute;top:45%;color:white;margin:0;left:30%;height:6vw;width:12vw;overflow:hidden;">
+				<div style="background:white;position:absolute;top:0;width:100%;height:2px;"></div>
+				<p id='prtsLOGO' class=""
+					style="position:absolute;margin:0;top:0.5vw;font-family:JuneBug4;font-weight:900;font-size:2vw;">
+					THEA </p>
+				<p id='prtsPharma' class='' style="position:absolute;margin:0;top:3vw;">PHARMACEUTICALS</p>
 
-	<div id="loginTerminal" style="position: absolute; top: 12%; left: 16%; visibility: hidden;">
-		<span class='flashit' style="padding: 1.5%;background-color: black;color:white;font-size:200%;position:relative;top:2%;white-space: nowrap;font-family: JuneBug3;">Thea Human Resource</span>
-		<div style="position:absolute;left:-4%;top:-80%; transform: translate(-50%, -50%); mix-blend-mode: screen;">
-			<div class='' style="position:absolute;top:2%;left:50%;font-size: 2.2vw;background:white; color:black;white-space: nowrap;">-Contract-
+				<div style="position:absolute;margin:0;font-size:1vw;width:100%;" class=''><span
+						id="prtsOS">Analysis&nbsp;</span><span id="prtsOS1" style="font-weight:900;">OS</span><span
+						id="prtsVer" style="font-size:0.6vw;position:absolute;right:0;top:4px">&nbsp;LTS BUILD
+						V11.04</span></div>
+				<div class="" id='underlinePRTS' style="background:white;position:absolute;width:100%;height:2px;">
+				</div>
 			</div>
-		</div>
-		<div id="announcement" style="position:fixed; color:white;top:20%;"> </div>
-		<br>
-	</div>
-	
-	<div class="loading" id="loading"  style="position:fixed; height:120%;width:120%;top:-10%;left:-10%;background:rgba(155,155,155,0.1);z-index:100; visibility:hidden;backdrop-filter: blur(10px);">
-		<div style="font-family: JuneBug;background:rgba(0,0,0,0.8);position:fixed; height:25%;left:-20%;width:120%;overflow:visible;top:40%;">
-		
-			<img class="theaSelf" style="z-index:5; filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6));" src="assets/thea.png"></img>
-			<img class="theaFrame" style="z-index:5;" src="assets/thea_frame.png"></img>
-			<div style="position:absolute;left:53%; color:white;font-size:2rem;top:50%;font-weight:900; z-index:5;"><span>Submitting Feedbacks to the NeuralNetwork </span><span class="flashyCursor" id="flashy_cursor">_</span></div>
-		</div>
-	</div>
-	
-	<div class="infoDialog" id="infoDialog" style="position:fixed; height:120%;width:120%;top:-10%;left:-10%;background:rgba(155,155,155,0.1);z-index:100; visibility:hidden;backdrop-filter: blur(10px);" onclick="notice(false)">
-		<div style="font-family: JuneBug;background:rgba(0,0,0,0.8);position:fixed; height:25%;left:-20%;width:120%;overflow:visible;top:40%;">
-		
-			<img class="theaSelf" style="z-index:5; filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6));" src="assets/thea.png">
-			<img class="theaFrame" style="z-index:5;" src="assets/thea_frame.png">
-			<div style="position:absolute;left:53%; color:white;font-size:2rem;top:20%;font-weight:900; z-index:5;"><span id="infoTitle">&gt; Action Pending </span><span class="flashyCursor" id="flashy_cursor">_</span>
-				<p style="font-size:0.8vw;" class="settingSubContent" onclick="notice(false)">Acknowledge</p>
-				<p style="font-size:0.8vw;" id='noticeCancelBtn' class="settingSubContent" >Cancel</p>
-				<p style="font-size:0.8vw;" class="settingSubContent">Help</p>
+			<div class="" id="logininput"
+				style="position:absolute;height:6vw;top:45%;filter: drop-shadow(10px 10px 2px rgba(255,255,255,0.5));z-index:1;">
+				<p
+					style="cursor: default;top:1.2vw;position:absolute;left:1.2vw;font-size:1.5vw;background-color:black;color:white;margin:0;padding:0;">
+					Dr.&nbsp;</p> <input id="usr"
+					style="cursor: text;top:1.2vw;position:absolute;left:3.5vw;font-size:1.5vw; display: inline;border:none;outline:none;width:7vw"
+					type="text" placeholder="Name" name="uname" required="">
+
+				<input id="passwd"
+					style="font-size:1.5vw;margin:0;cursor: text;top:3.2vw;position:absolute;left:1.2vw;border:none;outline:none;"
+					type="password" placeholder="Password" name="psw" required="">
+
+				<p class="connect" onmouseover="pushToolTip('Press this [ button ] to [ login ]')" id="loginInputStatus"
+					onclick="logMeIn();this.onclick=''"
+					style="cursor: pointer;top:3.2vw;position:absolute;/* left:16.2vw; */left:85%;font-size: 1vw;margin:0;color:black;font-weight:900;">
+					▶</p>
 			</div>
-			<p style="position:absolute;width:35%;left:50%;color:rgba(255,255,255,0.5);font-weight:800;font-family:sans-serif;font-size:0.6vw;top:25%;height:30%;overflow-y:hidden;">
-				<marquee id='noticeTxt' behavior="scroll" direction="up" scrollamount="1" style="position:absolute;height:100%;width:100%;" >reasons for halting reasons for haltingreasons for haltingreasons for haltingreasons for haltingreasons for haltingreasons for haltingreasons for haltingreasons for haltingreasons for haltingreasons for haltingreasons for haltingreasons for haltingreasons for haltingreasons for haltingreasons for halting</marquee>
 
-			</p>
+			<div
+				style="position:absolute;top:80%;left:30%;height:10vw;width:37vw;font-size:0.8vw;height:100%;overflow:hidden;">
+				<div class="button-block" style="position:absolute;top:0%;width:100%;" id="" onclick="rememberMe()">
+					<button style="width:100%;height:3vw;" id="rememberName" class=''>Persistent Neural Link</button>
+				</div>
+				<div class="button-block" style="position:absolute;top:4vw;width:100%;" onclick="registerMe()">
+					<button style="width:100%;height:3vw;" id="register" class=''>Register this Neural Link</button>
+				</div>
+			</div>
+
+			<div style="position:absolute;left:48%;height:6vw;top:45%;color:white;width:100%;overflow:hidden;visibility:hidden; "
+				class="welcomeMsg" id="welcomeMsg">
+				<div class='' id='welcomeHeading' style="font-size:6vw;weight:900;visibility:hidden;top:-2vw;">歓迎</div>
+
+				<div id='welcomeUser' class='' style="font-size:3vw;weight:900;position:absolute;visibility:hidden;">
+					<span style="font-size:3vw;weight:900;opacity:0.4">Dr. &nbsp;</span>
+				</div>
+
+				<div id='welcomeSubline1' style="font-size:0.5vw;position: absolute; top: 3vw;visibility:hidden;">
+					UDEV/URANDOM System Entropy: 100%</div>
+				<div id='welcomeSubline2' style="font-size:0.5vw;position: absolute; top: 3.5vw;visibility:hidden;">
+					INIT.RC Neural Connectivity: 100%</div>
+				<div id='welcomeSubline3' style="font-size:0.5vw;position: absolute; top: 4vw;visibility:hidden;">PAM
+					Authenticating</div>
+				<div id='welcomeSubline4' style="font-size:0.5vw;position: absolute; top: 4.5vw;visibility:hidden;">
+					Authority: 42</div>
+				<div id='welcomeSubline5' style="font-size:0.5vw;position: absolute; top: 5vw;visibility:hidden;">Neural
+					UART Logging In</div>
+
+			</div>
+
+
+
+
+		</div>
+
+		<div id="loginTerminal" style="position: absolute; top: 12%; left: 16%; visibility: hidden;">
+			<span class='flashit'
+				style="padding: 1.5%;background-color: black;color:white;font-size:200%;position:relative;top:2%;white-space: nowrap;font-family: JuneBug3;">Thea
+				Human Resource</span>
+			<div style="position:absolute;left:-4%;top:-80%; transform: translate(-50%, -50%); mix-blend-mode: screen;">
+				<div class=''
+					style="position:absolute;top:2%;left:50%;font-size: 2.2vw;background:white; color:black;white-space: nowrap;">
+					-Contract-
+				</div>
+			</div>
+			<div id="announcement" style="position:fixed; color:white;top:20%;"> </div>
+			<br>
 		</div>
 	</div>
 
-	<div class="smolInfo" id="smolInfo" style="pointer-events: none;position:fixed;right:0;height:95%;width:250px;top:5%;z-index:100;">
-	</div>
-
-	<div class="toolTipWindow" id="toolTipWindow" style="backdrop-filter: blur(7.2px); pointer-events: none; z-index: 100; left: 1197px; top: 170px; width: 600px; height: 224px; mix-blend-mode: screen;">
-		<div id="actualHelp" style="overflow: hidden;background: rgba(150, 150, 150, 0.4);height:200px;width:100%;position:absolute;top:24px;filter: drop-shadow(10px 10px 4px rgba(255,255,255,0.5));">
-			<div style="display: inline-block;color:white;transform: skew(-0.312rad);margin:5px;width:10px;height:10px;background:white;margin-bottom:0px;"></div>
-			<p class="helperTxts" style="display: inline-block;color:white;transform: skew(-0.312rad);margin: 2px;font-size: 15px;width:560px;margin-bottom:3px;"></p><br>
-		</div>
-		
-		<div style="pointer-events:initial;background: white;top:0;left:0;height:20px;width:20%;position:absolute;mix-blend-mode:screen;filter: drop-shadow(10px 10px 4px rgba(255,255,255,0.2));">
-		</div>
-		
-		<div style="mix-blend-mode: screen;pointer-events:initial; background: #2196f3;top:0;left:20%;height:20px;width:80%;position:absolute;mix-blend-mode: screen;filter: drop-shadow(10px 10px 2px rgba(97, 185, 255,0.4));">
-			<p style="margin:0;transform:skew(-0.312rad);color:black;right:5px;font-size:15px;position:absolute;">Neural UART Console®</p>
-		</div>
-	
-	</div>
-</div>
-<div id="postLogin" style="visibility:hidden;">
-	<div class="inputGrabber" id="inputGrabber" style="z-index:100; position: absolute;left:0%; top: 0%;width:100%; height:100%; visibility:hidden;z-index:100;">
-			<div class="grabberMask" onclick=" inputReleaser();" id="grabberMask" style="background-color: rgb(1,1,1); position: absolute;left:0%; top: 0%;width:100%; height:100%; "></div>
-			<div id="grabberBG" style="background:rgb(33,150,243); position: absolute; top:40%; right:-100%; height:25%; width:100%;"></div>
-			<h1 id="grabberTitle" style="position:absolute; top:35%; left:20%; font-size: 4vw; color:white;">GRABBER TITTLE</h1>
+	<div id="postLogin" style="visibility:hidden;">
+		<div class="inputGrabber" id="inputGrabber"
+			style="z-index:100; position: absolute;left:0%; top: 0%;width:100%; height:100%; visibility:hidden;z-index:100;">
+			<div class="grabberMask" onclick=" inputReleaser();" id="grabberMask"
+				style="background-color: rgb(1,1,1); position: absolute;left:0%; top: 0%;width:100%; height:100%; ">
+			</div>
+			<div id="grabberBG"
+				style="background:rgb(33,150,243); position: absolute; top:40%; right:-100%; height:25%; width:100%;">
+			</div>
+			<h1 id="grabberTitle" style="position:absolute; top:35%; left:20%; font-size: 4vw; color:white;">GRABBER
+				TITTLE</h1>
 			<h1 id="grabberSubTitle" style="position:absolute; top:50%;">GRABBER LOGO</h1>
-			<div class="form__group field" style="position:absolute; top:55%; left:30%;" >
-				<input onchange="aaa()" type="input" class="form__field" placeholder="aaa" name="name" id='grabberValue' required />
+			<div class="form__group field" style="position:absolute; top:55%; left:30%;">
+				<input onchange="aaa()" type="input" class="form__field" placeholder="aaa" name="name" id='grabberValue'
+					required />
 				<label for="name" class="form__label" id="exampleForm">desc</label>
 			</div>
-	</div>
-		
-	<h1 class="username" id="username" style="cursor: pointer;right:1%; mix-blend-mode: screen;background: #2196f3;text-align: center;position: absolute; padding:4px;">UserName</h1>
- 		
- 	<a href="#" class="btn-wrapper" style="position: fixed; left: 2%; top: 3%;z-index: 1; ">
-			<div class="btn-tail"></div>
-			<div class="btn-body">
-				<p style='font-size: 1rem;'>CAMPAIGN</br><span style='font-size: 0.7rem; margin-left: 5px;'>Main Story</span></p>
+		</div>
+
+		<h1 class="username" id="username"
+			style="cursor: pointer;right:1%; mix-blend-mode: screen;background: #2196f3;text-align: center;position: absolute; padding:4px;z-index:1;">
+			UserName</h1>
+
+
+
+		<div class="mainMenu" id="mainMenu"
+			style="position:absolute; backdrop-filter: blur(7.2px);  z-index: 1; left: -5vw; bottom:25px; width: 60vw; height: 20px; mix-blend-mode: screen;transform:skew(0.32rad); background:rgba(100,100,100,0.4)">
+
+			<div onclick="campaign();"
+				style="mix-blend-mode: screen;pointer-events:initial; background: #2196f3;top:0;left:0;height:20px;width:15vw;position:absolute;mix-blend-mode: screen;filter: drop-shadow(10px 10px 2px rgba(97, 185, 255,0.4));">
+				<p style="margin:0;transform:skew(-0.312rad);color:black;right:5px;font-size:15px;position:absolute;">
+					Campaign</p>
 			</div>
-	</a>
- 		
-	<a href="#" onclick="multiplayer();" class="btn-wrapper" style="position: fixed; left: 2%; top: 23%; z-index: 1;">
-			<div class="btn-tail"></div>
-			<div class="btn-body">
-				<p style='font-size: 1rem;'>GALAXY</br><span style='font-size: 0.7rem; margin-left: 5px;'>Interplanetary Operations</span></p>
+
+			<div onclick="multiplayer();"
+				style="mix-blend-mode: screen;pointer-events:initial; background: #2196f3;top:0;left:16vw;height:20px;width:10vw;position:absolute;mix-blend-mode: screen;filter: drop-shadow(10px 10px 2px rgba(97, 185, 255,0.4));">
+				<p style="margin:0;transform:skew(-0.312rad);color:black;right:5px;font-size:15px;position:absolute;">
+					MP</p>
 			</div>
-	</a>
- 		
- 	<a href="#" class="btn-wrapper" style="position: fixed; left: 2%; top: 43%;z-index: 1;">
-			<div class="btn-tail"></div>
-			<div class="btn-body">
-				<p style='font-size: 1rem;' >PLANET α</br><span style='font-size: 0.7rem; margin-left: 5px;'>Resource Extraction</span></p>
+
+			<div
+				style="mix-blend-mode: screen;pointer-events:initial; background: #2196f3;top:0;left:27vw;height:20px;width:10vw;position:absolute;mix-blend-mode: screen;filter: drop-shadow(10px 10px 2px rgba(97, 185, 255,0.4));">
+				<p style="margin:0;transform:skew(-0.312rad);color:black;right:5px;font-size:15px;position:absolute;">
+					Resource</p>
 			</div>
-	</a>
- 		
- 	<a href="#" class="btn-wrapper" style="position: fixed; left: 2%; top: 63%;z-index: 1;">
-			<div class="btn-tail"></div>
-			<div class="btn-body">
-				<p style='font-size: 1rem;' >RESEARCH</br><span style='font-size: 0.7rem; margin-left: 5px;'>Resource Extraction II</span></p>
+
+			<div
+				style="mix-blend-mode: screen;pointer-events:initial; background: #2196f3;top:0;left:38vw;height:20px;width:10vw;position:absolute;mix-blend-mode: screen;filter: drop-shadow(10px 10px 2px rgba(97, 185, 255,0.4));">
+				<p style="margin:0;transform:skew(-0.312rad);color:black;right:5px;font-size:15px;position:absolute;">
+					Research</p>
 			</div>
-	</a>
- 		
- 	<a href="#" class="btn-wrapper" onclick="settings();" style="position: fixed; left: 2%; top: 83%;z-index: 1;">
-			<div class="btn-tail"></div>
-			<div class="btn-body">
-				<p style='font-size: 1rem;'>SETTINGS</br><span style='font-size: 0.7rem; margin-left: 5px;'>Local Terminal Setup</span></p>
+
+			<div onclick="settings();"
+				style="mix-blend-mode: screen;pointer-events:initial; background: #2196f3;top:0;left:49vw;height:20px;width:10vw;position:absolute;mix-blend-mode: screen;filter: drop-shadow(10px 10px 2px rgba(97, 185, 255,0.4));">
+				<p style="margin:0;transform:skew(-0.312rad);color:black;right:5px;font-size:15px;position:absolute;">
+					Terminal</p>
 			</div>
-	</a>
- 		
- 	<img src="assets/leftmenuCircuit.png" style="z-index: 0; left: 1%; top: 0%; height: 100%; position: fixed;">
-		
-	<div class="lobbyContainer" id="lobbyContainer">
-			<div class="lobbyContent" id="lobbyContent"><h1 style="cursor: default;position: absolute; color: white; top: 0%; left: 9%; font-family: JuneBug2;">Lobby</h1>
-				<div id="hostGem" class="lobbyCTLBTN tooltip" style="left:75%; top:2%;cursor: pointer;"  onclick="inputGrabber(&#39;Operation Manuscript&#39;,&#39;Propose an Operation&#39;,&#39;All Welcome&#39;,&#39;chatProposeBtl&#39;);this.visibility=hidden;"><span style="font-size:1.2vh; pointer-events: none; position:relative; top:13%; left:10%;">Operation</span><span style="font-size:2.2vh; pointer-events: none; position:relative; top:11%; left:10%;"></br> Manuscript</span><span class="tooltiptext">Host a game</span>
+
+		</div>
+
+
+		<img src="assets/leftmenuCircuit.png" style="z-index: 0; left: 1%; top: 0%; height: 100%; position: fixed;">
+
+		<div class="lobbyContainer" id="lobbyContainer">
+			<img id="lobbyBg" src='assets/01warlord_bg.jpeg'
+				style="width:110%;height:110%;top:-5%;left:-5%;position:absolute;">
+			<img src="assets/chatCircuit.png"
+				style="position: absolute; left: -16%; height:330%; width:40%; top: -38%;">
+			<div class="panel" id="panel"
+				style="position:absolute;width:50%;height:90%;left:1%;top:5%;background:rgba(20,20,20,0.4)">
+				<h1 style="cursor: default;position: absolute; color: white; top: 0%; left: 9%; font-family: JuneBug2;">
+					Lobby</h1>
+				<div id="hostGem" class="lobbyCTLBTN"
+					onmouseover='pushToolTip("Press this [button] to [host] a new game.")'
+					style="left:75%; top:2%;cursor: pointer;"
+					onclick="inputGrabber(&#39;Operation Manuscript&#39;,&#39;Propose an Operation&#39;,&#39;All Welcome&#39;,&#39;chatProposeBtl&#39;);this.visibility=hidden;">
+					<span
+						style="font-size:1.2vh; pointer-events: none; position:relative; top:13%; left:10%;">Operation</span><span
+						style="font-size:2.2vh; pointer-events: none; position:relative; top:11%; left:10%;"></br>
+						Manuscript</span>
 				</div>
-				<p style="cursor: default;color: white; font-family: JuneBug3; position: absolute; top: 6%;">What's happening around the galaxy</p>
-				
-				<ul id="gameEntry" class="limitingframe" style="padding:6%;left:-2%;top: 5%; position:absolute; width:87%;  overflow:auto; overflow-x: hidden; height:80%;" >
-			<!--game entry to be inserted-->
+				<p style="cursor: default;color: white; font-family: JuneBug3; position: absolute; top: 6%;">What's
+					happening around the galaxy</p>
+
+				<ul id="gameEntry" class="limitingframe"
+					style="padding:6%;left:-2%;top: 5%; position:absolute; width:87%;  overflow:auto; overflow-x: hidden; height:80%;">
+					<!--game entry to be inserted-->
 				</ul>
 			</div>
-			<div class="lobbyContent" id="prebattle" style="visibility: hidden;overflow:hidden;">
+			<div class="panel" id="prebattle"
+				style="visibility: hidden;overflow:hidden;position:absolute;width:50%;height:90%;left:1%;top:5%;background:rgba(20,20,20,0.4)">
 
-				<div id="gameHeader" style="z-index:2;filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6));cursor: default;text-transform: uppercase; position: absolute; background:rgba(255,255,255,0.7); color: black; top: 2%;  mix-blend-mode: screen;font-size:1vh;height:6%;width:30%;overflow:hidden;font-family:JuneBug5"> 
+				<div id="gameHeader"
+					style="z-index:2;filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6));cursor: default;text-transform: uppercase; position: absolute; background:rgba(255,255,255,0.7); color: black; top: 2%;  mix-blend-mode: screen;font-size:1vh;height:6%;width:30%;overflow:hidden;font-family:JuneBug5">
 					<p style="font-size:1vh;position:absolute;top:-10%;left:5%;">Operation</p>
-					<p id="pregameTitle" style="font-size:3vh;position:absolute;top:-34%;left:13%;font-weight:900;word-wrap:break-word">gfvhb</p>
-					<p style="font-size:2vh;position:absolute;top:-0.5vh;left:1vh;;font-weight:900;word-wrap:break-word">❱</p>
+					<p id="pregameTitle"
+						style="font-size:3vh;position:absolute;top:-34%;left:13%;font-weight:900;word-wrap:break-word">
+						gfvhb</p>
+					<p
+						style="font-size:2vh;position:absolute;top:-0.5vh;left:1vh;;font-weight:900;word-wrap:break-word">
+						❱</p>
 					<p id="pregameMap" style="position:absolute;top:60%;left:5%;">Comet Catcher Redux</p>
-					<div id='headerUpdate' class='headerUpdate' style='position:relative;left:-100%;top:-100%;background: rgba(255,255,255,1);border-radius: 50%;width: 0%;height: 0%;'></div>
+					<div id='headerUpdate' class='headerUpdate'
+						style='position:relative;left:-100%;top:-100%;background: rgba(255,255,255,1);border-radius: 50%;width: 0%;height: 0%;'>
+					</div>
 				</div>
-			
-				<div id="exitGem" class="lobbyCTLBTN" style="left:75%; top:2%;" onclick="preBtlExitGem(159)"><span style="cursor: pointer;font-size:1.2vh; pointer-events: none; position:relative; top:13%; left:10%;">Operation</span><span style="font-size:2.2vh; pointer-events: none; position:relative; top:11%; left:10%;"></br> Conclude</span>
+
+				<div id="exitGem" class="lobbyCTLBTN" style="left:75%; top:2%;" onclick="preBtlExitGem(159)"><span
+						style="cursor: pointer;font-size:1.2vh; pointer-events: none; position:relative; top:13%; left:10%;">Operation</span><span
+						style="font-size:2.2vh; pointer-events: none; position:relative; top:11%; left:10%;"></br>
+						Conclude</span>
 				</div>
-				
-				<div id="startGem" class="lobbyCTLBTN" style="left:51%; top:2%;" onclick="preBtlStartGem(159)"><span style="cursor: pointer;font-size:1.2vh; pointer-events: none; position:relative; top:13%; left:10%;">Operation</span><span style="font-size:2.2vh; pointer-events: none; position:relative; top:11%; left:10%;"></br> Start</span>
+
+				<div id="startGem" class="lobbyCTLBTN" style="left:51%; top:2%;" onclick="preBtlStartGem(159)"><span
+						style="cursor: pointer;font-size:1.2vh; pointer-events: none; position:relative; top:13%; left:10%;">Operation</span><span
+						style="font-size:2.2vh; pointer-events: none; position:relative; top:11%; left:10%;"></br>
+						Start</span>
 				</div>
-				
-				<img style="left:-15%; width:75%;height:40%;position:absolute;top:70%; opacity:0.1;" src="assets/thea.png">
-				
-				<input id="hostSays" style="width:30%; cursor: default;color: white;font-family: JuneBug3; position: absolute; top: 8%;border-width:0px;border:none;outline:none;background:rgba(255,255,255,0);" onchange="chatNotesSubmit()" value="Operation Notes">
-				
-				<div id="gameProgress" style="filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6));position:absolute;top:5.1vw;height:2vw;width:2vw;visibility:hidden;">
-					<div style="position:absolute;background:rgba(255,255,255,0.8);width:19vw;height:1.7vw;top:1.3vw;left:1.6vw;"></div>
+
+				<img style="left:-15%; width:75%;height:40%;position:absolute;top:70%; opacity:0.1;"
+					src="assets/thea.png">
+
+				<input id="hostSays"
+					style="width:30%; cursor: default;color: white;font-family: JuneBug3; position: absolute; top: 8%;border-width:0px;border:none;outline:none;background:rgba(255,255,255,0);"
+					onchange="chatNotesSubmit()" value="Operation Notes">
+
+				<div id="gameProgress"
+					style="filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6));position:absolute;top:5.1vw;height:2vw;width:2vw;visibility:hidden;">
+					<div
+						style="position:absolute;background:rgba(255,255,255,0.8);width:19vw;height:1.7vw;top:1.3vw;left:1.6vw;">
+					</div>
 					<div style="position:absolute;background:rgba(255,255,255,0.2);width:15vw;height:3vw;"></div>
-					<img src="assets/rotat.png" class="spinningIcon" style="position:absolute;width:1.6vw;"><span style="color:white;font-weight:800;top:0.4vw;left:0.46vw;position:absolute;">A</span><span style="left:1.8vw;position:absolute;width:20vw;color:white;font-size:1vw;font-weight:600;">Operation in progress</span>
-					<div class='killGem' onclick='chatExitGem()' style="left:6.7vw;position:absolute;width:8.3vw;color:white;font-size:1vw;font-weight:600;background:rgba(255,0,0,0.8);">Terminate <span style="" class="cursorFlash">_</span></div>
-					
-					<span style="position:absolute;width:200vw;top:1.7vw;left:1.8vw;font-size:0.8vw;">Click Operation Start to attempt rejoining.</span>
-					
+					<img src="assets/rotat.png" class="spinningIcon" style="position:absolute;width:1.6vw;"><span
+						style="color:white;font-weight:800;top:0.4vw;left:0.46vw;position:absolute;">A</span><span
+						style="left:1.8vw;position:absolute;width:20vw;color:white;font-size:1vw;font-weight:600;">Operation
+						in progress</span>
+					<div class='killGem' onclick='chatExitGem()'
+						style="left:6.7vw;position:absolute;width:8.3vw;color:white;font-size:1vw;font-weight:600;background:rgba(255,0,0,0.8);">
+						Terminate <span style="" class="cursorFlash">_</span></div>
+
+					<span style="position:absolute;width:200vw;top:1.7vw;left:1.8vw;font-size:0.8vw;">Click Operation
+						Start to attempt rejoining.</span>
+
 				</div>
-				<div  id="mapTitle" style="top:10vw;position:absolute;height:20vw;width:35vw;">
-					<div id="mapList" class="mapListActive" onclick="preBtlToggListMap()" style="position:absolute;top:0;z-index:6;will-change: opacity;">
-						<h1 style="top:0.8vw;color:black;position:absolute;left:4vw;bottom:0vw;margin:0vw;font-size:1.9vw;">Maps</h1>
+				<div id="mapTitle" style="top:10vw;position:absolute;height:20vw;width:35vw;">
+					<div id="mapList" class="mapListActive" onclick="preBtlToggListMap()"
+						style="position:absolute;top:0;z-index:6;will-change: opacity;">
+						<h1
+							style="top:0.8vw;color:black;position:absolute;left:4vw;bottom:0vw;margin:0vw;font-size:1.9vw;">
+							Maps</h1>
 						<img src="assets/checks.png" style="position:absolute;width:5vw;left:-1vw;top:-0.3vw;">
 					</div>
-				
-					<div id="moreMap" class="moreMap" onclick="preBtlToggMoreMap()" style="top:0;position:absolute;left:13vw;z-index:6;" >
-						<h1  style="color:black;position:absolute;left:2vw;bottom:0vw;margin:0vw;font-size:1.9vw;">Intl Archive</h1>
+
+					<div id="moreMap" class="moreMap" onclick="preBtlToggMoreMap()"
+						style="top:0;position:absolute;left:13vw;z-index:6;">
+						<h1 style="color:black;position:absolute;left:2vw;bottom:0vw;margin:0vw;font-size:1.9vw;">Intl
+							Archive</h1>
 					</div>
-				
-					<div  class="mapType" onclick="inputGrabber('Maps','Select an arbitrary map','comet catcher redux','chatSelectCustomMap')" id="mapType" style="top:0;position:absolute;left:32vw;"></div>
-					
+
+					<div class="mapType"
+						onclick="inputGrabber('Maps','Select an arbitrary map','comet catcher redux','chatSelectCustomMap')"
+						id="mapType" style="top:0;position:absolute;left:32vw;"></div>
+
 					<div id="mapListView" style="overflow:hidden;position:absolute;top:4vw;width:100%;height:15vw;">
-						<div class="slidingMenu" style="overflow: visible; width:10vw;height:120%;top:0;"><div style="filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6)); overflow: hidden;" id='mapLabel1Btn' class="slidingMenuSub1"><span id="mapLabel1" style=" font-family: JuneBug2; position:absolute; top:40%;left:25%;">Unknown</span></div><div style="filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6)); overflow: hidden; " id='mapLabel2Btn' class="slidingMenuSub2"><span id="mapLabel2" style="font-family: JuneBug2; position:absolute; top:40%;left:25%;">Unknown</span></div><div class="slidingMenuSub3" id='mapLabel3Btn' style="overflow: hidden; filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6));"><span id="mapLabel3" style="font-family: JuneBug2; position:absolute; top:40%;left:25%;">Unknown</span></div><div id='mapLabel4Btn' style="filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6)); overflow: hidden;" class="slidingMenuSub4"><span id="mapLabel4" style="font-family: JuneBug2; position:absolute; top:40%;left:25%;">Unknown</span></div><div style="filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6)); overflow: hidden;" class="slidingMenuSub5" id='mapLabel5Btn'><span id="mapLabel5" style="font-family: JuneBug2; position:absolute; top:40%;left:25%;">Unknown</span></div>
+						<div class="slidingMenu" style="overflow: visible; width:10vw;height:120%;top:0;">
+							<div style="filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6)); overflow: hidden;"
+								id='mapLabel1Btn' class="slidingMenuSub1"><span id="mapLabel1"
+									style=" font-family: JuneBug2; position:absolute; top:40%;left:25%;">Unknown</span>
+							</div>
+							<div style="filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6)); overflow: hidden; "
+								id='mapLabel2Btn' class="slidingMenuSub2"><span id="mapLabel2"
+									style="font-family: JuneBug2; position:absolute; top:40%;left:25%;">Unknown</span>
+							</div>
+							<div class="slidingMenuSub3" id='mapLabel3Btn'
+								style="overflow: hidden; filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6));">
+								<span id="mapLabel3"
+									style="font-family: JuneBug2; position:absolute; top:40%;left:25%;">Unknown</span>
+							</div>
+							<div id='mapLabel4Btn'
+								style="filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6)); overflow: hidden;"
+								class="slidingMenuSub4"><span id="mapLabel4"
+									style="font-family: JuneBug2; position:absolute; top:40%;left:25%;">Unknown</span>
+							</div>
+							<div style="filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6)); overflow: hidden;"
+								class="slidingMenuSub5" id='mapLabel5Btn'><span id="mapLabel5"
+									style="font-family: JuneBug2; position:absolute; top:40%;left:25%;">Unknown</span>
+							</div>
 						</div>
 					</div>
-					<div style="overflow:visible;position:absolute;top:4vw;width:100%;height:13vw;color:white;" class="mapBrwsViewOff" id="mapBrwsView">
-							<div style="position:absolute;height:100%;width:100%;">
-								
-								<div id="minimapIMG" style="left:2vw; position:absolute;height:12vw;width:12vw;overflow:hidden;"><img  src="assets/minimapSample.png" style="position:absolute;height:100%;width:200%;"></div>
-								<p id='brwsName' class='brwsName' style="top:9vw; position:absolute;color:white;background:rgba(100,100,100,0.2);width:8vw;backdrop-filter: blur(6px);padding:0.4vw;">Comet Catcher Redux</p>
-								<p id='brwsRandInfo' class='brwsRandInfo' style="top:7.5vw;position:absolute;color:white;font-family:JuneBug2;">MAP_0xFFF</p>
-							</div>
-							<div class="mapPile" id='mapPile' style="position:absolute;top:0vw;left:16vw;height:100%;width:20vw;perspective:400px;overflow-y:auto;overflow-x:hidden;">
-								
-								
+					<div style="overflow:visible;position:absolute;top:4vw;width:100%;height:13vw;color:white;"
+						class="mapBrwsViewOff" id="mapBrwsView">
+						<div style="position:absolute;height:100%;width:100%;">
 
-						</div>    
+							<div id="minimapIMG"
+								style="left:2vw; position:absolute;height:12vw;width:12vw;overflow:hidden;"><img
+									src="assets/minimapSample.png" style="position:absolute;height:100%;width:200%;">
+							</div>
+							<p id='brwsName' class='brwsName'
+								style="top:9vw; position:absolute;color:white;background:rgba(100,100,100,0.2);width:8vw;backdrop-filter: blur(6px);padding:0.4vw;">
+								Comet Catcher Redux</p>
+							<p id='brwsRandInfo' class='brwsRandInfo'
+								style="top:7.5vw;position:absolute;color:white;font-family:JuneBug2;">MAP_0xFFF</p>
+						</div>
+						<div class="mapPile" id='mapPile'
+							style="position:absolute;top:0vw;left:16vw;height:100%;width:20vw;perspective:400px;overflow-y:auto;overflow-x:hidden;">
+
+
+
+						</div>
 					</div>
-				
+
 				</div>
-				
-				<div id="pregameInfo" style=" overflow:auto; overflow-x: hidden; position:absolute; width:36vw; height:32vw; top:27vw;" class="limitingframe">
-				
-				<!--to be inserted by js-->
-					
-					
-					
+
+				<div id="pregameInfo"
+					style=" overflow:auto; overflow-x: hidden; position:absolute; width:36vw; height:32vw; top:27vw;"
+					class="limitingframe">
+
+					<!--to be inserted by js-->
 				</div>
 			</div>
-			<div class="chatContainer" id="chatContainer">
-				<div id="chatList" class="chatList" align="right" style="z-index:4 ;position:absolute;top:48%; left:61%; width: 4%; overflow: visible; ">
+
+			<div class="panel" id="chatContainer"
+				style="position:absolute;width:43%;height:50%;top:45%;left:55%;overflow: visible;">
+				
+
+				<div id="chatFrames" class="" style="position:absolute;width:100%;height:100%;top:0%;left:0%;"></div>
+				<!--chat join calls chatAdd upon the successful join of a chat. chat add does not trigger the actual chatjoin event!!!-->
+
+				<div id="chatList" class="chatList" align="right"
+				style="position:absolute;top:0%; left:-7%; width: 10%; overflow: visible; ">
 				<!--to be inserted by js-->
 				</div>
- 			
-				<div id="chatAdd" class="Add tooltip" onclick="inputGrabber(&#39;Join a chat&#39;,&#39;logoandCompanySlogen&#39;,&#39;comName&#39;,&#39;chatJoin&#39;)" style="font-size: 1.2vw; position: absolute; top:47.7%; left:66%;z-index:3;  cursor: pointer;"> █ <span class="tooltiptext">Join a new chat</span> </div>
-				<div id="chatFrames" style="position:absolute;width:35%;height:51%;top:45%;left:64%;"></div>
- 			<!--chat join calls chatAdd upon the successful join of a chat. chat add does not trigger the actual chatjoin event!!!-->
+
+				<div id="chatAdd" class="Add" onmouseover='pushToolTip("[Press] this button to [join] a new [chat]")'
+					onclick="inputGrabber(&#39;Join a chat&#39;,&#39;logoandCompanySlogen&#39;,&#39;comName&#39;,&#39;chatJoin&#39;)"
+					style="cursor: default;position: absolute; top: 1%; right: 1%;font-family: JuneBug2;font-size:30px;border:0;margin:0;">
+					█
+				</div>
 			</div>
-			<div class="infopanel" id="infopanel" style="left: 60%; position: absolute; top:10%; width:60%;height:33%">
-				<img src="assets/chatCircuit.png" style="position: absolute; left: -16%; height:330%; width:40%; top: -38%;">
-				<div id='freundFrames' style='top:-10%; overflow:visible; position: relative; width:65%;height:120%; display:inline-block;'>
-					<div class="friendFrame " id="friendFramemain" style="position:absolute,top:0;left:0;height:100%;width:100%;visibility=''">
-						<h1 style="cursor: default;display:inline-block; position: absolute; color: white; top: -15%; left: -3%;font-family: JuneBug2;">█ </h1><h1 style="cursor: default;display:inline-block; position: absolute; color: white; top: -15%; left: 1%;font-family: JuneBug2;">Freunds _</h1>
-						<div class="friendlimitingFrame" id="friendlimitingFramemain" style="top:3%; overflow:auto; position: relative; width:92%;height:91%; display:inline-block; right: -6.3%;"></div>
+			<div class="infopanel" id="infopanel" style="left: 55%; position: absolute; top:10%; width:43%;height:33%">
+
+				<div class="friendFrame " id="friendFramemain"
+					style="position:absolute,top:0;left:0;height:100%;width:100%;visibility=''">
+					<h1
+						style="cursor: default;display:inline-block; position: absolute; color: white; top: -15%; left: -3%;font-family: JuneBug2;">
+						█ </h1>
+					<h1
+						style="cursor: default;display:inline-block; position: absolute; color: white; top: -15%; left: 1%;font-family: JuneBug2;">
+						Freunds _</h1>
+					<div class="friendlimitingFrame" id="friendlimitingFramemain"
+						style="top:3%; overflow:auto; position: relative; width:92%;height:91%; display:inline-block; right: -6.3%;">
 					</div>
 				</div>
+
 			</div>
- 	</div>
- 		
-	<div class="settings" id="settings" style="visibility: hidden; position: fixed; width: 100%; height: 90%; top: 10%;">
-			<h1  style="position: absolute; color: white; top: 6%; left: 17%; font-family: JuneBug2;">Settings</h1>
-			<p  style="color: white; font-family: JuneBug3; position: absolute; top: 12%;left:17%;">localhost~# <span class="cursorFlash">_</span></p>
-			<div  class="settingContent" id="settingContent" style="position:absolute; color: white; top: 16%; left: 17%;">
-				<p id="volMenuEntry" class="settingSubContent" onclick="volumeEntry()" >Volume</p>
+		</div>
+
+		<div class="settings" id="settings"
+			style="visibility: hidden; position: fixed; width: 100%; height: 90%; top: 10%;">
+			<h1 style="position: absolute; color: white; top: 6%; left: 17%; font-family: JuneBug2;">Settings</h1>
+			<p style="color: white; font-family: JuneBug3; position: absolute; top: 12%;left:17%;">localhost~# <span
+					class="cursorFlash">_</span></p>
+			<div class="settingContent" id="settingContent"
+				style="position:absolute; color: white; top: 16%; left: 17%;">
+				<p id="volMenuEntry" class="settingSubContent" onclick="volumeEntry()">Volume</p>
 				<p id="volFIEntry" class="settingSubContent" onclick="FIEntry()">File Integrity</p>
 				<p id="mapEntry" class="settingSubContent" onclick="settingsMapEntry()">Maps</p>
 				<p id='performanceEntry' class="settingSubContent" onclick="performanceEntry()">Performance Settings</p>
@@ -282,107 +384,563 @@
 				<p class="settingSubContent">Import Configs</p>
 				<p class="settingSubContent">Debugging</p>
 			</div>
-			
-			<div class="panel" id="Volpanel" style="top:10%;left:30%;height:88%;width:69%;padding:1%;visibility:hidden;">	
+
+			<div class="panel" id="Volpanel"
+				style="top:10%;left:30%;height:88%;width:69%;padding:1%;visibility:hidden;">
 				<img style="position:absolute;opacity:0.1;top:-5%;left:70%;width:40%;" src='assets/auth2.png'>
 				<img style="position:absolute;opacity:0.04;top:80%;width:40%;" src='assets/thea_auth.png'>
-				<div style="position:absolute; font-family:JuneBug3; color:white;width:40%;opacity:0.3;left:60%;top:80%;">Change the ambience of the terminal. Move the histogram to adjust. &lt;DONE&gt; to save.</div>
-				<div style="position:absolute;opacity:0.08;top:40%;width:40%;height:40%;"><span style="background:white;color:black;font-size:2rem;font-family:JuneBug">TRANSFECTION RATE:</br></span><span style="color:white;font-size:16rem;" id="volSettingDigit">20%</span></div>
+				<div
+					style="position:absolute; font-family:JuneBug3; color:white;width:40%;opacity:0.3;left:60%;top:80%;">
+					Change the ambience of the terminal. Move the histogram to adjust. &lt;DONE&gt; to save.</div>
+				<div style="position:absolute;opacity:0.08;top:40%;width:40%;height:40%;"><span
+						style="background:white;color:black;font-size:2rem;font-family:JuneBug">TRANSFECTION
+						RATE:</br></span><span style="color:white;font-size:16rem;" id="volSettingDigit">20%</span>
+				</div>
 				<h1 style="position: absolute; color: white;">Volume</h1>
 				<br><br><br><br>
-				<p style="cursor: default;color:white;" >Lobby Ambiance Volume</p>
-				<input class="Bar" style="cursor: pointer;position:absolute;" oninput="setVolume(this.value)" id='volAmbSlider' type="range"/></br>
+				<p style="cursor: default;color:white;">Lobby Ambiance Volume</p>
+				<input class="Bar" style="cursor: pointer;position:absolute;" oninput="setVolume(this.value)"
+					id='volAmbSlider' type="range" /></br>
 				<p style="cursor: default;color:white;">Lobby FX Volume</p>
-				<input class="Bar" style="cursor: pointer;position:absolute;" oninput="setFXVolume(this.value)" id='volFXSlider' type="range"/></br>
+				<input class="Bar" style="cursor: pointer;position:absolute;" oninput="setFXVolume(this.value)"
+					id='volFXSlider' type="range" /></br>
 				<p style="cursor: default;color:white;">Lobby Notif Volume</p>
-				<input class="Bar" style="cursor: pointer;position:absolute;" oninput="setNotifVolume(this.value)" id='volNotifSlider' type="range"/></br>
+				<input class="Bar" style="cursor: pointer;position:absolute;" oninput="setNotifVolume(this.value)"
+					id='volNotifSlider' type="range" /></br>
 				<p style="cursor: default;color:white;">Combat Ambiance Volume</p>
-				<input class="Bar" style="cursor: pointer;position:absolute;" type="range"/></br>
+				<input class="Bar" style="cursor: pointer;position:absolute;" type="range" /></br>
 				<p style="cursor: default;color:white;">Combat Units Volume</p>
-				<input  class="Bar" style="cursor: pointer;position:absolute;" type="range"/></br>
-				<span class="flashit pure-button fuller-button blue" style="left:0%;cursor: pointer;position:absolute; top:90%;color:white;padding:0.5%;font-weight: bold;" id="volumeDone"  onclick="VolumeDone()">DONE</span>
+				<input class="Bar" style="cursor: pointer;position:absolute;" type="range" /></br>
+				<span class="flashit pure-button fuller-button blue"
+					style="left:0%;cursor: pointer;position:absolute; top:90%;color:white;padding:0.5%;font-weight: bold;"
+					id="volumeDone" onclick="VolumeDone()">DONE</span>
 			</div>
-			
-			<div class="panel" id="FIpanel" style="top:10%;left:30%;height:88%;width:69%;padding:1%;visibility:hidden;">	
+
+			<div class="panel" id="FIpanel" style="top:10%;left:30%;height:88%;width:69%;padding:1%;visibility:hidden;">
 				<img style="position:absolute;opacity:0.1;top:-5%;left:70%;width:40%;" src='assets/auth2.png'>
 				<img style="position:absolute;opacity:0.04;top:80%;width:40%;" src='assets/thea_auth.png'>
-				<div style="position:absolute; font-family:JuneBug3; color:white;width:40%;opacity:0.3;left:60%;top:80%;">Checks the integrity of your local system. A 100% percentage indicates all components are functioning; while a 0% means your system is failing. Click on &lt;Launch Check&gt; to check, &lt;done&gt; to close this terminal. </div>
-				<div style="position:absolute;opacity:0.2;top:40%;width:40%;height:40%;"><span style="background:white;color:black;font-size:2rem;font-family:JuneBug">SYSTEM INTEGRITY:</br></span><span style="color:white;font-size:16rem;" id="fiSettingDigit">20%</span></div>
+				<div
+					style="position:absolute; font-family:JuneBug3; color:white;width:40%;opacity:0.3;left:60%;top:80%;">
+					Checks the integrity of your local system. A 100% percentage indicates all components are
+					functioning; while a 0% means your system is failing. Click on &lt;Launch Check&gt; to check,
+					&lt;done&gt; to close this terminal. </div>
+				<div style="position:absolute;opacity:0.2;top:40%;width:40%;height:40%;"><span
+						style="background:white;color:black;font-size:2rem;font-family:JuneBug">SYSTEM
+						INTEGRITY:</br></span><span style="color:white;font-size:16rem;" id="fiSettingDigit">20%</span>
+				</div>
 				<h1 style="position: absolute; color: white;">Database Integrity</h1>
 				<br><br><br><br><br><br><br>
 				<div id="fiChart" style="opacity:0.5;"></div>
-				<div id="fiTerm" style="display: flex;flex-direction: column-reverse; position:absolute;font-family:JuneBug3;color:white;bottom:13%;height:70%;overflow:auto;width:200%;">64 bytes from localhost (127.0.0.1): icmp_seq=1 ttl=64 time=0.028 ms</br></div>
+				<div id="fiTerm"
+					style="display: flex;flex-direction: column-reverse; position:absolute;font-family:JuneBug3;color:white;bottom:13%;height:70%;overflow:auto;width:200%;">
+					64 bytes from localhost (127.0.0.1): icmp_seq=1 ttl=64 time=0.028 ms</br></div>
 				<span class="cursorFlash" style="position:absolute;bottom:10%;color:white;"> _</span>
-				<span class="flashit pure-button fuller-button red" style="position:absolute; top:10%;color:white;padding:0.5%;font-weight: bold;" id="FIStart"  onclick="fiCheckStart()">Launch Check</span>
-				<span class="flashit pure-button fuller-button blue" style="left:0%;position:absolute; top:90%;color:white;padding:0.5%;font-weight: bold;" id="FIDone"  onclick="fiDone()">DONE</span>
+				<span class="flashit pure-button fuller-button red"
+					style="position:absolute; top:10%;color:white;padding:0.5%;font-weight: bold;" id="FIStart"
+					onclick="fiCheckStart()">Launch Check</span>
+				<span class="flashit pure-button fuller-button blue"
+					style="left:0%;position:absolute; top:90%;color:white;padding:0.5%;font-weight: bold;" id="FIDone"
+					onclick="fiDone()">DONE</span>
 			</div>
-			
-			<div class="panel" id="MapPanel" style="top:10%;left:30%;height:88%;width:69%;padding:1%;visibility:hidden;">	
+
+			<div class="panel" id="MapPanel"
+				style="top:10%;left:30%;height:88%;width:69%;padding:1%;visibility:hidden;">
 				<img style="position:absolute;opacity:0.1;top:-5%;left:70%;width:40%;" src="assets/auth2.png">
 				<img style="position:absolute;opacity:0.04;top:80%;width:40%;" src="assets/thea_auth.png">
-				<div style="position:absolute; font-family:JuneBug3; color:white;width:40%;opacity:0.3;left:60%;top:80%;">You have the choice to delete all maps or the index of all the maps. Deleting maps may reduce the disk consumption while deleting their cache would make the client redownload any corrupted maps. Downloading all map will download 50 GB of files to your local disk using the InterPlanetaryFileSystem™. This may create huge IO load on the client. </div>
-				<div style="position:absolute;opacity:0.2;top:40%;width:100%;height:40%;"><span style="background:white;color:black;font-size:2rem;font-family:JuneBug">Local Maps<br></span><span style="color:white;font-size:16rem;" id="fiSettingDigit">512 TB</span></div>
+				<div
+					style="position:absolute; font-family:JuneBug3; color:white;width:40%;opacity:0.3;left:60%;top:80%;">
+					You have the choice to delete all maps or the index of all the maps. Deleting maps may reduce the
+					disk consumption while deleting their cache would make the client redownload any corrupted maps.
+					Downloading all map will download 50 GB of files to your local disk using the
+					InterPlanetaryFileSystem™. This may create huge IO load on the client. </div>
+				<div style="position:absolute;opacity:0.2;top:40%;width:100%;height:40%;"><span
+						style="background:white;color:black;font-size:2rem;font-family:JuneBug">Local
+						Maps<br></span><span style="color:white;font-size:16rem;" id="fiSettingDigit">512 TB</span>
+				</div>
 				<h1 style="position: absolute; color: white;">MAPS</h1>
-				
-				<span class="flashit pure-button fuller-button red" style="width:9vw;position:absolute; top:20%;color:white;padding:0.5%;font-weight: bold;" id="FIStart" onclick="settingRMMaps()">Delete Maps</span>
-				<span class="flashit pure-button fuller-button red" style="width:9vw;position:absolute; top:10%;color:white;padding:0.5%;font-weight: bold;" id="FIStart" onclick="settingRMMapDict()">Delete Indexer</span>
-				<span class="flashit pure-button fuller-button blue" style="width:9vw;position:absolute; top:30%;color:white;padding:0.5%;font-weight: bold;" id="FIStart" onclick="settingDLMaps()">Download All Maps</span>
-	
-				<span class="flashit pure-button fuller-button blue" style="left:0%;position:absolute; top:90%;color:white;padding:0.5%;font-weight: bold;" id="FIDone" onclick="mapDone()">DONE</span>
+
+				<span class="flashit pure-button fuller-button red"
+					style="width:9vw;position:absolute; top:20%;color:white;padding:0.5%;font-weight: bold;"
+					id="FIStart" onclick="settingRMMaps()">Delete Maps</span>
+				<span class="flashit pure-button fuller-button red"
+					style="width:9vw;position:absolute; top:10%;color:white;padding:0.5%;font-weight: bold;"
+					id="FIStart" onclick="settingRMMapDict()">Delete Indexer</span>
+				<span class="flashit pure-button fuller-button blue"
+					style="width:9vw;position:absolute; top:30%;color:white;padding:0.5%;font-weight: bold;"
+					id="FIStart" onclick="settingDLMaps()">Download All Maps</span>
+
+				<span class="flashit pure-button fuller-button blue"
+					style="left:0%;position:absolute; top:90%;color:white;padding:0.5%;font-weight: bold;" id="FIDone"
+					onclick="mapDone()">DONE</span>
 			</div>
-			
-			<div class="panel" id="PerformanceSettingsPanel" style="top:10%;left:30%;height:88%;width:69%;padding:1%;visibility:hidden;">	
+
+			<div class="panel" id="PerformanceSettingsPanel"
+				style="top:10%;left:30%;height:88%;width:69%;padding:1%;visibility:hidden;">
 				<img style="position:absolute;opacity:0.1;top:-5%;left:70%;width:40%;" src="assets/auth2.png">
 				<img style="position:absolute;opacity:0.04;top:80%;width:40%;" src="assets/thea_auth.png">
-				<div style="position:absolute; font-family:JuneBug3; color:white;width:40%;opacity:0.3;left:60%;top:80%;">You can either change the settings or import existing settings from springconfig.cfg</div>
-				<div style="position:absolute;opacity:0.2;top:40%;width:100%;height:40%;"><span style="background:white;color:black;font-size:2rem;font-family:JuneBug">Settings Management<br></span><span style="color:white;font-size:16rem;" id="fiSettingDigit">-\-</span></div>
+				<div
+					style="position:absolute; font-family:JuneBug3; color:white;width:40%;opacity:0.3;left:60%;top:80%;">
+					You can either change the settings or import existing settings from springconfig.cfg</div>
+				<div style="position:absolute;opacity:0.2;top:40%;width:100%;height:40%;"><span
+						style="background:white;color:black;font-size:2rem;font-family:JuneBug">Settings
+						Management<br></span><span style="color:white;font-size:16rem;" id="fiSettingDigit">-\-</span>
+				</div>
 				<h1 style="position: absolute; color: white;">Settings</h1>
-				<span class="flashit pure-button fuller-button red" style="top:12%;position:relative; color:white;padding:0.5%;font-weight: bold;" id="FIStart" onclick="settingRMMaps()">Restore All Deafault Settings</span>
-				<span class="flashit pure-button fuller-button blue" style="top:12%;position:relative; color:white;padding:0.5%;font-weight: bold;" id="FIStart" onclick="settingDLMaps()">Import Settings</span>
-				<span class="flashit pure-button fuller-button blue" style="top:12%;position:relative; color:white;padding:0.5%;font-weight: bold;" id="FIStart" onclick="settingDLMaps()">Toggle Advanced Settings</span>
-				<span class="flashit pure-button fuller-button blue" style="left:0%;position:absolute; top:90%;color:white;padding:0.5%;font-weight: bold;" id="FIDone" onclick="mapDone()">DONE</span>
-				<div id='performanceSettingsContent' style='position:absolute;top:25%;color:white;height:65%;width:90%;left:2%;overflow:auto;'></div>
+				<span class="flashit pure-button fuller-button red"
+					style="top:12%;position:relative; color:white;padding:0.5%;font-weight: bold;" id="FIStart"
+					onclick="settingRMMaps()">Restore All Deafault Settings</span>
+				<span class="flashit pure-button fuller-button blue"
+					style="top:12%;position:relative; color:white;padding:0.5%;font-weight: bold;" id="FIStart"
+					onclick="settingDLMaps()">Import Settings</span>
+				<span class="flashit pure-button fuller-button blue"
+					style="top:12%;position:relative; color:white;padding:0.5%;font-weight: bold;" id="FIStart"
+					onclick="settingDLMaps()">Toggle Advanced Settings</span>
+				<span class="flashit pure-button fuller-button blue"
+					style="left:0%;position:absolute; top:90%;color:white;padding:0.5%;font-weight: bold;" id="FIDone"
+					onclick="mapDone()">DONE</span>
+				<div id='performanceSettingsContent'
+					style='position:absolute;top:25%;color:white;height:65%;width:90%;left:2%;overflow:auto;'></div>
 			</div>
-			
-			
- 	</div>
-</div>  <!--post login closure-->
-
-<script src="lib/preload.js"></script>
-<script src="lib/ultils.js"></script>
-
-<script src="lib/loading.js"></script>
-<script src="lib/smolNotif.js"></script>
-<script src="lib/soundPlayer.js"></script>
-<script src="lib/toolTip.js"></script>
-
-<script src="network/ipcclient.js"></script>
-<script src="lib/unitsync.js"></script>'
-<script src="network/presence.js"></script>
-<script src="lib/bgNN.js"></script>
-<script src="network/network.js"></script>
-<script src="network/autohostnetwork.js"></script>
-<script src="lobbyUIManipulator/preBattlezone.js"></script>
-<script src="lobbyUIManipulator/loginBtn.js"></script>
-<script src="settingUIManipulator/settings.js"></script>
-<script src="lib/notif.js"></script>
-<script  src="lib/noticeGrabber.js"></script>
-<script  src="lobbyUIManipulator/chat.js"></script>
-<script  src="lobbyUIManipulator/freunds.js"></script>
-<script src="network/autohostnetwork.js"></script>
-<script src="lib/Chart.min.js"></script>
-<script src="lib/inputGrabber.js"></script>
-<script src="lib/mainMenuBtn.js"></script>
 
 
-<audio src='assets/generalPurposeAutomatedSolution2196f3.wav'></audio>
-<audio src='assets/lobby_intro.wav'></audio>
-<audio src='assets/loop_generalPurposeAutomatedSolution2196f3.wav'></audio>
-<audio src='assets/loop_lobby_intro.wav'></audio>
-<audio src='assets/loop_title.wav'></audio>
-<audio src='assets/slidingObject.wav'></audio>
-<audio src='assets/title.wav'></audio>
-<audio src='assets/zoomin.wav'></audio>
-<audio src='assets/zoomout.wav'></audio>
+		</div>
+
+		<div class="hologram" id="campaign"
+			style="position:absolute;height:100%;width:100%;perspective: 150px;visibility: hidden;">
+
+			<div id="header"
+				style="position:absolute;top:0%;color:white;margin:0;left:0%;height:6vw;width:12vw;overflow:hidden;z-index:1;opacity:0.7;">
+				<div style="background:white;position:absolute;top:0;width:100%;height:2px;"></div>
+				<p id="prtsLOGO" class=""
+					style="position:absolute;margin:0;top:0.7vw;font-family:JuneBug4;font-weight:900;font-size:2vw;">
+					THEA <span style="font-family:JuneBug3;font-size:0.5vw;">Inc.</span></p>
+				<p id="prtsPharma" class="" style="position:absolute;margin:0;top:3vw;">PHARMACEUTICALS</p>
+
+				<div style="position:absolute;margin:0;font-size:1vw;width:100%;" class=""><span
+						id="prtsOS">Analysis&nbsp;</span><span id="prtsOS1" style="font-weight:900;">OS</span><span
+						id="prtsVer" style="font-size:0.6vw;position:absolute;right:0;top:4px">&nbsp;LTS BUILD
+						V11.04</span></div>
+				<div class="" id="underlinePRTS"
+					style="top:4.5vw;background:white;position:absolute;width:100%;height:2px;"></div>
+			</div>
+
+			<img src="assets/bg.png"
+				style="position:absolute;height:140%;width:140%;transform: rotateX(4.4deg) translateZ(3em);top:-20%;filter: blur(2vw);">
+			<img class='' id="campaignDesktop" src="assets/bg.png"
+				style="position:absolute;height:120%;width:120%;top:-30%;">
+			<div class='' id="campaignTargets" style="position:absolute;height:100%;width:100%;mix-blend-mode:screen;">
+				<div class='os'
+					style="font-family:JuneBug2; left:20%;bottom:35%;position:absolute;transform: rotateX(4.3deg) translateZ(-0.7em);color:white;font-size:0.5vw;">
+					THEA Analysis OS
+
+					<pre id="banner" style="font-size:0.2vw;" class="fig" contenteditable="true">
+
+
+			/$$$$$$ /$$$$$$ /$$$$$$ /$$$$$$ /$$$$$$ /$$$$$$ /$$$$$$ /$$$$$$ /$$$$$$ /$$$$$$ /$$$$$$ /$$$$$$ /$$$$$$ /$$$$$$ /$$$$$$ /$$$$$$ /$$$$$$ /$$$$$$ /$$$$$$ /$$$$$$ /$$$$$$ /$$$$$$ /$$$$$$ /$$$$$$
+			|______/|______/|______/|______/|______/|______/|______/|______/|______/|______/|______/|______/|______/|______/|______/|______/|______/|______/|______/|______/|______/|______/|______/|______/
+																																																			
+																																																			
+																																																			
+																																																			
+																																																			
+																																																			
+		 /$$$$$$$$/  $$                                /$$$$$$$  /$$                                                                                   /$$     /$$                     /$$              
+		|__  $$__/	| $$                               | $$__  $$| $$                                                                                  | $$    |__/                    | $$              
+			| $$   | $$$$$$$   /$$$$$$   /$$$$$$       | $$  \ $$| $$$$$$$   /$$$$$$   /$$$$$$  /$$$$$$/$$$$   /$$$$$$   /$$$$$$$  /$$$$$$  /$$   /$$ /$$$$$$   /$$  /$$$$$$$  /$$$$$$ | $$  /$$$$$$$    
+			| $$   | $$__  $$ /$$__  $$ |____  $$      | $$$$$$$/| $$__  $$ |____  $$ /$$__  $$| $$_  $$_  $$ |____  $$ /$$_____/ /$$__  $$| $$  | $$|_  $$_/  | $$ /$$_____/ |____  $$| $$ /$$_____/    
+			| $$   | $$  \ $$| $$$$$$$$  /$$$$$$$      | $$____/ | $$  \ $$  /$$$$$$$| $$  \__/| $$ \ $$ \ $$  /$$$$$$$| $$      | $$$$$$$$| $$  | $$  | $$    | $$| $$        /$$$$$$$| $$|  $$$$$$     
+			| $$   | $$  | $$| $$_____/ /$$__  $$      | $$      | $$  | $$ /$$__  $$| $$      | $$ | $$ | $$ /$$__  $$| $$      | $$_____/| $$  | $$  | $$ /$$| $$| $$       /$$__  $$| $$ \____  $$    
+			| $$   | $$  | $$|  $$$$$$$|  $$$$$$$      | $$      | $$  | $$|  $$$$$$$| $$      | $$ | $$ | $$|  $$$$$$$|  $$$$$$$|  $$$$$$$|  $$$$$$/  |  $$$$/| $$|  $$$$$$$|  $$$$$$$| $$ /$$$$$$$/    
+			|__/   |__/  |__/ \_______/ \_______/      |__/      |__/  |__/ \_______/|__/      |__/ |__/ |__/ \_______/ \_______/ \_______/ \______/    \___/  |__/ \_______/ \_______/|__/|_______/     
+																																																			
+																																																			
+																																																			
+			/$$$$$$                      /$$                     /$$                  /$$$$$$   /$$$$$$                                                                                                   
+			/$$__  $$                    | $$                    |__/                 /$$__  $$ /$$__  $$                                                                                                  
+			| $$  \ $$ /$$$$$$$   /$$$$$$ | $$ /$$   /$$  /$$$$$$$ /$$  /$$$$$$$      | $$  \ $$| $$  \__/                                                                                                  
+			| $$$$$$$$| $$__  $$ |____  $$| $$| $$  | $$ /$$_____/| $$ /$$_____/      | $$  | $$|  $$$$$$                                                                                                   
+			| $$__  $$| $$  \ $$  /$$$$$$$| $$| $$  | $$|  $$$$$$ | $$|  $$$$$$       | $$  | $$ \____  $$                                                                                                  
+			| $$  | $$| $$  | $$ /$$__  $$| $$| $$  | $$ \____  $$| $$ \____  $$      | $$  | $$ /$$  \ $$                                                                                                  
+			| $$  | $$| $$  | $$|  $$$$$$$| $$|  $$$$$$$ /$$$$$$$/| $$ /$$$$$$$/      |  $$$$$$/|  $$$$$$/                                                                                                  
+			|__/  |__/|__/  |__/ \_______/|__/ \____  $$|_______/ |__/|_______/        \______/  \______/                                                                                                   
+											/$$  | $$                                                                                                                                                    
+											|  $$$$$$/                                                                                                                                                    
+											\______/                                                                                                                                                     
+																																																			
+																																																			
+																																																			
+			/$$$$$$ /$$$$$$ /$$$$$$ /$$$$$$ /$$$$$$ /$$$$$$ /$$$$$$ /$$$$$$ /$$$$$$ /$$$$$$ /$$$$$$ /$$$$$$ /$$$$$$ /$$$$$$ /$$$$$$ /$$$$$$ /$$$$$$ /$$$$$$ /$$$$$$ /$$$$$$ /$$$$$$ /$$$$$$ /$$$$$$ /$$$$$$
+			|______/|______/|______/|______/|______/|______/|______/|______/|______/|______/|______/|______/|______/|______/|______/|______/|______/|______/|______/|______/|______/|______/|______/|______/
+																																																			
+																																																			
+																																																			
+					</pre>
+					Available quantum CPUs: 30/50</br>
+					Available superscalar CPUs: 1024/1024</br>
+					System Entropy (udev/dev/urandom): 100%</br>
+				</div>
+
+				<div style="top:40%;left:30%;position:absolute;width: 4%; height:4%;mix-blend-mode:screen;"
+					onclick="campaignChChapter(1)">
+					<div style="position:absolute;width:20%;height:20%;background:#2196f3;top:10%;left:10%;"></div>
+					<div style="position:absolute;width:50%;height:30%;background:#2196f3;top:30%;left:20%;"></div>
+					<div style="position:absolute;width:40%;height:10%;background:#2196f3;top:60%;left:30%;"></div>
+
+					<div
+						style="position:absolute;background:#2196f3;width:50px;height:20px;top:130%;white-space: nowrap;">
+						<p
+							style="backdrop-filter: blur(2px);position:absolute;background:rgba(0,0,0,0.5);color:white;height:100%;top:-20px;left:3px">
+							Senescence</p>
+					</div>
+					<img style="position:absolute;width: 50%;filter: drop-shadow(5px 5px 2px rgba(255,255,255,0.6));"
+						src="assets/target.png">
+					<img class="disperse"
+						style="position:absolute;filter: drop-shadow(5px 5px 2px rgba(255,255,255,0.6));"
+						src="assets/target.png">
+					<div
+						style="white-space:nowrap;left:50%;position:absolute;padding:3px; padding-right:10px;padding-left:3px;background:white;color:black;position:absolute;font-size:15px;width:80px;height:15px;">
+						Chapter 1 <div class='refresher'
+							style="position:absolute;background:black;top:0px;height:100%;"></div>
+					</div>
+
+				</div>
+
+				<div style="top:70%;left:40%;position:absolute;width: 4%; height:4%;mix-blend-mode:screen;"
+					onclick="campaignChChapter(1)">
+					<div style="position:absolute;width:30%;height:10%;background:#2196f3;top:20%;left:30%;"></div>
+					<div style="position:absolute;width:20%;height:20%;background:#2196f3;top:60%;left:40%;"></div>
+					<div style="position:absolute;width:50%;height:40%;background:#2196f3;top:20%;left:20%;"></div>
+
+					<div
+						style="position:absolute;background:#2196f3;width:50px;height:20px;top:130%;white-space: nowrap;">
+						<p
+							style="background:rgba(0,0,0,0.5); backdrop-filter: blur(2px);position:absolute;color:white;height:100%;top:-20px;left:3px">
+							Ambush</p>
+					</div>
+					<img style="position:absolute;width: 50%;filter: drop-shadow(5px 5px 2px rgba(255,255,255,0.6));"
+						src="assets/target.png">
+					<img class="disperse3"
+						style="position:absolute;filter: drop-shadow(5px 5px 2px rgba(255,255,255,0.6));"
+						src="assets/target.png">
+					<div
+						style="white-space:nowrap;left:50%;position:absolute;padding:3px; padding-right:10px;padding-left:3px;background:white;color:black;position:absolute;font-size:15px;width:80px;height:15px;">
+						Chapter 2 <div class='refresher'
+							style="position:absolute;background:black;top:0px;height:100%;"></div>
+					</div>
+				</div>
+
+				<div style="top:50%;left:60%;position:absolute;width: 4%; height:4%;mix-blend-mode:screen;"
+					onclick="campaignChChapter(1)">
+					<div style="position:absolute;width:20%;height:20%;background:#2196f3;top:30%;left:0%;"></div>
+					<div style="position:absolute;width:40%;height:10%;background:#2196f3;top:10%;left:20%;"></div>
+					<div style="position:absolute;width:50%;height:30%;background:#2196f3;top:20%;left:30%;"></div>
+
+					<div
+						style="position:absolute;background:#2196f3;width:50px;height:20px;top:130%;white-space: nowrap;">
+						<p
+							style="backdrop-filter: blur(2px); background:rgba(0,0,0,0.5);position:absolute;color:white;height:100%;top:-20px;left:3px">
+							Unified Theory</p>
+					</div>
+					<img style="position:absolute;width: 50%;filter: drop-shadow(5px 5px 2px rgba(255,255,255,0.6));"
+						src="assets/target.png">
+					<img class="disperse2"
+						style="position:absolute;filter: drop-shadow(5px 5px 2px rgba(255,255,255,0.6));"
+						src="assets/target.png">
+					<div
+						style="white-space:nowrap;left:50%;position:absolute;padding:3px; padding-right:10px;padding-left:3px;background:white;color:black;position:absolute;font-size:15px;width:80px;height:15px;">
+						Chapter 3 <div class='refresher'
+							style="position:absolute;background:black;top:0px;height:100%;"></div>
+					</div>
+				</div>
+
+				<div style="top:40%;left:80%;position:absolute;width: 4%; height:4%;mix-blend-mode:screen;"
+					onclick="campaignChChapter(1)">
+					<div style="position:absolute;width:10%;height:20%;background:#2196f3;top:10%;left:2%;"></div>
+					<div style="position:absolute;width:30%;height:40%;background:#2196f3;top:20%;left:20%;"></div>
+					<div style="position:absolute;width:20%;height:20%;background:#2196f3;top:30%;left:0%;"></div>
+
+					<div
+						style="position:absolute;background:#2196f3;width:50px;height:20px;top:130%;white-space: nowrap;">
+						<p
+							style="backdrop-filter: blur(2px); background:rgba(0,0,0,0.5);position:absolute;color:white;height:100%;top:-20px;left:3px">
+							Oncogenic Pathway</p>
+					</div>
+					<img style="position:absolute;width: 50%;filter: drop-shadow(5px 5px 2px rgba(255,255,255,0.6));"
+						src="assets/target.png">
+					<img class="disperse3"
+						style="position:absolute;filter: drop-shadow(5px 5px 2px rgba(255,255,255,0.6));"
+						src="assets/target.png">
+					<div
+						style="white-space:nowrap;left:50%;position:absolute;padding:3px; padding-right:10px;padding-left:3px;background:white;color:black;position:absolute;font-size:15px;width:80px;height:15px;">
+						Chapter 4 <div class='refresher'
+							style="position:absolute;background:black;top:0px;height:100%;"></div>
+					</div>
+				</div>
+			</div>
+
+			<div id="detailBox"
+				style="visibility:hidden; position:absolute;top:13vw;left:30vw;width:45vw;height:60vw;z-index:23;">
+				<div id="grabberBG" onclick="" class="grabberBG"
+					style="top:-200%;left:-200%;position:absolute;width:900%;height:900%;background:rgba(0,0,0,0.3);z-index:1;">
+				</div>
+				<img style="position:absolute;left:-30%;top:-3%;width:22vw;z-index:3" src="assets/cancer_3.png">
+				<div id="DETAILTTL" class="ttlReveal"
+					style="left:-5vw;filter: drop-shadow(10px 10px 4px rgba(255,255,255,0.3)); mix-blend-mode: screen; position:absolute;background:white;color:black;height:7vw;width:20vw;z-index:2;font-family:f1;">
+					<p style="position:absolute;top:1vw;left:10vw;">Stage 1,<br> Random StageName</p>
+					<p style="font-weight:900;font-size:2vw;color:rgba(0,0,0,0.07);position:absolute;right:1vw;top:1vw">
+						不 <span style="background:rgba(0,0,0,0.07);color:white">知道</span></p>
+				</div>
+				<div id="DETAILDBY"
+					style="position:absolute;background:rgba(0,0,0,0.5);height:16vw;color:white;width:50vw;top:4vw;z-index:1;">
+					<p style="position:absolute;right:6vw;width:20vw;top:1vw;font-weight:900;font-size:2.2vw;">Random
+						Chapter Title</p>
+					<p class="DETAILTXT"
+						style="height:10vw;overflow:auto;position:absolute;top:5vw;width:30vw;left:10vw;color:rgba(255,255,255,0.8)">
+						Dont really know what to say in the level desc; press the nonexistent botton right now to start
+						the nonexistent level</p>
+				</div>
+				<div class="contentMask"
+					style="position:absolute;background:white;height:16vw;color:white;width:50vw;top:4vw;z-index:4;">
+				</div>
+			</div>
+			<img class='' id="subDesktop1" src="assets/When_the_city_but_FOGG.png"
+				style="visibility:hidden; position:absolute;height:110%;width:110%;top:-10%;">
+			<div class='' id="subTargets1"
+				style="position:absolute;height:100%;width:100%;mix-blend-mode:screen;visibility:hidden;">
+
+				<div style="top:40%;left:30%;position:absolute;width: 4%; height:4%;mix-blend-mode:screen;"
+					onclick="campaignChStage(1)">
+					<div style="position:absolute;width:20%;height:20%;background:#2196f3;top:10%;left:10%;"></div>
+					<div style="position:absolute;width:50%;height:30%;background:#2196f3;top:30%;left:20%;"></div>
+					<div style="position:absolute;width:40%;height:10%;background:#2196f3;top:60%;left:30%;"></div>
+
+					<div
+						style="position:absolute;background:#2196f3;width:50px;height:20px;top:130%;white-space: nowrap;">
+						<p
+							style="backdrop-filter: blur(2px);position:absolute;background:rgba(0,0,0,0.5);color:white;height:100%;top:-20px;left:3px">
+							Senescence</p>
+					</div>
+					<img style="position:absolute;width: 50%;filter: drop-shadow(5px 5px 2px rgba(255,255,255,0.6));"
+						src="assets/target.png">
+					<img class="disperse"
+						style="position:absolute;filter: drop-shadow(5px 5px 2px rgba(255,255,255,0.6));"
+						src="assets/target.png">
+					<div
+						style="white-space:nowrap;left:50%;position:absolute;padding:3px; padding-right:10px;padding-left:3px;background:white;color:black;position:absolute;font-size:15px;width:80px;height:15px;">
+						Mission 1 <div class='refresher'
+							style="position:absolute;background:black;top:0px;height:100%;"></div>
+					</div>
+
+				</div>
+
+				<div style="top:70%;left:40%;position:absolute;width: 4%; height:4%;mix-blend-mode:screen;"
+					onclick="campaignChStage(1)">
+					<div style="position:absolute;width:30%;height:10%;background:#2196f3;top:20%;left:30%;"></div>
+					<div style="position:absolute;width:20%;height:20%;background:#2196f3;top:60%;left:40%;"></div>
+					<div style="position:absolute;width:50%;height:40%;background:#2196f3;top:20%;left:20%;"></div>
+
+					<div
+						style="position:absolute;background:#2196f3;width:50px;height:20px;top:130%;white-space: nowrap;">
+						<p
+							style="background:rgba(0,0,0,0.5); backdrop-filter: blur(2px);position:absolute;color:white;height:100%;top:-20px;left:3px">
+							Ambush</p>
+					</div>
+					<img style="position:absolute;width: 50%;filter: drop-shadow(5px 5px 2px rgba(255,255,255,0.6));"
+						src="assets/target.png">
+					<img class="disperse3"
+						style="position:absolute;filter: drop-shadow(5px 5px 2px rgba(255,255,255,0.6));"
+						src="assets/target.png">
+					<div
+						style="white-space:nowrap;left:50%;position:absolute;padding:3px; padding-right:10px;padding-left:3px;background:white;color:black;position:absolute;font-size:15px;width:80px;height:15px;">
+						Mission 2 <div class='refresher'
+							style="position:absolute;background:black;top:0px;height:100%;"></div>
+					</div>
+				</div>
+
+				<div style="top:50%;left:60%;position:absolute;width: 4%; height:4%;mix-blend-mode:screen;"
+					onclick="campaignChStage(1)">
+					<div style="position:absolute;width:20%;height:20%;background:#2196f3;top:30%;left:0%;"></div>
+					<div style="position:absolute;width:40%;height:10%;background:#2196f3;top:10%;left:20%;"></div>
+					<div style="position:absolute;width:50%;height:30%;background:#2196f3;top:20%;left:30%;"></div>
+
+					<div
+						style="position:absolute;background:#2196f3;width:50px;height:20px;top:130%;white-space: nowrap;">
+						<p
+							style="backdrop-filter: blur(2px); background:rgba(0,0,0,0.5);position:absolute;color:white;height:100%;top:-20px;left:3px">
+							Unified Theory</p>
+					</div>
+					<img style="position:absolute;width: 50%;filter: drop-shadow(5px 5px 2px rgba(255,255,255,0.6));"
+						src="assets/target.png">
+					<img class="disperse2"
+						style="position:absolute;filter: drop-shadow(5px 5px 2px rgba(255,255,255,0.6));"
+						src="assets/target.png">
+					<div
+						style="white-space:nowrap;left:50%;position:absolute;padding:3px; padding-right:10px;padding-left:3px;background:white;color:black;position:absolute;font-size:15px;width:80px;height:15px;">
+						Mission 3 <div class='refresher'
+							style="position:absolute;background:black;top:0px;height:100%;"></div>
+					</div>
+				</div>
+
+				<div style="top:40%;left:80%;position:absolute;width: 4%; height:4%;mix-blend-mode:screen;"
+					onclick="campaignChStage(1)">
+					<div style="position:absolute;width:10%;height:20%;background:#2196f3;top:10%;left:2%;"></div>
+					<div style="position:absolute;width:30%;height:40%;background:#2196f3;top:20%;left:20%;"></div>
+					<div style="position:absolute;width:20%;height:20%;background:#2196f3;top:30%;left:0%;"></div>
+
+					<div
+						style="position:absolute;background:#2196f3;width:50px;height:20px;top:130%;white-space: nowrap;">
+						<p
+							style="backdrop-filter: blur(2px); background:rgba(0,0,0,0.5);position:absolute;color:white;height:100%;top:-20px;left:3px">
+							Oncogenic Pathway</p>
+					</div>
+					<img style="position:absolute;width: 50%;filter: drop-shadow(5px 5px 2px rgba(255,255,255,0.6));"
+						src="assets/target.png">
+					<img class="disperse3"
+						style="position:absolute;filter: drop-shadow(5px 5px 2px rgba(255,255,255,0.6));"
+						src="assets/target.png">
+					<div
+						style="white-space:nowrap;left:50%;position:absolute;padding:3px; padding-right:10px;padding-left:3px;background:white;color:black;position:absolute;font-size:15px;width:80px;height:15px;">
+						Mission 4 <div class='refresher'
+							style="position:absolute;background:black;top:0px;height:100%;"></div>
+					</div>
+				</div>
+
+			</div>
+
+
+
+			<canvas id="canvasLeft"
+				style="pointer-events: none; transform: rotate(90deg); position:absolute;top:0;height:100vw;left: 0vh;width:200vh;"
+				width="1900" height="1870"></canvas>
+			<canvas id="canvasMiddle"
+				style="pointer-events: none; position:absolute;top:0;height:100%;width:100%;left:-50%;" width="1870"
+				height="950"></canvas>
+			<canvas id="canvasRight"
+				style="pointer-events: none; transform: rotate(90deg);position:absolute;top:-90%;height:100vw;width:200vh;left: 100vh;"
+				width="1900" height="1870"></canvas>
+			<div class="particles2" id="particles2" style="pointer-events: none;"></div>
+
+		</div>
+
+
+	</div>
+
+	<div id="visualOverlay">
+		<div class="loading" id="loading"
+			style="position:fixed; height:120%;width:120%;top:-10%;left:-10%;background:rgba(155,155,155,0.1);z-index:100; visibility:hidden;backdrop-filter: blur(10px);">
+			<div
+				style="font-family: JuneBug;background:rgba(0,0,0,0.8);position:fixed; height:25%;left:-20%;width:120%;overflow:visible;top:40%;">
+
+				<img class="theaSelf"
+					style="z-index:5; filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6));"
+					src="assets/thea.png"></img>
+				<img class="theaFrame" style="z-index:5;" src="assets/thea_frame.png"></img>
+				<div style="position:absolute;left:53%; color:white;font-size:2rem;top:50%;font-weight:900; z-index:5;">
+					<span>Submitting Feedbacks to the NeuralNetwork </span><span class="flashyCursor"
+						id="flashy_cursor">_</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="infoDialog" id="infoDialog"
+			style="position:fixed; height:120%;width:120%;top:-10%;left:-10%;background:rgba(155,155,155,0.1);z-index:100; visibility:hidden;backdrop-filter: blur(10px);"
+			onclick="notice(false)">
+			<div
+				style="font-family: JuneBug;background:rgba(0,0,0,0.8);position:fixed; height:25%;left:-20%;width:120%;overflow:visible;top:40%;">
+
+				<img class="theaSelf"
+					style="z-index:5; filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6));"
+					src="assets/thea.png">
+				<img class="theaFrame" style="z-index:5;" src="assets/thea_frame.png">
+				<div style="position:absolute;left:53%; color:white;font-size:2rem;top:20%;font-weight:900; z-index:5;">
+					<span id="infoTitle">&gt; Action Pending </span><span class="flashyCursor"
+						id="flashy_cursor">_</span>
+					<p style="font-size:0.8vw;" class="settingSubContent" onclick="notice(false)">Acknowledge</p>
+					<p style="font-size:0.8vw;" id='noticeCancelBtn' class="settingSubContent">Cancel</p>
+					<p style="font-size:0.8vw;" class="settingSubContent">Help</p>
+				</div>
+				<p
+					style="position:absolute;width:35%;left:50%;color:rgba(255,255,255,0.5);font-weight:800;font-family:sans-serif;font-size:0.6vw;top:25%;height:30%;overflow-y:hidden;">
+					<marquee id='noticeTxt' behavior="scroll" direction="up" scrollamount="1"
+						style="position:absolute;height:100%;width:100%;">reasons for halting reasons for haltingreasons
+						for haltingreasons for haltingreasons for haltingreasons for haltingreasons for haltingreasons
+						for haltingreasons for haltingreasons for haltingreasons for haltingreasons for haltingreasons
+						for haltingreasons for haltingreasons for haltingreasons for halting</marquee>
+
+				</p>
+			</div>
+		</div>
+
+		<div class="smolInfo" id="smolInfo"
+			style="pointer-events: none;position:fixed;right:0;height:95%;width:250px;top:5%;z-index:100;">
+		</div>
+
+		<div class="toolTipWindow" id="toolTipWindow"
+			style=" backdrop-filter: blur(7.2px); pointer-events: none; z-index: 100; left: 1197px; top: 170px; width: 600px; height: 224px; mix-blend-mode: screen;">
+			<div id="actualHelp"
+				style="background: rgba(150, 150, 150, 0.4);height:200px;width:100%;position:absolute;top:24px;filter: drop-shadow(10px 10px 4px rgba(255,255,255,0.5)); overflow: hidden;">
+				<div
+					style="display: inline-block;color:white;transform: skew(-0.312rad);margin:5px;width:10px;height:10px;background:white;margin-bottom:0px;">
+				</div>
+				<p class="helperTxts"
+					style="display: inline-block;color:white;transform: skew(-0.312rad);margin: 2px;font-size: 15px;width:560px;margin-bottom:3px;">
+				</p><br>
+			</div>
+
+			<div class="toolTipMinimize" onclick='minimizeToolTip()'
+				onmouseover='pushToolTip("Press this button to [minimize] the [toolTip] window.")'
+				style="pointer-events:initial;top:0;left:0;height:20px;width:5%;position:absolute;mix-blend-mode:screen;filter: drop-shadow(10px 10px 4px rgba(255,255,255,0.2));">
+			</div>
+
+			<div
+				style="mix-blend-mode: screen;pointer-events:initial; background: #2196f3;top:0;left:5%;height:20px;width:95%;position:absolute;mix-blend-mode: screen;filter: drop-shadow(10px 10px 2px rgba(97, 185, 255,0.4));">
+				<p style="margin:0;transform:skew(-0.312rad);color:black;right:5px;font-size:15px;position:absolute;">
+					Neural UART Console®</p>
+			</div>
+
+		</div>
+
+	</div>
+	<!--post login closure-->
+
+	<script src="lib/preload.js"></script>
+	<script src="lib/ultils.js"></script>
+
+	<script src="lib/loading.js"></script>
+	<script src="lib/smolNotif.js"></script>
+	<script src="lib/soundPlayer.js"></script>
+	<script src="lib/toolTip.js"></script>
+
+	<script src="network/ipcclient.js"></script>
+	<script src="lib/unitsync.js"></script>'
+	<script src="network/presence.js"></script>
+	<script src="lib/bgNN.js"></script>
+	<script src="network/network.js"></script>
+	<script src="network/autohostnetwork.js"></script>
+	<script src="lobbyUIManipulator/preBattlezone.js"></script>
+	<script src="lobbyUIManipulator/loginBtn.js"></script>
+	<script src="settingUIManipulator/settings.js"></script>
+	<script src="lib/notif.js"></script>
+	<script src="lib/noticeGrabber.js"></script>
+	<script src="lobbyUIManipulator/chat.js"></script>
+	<script src="lobbyUIManipulator/freunds.js"></script>
+	<script src="network/autohostnetwork.js"></script>
+	<script src="lib/Chart.min.js"></script>
+	<script src="lib/inputGrabber.js"></script>
+	<script src="lib/mainMenuBtn.js"></script>
+
+	<script src="campaignUIManipulator/campaignFog.js"></script>
+	<script src="campaignUIManipulator/campaignEvent.js"></script>
+
+	<audio src='assets/generalPurposeAutomatedSolution2196f3.wav'></audio>
+	<audio src='assets/lobby_intro.wav'></audio>
+	<audio src='assets/loop_generalPurposeAutomatedSolution2196f3.wav'></audio>
+	<audio src='assets/loop_lobby_intro.wav'></audio>
+	<audio src='assets/loop_title.wav'></audio>
+	<audio src='assets/slidingObject.wav'></audio>
+	<audio src='assets/title.wav'></audio>
+	<audio src='assets/zoomin.wav'></audio>
+	<audio src='assets/zoomout.wav'></audio>
 </body>
+
 </html>

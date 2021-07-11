@@ -24,7 +24,7 @@ window.client.on("AGREEMENT", (agreement) => {
 });
 
 window.client.on("AGREEMENTEND", () => {
-	document.getElementById("loginTerminal").style.visibility = "visible";
+	document.getElementById("loginTerminal").style.visibility = "";
 	document.getElementById("loginTerminal").innerHTML +='<span class="flashit pure-button fuller-button blue" style="position:fixed; top:90%;color:white;padding:0.5%;font-weight: bold;" id="understood"  onclick="window.client.registerConfirm() ">Understood</span><span class="flashit pure-button fuller-button red" style=" position:fixed; left:30%; top:90%;color:white;padding:0.5%;font-weight: bold;" id="understood"  onclick="window.client.registerConfirm() ">Accept</span>'
 																		
 	document.getElementById("loginbox").style.visibility = "hidden";

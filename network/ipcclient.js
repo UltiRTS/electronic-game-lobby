@@ -7,7 +7,7 @@ function ipcCheck(){
 	cmm = current_date.getMinutes()
 	ipcclient.request('ident', cmm, function(data){
 		if (String(data)=='identified|'+2*cmm){pushSmolNotif('Neural Net ',"Successfully connected to the neural network!")}
-		else {notice(true,'Neural Network Missfiring','Challenging the NN with x=2x'+cmm+', but got answer x='+String(data)+'. Without a functioning neural network, the terminal might have impaired cognitive ability and would not be able to communicate with the central server for intl exchange! ')}
+		else {notice(true,'Neural Network Misfiring','Challenging the NN with x=2 * '+cmm+', but got answer x='+String(data)+'; expecting answer '+2*cmm+'. Without a functioning neural network, the terminal might have impaired cognitive ability and would not be able to communicate with the block chain for intl exchange! ')}
 })
 	
 }

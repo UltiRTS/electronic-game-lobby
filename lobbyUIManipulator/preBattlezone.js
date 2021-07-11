@@ -1,7 +1,7 @@
 function lobbyFlush(battleid, type, natType, founder, ip, port, maxPlayer, passworded, rank, mapHesh, engineName, engineVersion, map, title, gameName, channel)
 {
 	//console.log("joined battle"+title)
-	document.getElementById("lobbyContent").style.visibility = "hidden"; //hide lobby page once user goes to prebattle panel
+	document.getElementById("panel").style.visibility = "hidden"; //hide lobby page once user goes to prebattle panel
 	document.getElementById("prebattle").style.visibility = "";
 	document.getElementById("pregameTitle").innerHTML=title;
 	document.getElementById("pregameMap").innerHTML=window.mapDic[battleid].replace(/🦔/g, " ");
@@ -21,7 +21,7 @@ function prebtlUnflush(){
 		window.isExited=true;
 		window.specppl=[]
 		document.getElementById('gameProgress').style.visibility="hidden";
-		document.getElementById("lobbyContent").style.visibility=""
+		document.getElementById("panel").style.visibility=""
 		document.getElementById("prebattle").style.visibility="hidden"
 		removeAllChildNodes('pregameInfo')
 }
@@ -102,7 +102,7 @@ function preBtlToggMoreMap(){
 	for (map in window.minimapCache) {
 		try{
 		_img=window.minimapCache[map]
-		mapPileContent+='<div class="tooltip" onclick="chatVoteMap(\''+map+'\')" onmouseover="preBtlMoreMapBlowUp(\''+map+'\')" onmouseleave="preBtlMoreMapBlowUp()" style="display:inline-block; position:relative;width:2vw;height:2vw;margin:0.2vw;"><img style="position:absolute;width:100%;height:100%;" src="data:image/png;base64,' + _img + '" /><span class="tooltiptext">'+map.replace(/🦔/g, " ")+'</span></div>';
+		mapPileContent+='<div  onclick="chatVoteMap(\''+map+'\')" onmouseover="preBtlMoreMapBlowUp(\''+map+'\');pushToolTip(\'[Mouse over] to [preview map]; [click] to [select map] if you are a host\')" onmouseleave="preBtlMoreMapBlowUp()" style="display:inline-block; position:relative;width:2vw;height:2vw;margin:0.2vw;"><img style="position:absolute;width:100%;height:100%;" src="data:image/png;base64,' + _img + '" /></div>';
 			
 		}
 		catch{

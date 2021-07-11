@@ -117,11 +117,9 @@ function reverseLogin(){
 
 function finalBoxEnlargeLeave() {
 	
-		document.getElementById("loginbox").style.visibility = "hidden";
-		document.getElementById("loginTerminal").style.visibility = "hidden";
+		document.getElementById("preLogin").style.visibility = "hidden";
 		document.getElementById("postLogin").style.visibility = "";
 		document.getElementById("username").innerHTML =window.username
-		document.getElementById("c").style.visibility = "hidden";
 		
 		window.isExited=true;
 		window.client.joinChanel("main")
