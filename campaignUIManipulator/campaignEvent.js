@@ -1,21 +1,33 @@
 function campaignChChapter()
 {
 	document.getElementById('campaignTargets').className="campaignTargetsGone"
-	document.getElementById('subDesktop1').className='subDesktop'
+	rstAnime('subDesktop1')
+	rstAnime('subTargets1')
 	document.getElementById('subDesktop1').style.visibility=''
 	document.getElementById('subTargets1').style.visibility=''
-	document.getElementById('subTargets1').className='subCampaignTargets'
+	
 }
 
 function campaignChStage(){
 	document.getElementById('detailBox').style.visibility=""
+	rstAnime('detailBox')
+}
+
+function campaignUnchStage(){
+	document.getElementById('detailBox').style.visibility="hidden"
+
 }
 
 function campaignLoad(){
-	document.getElementById('campaignDesktop').className='campaignDesktop'
-	document.getElementById('campaignTargets').className='campaignTargets'
+	rstAnime('campaignDesktop')
+	rstAnime('campaignTargets')
 }
 
 function campaignUnload(){
-
+	document.getElementById('detailBox').style.visibility="hidden"
+	document.getElementById('campaignTargets').className="campaignTargets"
+	
+	document.getElementById('subDesktop1').style.visibility='hidden'
+	document.getElementById('subTargets1').style.visibility='hidden'
+	
 }
