@@ -119,8 +119,8 @@ function finalBoxEnlargeLeave() {
 	
 		document.getElementById("preLogin").style.visibility = "hidden";
 		document.getElementById("postLogin").style.visibility = "";
-		document.getElementById("username").innerHTML =window.username
-		
+		document.getElementById("username").innerHTML ='Dr.&nbsp'+window.username
+		document.getElementById("username").style.visibility='';
 		window.isExited=true;
 		window.client.joinChanel("main")
         window.client.joinChanel("bus")

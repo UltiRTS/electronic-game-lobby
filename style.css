@@ -16,6 +16,66 @@ padding:0;
 
 }
 
+
+.mainMenuSubItem{
+	background: #2196f3;
+}
+
+.mainMenuSubItem:hover{
+	background: rgba(33,150,243,0.8);
+}
+
+
+
+
+.grabberGone{
+	opacity:1;
+	width:100%;
+	left:0%;
+	height:30%;
+	top:35%;
+	animation-fill-mode: forwards;
+	animation-name: grabberGone;
+	animation-duration: 0.5s;
+	animation-iteration-count: 1;
+	animation-delay:0s;
+	animation-timing-function: cubic-bezier(0.95, 0, 0.24, 0.88);
+}
+
+@keyframes grabberGone {
+	0%   {left:0%;opacity:1;}
+
+
+	100%   {left:-100%;opacity:0;}
+}
+
+
+
+.grabberArise{	
+	opacity:0;
+	width:100%;
+	left:100%;
+	height:30%;
+	top:35%;
+	animation-fill-mode: forwards;
+	animation-name: grabberArise;
+	animation-duration: 0.5s;
+	animation-iteration-count: 1;
+	animation-delay:0s;
+	animation-timing-function: cubic-bezier(0.95, 0, 0.24, 0.88);
+}
+
+@keyframes grabberArise {
+	0%   {left:100%;opacity:0;}
+	
+
+
+	100%   {left:0%;opacity:1;}
+}
+
+
+
+
 .connect{
 	opacity:0.7;
 	
@@ -685,15 +745,24 @@ background-color: rgba(33,150,243,0.9)
 .userCard{
  overflow: visible;
 mix-blend-mode: screen;
-position: relative; height: 17%; width: 23%;margin:0.1%;heght:20%;display: inline-block;padding:1%;
+position: relative; 
+height: 3.6vw; 
+width: 10vw;
+display:inline-block;
+padding:1%;
 }
 
 .userCard:hover{
 	overflow: visible;
 	mix-blend-mode: screen;
-	position: relative; height: 17%; width: 23%;margin:0.1%;heght:20%;display: inline-block;padding:1%;
+	position: relative; 
+	height: 3.6vw; 
+	width: 10vw;
+	
+	 display: inline-block;
+	 padding:1%;
 	animation-fill-mode: forwards;
-	animation-name: userCardInflate;
+	/*animation-name: userCardInflate;*/
 	animation-duration: 0.7s;
 	animation-iteration-count: 1;
 	animation-delay:0.3s;

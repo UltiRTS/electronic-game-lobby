@@ -64,19 +64,28 @@ window.client.on("LEFT", (CHANAME,user) => {
 	else if (CHANAME!="main"){
 			frdEliminate(CHANAME,user);   //in some other cases its other user leaving the chat, remove them if they are not in main neither, since main chat user is not drawn
 		}
-		if (user==window.window.nowHostedby){   //and if the autohost leaves chat, we assume the game is not running
-			window.gameStatus[window.username]=false
+	if (user==window.nowHostedby){   //eliminates autohost game status
+		window.gameStatus[window.username]=false
+	}
+	if (CHANAME==window.nowinBattle){
+		try{
+		delete window.ppl[user]
 		}
-		if (CHANAME==window.nowinBattle){
-			try{
-			delete window.ppl[user]
-			}
-			catch(err){
-				console.log('trying to remove an user thats never joined!')
-			}
+		catch(err){
+			console.log('trying to remove an user thats never joined!')
+		}
 		
 			
+	}
+
+	if (user==window.username){
+		try{
+		delete window.channelLastAuthor[chanName]
 		}
+		catch(err){
+			console.log('trying to remove an channel hisyory that never existed!')
+		}
+	}
 });
 
 window.client.on("LEFTBATTLE", (bID,user) => {
