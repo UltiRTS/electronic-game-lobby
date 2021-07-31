@@ -40,7 +40,8 @@
 //playFX()
 //window.polls[cmd]   returns {'id':123,'ppl':'xxx fvg rdg'} by querrying their cmd
 //window.totalPpl   total number of ppl in game
-//window.minimapCache={}
+//window.minimapCache={} //new map downloaded with their base64 preview
+//window.allMinimapCache // dont interte over! slow!!!
 //notice(true,'ACCESS DENIED ',reason)
 //window.mapDic[bid]=mapName records maps of each room
 //window.channelLastAuthor[chanName] returns the latest poster of a channel

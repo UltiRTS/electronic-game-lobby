@@ -284,6 +284,7 @@ window.client.on("BATTLECLOSED",(bID) => {
 	
 	if (bID==window.nowinBattle){
 		prebtlUnflush()
+		window.client.leaveChanel(bID);
 	}
 	try{
 	document.getElementById("battleEntry"+bID).parentNode.removeChild(document.getElementById("battleEntry"+bID));}

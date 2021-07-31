@@ -75,7 +75,7 @@ function setVolume(vol){
 
 function settingRMMapDict(){
 	storage.set('mapCache',{})
-	window.minimapCache=storage.get('mapCache')
+	window.allMinimapCache=storage.get('mapCache')
 	notice(runNotice=true,'Cache Deleted','Altered maps will be treated as missing! ')
 }
 

@@ -325,12 +325,12 @@ input[type="range"]::-ms-fill-upper {
 .slidingMenuSub1{
 	mix-blend-mode: screen; 
 	font-size:160%;
-	background-image:url('assets/miniWhiteBtn.png');
-	text-align: center; /* Center text */
+	background-image:url('assets/miniArrowBtn.png');
+	
 	background-repeat: no-repeat; 
 	background-size: 100% 100%;
 	color:black;
-	width:100%;
+	
 	top:0%;
 	height:11.1%;
 	position:absolute;
@@ -355,7 +355,7 @@ input[type="range"]::-ms-fill-upper {
 	}
 	100%{
 		left:0%;
-		background-image:url('assets/miniWhiteBtn.png');
+		background-image:url('assets/miniArrowBtn.png');
 		mix-blend-mode: screen; 
 		color:black;
 		opacity: 0.7;
@@ -367,12 +367,12 @@ input[type="range"]::-ms-fill-upper {
 .slidingMenuSub2{
 	mix-blend-mode: screen; 
 	font-size:160%;
-	background-image:url('assets/miniWhiteBtn.png');
-	text-align: center; /* Center text */
+	background-image:url('assets/miniArrowBtn.png');
+	
 	background-repeat: no-repeat; 
 	background-size: 100% 100%;
 	color:black;
-	width:100%;
+	
 	top:14%;
 	height:11.1%;
 	position:absolute;
@@ -398,7 +398,7 @@ input[type="range"]::-ms-fill-upper {
 	}
 	100%{
 		left:0%;
-		background-image:url('assets/miniWhiteBtn.png');
+		background-image:url('assets/miniArrowBtn.png');
 		mix-blend-mode: screen; 
 		color:black;
 		opacity: 0.7;
@@ -410,12 +410,12 @@ input[type="range"]::-ms-fill-upper {
 .slidingMenuSub3{
 	mix-blend-mode: screen; 
 	font-size:160%;
-	background-image:url('assets/miniWhiteBtn.png');
-	text-align: center; /* Center text */
+	background-image:url('assets/miniArrowBtn.png');
+	
 	background-repeat: no-repeat; 
 	background-size: 100% 100%;
 	color:black;
-	width:100%;
+	
 	top:28%;
 	height:11.1%;
 	position:absolute;
@@ -441,7 +441,7 @@ input[type="range"]::-ms-fill-upper {
 	}
 	100%{
 		left:0%;
-		background-image:url('assets/miniWhiteBtn.png');
+		background-image:url('assets/miniArrowBtn.png');
 		mix-blend-mode: screen; 
 		color:black;
 		opacity: 0.7;
@@ -453,12 +453,12 @@ input[type="range"]::-ms-fill-upper {
 .slidingMenuSub4{
 	mix-blend-mode: screen; 
 	font-size:160%;
-	background-image:url('assets/miniWhiteBtn.png');
-	text-align: center; /* Center text */
+	background-image:url('assets/miniArrowBtn.png');
+	
 	background-repeat: no-repeat; 
 	background-size: 100% 100%;
 	color:black;
-	width:100%;
+	
 	top:42%;
 	height:11.1%;
 	position:absolute;
@@ -484,7 +484,7 @@ input[type="range"]::-ms-fill-upper {
 	}
 	100%{
 		left:0%;
-		background-image:url('assets/miniWhiteBtn.png');
+		background-image:url('assets/miniArrowBtn.png');
 		mix-blend-mode: screen; 
 		color:black;
 		opacity: 0.7;
@@ -496,12 +496,12 @@ input[type="range"]::-ms-fill-upper {
 .slidingMenuSub5{
 	mix-blend-mode: screen; 
 	font-size:160%;
-	background-image:url('assets/miniWhiteBtn.png');
-	text-align: center; /* Center text */
+	background-image:url('assets/miniArrowBtn.png');
+	
 	background-repeat: no-repeat; 
 	background-size: 100% 100%;
 	color:black;
-	width:100%;
+	
 	top:56%;
 	height:11.1%;
 	position:absolute;
@@ -527,7 +527,7 @@ input[type="range"]::-ms-fill-upper {
 	}
 	100%{
 		left:0%;
-		background-image:url('assets/miniWhiteBtn.png');
+		background-image:url('assets/miniArrowBtn.png');
 		mix-blend-mode: screen; 
 		color:black;
 		opacity: 0.7;
@@ -539,12 +539,12 @@ input[type="range"]::-ms-fill-upper {
 .slidingMenuSub6{
 	mix-blend-mode: screen; 
 	font-size:160%;
-	background-image:url('assets/miniWhiteBtn.png');
-	text-align: center; /* Center text */
+	background-image:url('assets/miniArrowBtn.png');
+	
 	background-repeat: no-repeat; 
 	background-size: 100% 100%;
 	color:black;
-	width:100%;
+	
 	top:50%;
 	height:11.1%;
 	position:absolute;
@@ -570,7 +570,7 @@ input[type="range"]::-ms-fill-upper {
 	}
 	100%{
 		left:0%;
-		background-image:url('assets/miniWhiteBtn.png');
+		background-image:url('assets/miniArrowBtn.png');
 		mix-blend-mode: screen; 
 		color:black;
 		opacity: 0.7;
@@ -582,12 +582,12 @@ input[type="range"]::-ms-fill-upper {
 .slidingMenuSub7{
 	mix-blend-mode: screen; 
 	font-size:160%;
-	background-image:url('assets/miniWhiteBtn.png');
-	text-align: center; /* Center text */
+	background-image:url('assets/miniArrowBtn.png');
+	
 	background-repeat: no-repeat; 
 	background-size: 100% 100%;
 	color:black;
-	width:100%;
+	
 	top:60%;
 	height:11.1%;
 	position:absolute;
@@ -613,7 +613,7 @@ input[type="range"]::-ms-fill-upper {
 	}
 	100%{
 		left:0%;
-		background-image:url('assets/miniWhiteBtn.png');
+		background-image:url('assets/miniArrowBtn.png');
 		mix-blend-mode: screen; 
 		color:black;
 		opacity: 0.7;
@@ -625,12 +625,12 @@ input[type="range"]::-ms-fill-upper {
 .slidingMenuSub8{
 	mix-blend-mode: screen; 
 	font-size:160%;
-	background-image:url('assets/miniWhiteBtn.png');
-	text-align: center; /* Center text */
+	background-image:url('assets/miniArrowBtn.png');
+	
 	background-repeat: no-repeat; 
 	background-size: 100% 100%;
 	color:black;
-	width:100%;
+	
 	top:70%;
 	height:11.1%;
 	position:absolute;
@@ -656,7 +656,7 @@ input[type="range"]::-ms-fill-upper {
 	}
 	100%{
 		left:0%;
-		background-image:url('assets/miniWhiteBtn.png');
+		background-image:url('assets/miniArrowBtn.png');
 		mix-blend-mode: screen; 
 		color:black;
 		opacity: 0.7;
@@ -668,12 +668,12 @@ input[type="range"]::-ms-fill-upper {
 .slidingMenuSub9{
 	mix-blend-mode: screen; 
 	font-size:160%;
-	background-image:url('assets/miniWhiteBtn.png');
-	text-align: center; /* Center text */
+	background-image:url('assets/miniArrowBtn.png');
+	
 	background-repeat: no-repeat; 
 	background-size: 100% 100%;
 	color:black;
-	width:100%;
+	
 	top:80%;
 	height:11.1%;
 	position:absolute;
@@ -699,7 +699,7 @@ input[type="range"]::-ms-fill-upper {
 	}
 	100%{
 		left:0%;
-		background-image:url('assets/miniWhiteBtn.png');
+		background-image:url('assets/miniArrowBtn.png');
 		mix-blend-mode: screen; 
 		color:black;
 		opacity: 0.7;
@@ -711,12 +711,12 @@ input[type="range"]::-ms-fill-upper {
 .slidingMenuSub10{
 	mix-blend-mode: screen; 
 	font-size:160%;
-	background-image:url('assets/miniWhiteBtn.png');
-	text-align: center; /* Center text */
+	background-image:url('assets/miniArrowBtn.png');
+	
 	background-repeat: no-repeat; 
 	background-size: 100% 100%;
 	color:black;
-	width:100%;
+	
 	top:90%;
 	height:11.1%;
 	position:absolute;
@@ -742,7 +742,7 @@ input[type="range"]::-ms-fill-upper {
 	}
 	100%{
 		left:0%;
-		background-image:url('assets/miniWhiteBtn.png');
+		background-image:url('assets/miniArrowBtn.png');
 		mix-blend-mode: screen; 
 		color:black;
 		opacity: 0.7;

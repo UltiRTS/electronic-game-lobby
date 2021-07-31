@@ -19,7 +19,12 @@ function ipcGetMap(mapInternalName){
 		if (String(data)=='retrieved|'+mapInternalName){
 	//getMinimapfromMapName(map)
 			window.minimapCache[mapInternalName]=getMinimapfromMapName(mapInternalName)
-			storage.set('mapCache',window.minimapCache)
+			
+			window.allMinimapCache=Object.assign({}, storage.get('mapCache'), window.minimapCache)
+			storage.set('mapCache',window.allMinimapCache)
+
+
+
 			if (mapInternalName==window.mapDic[window.nowinBattle]){
 				preBtlUpdateSelfStats(true)
 				preBtlMoreMapBlowUp()
@@ -28,7 +33,31 @@ function ipcGetMap(mapInternalName){
 				pushSmolNotif('Map ',"Successfully loaded new map!")
 			}
 		}
+			
+		if (String(data)=='already|'+mapInternalName){
+			//getMinimapfromMapName(map)
+					//window.minimapCache[mapInternalName]=getMinimapfromMapName(mapInternalName)
 					
+					//window.allMinimapCache=Object.assign({}, storage.get('mapCache'), window.minimapCache)
+					//storage.set('mapCache',window.allMinimapCache)
+					if(!(mapInternalName in window.allMinimapCache)){
+						window.minimapCache[mapInternalName]=getMinimapfromMapName(mapInternalName)
+			
+						window.allMinimapCache=Object.assign({}, storage.get('mapCache'), window.minimapCache)
+						storage.set('mapCache',window.allMinimapCache)
+						
+					}
+		
+		
+					if (mapInternalName==window.mapDic[window.nowinBattle]){
+						preBtlUpdateSelfStats(true)
+						preBtlMoreMapBlowUp()
+						//console.log('ipc response'+String(data)+String(mapInternalName))
+						loading(false)
+						pushSmolNotif('Map ',"Successfully loaded new map!")
+					}
+				}
+		
 		else if (String(data).startsWith('error|'+mapInternalName)){
 			pushSmolNotif('Map',"Failed to loaded new map!")
 			loading(false)

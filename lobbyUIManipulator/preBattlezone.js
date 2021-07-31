@@ -98,10 +98,30 @@ function preBtlToggMoreMap(){
 	//allMaps=listAllLocalMapNames().slice();
 	//console.log(allMaps)
 	mapPileContent=''
-	
 	for (map in window.minimapCache) {
 		try{
 		_img=window.minimapCache[map]
+		mapPileContent+='<div  onclick="chatVoteMap(\''+map+'\')" onmouseover="preBtlMoreMapBlowUp(\''+map+'\');pushToolTip(\'[Mouse over] to [preview map]; [click] to [select map] if you are a host\')" onmouseleave="preBtlMoreMapBlowUp()" style="display:inline-block; position:relative;width:2vw;height:2vw;margin:0.2vw;"><img style="position:absolute;width:100%;height:100%;" src="data:image/png;base64,' + _img + '" /></div>';
+		console.log(allMaps)
+		}
+		catch{
+			
+		}
+		
+	}
+	//document.getElementById('mapPile').append(mapPileContent)
+	document.getElementById('mapPile').insertAdjacentHTML( 'beforeend', mapPileContent );
+
+	window.minimapCache={}
+	
+}
+
+function preBtlInitMapPile(){
+	var mapPileContent=''
+	
+	for (map in window.allMinimapCache) {
+		try{
+		_img=window.allMinimapCache[map]
 		mapPileContent+='<div  onclick="chatVoteMap(\''+map+'\')" onmouseover="preBtlMoreMapBlowUp(\''+map+'\');pushToolTip(\'[Mouse over] to [preview map]; [click] to [select map] if you are a host\')" onmouseleave="preBtlMoreMapBlowUp()" style="display:inline-block; position:relative;width:2vw;height:2vw;margin:0.2vw;"><img style="position:absolute;width:100%;height:100%;" src="data:image/png;base64,' + _img + '" /></div>';
 			
 		}
@@ -112,12 +132,13 @@ function preBtlToggMoreMap(){
 	}
 	
 	document.getElementById('mapPile').innerHTML=mapPileContent
-	
+
+
 }
 
 function preBtlMoreMapBlowUp(map=window.mapDic[window.nowinBattle]){
 	try{
-	_img=window.minimapCache[map]}
+	_img=window.allMinimapCache[map]}
 	catch{
 		//
 	}
@@ -147,7 +168,7 @@ function preBattleHeaderUpdate(){
 
 function _mapDonutPut(pool)
 {
-document.getElementById("mapListView").innerHTML +="<div class=\"chart-container\" style=\"position: absolute; width:70%;left:12vw;top:0vw;height:20vw;\"><canvas id=\"mapPoll\"></canvas></div>"
+document.getElementById("mapListView").innerHTML +="<div class=\"chart-container\" style=\"position: absolute;width: 21vw;left:12vw;top:0vw;height:10vw;\"><canvas style='' id=\"mapPoll\"></canvas></div>"
 
 var ctx = document.getElementById("mapPoll");
 window.mapPoll = new Chart(ctx, {

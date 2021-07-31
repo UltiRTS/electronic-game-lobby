@@ -70,12 +70,22 @@ function logMeIn(){
 		document.getElementById("welcomeUser").innerHTML='<span style="font-size:3vw;weight:900;opacity:0.4">Dr. &nbsp;</span>'+document.getElementById("usr").value
 		document.getElementById("welcomeUser").className='welcomeUser'
 		
-		setTimeout(function(){document.getElementById("welcomeSubline1").style.visibility='';},2000)
-		setTimeout(function(){document.getElementById("welcomeSubline2").style.visibility='';},2500)
-		setTimeout(function(){document.getElementById("welcomeSubline3").style.visibility='';},2800)
-		setTimeout(function(){document.getElementById("welcomeSubline4").style.visibility='';},3600)
-		setTimeout(function(){document.getElementById("welcomeSubline5").style.visibility='';},4000)
-		setTimeout(actuallyLogMeIn,5000)
+		setTimeout(function(){document.getElementById("welcomeSubline1").style.visibility='';
+			
+			setTimeout(function(){
+				document.getElementById("welcomeSubline2").style.visibility='';
+				setTimeout(function(){document.getElementById("welcomeSubline3").style.visibility='';},2800)
+				setTimeout(function(){document.getElementById("welcomeSubline4").style.visibility='';},3600)
+				preBtlInitMapPile();
+				setTimeout(function(){document.getElementById("welcomeSubline5").style.visibility='';},4000)
+				setTimeout(actuallyLogMeIn,5000)
+			},2500)
+		
+			
+	
+		},2000)
+		
+		
 	},1000)
 	
 	
