@@ -97,6 +97,7 @@ function setNotifVolume(vol){
 }
 
 function VolumeDone(){
+	playFX('acknowledge.wav')
 	storage.set('userVolume', window.userVolume)
 	storage.set('userFXVolume', window.userFXVolume)
 	storage.set('userNotifVolume', window.userNotifVolume)
@@ -104,11 +105,13 @@ function VolumeDone(){
 }
 
 function fiDone(){
+	playFX('acknowledge.wav')
 	//storage.set('userVolume', window.userVolume)
 	document.getElementById("FIpanel").style.visibility="hidden"
 }
 
 function mapDone(){
+	playFX('acknowledge.wav')
 	//storage.set('userVolume', window.userVolume)
 	document.getElementById("MapPanel").style.visibility="hidden"
 }
@@ -119,7 +122,7 @@ function fiCheckStart(){
 	document.getElementById("fiTerm").innerHTML+=process.env.WDIR+"<br>"
 	maxIntegrity=4
 	detectedIntegrity=0
-	localverPath = process.env.WDIR+'/localVer'
+	localverPath = process.env.WDIR+'/info.db'
 	document.getElementById("fiTerm").innerHTML+="Checking localVer:<br>"
 	fs.access(localverPath, fs.F_OK, (err) => {
 		if (err) {
@@ -143,7 +146,7 @@ function fiCheckStart(){
 			document.getElementById("fiTerm").innerHTML+="engine present!</br>"
 			detectedIntegrity+=1;}
 			
-			localverPath = process.env.WDIR+'/engine/maps'
+			localverPath = process.env.WDIR+'/engine/games/'
 			document.getElementById("fiTerm").innerHTML+="Checking content dir:<br>"
 			fs.access(localverPath, fs.F_OK, (err) => {
 				if (err) {
@@ -155,16 +158,16 @@ function fiCheckStart(){
 				document.getElementById("fiTerm").innerHTML+="content dir present!</br>"
 				detectedIntegrity+=1;}
 				
-				localverPath = process.env.WDIR+'/busybox.exe'
-				document.getElementById("fiTerm").innerHTML+="Checking busybox:<br>"
+				localverPath = process.env.WDIR+'/ultiConfig'
+				document.getElementById("fiTerm").innerHTML+="Checking writable dirs:<br>"
 				fs.access(localverPath, fs.F_OK, (err) => {
 					if (err) {
 						document.getElementById("fiTerm").innerHTML+=err+"<br>"
-						document.getElementById("fiTerm").innerHTML+="busybox not present!</br>"
+						document.getElementById("fiTerm").innerHTML+="writable dirs not present!</br>"
 						
 					}
 					else{
-					document.getElementById("fiTerm").innerHTML+="busybox present!</br>"
+					document.getElementById("fiTerm").innerHTML+="writable dirs present!</br>"
 					detectedIntegrity+=1;
 					console.log('deIn:'+detectedIntegrity)}
 					
