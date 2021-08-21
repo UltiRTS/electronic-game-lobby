@@ -57,10 +57,10 @@
 
 @keyframes cursorANime{
 	
-	0% {visibility:visible;}
-	51% {visibility:visible;}
-	52% {visibility:hidden;}
+	0% {display:visible;}
+	51% {display:visible;}
+	52% {display:none;}
 	
-	100% {visibility:hidden;}
+	100% {display:none;}
 	
 }/*

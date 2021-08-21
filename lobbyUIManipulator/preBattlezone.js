@@ -1,8 +1,8 @@
 function lobbyFlush(battleid, type, natType, founder, ip, port, maxPlayer, passworded, rank, mapHesh, engineName, engineVersion, map, title, gameName, channel)
 {
 	//console.log("joined battle"+title)
-	document.getElementById("panel").style.visibility = "hidden"; //hide lobby page once user goes to prebattle panel
-	document.getElementById("prebattle").style.visibility = "";
+	document.getElementById("panel").style.display = "none"; //hide lobby page once user goes to prebattle panel
+	document.getElementById("prebattle").style.display='';
 	document.getElementById("pregameTitle").innerHTML=title;
 	document.getElementById("pregameMap").innerHTML=window.mapDic[battleid].replace(/🦔/g, " ");
     //document.getElementById("hostSays").innerHTML ="afk 3sec for dinnar";
@@ -10,9 +10,9 @@ function lobbyFlush(battleid, type, natType, founder, ip, port, maxPlayer, passw
 	document.getElementById('exitGem').setAttribute( "onclick", "preBtlExitGem("+window.nowinBattle+")" );
 	console.log(window.gameStatus)
 	if(window.gameStatus[window.nowHostedby]){
-		document.getElementById('gameProgress').style.visibility="";
+		document.getElementById('gameProgress').style.display='';
 	}
-	else{document.getElementById('gameProgress').style.visibility="hidden";}
+	else{document.getElementById('gameProgress').style.display="none";}
 }
 
 function prebtlUnflush(){
@@ -20,9 +20,9 @@ function prebtlUnflush(){
 		window.ppl={}
 		window.isExited=true;
 		window.specppl=[]
-		document.getElementById('gameProgress').style.visibility="hidden";
-		document.getElementById("panel").style.visibility=""
-		document.getElementById("prebattle").style.visibility="hidden"
+		document.getElementById('gameProgress').style.display="none";
+		document.getElementById("panel").style.display=''
+		document.getElementById("prebattle").style.display="none"
 		removeAllChildNodes('pregameInfo')
 }
 

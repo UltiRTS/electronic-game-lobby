@@ -2,64 +2,64 @@ window.dbug=false;
 
 function volumeEntry(){
 	_entryHighlight('volMenuEntry')
-	if (document.getElementById("Volpanel").style.visibility=="hidden"){
-		document.getElementById("Volpanel").style.visibility=""
-		document.getElementById("FIpanel").style.visibility="hidden"
-		document.getElementById("MapPanel").style.visibility="hidden"
+	if (document.getElementById("Volpanel").style.display=="none"){
+		document.getElementById("Volpanel").style.display=''
+		document.getElementById("FIpanel").style.display="none"
+		document.getElementById("MapPanel").style.display="none"
 		document.getElementById("Volpanel").innerHTML+="<!--rerun-->"
 		document.getElementById("volAmbSlider").value=window.userVolume
 		//console.log("bar val"+document.getElementById("volAmbSlider").value)
 		document.getElementById("volFXSlider").value=window.userFXVolume
 		document.getElementById("volNotifSlider").value=window.userNotifVolume
-		document.getElementById("PerformanceSettingsPanel").style.visibility="hidden"
+		document.getElementById("PerformanceSettingsPanel").style.display="none"
 		
 	}
 	else{
-		document.getElementById("Volpanel").style.visibility="hidden"
+		document.getElementById("Volpanel").style.display="none"
 	}
 }
 
 function FIEntry(){
 	_entryHighlight('volFIEntry')
-	if (document.getElementById("FIpanel").style.visibility=="hidden"){
-		document.getElementById("FIpanel").style.visibility=""
-		document.getElementById("Volpanel").style.visibility="hidden"
+	if (document.getElementById("FIpanel").style.display=="none"){
+		document.getElementById("FIpanel").style.display=''
+		document.getElementById("Volpanel").style.display="none"
 		document.getElementById("FIpanel").innerHTML+="<!--rerun-->"
-		document.getElementById("MapPanel").style.visibility="hidden"
-		document.getElementById("PerformanceSettingsPanel").style.visibility="hidden"
+		document.getElementById("MapPanel").style.display="none"
+		document.getElementById("PerformanceSettingsPanel").style.display="none"
 	}
 	else{
-		document.getElementById("FIpanel").style.visibility="hidden"
+		document.getElementById("FIpanel").style.display="none"
 	}
 }
 
 function performanceEntry(){
 	_entryHighlight('performanceEntry')
-	if (document.getElementById("PerformanceSettingsPanel").style.visibility="hidden"){
-		document.getElementById("PerformanceSettingsPanel").style.visibility=""
-		document.getElementById("Volpanel").style.visibility="hidden"
-		document.getElementById("FIpanel").style.visibility="hidden"
+	if (document.getElementById("PerformanceSettingsPanel").style.display="none"){
+		document.getElementById("PerformanceSettingsPanel").style.display=''
+		document.getElementById("Volpanel").style.display="none"
+		document.getElementById("FIpanel").style.display="none"
 		document.getElementById("PerformanceSettingsPanel").innerHTML+="<!--rerun-->"
-		document.getElementById("MapPanel").style.visibility="hidden"
+		document.getElementById("MapPanel").style.display="none"
 		listPerformanceSettings()
 	}
 	else{
-		document.getElementById("PerformanceSettingsPanel").style.visibility="hidden"
+		document.getElementById("PerformanceSettingsPanel").style.display="none"
 	}
 }
 
 
 function settingsMapEntry(){
 	_entryHighlight('mapEntry')
-	if (document.getElementById("MapPanel").style.visibility=="hidden"){
-		document.getElementById("MapPanel").style.visibility=""
-		document.getElementById("Volpanel").style.visibility="hidden"
+	if (document.getElementById("MapPanel").style.display=="none"){
+		document.getElementById("MapPanel").style.display=''
+		document.getElementById("Volpanel").style.display="none"
 		document.getElementById("MapPanel").innerHTML+="<!--rerun-->"
-		document.getElementById("FIpanel").style.visibility="hidden"
-		document.getElementById("PerformanceSettingsPanel").style.visibility="hidden"
+		document.getElementById("FIpanel").style.display="none"
+		document.getElementById("PerformanceSettingsPanel").style.display="none"
 	}
 	else{
-		document.getElementById("MapPanel").style.visibility="hidden"
+		document.getElementById("MapPanel").style.display="none"
 	}
 }
 
@@ -101,19 +101,19 @@ function VolumeDone(){
 	storage.set('userVolume', window.userVolume)
 	storage.set('userFXVolume', window.userFXVolume)
 	storage.set('userNotifVolume', window.userNotifVolume)
-	document.getElementById("Volpanel").style.visibility="hidden"
+	document.getElementById("Volpanel").style.display="none"
 }
 
 function fiDone(){
 	playFX('acknowledge.wav')
 	//storage.set('userVolume', window.userVolume)
-	document.getElementById("FIpanel").style.visibility="hidden"
+	document.getElementById("FIpanel").style.display="none"
 }
 
 function mapDone(){
 	playFX('acknowledge.wav')
 	//storage.set('userVolume', window.userVolume)
-	document.getElementById("MapPanel").style.visibility="hidden"
+	document.getElementById("MapPanel").style.display="none"
 }
 
 function fiCheckStart(){

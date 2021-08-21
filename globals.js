@@ -45,3 +45,10 @@
 //notice(true,'ACCESS DENIED ',reason)
 //window.mapDic[bid]=mapName records maps of each room
 //window.channelLastAuthor[chanName] returns the latest poster of a channel
+//window.displayedChat //chatName that's currently displayed
+//function pushSmolNotif(title,content)
+//place gems: <div id='gemChat"+Name+"' style='display:none;position:absolute;transform: rotate(45deg);filter: drop-shadow(7px 0px 3px red);'><div style='position:absolute;background:rgba(243,33,33,1);rgba(243,33,33,1);height:0.5vh;width:0.5vh;top:0vh; '></div><div class='gemRing' style='position:absolute;;border: 0.1vh solid rgba(243,33,33,1);'></div></div>; then call showGem()  !
+//playFX('smolButton.wav')
+//window.agreementTOS
+//window.agreementCOC
+//window.freunds[] synced from 

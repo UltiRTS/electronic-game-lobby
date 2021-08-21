@@ -8,7 +8,7 @@ function msgPut(Q) {
 		chatWindow.scrollTo(0, xH);
 
 	}
-
+	chatGemPut(Q[2])
 	timeLocal = ''
 
 
@@ -36,7 +36,7 @@ function msgPut(Q) {
 		else { _msgWrite(Q[2], Q[0], label, Q[1], timeLocal, true) }
 	}
 
-	if (document.hidden && Q[2] != 'bus') {
+	if (document.none && Q[2] != 'bus') {
 		playFX('notif.ogg', true)
 	}
 
@@ -236,15 +236,15 @@ function chatPut(Name, Desc = "Intergalactic Quantum Com", isBattleChat = false)
 			document.getElementById("infopanel").innerHTML += "<div class=\"friendFrame\" id=\"friendFrame" + Name + "\" style=\"top:0%;position:absolute;left: 0px; height: 100%; width: 100%;\"><h1 style=\"display:inline-block; position: absolute; color: white; top: -15%; left: -3%;font-family: JuneBug2;\">" + Name + " <span class=\"Add\" onclick='chatAddAI(&#39GPT_&#39)'>█</span> <span class=\"Add\" onclick='chatAddChicken(&#39Chicken_&#39)'>█</span> </h1><h1 style=\"display:inline-block; position: absolute; color: white; top: -15%; left: 30%;font-family: JuneBug2;\">Personnel _</h1><div class=\"friendlimitingFrame\" id=\"friendlimitingFrame" + Name + "\" style=\"overflow-x:hidden;top:3%; y-overflow:auto; position: relative; width:92%;height:91%; display:inline-block; right: -6.3%;\"></div></div>";
 		}
 		else {
-			document.getElementById("infopanel").innerHTML += "<div class=\"friendFrame\" id=\"friendFrame" + Name + "\" style=\"top:0%;position:absolute;left: 0px; height: 100%; width: 100%;\"><h1 style=\"display:inline-block; position: absolute; color: white; top: -15%; left: -3%;font-family: JuneBug2;\">" + Name + " █ </h1><h1 style=\"display:inline-block; position: absolute; color: white; top: -15%; left: 30%;font-family: JuneBug2;\">Personnel _</h1><div class=\"friendlimitingFrame\" id=\"friendlimitingFrame" + Name + "\" style=\"overflow-x:hidden;top:3%; y-overflow:auto; position: relative; width:92%;height:91%; display:inline-block; right: -6.3%;\"></div></div>";
+			document.getElementById("infopanel").innerHTML += "<div class=\"friendFrame\" id=\"friendFrame" + Name + "\" style=\"top:0%;position:absolute;left: 0px; height: 100%; width: 100%;\"><h1 style=\"display:inline-block; position: absolute; color: white; top: -15%; left: -3%;font-family: JuneBug2;\">" + Name + " █ </h1><h1 style=\"display:inline-block; position: absolute; color: white; top: -15%; left: 30%;font-family: JuneBug2;\">Personnel _</h1><div class=\"friendlimitingFrame\" id=\"friendlimitingFrame" + Name + "\" style=\"overflow-x:none;top:3%; y-overflow:auto; position: relative; width:92%;height:91%; display:inline-block; right: -6.3%;\"></div></div>";
 		}
-		document.getElementById("chatList").innerHTML += "<p  style=\"filter: drop-shadow(0.3rem 0.3rem 0.1rem rgba(33,150,243,0.7));\" id=\"chatTag" + Name + "\"><span id=\"chatTxt" + Name + "\" class=\"chatTagBody chatTagAnchor\" onclick=\"chatSwt(&#39;" + Name + "&#39;)\"style=\"cursor: pointer; color: white; padding: 5px;\">" + Name.substring(0, 6) + "</span><span onclick=\"chatLeave(&#39;" + Name + "&#39;)\" id=\"chatClose\" class=\"chatClose\" onmouseover=\"pushToolTip('Press this [button] to [close] this chat')\"style=\"cursor: pointer;\">＼</span></p>";
+		document.getElementById("chatList").innerHTML += "<div  style=\"white-space: nowrap;height:20px;margin:10px;font-size:15px;filter: drop-shadow(0.3rem 0.3rem 0.1rem rgba(33,150,243,0.7));\" id=\"chatTag" + Name + "\"><span id=\"chatTxt" + Name + "\" class=\"chatTagBody chatTagAnchor\" onclick=\"chatSwt(&#39;" + Name + "&#39;);playFX('smolButton.wav')\"style=\"cursor: pointer; color: white; padding: 5px;\">" + Name.substring(0, 6) + "</span><span onclick=\"chatLeave(&#39;" + Name + "&#39;)\" id=\"chatClose\" class=\"chatClose\" onmouseover=\"pushToolTip('Press this [button] to [close] this chat')\"style=\"cursor: pointer;\">＼</span><div id='gemChat"+Name+"' style='display:none;position:absolute;transform: rotate(45deg);filter: drop-shadow(7px 0px 3px red);'><div style='position:absolute;background:rgba(243,33,33,1);rgba(243,33,33,1);height:0.5vh;width:0.5vh;top:0vh; '></div><div class='gemRing' style='position:absolute;;border: 0.1vh solid rgba(243,33,33,1);'></div></div></div>";
 	}
 	else {
-		document.getElementById("chatList").innerHTML += "<p style=\"filter: drop-shadow(0.3rem 0.3rem 0.1rem rgba(33,150,243,0.7));\" id=\"chatTag" + Name + "\"><span id=\"chatTxt" + Name + "\"  class=\"chatTagBody chatTagAnchor\" onclick=\"chatSwt(&#39;" + Name + "&#39;)\"style=\"cursor: pointer; color: white; padding: 5px;\">" + Name.substring(0, 6) + "</span><span  id=\"chatClose\" class=\"chatClose\" style=\"cursor: pointer;\">⊟</span></p>";
+		document.getElementById("chatList").innerHTML += "<div style=\"white-space: nowrap;height:20px;margin:10px;font-size:15px;filter: drop-shadow(0.3rem 0.3rem 0.1rem rgba(33,150,243,0.7));\" id=\"chatTag" + Name + "\"><span id=\"chatTxt" + Name + "\"  class=\"chatTagBody chatTagAnchor\" onclick=\"chatSwt(&#39;" + Name + "&#39;);playFX('smolButton.wav')\"style=\"cursor: pointer; color: white; padding: 5px;\">" + Name.substring(0, 6) + "</span><span  id=\"chatClose\" class=\"chatClose\" style=\"cursor: pointer;\">⊟</span><div id='gemChat"+Name+"' style='display:none;position:absolute;transform: rotate(45deg);filter: drop-shadow(7px 0px 3px red);'><div style='position:absolute;background:rgba(243,33,33,1);rgba(243,33,33,1);height:0.5vh;width:0.5vh;top:0vh; '></div><div class='gemRing' style='position:absolute;;border: 0.1vh solid rgba(243,33,33,1);'></div></div></div>";
 	}
 
-	document.getElementById("chatFrames").innerHTML += " <div class=\"\" style=\"position:absolute;left:5%;width:95%;height:100%;top:0%;\" id=\"chat" + Name + "\"><h1 style=\"cursor: default;position: absolute; color: white; top: 1vh; left: 0%;font-family: JuneBug2;font-size:3vh;border:0;margin:0;\">" + Name + "</h1><p style=\"position:absolute;top:4.5vh;left:0;cursor: default;color: white; font-family: JuneBug3;font-size:1.5vh;margin:0;\">" + Desc + "</p><div class=\"form__group field\" style=\"cursor: default;bottom:10px;; width:97%; position:absolute;left:-3%;margin:0;height:40px;\"><input onchange=\"chatSubmit('" + Name + "'," + "this.value" + ")\" type=\"input\" class=\"form__field\" placeholder=\"" + window.username + "\" name=\"name\" id=\'name" + Name + "\' required /><label for=\"name" + Name + "\" class=\"form__label\" id=\"formLabel\">" + window.username + "</label></div><div class=\"limitingframe\" style=\"display: flex;flex-direction: column-reverse;cursor: default;width:95%;height: 36vh;top: 6.4vh;overflow: hidden;overflow-y:scroll;position:absolute;\"><div class=\"chatUserContent\" id=\"chatUserContent" + Name + "\" style =\" cursor: text;bottom: 3%;width:100%;position: absolute; overflow:visible\"><!--chat content to be inserted--></div></div></div>";
+	document.getElementById("chatFrames").innerHTML += " <div class=\"\" style=\"position:absolute;left:5%;width:95%;height:100%;top:0%;\" id=\"chat" + Name + "\"><h1 style=\"cursor: default;position: absolute; color: white; top: 1vh; left: 0%;font-family: JuneBug2;font-size:3vh;border:0;margin:0;\">" + Name + "</h1><p style=\"position:absolute;top:4.5vh;left:0;cursor: default;color: white; font-family: JuneBug3;font-size:1.5vh;margin:0;\">" + Desc + "</p><div class=\"form__group field\" style=\"cursor: default;bottom:10px;; width:97%; position:absolute;left:-3%;margin:0;height:40px;\"><input onchange=\"chatSubmit('" + Name + "'," + "this.value" + ")\" type=\"input\" class=\"form__field\" placeholder=\"" + window.username + "\" name=\"name\" id=\'name" + Name + "\' required /><label for=\"name" + Name + "\" class=\"form__label\" id=\"formLabel\">" + window.username + "</label></div><div class=\"limitingframe\" style=\"display: flex;flex-direction: column-reverse;cursor: default;width:95%;height: 36vh;top: 6.4vh;overflow:hidden;overflow-y:scroll;position:absolute;\"><div class=\"chatUserContent\" id=\"chatUserContent" + Name + "\" style =\" cursor: text;bottom: 3%;width:100%;position: absolute; overflow:visible\"><!--chat content to be inserted--></div></div></div>";
 
 	chatSwt(Name)
 	//document.getElementById("chatUserContent"+Name).needTimeStamp=true
@@ -261,11 +261,11 @@ function chatJoin() {
 }
 
 function chatSwt(toChat) {
-
+	
 	//console.log("switching to "+toChat);
 	//if (fromChat!="disposed") {
-	//document.getElementById("chat"+fromChat).style.visibility = "hidden"; 
-	//document.getElementById("friendFrame"+fromChat).style.visibility = "hidden";
+	//document.getElementById("chat"+fromChat).style.display = "none"; 
+	//document.getElementById("friendFrame"+fromChat).style.display = "none";
 
 	//}
 	//clearScreen(document.getElementById('chatList'))
@@ -282,11 +282,19 @@ function chatSwt(toChat) {
 
 	document.getElementById('chatTxt' + toChat).classList.add("chatTagBodyDisplayed");
 	document.getElementById('chatTxt' + toChat).classList.remove("chatTagBody");
-	document.getElementById("friendFrame" + toChat).style.visibility = "";
-	document.getElementById("chat" + toChat).style.visibility = "";
-	//console.log("setting "+"friendFrame"+fromChat+"hidden and "+"friendFrame"+toChat+"visible")
+	document.getElementById("friendFrame" + toChat).style.display='';
+	document.getElementById("chat" + toChat).style.display='';
+	window.displayedChat=toChat
+	chatGemKill(toChat)
 }
 
 
-//chatPut('topsmurfs','very competitive');
-//chatPut('ultirtsTerminal','terminal');
+function chatGemPut(chatName){
+	if (chatName==window.displayedChat||chatName=='bus'){return}
+	else{showGem('Chat'+chatName);pushSmolNotif('New Msg!',chatName+'has received a new message!');}
+}
+
+function chatGemKill(chatName){
+	killGem('Chat'+chatName)
+	
+}

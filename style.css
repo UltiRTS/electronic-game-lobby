@@ -737,34 +737,13 @@ background-color: rgba(33,150,243,0.9)
  overflow: visible;
 mix-blend-mode: screen;
 position: relative; 
-height: 3.6vw; 
+height: 13px; 
 width: 10vw;
 display:inline-block;
 padding:1%;
 }
 
-.userCard:hover{
-	overflow: visible;
-	mix-blend-mode: screen;
-	position: relative; 
-	height: 3.6vw; 
-	width: 10vw;
-	
-	 display: inline-block;
-	 padding:1%;
-	animation-fill-mode: forwards;
-	/*animation-name: userCardInflate;*/
-	animation-duration: 0.7s;
-	animation-iteration-count: 1;
-	animation-delay:0.3s;
-}
 
-@keyframes userCardInflate {
-	
-	0%   {position: relative; height: 17%; width: 23%;margin:0.1%;heght:20%;display: inline-block;padding:1%; }
-	70%   {position: relative; height: 17%; width: 25%;margin:0.1%;heght:20%;display: inline-block;padding:1%; }
-	100% {position: relative; height: 17%; width: 30%;margin:0.1%;heght:20%;display: inline-block;padding:1%;}
-}
 
 .spinningIcon{
 	
@@ -804,7 +783,7 @@ padding:1%;
 
 
 .freundBody{
-	overflow: hidden;
+	overflow:hidden;
 	
 	mix-blend-mode: screen;
 

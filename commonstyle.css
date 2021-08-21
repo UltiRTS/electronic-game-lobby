@@ -109,7 +109,7 @@ button + button {
 /*Chrome*/
 @media screen and (-webkit-min-device-pixel-ratio:0) {
 	input[type='range'] {
-		overflow: hidden;
+		overflow:hidden;
 		width: 200%;
 		-webkit-appearance: none;
 		background-color: #ffffff;
@@ -167,9 +167,27 @@ input[type="range"]::-ms-fill-upper {
 
 
 
+.flyout:not(.old-school) {
+	animation: flyout 0.5s ease forwards;
+	opacity: 0.85;
+	transform: scale(1);
+	/* SEE NOTE IN JAVASCRIPT */
+	-webkit-filter: blur(0);
+	display:inline;
+	display:inline-block;
+	position: relative;
+}
 
+@keyframes flyout {
+	to {
+		-webkit-filter: blur(4px);
+		transform: scale(2);
+		opacity: 0;
+		mix-blend-mode: screen;
+	}
+}
 
-.gameSubEntry:not(.old-school) {
+.flyin:not(.old-school) {
 	animation: flyin 0.5s ease forwards;
 	opacity: 0;
 	transform: scale(2);

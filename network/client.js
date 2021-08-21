@@ -81,6 +81,43 @@ class Client extends EventEmitter {
 
 	}
 	
+	lsPendingFreundReq(){
+		const message ="FRIENDREQUESTLIST";
+		this.send(message);
+	}
+
+	lsFreund(){
+		const message ="FRIENDLIST";
+		this.send(message);
+	}
+
+	addFreund(user,reason){
+		
+		const message ="FRIENDREQUEST userName="+user+'\tmsg='+reason;
+		this.send(message);
+	}
+
+	aceptFreund(user){
+		
+		const message ="ACCEPTFRIENDREQUEST userName="+user;
+		this.send(message);
+	}
+
+	decFreund(user){
+		
+		const message ="DECLINEFRIENDREQUEST userName="+user;
+		this.send(message);
+	}
+
+	unFreund(user)
+	{
+		
+		const message ="UNFRIEND userName="+user;
+		this.send(message);
+		this.lsFreund();
+
+	}
+
 	myBtlStatus(syncStatus){
 	//var battleStatus=parseInt(String(syncStatus)+'0000000000000000000000').toString(10)
 	if (syncStatus){var message ="MYBATTLESTATUS "+'4194304'+" 0";console.log('(has map )sending '+message)} //have map, should be 01(b23,b22)

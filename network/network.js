@@ -18,17 +18,12 @@ window.client.on("ACCEPTED", (username) => {
 });
 
 window.client.on("AGREEMENT", (agreement) => {
-	document.getElementById("announcement").innerHTML +=agreement
-	console.log("received agreement")
-	loading(false)
+	
+	regAppendAgreement(agreement);
 });
 
 window.client.on("AGREEMENTEND", () => {
-	document.getElementById("loginTerminal").style.visibility = "";
-	document.getElementById("loginTerminal").innerHTML +='<span class="flashit pure-button fuller-button blue" style="position:fixed; top:90%;color:white;padding:0.5%;font-weight: bold;" id="understood"  onclick="window.client.registerConfirm() ">Understood</span><span class="flashit pure-button fuller-button red" style=" position:fixed; left:30%; top:90%;color:white;padding:0.5%;font-weight: bold;" id="understood"  onclick="window.client.registerConfirm() ">Accept</span>'
-																		
-	document.getElementById("loginbox").style.visibility = "hidden";
-	document.getElementById("postLogin").style.visibility = "hidden";
+	renderRegpage1()
 	
 });
 
@@ -252,14 +247,24 @@ window.client.on("BATTLEOPENED",(battleid, type, natType, founder, ip, port, max
 	window.roomIP[battleid]=ip
 	ipcGetMap(map)
 	window.mapDic[battleid]=map
-	var subEntry = document.createElement('li');
-	subEntry.classList.add('gameSubEntry');
-	subEntry.style.width="14vw"
-	subEntry.id="battleEntry"+battleid
-	subEntry.innerHTML = "<p id=\""+battleid+"\"onclick=\"if (window.isExited==true){window.client.joinBattle(&#39;"+battleid+"&#39;);}else{preBtlExitGem(window.nowinBattle);}\"class=\"gameInnerSubEntryTXT\" style=\"font-size:0.7vw; overflow: hidden; font-family: JuneBug2; position: relative; cursor:pointer;background : #2196f3;  margin: 20px ; padding: 25px; mix-blend-mode: screen; font-weight: bold;\" type=\"button\" >"+founder.replace(/Autohost/g, 'missionNo') +"</br><span id=\""+battleid+"Map\">"+map.substring(0,17).replace(/🦔/g, " ")+"</span><p id=\"title"+battleid+"\" style=\"font-size: 1.5vw; color: #255784; position:absolute; top: 65px ;background-color: rgba(255,255,255,0.85); padding:2px; box-shadow: 0 0 10px #2196f3, 0 0 40px #2196f3, 0 0 80px #2196f3; mix-blend-mode: screen;\">"+title+"</p></p>";
-	document.getElementById("gameEntry").appendChild(subEntry);
+	lobbyzoneAppendBtl(battleid,map,title,founder)
 	//console.log('appending '+map.substring(0,17).replace(/🦔/g, " "))
 });
+
+window.client.on("FRIENDLIST",(userName) => {
+	window.freunds.push(userName.substr(9)) //'userName=someUser'
+});
+
+window.client.on("FRIENDLISTBEGIN",(userName) => {
+	window.freunds=[]
+});
+
+window.client.on("FRIENDLISTEND",(userName) => {
+	mainAllFrdRefresh()
+});
+
+
+
 
 window.client.on("UPDATEBATTLEINFO",(bID, spec, isLocked, hash, mapName) => {
 	//console.log("BATTLE CLOSED!!!!!!!!!!!!!!")

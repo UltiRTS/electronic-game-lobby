@@ -25,7 +25,7 @@ function loginConnect(){
 	document.getElementById("prtsPharma").className='prtsPharma'
 	document.getElementById("prtsLOGO").className='prtsLOGO'
 	document.getElementById("logininput").className='logininput'
-	document.getElementById("loginbox").style.visibility = "";
+	document.getElementById("loginbox").style.display='';
 	
 }
 
@@ -59,25 +59,25 @@ function logMeIn(){
 	playFX('zoomin.wav')
 	//loading(true)
 	document.getElementById("logininput").className='logininputGone'
-	document.getElementById("welcomeMsg").style.visibility=''	
-	document.getElementById("welcomeHeading").style.visibility=''
+	document.getElementById("welcomeMsg").style.display=''	
+	document.getElementById("welcomeHeading").style.display=''
 	document.getElementById("welcomeHeading").className='welcomeHeading'
 	ipcCheck()
 	setTimeout(function(){
 		
 		document.getElementById("welcomeHeading").className='welcomeHeadingOut'
-		document.getElementById("welcomeUser").style.visibility=''
+		document.getElementById("welcomeUser").style.display=''
 		document.getElementById("welcomeUser").innerHTML='<span style="font-size:3vw;weight:900;opacity:0.4">Dr. &nbsp;</span>'+document.getElementById("usr").value
 		document.getElementById("welcomeUser").className='welcomeUser'
 		
-		setTimeout(function(){document.getElementById("welcomeSubline1").style.visibility='';
+		setTimeout(function(){document.getElementById("welcomeSubline1").style.display='';
 			
 			setTimeout(function(){
-				document.getElementById("welcomeSubline2").style.visibility='';
-				setTimeout(function(){document.getElementById("welcomeSubline3").style.visibility='';},2800)
-				setTimeout(function(){document.getElementById("welcomeSubline4").style.visibility='';},3600)
+				document.getElementById("welcomeSubline2").style.display='';
+				setTimeout(function(){document.getElementById("welcomeSubline3").style.display='';},2800)
+				setTimeout(function(){document.getElementById("welcomeSubline4").style.display='';},3600)
 				preBtlInitMapPile();
-				setTimeout(function(){document.getElementById("welcomeSubline5").style.visibility='';},4000)
+				setTimeout(function(){document.getElementById("welcomeSubline5").style.display='';},4000)
 				setTimeout(actuallyLogMeIn,5000)
 			},2500)
 		
@@ -117,9 +117,9 @@ function reverseLogin(){
 	document.getElementById("prtsPharma").className='prtsPharma'
 	document.getElementById("prtsLOGO").className='prtsLOGO'
 	document.getElementById("logininput").className='logininput'
-	document.getElementById("loginbox").style.visibility = "";
+	document.getElementById("loginbox").style.display='';
 	
-	document.getElementById("loginInputStatus").setAttribute('onclick',"logMeIn();this.onclick=''")
+	document.getElementById("loginInputStatus").setAttribute('onclick',"playFX('acknowledge.wav');logMeIn();this.onclick=''")
 }
 
 
@@ -127,13 +127,15 @@ function reverseLogin(){
 
 function finalBoxEnlargeLeave() {
 	
-		document.getElementById("preLogin").style.visibility = "hidden";
-		document.getElementById("postLogin").style.visibility = "";
+		document.getElementById("preLogin").style.display = "none";
+		document.getElementById("c").style.display = "none";
+		document.getElementById("postLogin").style.display='';
 		document.getElementById("username").innerHTML ='Dr.&nbsp'+window.username
-		document.getElementById("username").style.visibility='';
+		document.getElementById("username").style.display='';
 		window.isExited=true;
 		window.client.joinChanel("main")
         window.client.joinChanel("bus")
+		window.client.lsFreund()
 		pushSmolNotif('Dr. '+window.username,'Welcome')
 
 }

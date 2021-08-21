@@ -227,7 +227,7 @@ width: 50%;
 .particles2{
     position: absolute;
     z-index: 200;
-    overflow: hidden;
+    overflow:hidden;
 }
 
 .particle2{

@@ -10,8 +10,8 @@
 	<link rel="stylesheet" href="commonstyle.css">
 	<link rel="stylesheet" href="loading.css">
 	<link rel="stylesheet" href="lib/toolTipCSS.css">
-
-
+	<link rel="stylesheet" href="lib/gem.css">
+	<link rel="stylesheet" href="lib/regAnime.css">
 </head>
 
 <body style="overflow:hidden;">
@@ -26,8 +26,7 @@
 			</div>
 		</div>
 		<div class="loginbox"
-			style="position: absolute; height: 100%; width: 100%; mix-blend-mode: screen;visibility:hidden;"
-			id="loginbox">
+			style="position: absolute; height: 100%; width: 100%; mix-blend-mode: screen;display:none;" id="loginbox">
 			<div style="position:absolute;top:45%;color:white;margin:0;left:30%;height:6vw;width:12vw;overflow:hidden;">
 				<div style="background:white;position:absolute;top:0;width:100%;height:2px;"></div>
 				<p id='prtsLOGO' class=""
@@ -55,7 +54,7 @@
 					type="password" placeholder="Password" name="psw" required="">
 
 				<p class="connect" onmouseover="pushToolTip('Press this [ button ] to [ login ]')" id="loginInputStatus"
-					onclick="logMeIn();this.onclick=''"
+					onclick="playFX('acknowledge.wav');logMeIn();this.onclick=''"
 					style="cursor: pointer;top:3.2vw;position:absolute;/* left:16.2vw; */left:85%;font-size: 1vw;margin:0;color:black;font-weight:900;">
 					▶</p>
 			</div>
@@ -70,23 +69,23 @@
 				</div>
 			</div>
 
-			<div style="position:absolute;left:48%;height:6vw;top:45%;color:white;width:100%;overflow:hidden;visibility:hidden; "
+			<div style="position:absolute;left:48%;height:6vw;top:45%;color:white;width:100%;overflow:hidden;display:none; "
 				class="welcomeMsg" id="welcomeMsg">
-				<div class='' id='welcomeHeading' style="font-size:6vw;weight:900;visibility:hidden;top:-2vw;">歓迎</div>
+				<div class='' id='welcomeHeading' style="font-size:6vw;weight:900;display:none;top:-2vw;">歓迎</div>
 
-				<div id='welcomeUser' class='' style="font-size:3vw;weight:900;position:absolute;visibility:hidden;">
+				<div id='welcomeUser' class='' style="font-size:3vw;weight:900;position:absolute;display:none;">
 					<span style="font-size:3vw;weight:900;opacity:0.4">Dr. &nbsp;</span>
 				</div>
 
-				<div id='welcomeSubline1' style="font-size:0.5vw;position: absolute; top: 3vw;visibility:hidden;">
+				<div id='welcomeSubline1' style="font-size:0.5vw;position: absolute; top: 3vw;display:none;">
 					UDEV/URANDOM System Entropy: 100%</div>
-				<div id='welcomeSubline2' style="font-size:0.5vw;position: absolute; top: 3.5vw;visibility:hidden;">
+				<div id='welcomeSubline2' style="font-size:0.5vw;position: absolute; top: 3.5vw;display:none;">
 					INIT.RC Neural Connectivity: 100%</div>
-				<div id='welcomeSubline3' style="font-size:0.5vw;position: absolute; top: 4vw;visibility:hidden;">PAM
+				<div id='welcomeSubline3' style="font-size:0.5vw;position: absolute; top: 4vw;display:none;">PAM
 					Authenticating</div>
-				<div id='welcomeSubline4' style="font-size:0.5vw;position: absolute; top: 4.5vw;visibility:hidden;">
+				<div id='welcomeSubline4' style="font-size:0.5vw;position: absolute; top: 4.5vw;display:none;">
 					Authority: 42</div>
-				<div id='welcomeSubline5' style="font-size:0.5vw;position: absolute; top: 5vw;visibility:hidden;">Neural
+				<div id='welcomeSubline5' style="font-size:0.5vw;position: absolute; top: 5vw;display:none;">Neural
 					UART Logging In</div>
 
 			</div>
@@ -96,49 +95,213 @@
 
 		</div>
 
-		<div id="loginTerminal" style="position: absolute; top: 12%; left: 16%; visibility: hidden;">
-			<span class='flashit'
-				style="padding: 1.5%;background-color: black;color:white;font-size:200%;position:relative;top:2%;white-space: nowrap;font-family: JuneBug3;">Thea
-				Human Resource</span>
-			<div style="position:absolute;left:-4%;top:-80%; transform: translate(-50%, -50%); mix-blend-mode: screen;">
-				<div class=''
-					style="position:absolute;top:2%;left:50%;font-size: 2.2vw;background:white; color:black;white-space: nowrap;">
-					-Contract-
-				</div>
+		<div id="loginTerminal"
+			style="display:none;position: absolute;top: 0%;left: 0%;width:100%;height:100%;background-image: linear-gradient(#826969, black);">
+			<img src="assets/reg.jpg"
+				style="display: block;margin-left: auto;margin-right: auto;/* position:absolute; */height:105vh;width: 183vh;/* left: 2vh; */">
+			<div id="mask"
+				style="position:absolute;height:100%;width:100%;background:rgba(0,0,0,0.5);backdrop-filter: blur(4px);top:0;">
 			</div>
-			<div id="announcement" style="position:fixed; color:white;top:20%;"> </div>
-			<br>
+			<div id="regPage1" style="display:none;position:absolute;height:100%;width:100%;top:0;">
+				<p style="top: 40vh;left: 3%;position:absolute;color:white;font-size: 4vh;font-family:JuneBug4;">SysV
+					Initiating<span class='regCursor'>&nbsp _</span></p>
+				<div id='regPage1Progress' class=""
+					style="background:white;height:2px;top: 50%;left:3%;position:absolute;"></div>
+				<p class='' id='regPage1Percentage'
+					style="top: 50vh;left: 2%;position:absolute;color:white;font-size:10vh;font-family:JuneBug5;margin:0;padding:0;">
+				</p>
+				<p class='regCursor2' id='regPage1Percentale'
+					style="top: 40vh;left: 13%;position:absolute;color:white;font-size:10vh;font-family:JuneBug5;">%</p>
+				<div style="top: 44.5vh;left: 29%;position:absolute;color:white;font-size: 1vh;font-family:JuneBug3;height: 5.4vh;
+				width: 50%;overflow:hidden;">
+					<div class='' id='rollingRegConsoleContent' style="position:absolute;font-size:1vh;">
+						<p id="regPage1Text1" style="margin:0;">[INFO] Synaptic Connection
+							Establishing</p>
+						<p id="regPage1Text2" style="margin:0;">[INFO] Action Potentials Tokenizing
+						</p>
+						<p id="regPage1Text3" style="margin:0;">[WARN] Perceptron</p>
+						<p id="regPage1Text4" style="margin:0;">512000000x1024000 Creating </p>
+						<p id="regPage1Text5" style="margin:0;">[INFO] Input Stream Padding</p>
+						<p id="regPage1Text6" style="margin:0;">[WARN] 0x7f171552e510</p>
+						<p id="regPage1Text7" style="margin:0;">[WARN] 0x7f171552e7b8</p>
+						<p id="regPage1Text8" style="margin:0;">[WARN] 0x7f171552e3c9</p>
+						<p id="regPage1Text9" style="margin:0;">[WARN] 0x7f171552e27c</p>
+						<p id="regPage1Text10" style="margin:0;">[WARN] 0x7f171552e24b</p>
+						<p id="regPage1Text11" style="margin:0;">[WARN] 0x7f171552e480</p>
+						<p id="regPage1Text12" style="margin:0;">[WARN] 0x7f171552e234</p>
+						<p id="regPage1Text13" style="margin:0;">[WARN] 0x7f171552e64h</p>
+						<p id="regPage1Text14" style="margin:0;">[WARN] 0x7f171552e54k</p>
+						<p id="regPage1Text15" style="margin:0;">[WARN] 0x7f171552e43m</p>
+						<p id="regPage1Text16" style="margin:0;">[WARN] 0x7f171552e23g</p>
+						<p id="regPage1Text17" style="margin:0;">[WARN] 0x7f171552e32n</p>
+						<p id="regPage1Text18" style="margin:0;">[WARN] 0x7f171552ef34</p>
+						<p id="regPage1Text19" style="margin:0;">[WARN] 0x7f171552eg54</p>
+						<p id="regPage1Text20" style="margin:0;">[WARN] 0x7f171552ej76</p>
+						<p id="regPage1Text21" style="margin:0;">[WARN] 0x7f171552ed32</p>
+						<p id="regPage1Text22" style="margin:0;">[WARN] 0x7f171552e3gb</p>
+						<p id="regPage1Text23" style="margin:0;">[WARN] 0x7f171552e5g6</p>
+						<p id="regPage1Text6" style="margin:0;">[WARN] 0x7f171552e510</p>
+						<p id="regPage1Text7" style="margin:0;">[WARN] 0x7f171552e7b8</p>
+						<p id="regPage1Text8" style="margin:0;">[WARN] 0x7f171552e3c9</p>
+						<p id="regPage1Text9" style="margin:0;">[WARN] 0x7f171552e27c</p>
+						<p id="regPage1Text10" style="margin:0;">[WARN] 0x7f171552e24b</p>
+						<p id="regPage1Text11" style="margin:0;">[WARN] 0x7f171552e480</p>
+						<p id="regPage1Text12" style="margin:0;">[WARN] 0x7f171552e234</p>
+						<p id="regPage1Text13" style="margin:0;">[WARN] 0x7f171552e64h</p>
+						<p id="regPage1Text14" style="margin:0;">[WARN] 0x7f171552e54k</p>
+						<p id="regPage1Text15" style="margin:0;">[WARN] 0x7f171552e43m</p>
+						<p id="regPage1Text16" style="margin:0;">[WARN] 0x7f171552e23g</p>
+						<p id="regPage1Text17" style="margin:0;">[WARN] 0x7f171552e32n</p>
+						<p id="regPage1Text18" style="margin:0;">[WARN] 0x7f171552ef34</p>
+						<p id="regPage1Text19" style="margin:0;">[WARN] 0x7f171552eg54</p>
+						<p id="regPage1Text20" style="margin:0;">[WARN] 0x7f171552ej76</p>
+						<p id="regPage1Text21" style="margin:0;">[WARN] 0x7f171552ed32</p>
+						<p id="regPage1Text22" style="margin:0;">[WARN] 0x7f171552e3gb</p>
+						<p id="regPage1Text23" style="margin:0;">[WARN] 0x7f171552e5g6</p>
+						<p id="regPage1Text6" style="margin:0;">[WARN] 0x7f171552e510</p>
+						<p id="regPage1Text7" style="margin:0;">[WARN] 0x7f171552e7b8</p>
+						<p id="regPage1Text8" style="margin:0;">[WARN] 0x7f171552e3c9</p>
+						<p id="regPage1Text9" style="margin:0;">[WARN] 0x7f171552e27c</p>
+						<p id="regPage1Text10" style="margin:0;">[WARN] 0x7f171552e24b</p>
+						<p id="regPage1Text11" style="margin:0;">[WARN] 0x7f171552e480</p>
+						<p id="regPage1Text12" style="margin:0;">[WARN] 0x7f171552e234</p>
+						<p id="regPage1Text13" style="margin:0;">[WARN] 0x7f171552e64h</p>
+						<p id="regPage1Text14" style="margin:0;">[WARN] 0x7f171552e54k</p>
+						<p id="regPage1Text15" style="margin:0;">[WARN] 0x7f171552e43m</p>
+						<p id="regPage1Text16" style="margin:0;">[WARN] 0x7f171552e23g</p>
+						<p id="regPage1Text17" style="margin:0;">[WARN] 0x7f171552e32n</p>
+						<p id="regPage1Text18" style="margin:0;">[WARN] 0x7f171552ef34</p>
+						<p id="regPage1Text19" style="margin:0;">[WARN] 0x7f171552eg54</p>
+						<p id="regPage1Text20" style="margin:0;">[WARN] 0x7f171552ej76</p>
+						<p id="regPage1Text21" style="margin:0;">[WARN] 0x7f171552ed32</p>
+						<p id="regPage1Text22" style="margin:0;">[WARN] 0x7f171552e3gb</p>
+						<p id="regPage1Text23" style="margin:0;">[WARN] 0x7f171552e5g6</p>
+					</div>
+				</div>
+
+
+			</div>
+			<div id="regPage2" style="position:absolute;top:0;height:100%;width:100%;display:none;">
+				<div id="tos"
+					style="color:white;overflow:scroll;position:absolute;left:2vw;width: 45vw;top: 8%;border: solid #fff;border-left-width:0px;border-right-width:0px;border-top-width:1px;border-bottom-width:1px;">
+					<div id="regpanelblock1"
+						style="position:absolute;width:25%;left:-12.5%;transform: skew(20deg);height:100%;"></div>
+					<div id="regpanelblock2"
+						style="position:absolute;width:25%;left:12.5%;      transform: skew(20deg);height:100%;"></div>
+					<div id="regpanelblock3"
+						style="position:absolute;width:25%;left:37.5%;      transform: skew(20deg);height:100%;"></div>
+					<div id="regpanelblock4"
+						style="position:absolute;width:25%;left:62.5%;      transform: skew(20deg);height:100%;"></div>
+					<div id="regpanelblock5"
+						style="position:absolute;width:25%;left:87.5%;        transform: skew(20deg);height:100%;">
+					</div>
+					<div id="regTos" style="position:absolute;">
+						UltiRTS Terms of Service</br>
+					</div>
+				</div>
+				<div id="coc"
+					style="color:white;overflow:scroll;position:absolute;left: 53vw;width: 45vw;top: 8%;border: solid #fff;border-left-width:0px;border-right-width:0px;border-top-width:1px;border-bottom-width:1px;">
+					<div id="regpanelblock6"
+						style="position:absolute;width:25%;left:-12.5%;transform: skew(20deg);height:100%;"></div>
+					<div id="regpanelblock7"
+						style="position:absolute;width:25%;left:12.5%;      transform: skew(20deg);height:100%;"></div>
+					<div id="regpanelblock8"
+						style="position:absolute;width:25%;left:37.5%;      transform: skew(20deg);height:100%;"></div>
+					<div id="regpanelblock9"
+						style="position:absolute;width:25%;left:62.5%;      transform: skew(20deg);height:100%;"></div>
+					<div id="regpanelblock10"
+						style="position:absolute;width:25%;left:87.5%;        transform: skew(20deg);height:100%;">
+					</div>
+					<div id="regCoc" style="position:absolute;">Thea Pharmaceuticals Inc. Code of Conduct</br></div>
+				</div>
+				<div class="button-block" style="left:2%;position:absolute;top: 87%;width:100%;"
+					onclick="renderRegpage3()">
+					<button style="width:100%;height:3vw;" class="">Acknowledged</button>
+				</div>
+				<span style="color:white;left:2%;position:absolute;top: 92%;font-size:5vh;" class='regCursor2'>_</span>
+			</div>
+			<div id="regPage3" style="position:absolute;top:0;height:100%;width:100%;display:none;">
+				<div id="profile"
+					style="overflow:hidden;position:absolute;left: 25vw;width: 50vw;top: 8%;border: solid #fff;border-left-width:0px;border-right-width:0px;color:white;">
+					<div id="regpanelblock11"
+						style="position:absolute;width:25%;left:-12.5%;transform: skew(20deg);height:100%;"></div>
+					<div id="regpanelblock12"
+						style="position:absolute;width:25%;left:12.5%;      transform: skew(20deg);height:100%;"></div>
+					<div id="regpanelblock13"
+						style="position:absolute;width:25%;left:37.5%;      transform: skew(20deg);height:100%;"></div>
+					<div id="regpanelblock14"
+						style="position:absolute;width:25%;left:62.5%;      transform: skew(20deg);height:100%;"></div>
+					<div id="regpanelblock15"
+						style="position:absolute;width:25%;left:87.5%;        transform: skew(20deg);height:100%;">
+					</div>
+
+
+
+
+					<h1>OATH OF OFFICE</h1>
+					<p>Thea Pharmaceuticals Inc., Thea Laboratories © </p>
+					I, Dr. Who, do solemnly swear that I will support, protect and defend the integrity of humanity and
+					discharge the duties of my title and<span style="background:white;color:black;">some unknown</span>
+					field.
+
+					<br>Academic Appointment:<span style="background:white;color:black;">Some University</span>
+					<br>Publications:<span style="background:white;color:black;">Homostasis in B-Cell Respective to DNA
+						Methylation and Transposons</span>
+					<br>Gender:<span style="background:white;color:black;">Unknown</span>
+					<br>Age:<span style="background:white;color:black;">108</span>
+				</div>
+				<div class="button-block" style="position:absolute;top: 87%;width:100%;"
+					onclick="regConfirmAgreement()">
+					<button style="width:100%;height:3vw;" class="">Save</button>
+				</div>
+
+			</div>
+
 		</div>
 	</div>
 
-	<div id="postLogin" style="visibility:hidden;">
+	<div id="postLogin" style="display:none;">
 
-		<div class="personalStats" id="personalStats" style="white-space: nowrap;position:absolute; backdrop-filter: blur(7.2px);  z-index: 1; right: -5vw; top:0%; width: 60vw; height: 20px; mix-blend-mode: screen;transform:skew(0.32rad); background:rgba(100,100,100,0.4)">
+		<div class="personalStats" id="personalStats"
+			style="white-space: nowrap;position:absolute; backdrop-filter: blur(7.2px);  z-index: 1; right: -5vw; top:0%; width: 60vw; height: 20px; mix-blend-mode: screen;transform:skew(0.32rad); background:rgba(100,100,100,0.4)">
 
-			<div class="mainMenuSubItem" onclick="" style="z-index:1;mix-blend-mode: screen;pointer-events:initial; left:0;height:20px;width:5vw;position:absolute;mix-blend-mode: screen;filter: drop-shadow(10px 10px 2px rgba(97, 185, 255,0.4));">
-				<p id="username" class="username" style="margin:0;transform:skew(-0.312rad);color:black;left:5px;font-size:15px;position:absolute;">Dr.&nbsp;Kaltist</p>
-                <p  class="" style="white-space: nowrap;font-family:JuneBug4;color:white;margin:0;transform:skew(-0.312rad);color: white;left: 6vw;font-size: clamp(9px, 0.8vw, 18px);position:absolute;">LV. 15</p>
+			<div class="mainMenuSubItem" onclick=""
+				style="z-index:1;mix-blend-mode: screen;pointer-events:initial; left:0;height:20px;width:5vw;position:absolute;mix-blend-mode: screen;filter: drop-shadow(10px 10px 2px rgba(97, 185, 255,0.4));">
+				<p id="username" class="username"
+					style="margin:0;transform:skew(-0.312rad);color:black;left:5px;font-size:15px;position:absolute;">
+					Dr.&nbsp;Kaltist</p>
+				<p class=""
+					style="white-space: nowrap;font-family:JuneBug4;color:white;margin:0;transform:skew(-0.312rad);color: white;left: 6vw;font-size: clamp(9px, 0.8vw, 18px);position:absolute;">
+					LV. 15</p>
 			</div>
-			
-			<div class="mainMenuSubItem" onclick="" style="mix-blend-mode: screen;pointer-events:initial;left: 10vw;height:20px;width: 4vw;position:absolute;mix-blend-mode: screen;filter: drop-shadow(10px 10px 2px rgba(97, 185, 255,0.4));">
+
+			<div class="mainMenuSubItem" onclick=""
+				style="mix-blend-mode: screen;pointer-events:initial;left: 10vw;height:20px;width: 4vw;position:absolute;mix-blend-mode: screen;filter: drop-shadow(10px 10px 2px rgba(97, 185, 255,0.4));">
 				<p style="margin:0;transform:skew(-0.312rad);color:black;left:5px;font-size:15px;position:absolute;">
 					Sanity</p>
-                <p  class="" style="white-space: nowrap;margin:0;transform:skew(-0.312rad);color: white;left: 5vw;font-size: clamp(9px, 0.8vw, 18px);position:absolute;">240/240 mole</p>
+				<p class=""
+					style="white-space: nowrap;margin:0;transform:skew(-0.312rad);color: white;left: 5vw;font-size: clamp(9px, 0.8vw, 18px);position:absolute;">
+					240/240 mole</p>
 			</div>
-			
-   
-			<div class="mainMenuSubItem" style="mix-blend-mode: screen;pointer-events:initial;top:0;left: 21vw;height:20px;width: 12vw;position:absolute;mix-blend-mode: screen;filter: drop-shadow(10px 10px 2px rgba(97, 185, 255,0.4));">
+
+
+			<div class="mainMenuSubItem"
+				style="mix-blend-mode: screen;pointer-events:initial;top:0;left: 21vw;height:20px;width: 12vw;position:absolute;mix-blend-mode: screen;filter: drop-shadow(10px 10px 2px rgba(97, 185, 255,0.4));">
 				<p style="margin:0;transform:skew(-0.312rad);color:black;left:5px;font-size:15px;position:absolute;">
 					Parametric Data Projection</p>
-                <p  class="" style="white-space: nowrap;/* color:white; */margin:0;transform:skew(-0.312rad);color: white;left: 13vw;font-size: clamp(9px, 0.8vw, 18px);position:absolute;">$9983</p>
+				<p class=""
+					style="white-space: nowrap;/* color:white; */margin:0;transform:skew(-0.312rad);color: white;left: 13vw;font-size: clamp(9px, 0.8vw, 18px);position:absolute;">
+					$9983</p>
 			</div>
-			
-			<div class="mainMenuSubItem" style="mix-blend-mode: screen;pointer-events:initial;left: 38vw;height:20px;width: 8vw;position:absolute;mix-blend-mode: screen;filter: drop-shadow(10px 10px 2px rgba(97, 185, 255,0.4));">
+
+			<div class="mainMenuSubItem"
+				style="mix-blend-mode: screen;pointer-events:initial;left: 38vw;height:20px;width: 8vw;position:absolute;mix-blend-mode: screen;filter: drop-shadow(10px 10px 2px rgba(97, 185, 255,0.4));">
 				<p style="margin:0;transform:skew(-0.312rad);color:black;left:5px;font-size:15px;position:absolute;">
 					Quick Access</p>
 			</div>
 
-			<div class="mainMenuSubItem" onclick="" style="mix-blend-mode: screen;pointer-events:initial;left: 47vw;height:20px;width:10vw;position:absolute;mix-blend-mode: screen;filter: drop-shadow(10px 10px 2px rgba(97, 185, 255,0.4));">
+			<div class="mainMenuSubItem" onclick=""
+				style="mix-blend-mode: screen;pointer-events:initial;left: 47vw;height:20px;width:10vw;position:absolute;mix-blend-mode: screen;filter: drop-shadow(10px 10px 2px rgba(97, 185, 255,0.4));">
 				<p style="margin:0;transform:skew(-0.312rad);color:black;left:5px;font-size:15px;position:absolute;">
 					Customer Support</p>
 			</div>
@@ -148,13 +311,13 @@
 		<div class="mainMenu" id="mainMenu"
 			style=" position:absolute; backdrop-filter: blur(7.2px);  z-index: 1; left: -5vw; bottom:25px; width: 60vw; height: 20px; mix-blend-mode: screen;transform:skew(0.32rad); background:rgba(100,100,100,0.4)">
 
-			<div class="mainMenuSubItem" onclick="playFX('button.mp3');campaign();"
+			<div class="mainMenuSubItem" onclick="playFX('bigButton.wav');campaign();"
 				style="mix-blend-mode: screen;pointer-events:initial; left:0;height:20px;width:15vw;position:absolute;mix-blend-mode: screen;filter: drop-shadow(10px 10px 2px rgba(97, 185, 255,0.4));">
 				<p style="margin:0;transform:skew(-0.312rad);color:black;right:5px;font-size:15px;position:absolute;">
 					Campaign</p>
 			</div>
 
-			<div class="mainMenuSubItem" onclick="playFX('button.mp3');multiplayer();"
+			<div class="mainMenuSubItem" onclick="playFX('bigButton.wav');multiplayer();"
 				style="mix-blend-mode: screen;pointer-events:initial; left:16vw;height:20px;width:10vw;position:absolute;mix-blend-mode: screen;filter: drop-shadow(10px 10px 2px rgba(97, 185, 255,0.4));">
 				<p style="margin:0;transform:skew(-0.312rad);color:black;right:5px;font-size:15px;position:absolute;">
 					MP</p>
@@ -172,7 +335,7 @@
 					Research</p>
 			</div>
 
-			<div class="mainMenuSubItem" onclick="playFX('button.mp3');settings();"
+			<div class="mainMenuSubItem" onclick="playFX('bigButton.wav');settings();"
 				style="mix-blend-mode: screen;pointer-events:initial; left:49vw;height:20px;width:10vw;position:absolute;mix-blend-mode: screen;filter: drop-shadow(10px 10px 2px rgba(97, 185, 255,0.4));">
 				<p style="margin:0;transform:skew(-0.312rad);color:black;right:5px;font-size:15px;position:absolute;">
 					Terminal</p>
@@ -194,7 +357,7 @@
 				<div id="hostGem" class="lobbyCTLBTN"
 					onmouseover='pushToolTip("Press this [button] to [host] a new game.")'
 					style="left:75%; top:2%;cursor: pointer;"
-					onclick="inputGrabber(&#39;Operation Manuscript&#39;,&#39;Propose an Operation&#39;,&#39;All Welcome&#39;,&#39;chatProposeBtl&#39;);this.visibility=hidden;">
+					onclick="inputGrabber(&#39;Operation Manuscript&#39;,&#39;Propose an Operation&#39;,&#39;All Welcome&#39;,&#39;chatProposeBtl&#39;);">
 					<span
 						style="font-size:1.2vh; pointer-events: none; position:relative; top:13%; left:10%;">Operation</span><span
 						style="font-size:2.2vh; pointer-events: none; position:relative; top:11%; left:10%;"></br>
@@ -204,12 +367,12 @@
 					happening around the galaxy</p>
 
 				<ul id="gameEntry" class="limitingframe"
-					style="padding:6%;left:-2%;top: 5%; position:absolute; width:87%;  overflow:auto; overflow-x: hidden; height:80%;">
+					style="padding:6%;left:-2%;top: 5%; position:absolute; width:87%;  overflow:auto; overflow-x: none; height:80%;">
 					<!--game entry to be inserted-->
 				</ul>
 			</div>
 			<div class="panel" id="prebattle"
-				style="visibility: hidden;overflow:hidden;position:absolute;width:50%;height:90%;left:1%;top:5%;background:rgba(20,20,20,0.4)">
+				style="display:none;overflow:hidden;position:absolute;width:50%;height:90%;left:1%;top:5%;background:rgba(20,20,20,0.4)">
 
 				<div id="gameHeader"
 					style="z-index:2;filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6));cursor: default;text-transform: uppercase; position: absolute; background:rgba(255,255,255,0.7); color: black; top: 2%;  mix-blend-mode: screen;font-size:1vh;height:6%;width:30%;overflow:hidden;font-family:JuneBug5">
@@ -246,7 +409,7 @@
 					onchange="chatNotesSubmit()" value="Operation Notes">
 
 				<div id="gameProgress"
-					style="filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6));position:absolute;top:5.1vw;height:2vw;width:2vw;visibility:hidden;">
+					style="filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6));position:absolute;top:5.1vw;height:2vw;width:2vw;display:none;">
 					<div
 						style="position:absolute;background:rgba(255,255,255,0.8);width:19vw;height:1.7vw;top:1.3vw;left:1.6vw;">
 					</div>
@@ -282,27 +445,29 @@
 						onclick="inputGrabber('Maps','Select an arbitrary map','comet catcher redux','chatSelectCustomMap')"
 						id="mapType" style="top:0;position:absolute;left:32vw;"></div>
 
-					<div id="mapListView" style="overflow:hidden;position:absolute;top:4vw;width:95%;left:5%;height:60%;">
-						<div class="slidingMenu" style="position:absolute;overflow: visible; width:10vw;height:15vw;top:0;">
-							<div style="filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6)); overflow: hidden;width:100%;"
+					<div id="mapListView"
+						style="overflow:hidden;position:absolute;top:4vw;width:95%;left:5%;height:60%;">
+						<div class="slidingMenu"
+							style="position:absolute;overflow: visible; width:10vw;height:15vw;top:0;">
+							<div style="filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6)); overflow:hidden;width:100%;"
 								id='mapLabel1Btn' class="slidingMenuSub1"><span id="mapLabel1"
 									style=" font-size:0.7vw;font-family: JuneBug2; position:absolute; top:1vh;left:15%;width:200%;">Unknown</span>
 							</div>
-							<div style="filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6)); overflow: hidden;width:100%; "
+							<div style="filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6)); overflow:hidden;width:100%; "
 								id='mapLabel2Btn' class="slidingMenuSub2"><span id="mapLabel2"
 									style=" font-size:0.7vw;font-family: JuneBug2; position:absolute; top:1vh;left:15%;width:200%;">Unknown</span>
 							</div>
 							<div class="slidingMenuSub3" id='mapLabel3Btn'
-								style="filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6)); overflow: hidden;width:100%;">
+								style="filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6)); overflow:hidden;width:100%;">
 								<span id="mapLabel3"
 									style=" font-size:0.7vw;font-family: JuneBug2; position:absolute; top:1vh;left:15%;width:200%;">Unknown</span>
 							</div>
 							<div id='mapLabel4Btn'
-								style="filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6)); overflow: hidden;width:100%;"
+								style="filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6)); overflow:hidden;width:100%;"
 								class="slidingMenuSub4"><span id="mapLabel4"
 									style=" font-size:0.7vw;font-family: JuneBug2; position:absolute; top:1vh;left:15%;width:200%;">Unknown</span>
 							</div>
-							<div style="filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6)); overflow: hidden;width:100%;"
+							<div style="filter: drop-shadow(0.4rem 0.5rem 0.2rem rgba(200,200,200,0.6)); overflow:hidden;width:100%;"
 								class="slidingMenuSub5" id='mapLabel5Btn'><span id="mapLabel5"
 									style=" font-size:0.7vw;font-family: JuneBug2; position:absolute; top:1vh;left:15%;width:200%;">Unknown</span>
 							</div>
@@ -323,7 +488,7 @@
 								style="top:7.5vw;position:absolute;color:white;font-family:JuneBug2;">MAP_0xFFF</p>
 						</div>
 						<div class="mapPile" id='mapPile'
-							style="position:absolute;top:0vw;left:16vw;height:100%;width:20vw;perspective:400px;overflow-y:auto;overflow-x:hidden;">
+							style="position:absolute;top:0vw;left:16vw;height:100%;width:20vw;perspective:400px;overflow-y:auto;overflow-x:none;">
 
 
 
@@ -333,7 +498,7 @@
 				</div>
 
 				<div id="pregameInfo"
-					style=" overflow:auto; overflow-x: hidden; position:absolute; width:36vw; height:32vw; top:27vw;"
+					style=" overflow:auto; overflow-x: none; position:absolute; width:36vw; height:32vw; top:27vw;"
 					class="limitingframe">
 
 					<!--to be inserted by js-->
@@ -342,14 +507,14 @@
 
 			<div class="panel" id="chatContainer"
 				style="position:absolute;width:43%;height:50%;top:45%;left:55%;overflow: visible;">
-				
+
 
 				<div id="chatFrames" class="" style="position:absolute;width:100%;height:100%;top:0%;left:0%;"></div>
 				<!--chat join calls chatAdd upon the successful join of a chat. chat add does not trigger the actual chatjoin event!!!-->
 
 				<div id="chatList" class="chatList" align="right"
-				style="position:absolute;top:0%; left:-7%; width: 10%; overflow: visible; ">
-				<!--to be inserted by js-->
+					style="position:absolute;top:0%; left:-7%; width: 10%; overflow: visible; ">
+					<!--to be inserted by js-->
 				</div>
 
 				<div id="chatAdd" class="Add" onmouseover='pushToolTip("[Press] this button to [join] a new [chat]")'
@@ -360,35 +525,71 @@
 			</div>
 			<div class="infopanel" id="infopanel" style="left: 55%; position: absolute; top:10%; width:43%;height:33%">
 
-				<div class="friendFrame " id="friendFramemain"
-					style="position:absolute,top:0;left:0;height:100%;width:100%;visibility=''">
-					<h1
-						style="cursor: default;display:inline-block; position: absolute; color: white; top: -15%; left: -3%;font-family: JuneBug2;">
-						█ </h1>
-					<h1
-						style="cursor: default;display:inline-block; position: absolute; color: white; top: -15%; left: 1%;font-family: JuneBug2;">
-						Freunds _</h1>
+				<div class="friendFrame " id="friendFramemain" style="left: 0px; height: 100%; width: 100%;">
+					<div class="freundMainBgFrame" id='freundMainBgFrame'
+						style="position:absolute;color:white;width:100%;height:100%;/* opacity: 1; */">
+						<div class="freundMainBgFrameLeft" style="mix-blend-mode:screen;width:20vw;height:100%;"><span
+								style="font-size:10vw;font-weight:900;opacity:0.1;">251</span><span
+								style="font-size:1vw;font-weight:900;opacity: 0.7;">ONLINE</span>
+							<h1 style="background:rgba(255,255,255,0.6);color:black;text-align:center;">Total Users
+								Updated</h1>
+						</div>
+						<div class="freundMainBgFrameCenter"
+							style="left: 21vw;position:absolute;top:0;width:2px;height:100%;background:white;"></div>
+						<div class="freundMainBgFrameRight"
+							style="overflow:hidden;position:absolute;width: 21vw;left: 22vw;top:0;height:100%;">
+
+							<div style="position:absolute;right:0;width:100%;top: 0%;">
+								<div onclick='freundsMainGo2AllSavedFreunds()'
+									style="position:absolute;transform:skew(0.32rad);background:white;color:black;padding-left: 10vw;left: -45%;width:90%;font-size:1vw;">
+									<h1 style="transform: skew(-0.32rad);font-size: 21px;margin:0;">Colleugues</h1>
+								</div>
+								<h1>42</h1>
+							</div>
+
+							<div style="position:absolute; right:0;width:100%;top:40%;">
+								<div
+									style="position:absolute;transform:skew(0.32rad);background:white;color:black;padding-left: 10vw;left: -45%;width:90%;font-size:1vw;">
+									<h1 style="transform: skew(-0.32rad);font-size: 21px;margin:0;">Operations Ready
+									</h1>
+								</div>
+								<h1>11</h1>
+							</div>
+						</div>
+					</div>
 					<div class="friendlimitingFrame" id="friendlimitingFramemain"
-						style="top:3%; overflow:auto; position: relative; width:92%;height:91%; display:inline-block; right: -6.3%;">
+						style="display:none; top:3%;overflow:auto;position: absolute;width:92%;height:91%;"
+						onclick='freundsMainBack()'>
+
+
+
+
+
+
+
 					</div>
 				</div>
 
 			</div>
 		</div>
 
-		<div class="settings" id="settings"
-			style="visibility: hidden; position: fixed; width: 100%; height: 100%; top: 0%;">
+		<div class="settings" id="settings" style="display:none; position: fixed; width: 100%; height: 100%; top: 0%;">
 			<img src='assets/postLoginBg.png' style="width:110%;height:110%;top:-10%;left:-10%;">
-			<h1 style="position: absolute; color: white; top: 6%; left: 2vw; font-family: JuneBug2;font-size:2vw;">Settings</h1>
-			
-			<p style="color: white; font-family: JuneBug3; position: absolute; top: 12%;left:2vw;font-size:0.6vw;">localhost~# <span
-					class="cursorFlash">_</span></p>
+			<h1 style="position: absolute; color: white; top: 6%; left: 2vw; font-family: JuneBug2;font-size:2vw;">
+				Settings</h1>
+
+			<p style="color: white; font-family: JuneBug3; position: absolute; top: 12%;left:2vw;font-size:0.6vw;">
+				localhost~# <span class="cursorFlash">_</span></p>
 			<div class="settingContent" id="settingContent"
 				style="position:absolute; color: white; top: 16%; left: 2vw;font-size:0.8vw;">
-				<p id="volMenuEntry" class="settingSubContent" onclick="volumeEntry()">Volume</p>
-				<p id="volFIEntry" class="settingSubContent" onclick="FIEntry()">File Integrity</p>
-				<p id="mapEntry" class="settingSubContent" onclick="settingsMapEntry()">Maps</p>
-				<p id='performanceEntry' class="settingSubContent" onclick="performanceEntry()">Performance Settings</p>
+				<p id="volMenuEntry" class="settingSubContent" onclick="playFX('smolButton.wav');volumeEntry()">Volume
+				</p>
+				<p id="volFIEntry" class="settingSubContent" onclick="playFX('smolButton.wav');FIEntry()">File Integrity
+				</p>
+				<p id="mapEntry" class="settingSubContent" onclick="playFX('smolButton.wav');settingsMapEntry()">Maps
+				</p>
+				<p id='performanceEntry' class="settingSubContent"
+					onclick="playFX('smolButton.wav');performanceEntry()">Performance Settings</p>
 				<p class="settingSubContent">Connection Delay</p>
 				<p class="settingSubContent">Widgets</p>
 				<p class="settingSubContent">Import Configs</p>
@@ -396,7 +597,7 @@
 			</div>
 
 			<div class="panel" id="Volpanel"
-				style="top: 9%; left: 15vw; height: 80%; width: 85vw; padding: 1%;visibility: hidden;">
+				style="top: 9%; left: 15vw; height: 80%; width: 85vw; padding: 1%;display:none;">
 				<img style="position:absolute;opacity:0.1;top:-5%;left:70%;width:40%;" src='assets/auth2.png'>
 				<img style="position:absolute;opacity:0.04;top:80%;width:40%;" src='assets/thea_auth.png'>
 				<div
@@ -426,7 +627,8 @@
 					id="volumeDone" onclick="VolumeDone()">DONE</span>
 			</div>
 
-			<div class="panel" id="FIpanel" style="top: 9%; left: 15vw; height: 80%; width: 85vw; padding: 1%;visibility:hidden;">
+			<div class="panel" id="FIpanel"
+				style="top: 9%; left: 15vw; height: 80%; width: 85vw; padding: 1%;display:none;">
 				<img style="position:absolute;opacity:0.1;top:-5%;left:70%;width:40%;" src='assets/auth2.png'>
 				<img style="position:absolute;opacity:0.04;top:80%;width:40%;" src='assets/thea_auth.png'>
 				<div
@@ -447,14 +649,14 @@
 				<span class="cursorFlash" style="position:absolute;bottom:10%;color:white;"> _</span>
 				<span class="flashit pure-button fuller-button red"
 					style="position:absolute; top:10%;color:white;padding:0.5%;font-weight: bold;" id="FIStart"
-					onclick="fiCheckStart()">Launch Check</span>
+					onclick="playFX('smolButton.wav');fiCheckStart()">Launch Check</span>
 				<span class="flashit pure-button fuller-button blue"
 					style="left:0%;position:absolute; top:90%;color:white;padding:0.5%;font-weight: bold;" id="FIDone"
 					onclick="fiDone()">DONE</span>
 			</div>
 
 			<div class="panel" id="MapPanel"
-				style="top: 9%; left: 15vw; height: 80%; width: 85vw; padding: 1%;visibility:hidden;">
+				style="top: 9%; left: 15vw; height: 80%; width: 85vw; padding: 1%;display:none;">
 				<img style="position:absolute;opacity:0.1;top:-5%;left:70%;width:40%;" src="assets/auth2.png">
 				<img style="position:absolute;opacity:0.04;top:80%;width:40%;" src="assets/thea_auth.png">
 				<div
@@ -485,7 +687,7 @@
 			</div>
 
 			<div class="panel" id="PerformanceSettingsPanel"
-				style="top: 9%; left: 15vw; height: 80%; width: 85vw; padding: 1%;visibility:hidden;">
+				style="top: 9%; left: 15vw; height: 80%; width: 85vw; padding: 1%;display:none;">
 				<img style="position:absolute;opacity:0.1;top:-5%;left:70%;width:40%;" src="assets/auth2.png">
 				<img style="position:absolute;opacity:0.04;top:80%;width:40%;" src="assets/thea_auth.png">
 				<div
@@ -516,7 +718,7 @@
 		</div>
 
 		<div class="hologram" id="campaign"
-			style="position:absolute;height:100%;width:100%;perspective: 150px;visibility: hidden;">
+			style="position:absolute;height:100%;width:100%;perspective: 150px;display:none;">
 
 			<div id="header"
 				style="position:absolute;top: 4%;color:white;margin:0;left: 2%;height:6vw;width:12vw;overflow:hidden;z-index:1;opacity:0.7;">
@@ -538,14 +740,15 @@
 				style="position:absolute;height:140%;width:140%;transform: rotateX(4.4deg) translateZ(3em);top:-20%;filter: blur(2vw);">
 			<img class='campaignDesktop' id="campaignDesktop" src="assets/bg.png"
 				style="position:absolute;height:120%;width:120%;top:-30%;">
-			<div class='campaignTargets' id="campaignTargets" style="position:absolute;height:100%;width:100%;mix-blend-mode:screen;">
+			<div class='campaignTargets' id="campaignTargets"
+				style="position:absolute;height:100%;width:100%;mix-blend-mode:screen;">
 				<div class='os'
 					style="font-family:JuneBug2; left:20%;bottom:35%;position:absolute;transform: rotateX(4.3deg) translateZ(-0.7em);color:white;font-size:0.5vw;">
 					THEA Analysis OS
 
 					<pre id="banner" style="font-size:0.2vw;" class="fig" contenteditable="true">
-					                                                                                                                                                                   
-                                                                                                                                                                   
+
+
  ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ******  
  ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// ////// //////   
   ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ******  
@@ -672,22 +875,28 @@
 				</div>
 			</div>
 
-			<div id="detailBox" style="position: absolute; top: 13vw; left: 30vw; width: 45vw; height: 60vw; z-index: 23;visibility:hidden;">
-				<div id="grabberBG" onclick="campaignUnchStage()" class="grabberBG" style="top:-200%;left:-200%;position:absolute;width:900%;height:900%;background:rgba(0,0,0,0.3);z-index:1;">
+			<div id="detailBox"
+				style="position: absolute; top: 13vw; left: 30vw; width: 45vw; height: 60vw; z-index: 23;display:none;">
+				<div id="grabberBG" onclick="campaignUnchStage()" class="grabberBG"
+					style="top:-200%;left:-200%;position:absolute;width:900%;height:900%;background:rgba(0,0,0,0.3);z-index:1;">
 				</div>
-				
-				<div id="DETAILTTL" class="ttlReveal" style="left:-5vw;filter: drop-shadow(10px 10px 4px rgba(255,255,255,0.3)); mix-blend-mode: screen; position:absolute;background:white;color:black;height:7vw;width:20vw;z-index:2;font-family:JuneBug4;">
+
+				<div id="DETAILTTL" class="ttlReveal"
+					style="left:-5vw;filter: drop-shadow(10px 10px 4px rgba(255,255,255,0.3)); mix-blend-mode: screen; position:absolute;background:white;color:black;height:7vw;width:20vw;z-index:2;font-family:JuneBug4;">
 					<img style="position:absolute;left:-20%;top:-2%;width:50%;z-index:3" src="assets/blast2.png">
-                    <p style="font-weight:900;font-size:2vw;color:rgba(0,0,0,0.07);position:absolute;right:0px;bottom:0;margin:0;padding:0;">
+					<p
+						style="font-weight:900;font-size:2vw;color:rgba(0,0,0,0.07);position:absolute;right:0px;bottom:0;margin:0;padding:0;">
 						慢性 <span style="background:rgba(0,0,0,0.07);color:white">衰老</span></p>
 					<p style="position:absolute;top:0.5px;right:0;width:50%;">Old world,<br> Senescence</p>
 				</div>
 				<div id="DETAILDBY"
 					style="position:absolute;background:rgba(0,0,0,0.5);height:16vw;color:white;width:50vw;top:4vw;z-index:1;">
-					<p style="position:absolute;right:6vw;width:20vw;top:1vw;font-weight:900;font-size:2.2vw;">Homo Erectus</p>
+					<p style="position:absolute;right:6vw;width:20vw;top:1vw;font-weight:900;font-size:2.2vw;">Homo
+						Erectus</p>
 					<p class="DETAILTXT"
 						style="height:10vw;overflow:auto;position:absolute;top:5vw;width:30vw;left:10vw;color:rgba(255,255,255,0.8)">
-						"Breaking an old world to establish a new world"; but what if the old world was already broken?</p>
+						"Breaking an old world to establish a new world"; but what if the old world was already broken?
+					</p>
 				</div>
 				<div class="contentMask"
 					style="position:absolute;background:white;height:16vw;color:white;width:50vw;top:4vw;z-index:4;">
@@ -695,12 +904,12 @@
 			</div>
 
 			<img class='subDesktop' id="subDesktop1" src="assets/When_the_city_but_FOGG.png"
-				style="visibility:hidden; position:absolute;height:110%;width:110%;top:-10%;">
+				style="display:none; position:absolute;height:110%;width:110%;top:-10%;">
 			<div class='subCampaignTargets' id="subTargets1"
-				style="position:absolute;height:100%;width:100%;mix-blend-mode:screen;visibility:hidden;">
+				style="position:absolute;height:100%;width:100%;mix-blend-mode:screen;display:none;">
 
-				<div style="top:40%;left:30%;position:absolute;width: 4%; height:4%;mix-blend-mode:screen;"
-					onclick="campaignChStage(1)">
+				<div style="top:20%;left:10%;position:absolute;width: 4%; height:4%;mix-blend-mode:screen;"
+					onclick="playFX('smolButton.wav');campaignChStage(1)">
 					<div style="position:absolute;width:20%;height:20%;background:#2196f3;top:10%;left:10%;"></div>
 					<div style="position:absolute;width:50%;height:30%;background:#2196f3;top:30%;left:20%;"></div>
 					<div style="position:absolute;width:40%;height:10%;background:#2196f3;top:60%;left:30%;"></div>
@@ -724,8 +933,8 @@
 
 				</div>
 
-				<div style="top:70%;left:40%;position:absolute;width: 4%; height:4%;mix-blend-mode:screen;"
-					onclick="campaignChStage(1)">
+				<div style="top:20%;left:60%;position:absolute;width: 4%; height:4%;mix-blend-mode:screen;"
+					onclick="playFX('smolButton.wav');campaignChStage(1)">
 					<div style="position:absolute;width:30%;height:10%;background:#2196f3;top:20%;left:30%;"></div>
 					<div style="position:absolute;width:20%;height:20%;background:#2196f3;top:60%;left:40%;"></div>
 					<div style="position:absolute;width:50%;height:40%;background:#2196f3;top:20%;left:20%;"></div>
@@ -748,8 +957,8 @@
 					</div>
 				</div>
 
-				<div style="top:50%;left:60%;position:absolute;width: 4%; height:4%;mix-blend-mode:screen;"
-					onclick="campaignChStage(1)">
+				<div style="top:40%;left:20%;position:absolute;width: 4%; height:4%;mix-blend-mode:screen;"
+					onclick="playFX('smolButton.wav');campaignChStage(1)">
 					<div style="position:absolute;width:20%;height:20%;background:#2196f3;top:30%;left:0%;"></div>
 					<div style="position:absolute;width:40%;height:10%;background:#2196f3;top:10%;left:20%;"></div>
 					<div style="position:absolute;width:50%;height:30%;background:#2196f3;top:20%;left:30%;"></div>
@@ -772,8 +981,8 @@
 					</div>
 				</div>
 
-				<div style="top:40%;left:80%;position:absolute;width: 4%; height:4%;mix-blend-mode:screen;"
-					onclick="campaignChStage(1)">
+				<div style="top:60%;left:20%;position:absolute;width: 4%; height:4%;mix-blend-mode:screen;"
+					onclick="playFX('smolButton.wav');campaignChStage(1)">
 					<div style="position:absolute;width:10%;height:20%;background:#2196f3;top:10%;left:2%;"></div>
 					<div style="position:absolute;width:30%;height:40%;background:#2196f3;top:20%;left:20%;"></div>
 					<div style="position:absolute;width:20%;height:20%;background:#2196f3;top:30%;left:0%;"></div>
@@ -804,8 +1013,8 @@
 				style="z-index:1;pointer-events: none; transform: rotate(90deg); position:absolute;top:0;height:100vw;left: 0vh;width:200vh;"
 				width="1900" height="1870"></canvas>
 			<canvas id="canvasMiddle"
-				style="z-index:1;pointer-events: none; position:absolute;top:0;height:100%;width:100%;left:-50%;" width="1870"
-				height="950"></canvas>
+				style="z-index:1;pointer-events: none; position:absolute;top:0;height:100%;width:100%;left:-50%;"
+				width="1870" height="950"></canvas>
 			<canvas id="canvasRight"
 				style="z-index:1;pointer-events: none; transform: rotate(90deg);position:absolute;top:-90%;height:100vw;width:200vh;left: 100vh;"
 				width="1900" height="1870"></canvas>
@@ -818,7 +1027,7 @@
 
 	<div id="visualOverlay">
 		<div class="loading" id="loading"
-			style="position:fixed; height:120%;width:120%;top:-10%;left:-10%;background:rgba(155,155,155,0.1);z-index:100; visibility:hidden;backdrop-filter: blur(10px);">
+			style="position:fixed; height:120%;width:120%;top:-10%;left:-10%;background:rgba(155,155,155,0.1);z-index:100; display:none;backdrop-filter: blur(10px);">
 			<div
 				style="font-family: JuneBug;background:rgba(0,0,0,0.8);position:fixed; height:25%;left:-20%;width:120%;overflow:visible;top:40%;">
 
@@ -834,7 +1043,7 @@
 		</div>
 
 		<div class="infoDialog" id="infoDialog"
-			style="position:fixed; height:120%;width:120%;top:-10%;left:-10%;background:rgba(155,155,155,0.1);z-index:100; visibility:hidden;backdrop-filter: blur(10px);"
+			style="position:fixed; height:120%;width:120%;top:-10%;left:-10%;background:rgba(155,155,155,0.1);z-index:100; display:none;backdrop-filter: blur(10px);"
 			onclick="notice(false)">
 			<div
 				style="font-family: JuneBug;background:rgba(0,0,0,0.8);position:fixed; height:25%;left:-20%;width:120%;overflow:visible;top:40%;">
@@ -851,7 +1060,7 @@
 					<p style="font-size:0.8vw;" class="settingSubContent">Help</p>
 				</div>
 				<p
-					style="position:absolute;width:35%;left:50%;color:rgba(255,255,255,0.5);font-weight:800;font-family:sans-serif;font-size:0.6vw;top:25%;height:30%;overflow-y:hidden;">
+					style="position:absolute;width:35%;left:50%;color:rgba(255,255,255,0.5);font-weight:800;font-family:sans-serif;font-size:0.6vw;top:25%;height:30%;overflow-y:none;">
 					<marquee id='noticeTxt' behavior="scroll" direction="up" scrollamount="1"
 						style="position:absolute;height:100%;width:100%;">reasons for halting reasons for haltingreasons
 						for haltingreasons for haltingreasons for haltingreasons for haltingreasons for haltingreasons
@@ -867,62 +1076,83 @@
 		</div>
 
 		<div class="toolTipWindow" id="toolTipWindow"
-			style=" backdrop-filter: blur(7.2px); pointer-events: none; z-index: 100; left: 1197px; top: 170px; width: 600px; height: 224px; mix-blend-mode: screen;">
-			<div id="actualHelp"
-				style="background: rgba(150, 150, 150, 0.4);height:200px;width:100%;position:absolute;top:24px;filter: drop-shadow(10px 10px 4px rgba(255,255,255,0.5)); overflow: hidden;">
+			style=" pointer-events: none; z-index: 100; left: 533px; top: 202px; width: 600px; height: 224px; mix-blend-mode: screen;backdrop-filter: blur(7.2px);">
+			<div class="actualHelpBG" id="actualHelpBG"
+				style="width:100%;position:absolute;top:24px;filter: drop-shadow(10px 10px 4px rgba(255,255,255,0.5)); overflow:hidden;border: solid #fff;border-left-width:0px;border-right-width:0px;border-top-width:1px;border-bottom-width:1px;">
+				<div id="" class="ttblock3"
+					style="position:absolute;width:25%;left:-12.5%;transform: skew(20deg);height:100%;"></div>
+				<div id="" class="ttblock"
+					style="position:absolute;width:25%;left:12.5%;      transform: skew(20deg);height:100%;"></div>
+				<div id="" class="ttblock2"
+					style="position:absolute;width:25%;left:37.5%;      transform: skew(20deg);height:100%;"></div>
+				<div id="" class="ttblock"
+					style="position:absolute;width:25%;left:62.5%;      transform: skew(20deg);height:100%;"></div>
+				<div id="" class="ttblock3"
+					style="position:absolute;width:25%;left:87.5%;        transform: skew(20deg);height:100%;">
+				</div>
+
+			</div>
+			<div class="actualHelp" id="actualHelp"
+				style="height:200px;width:100%;position:absolute;top:24px;filter: drop-shadow(10px 10px 4px rgba(255,255,255,0.5)); overflow:hidden;">
 				<div
 					style="display: inline-block;color:white;transform: skew(-0.312rad);margin:5px;width:10px;height:10px;background:white;margin-bottom:0px;">
 				</div>
-				<p class="helperTxts"
-					style="display: inline-block;color:white;transform: skew(-0.312rad);margin: 2px;font-size: 15px;width:560px;margin-bottom:3px;">
-				</p><br>
+
 			</div>
 
-			<div class="toolTipMinimize" onclick='minimizeToolTip()'
-				onmouseover='pushToolTip("Press this button to [minimize] the [toolTip] window.")'
-				style="pointer-events:initial;top:0;left:0;height:20px;width:5%;position:absolute;mix-blend-mode:screen;filter: drop-shadow(10px 10px 4px rgba(255,255,255,0.2));">
+			
+			
+
+			<div class="toolTipMinimize" onclick="minimizeToolTip()"
+				onmouseover="pushToolTip(&quot;Press this button to [minimize] the [toolTip] window.&quot;)"
+				style="pointer-events:initial;top:0;left:0;height:20px;width:5%;position:absolute;mix-blend-mode:screen;filter: drop-shadow(10px 10px 4px rgba(255,255,255,0.2));overflow:hidden;">
+				
+			
 			</div>
 
 			<div
-				style="mix-blend-mode: screen;pointer-events:initial; background: #2196f3;top:0;left:5%;height:20px;width:95%;position:absolute;mix-blend-mode: screen;filter: drop-shadow(10px 10px 2px rgba(97, 185, 255,0.4));">
-				<p style="margin:0;transform:skew(-0.312rad);color:black;right:5px;font-size:15px;position:absolute;">
+				style="overflow:hidden;mix-blend-mode: screen;pointer-events:initial;background: #2196f3;top:0;left:5%;height:20px;width: 176px;position:absolute;mix-blend-mode: screen;filter: drop-shadow(10px 10px 2px rgba(97, 185, 255,0.4));">
+				<p style="margin:0;transform:skew(-0.312rad);color:black;left:5px;font-size:15px;position:absolute;">
 					Neural UART Console®</p>
+				<div class="dispersingHelperDot" id='dispersingHelperDot'
+				style="border-radius: 50%;top:50%;left:0;position:absolute;background:rgba(255, 255, 255,1)">
+				</div>
 			</div>
 
 		</div>
 
 		<div class="inputGrabber" id="inputGrabber"
-		style="z-index:100; position: absolute;left:0%; top: 0%;width:100%; height:100%; visibility:hidden;z-index:100;">
-		<div class="grabberMask" onclick=" inputReleaser();" id="grabberMask" style="backdrop-filter: blur(2px); background:rgba(0,0,0,0.5); position: absolute;left:0%; top: 0%;width:100%; height:100%; ">
-		</div>
-		<div id="inputGrabberBG"
-			style="background:rgb(33,150,243); position: absolute; ">
-		</div>
-		<h1 id="grabberTitle" style="position:absolute; top:35%; left:20%; font-size: 4vw; color:white;">GRABBER
-			TITTLE</h1>
-		<h1 id="grabberSubTitle" style="position:absolute; top:50%;">GRABBER LOGO</h1>
-		<div class="form__group field" style="position:absolute; top:55%; left:30%;">
-			<input onchange="aaa()" type="input" class="form__field" placeholder="aaa" name="name" id='grabberValue'
-				required />
-			<label for="name" class="form__label" id="exampleForm">desc</label>
-		</div>
+			style="z-index:100; position: absolute;left:0%; top: 0%;width:100%; height:100%; display:none;z-index:100;">
+			<div class="grabberMask" onclick=" inputReleaser();" id="grabberMask"
+				style="backdrop-filter: blur(2px); background:rgba(0,0,0,0.5); position: absolute;left:0%; top: 0%;width:100%; height:100%; ">
+			</div>
+			<div id="inputGrabberBG" style="background:rgb(33,150,243); position: absolute; ">
+			</div>
+			<h1 id="grabberTitle" style="position:absolute; top:35%; left:20%; font-size: 4vw; color:white;">GRABBER
+				TITTLE</h1>
+			<h1 id="grabberSubTitle" style="position:absolute; top:50%;">GRABBER LOGO</h1>
+			<div class="form__group field" style="position:absolute; top:55%; left:30%;">
+				<input onchange="aaa()" type="input" class="form__field" placeholder="aaa" name="name" id='grabberValue'
+					required />
+				<label for="name" class="form__label" id="exampleForm">desc</label>
+			</div>
 		</div>
 
-		
 
-		
+
+
 
 	</div>
 	<!--post login closure-->
 
 	<script src="lib/preload.js"></script>
 	<script src="lib/ultils.js"></script>
-
+	<script src="lib/gem.js"></script>
 	<script src="lib/loading.js"></script>
 	<script src="lib/smolNotif.js"></script>
 	<script src="lib/soundPlayer.js"></script>
 	<script src="lib/toolTip.js"></script>
-
+	<script src="lib/gem.js"></script>
 	<script src="network/ipcclient.js"></script>
 	<script src="lib/unitsync.js"></script>'
 	<script src="network/presence.js"></script>
@@ -936,23 +1166,17 @@
 	<script src="lib/noticeGrabber.js"></script>
 	<script src="lobbyUIManipulator/chat.js"></script>
 	<script src="lobbyUIManipulator/freunds.js"></script>
+	<script src="lobbyUIManipulator/lobbyzone.js"></script>
 	<script src="network/autohostnetwork.js"></script>
 	<script src="lib/Chart.min.js"></script>
 	<script src="lib/inputGrabber.js"></script>
 	<script src="lib/mainMenuBtn.js"></script>
+	<script src="lib/reg.js"></script>
 
 	<script src="campaignUIManipulator/campaignFog.js"></script>
 	<script src="campaignUIManipulator/campaignEvent.js"></script>
 
-	<audio src='assets/generalPurposeAutomatedSolution2196f3.wav'></audio>
-	<audio src='assets/lobby_intro.wav'></audio>
-	<audio src='assets/loop_generalPurposeAutomatedSolution2196f3.wav'></audio>
-	<audio src='assets/loop_lobby_intro.wav'></audio>
-	<audio src='assets/loop_title.wav'></audio>
-	<audio src='assets/slidingObject.wav'></audio>
-	<audio src='assets/title.wav'></audio>
-	<audio src='assets/zoomin.wav'></audio>
-	<audio src='assets/zoomout.wav'></audio>
+
 </body>
 
 </html>
