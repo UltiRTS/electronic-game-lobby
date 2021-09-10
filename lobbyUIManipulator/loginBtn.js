@@ -47,9 +47,10 @@ function rememberMe(){
 
 function registerMe(){
 		if (document.getElementById("register").className == ''){
-			
+			pushSmolNotif('Register','You are now registering instead of logging in.')
 			document.getElementById("register").className='button-clicked'
 		} else {
+			pushSmolNotif('Register','You are now logging in instead of registering.')
 			document.getElementById("register").className=''
 		}
 
@@ -136,6 +137,7 @@ function finalBoxEnlargeLeave() {
 		window.client.joinChanel("main")
         window.client.joinChanel("bus")
 		window.client.lsFreund()
+		client.lsPendingFreundReq()
 		pushSmolNotif('Dr. '+window.username,'Welcome')
 
 }

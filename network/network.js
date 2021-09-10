@@ -48,7 +48,7 @@ window.client.on("JOIN", (CHANAME) => {
 
 window.client.on("DENIED", (reason) => {
 	notice(true,'ACCESS DENIED ',reason)
-	loading(false)
+	unloading()
 	reverseLogin()
 });
 
@@ -57,8 +57,8 @@ window.client.on("LEFT", (CHANAME,user) => {
 	{	
 		chatDel(CHANAME)}
 	else if (CHANAME!="main"){
-			frdEliminate(CHANAME,user);   //in some other cases its other user leaving the chat, remove them if they are not in main neither, since main chat user is not drawn
-		}
+		frdEliminate(CHANAME,user);   //in some other cases its other user leaving the chat, remove them if they are not in main neither, since main chat user is not drawn
+	}
 	if (user==window.nowHostedby){   //eliminates autohost game status
 		window.gameStatus[window.username]=false
 	}
@@ -75,7 +75,7 @@ window.client.on("LEFT", (CHANAME,user) => {
 
 	if (user==window.username){
 		try{
-		delete window.channelLastAuthor[chanName]
+		delete window.channelLastAuthor[CHANAME]
 		}
 		catch(err){
 			console.log('trying to remove an channel hisyory that never existed!')
@@ -165,7 +165,7 @@ window.client.on("JOINBATTLE",(bID, hash) => {
 	window.isExited=false;
 	//console.log('joining game')
 	//console.log(	window.isExited)
-	loading(false)
+	unloading()
 	preBtlPresence()
 });
 
@@ -236,7 +236,7 @@ window.client.on("CLIENTSTATUS", (user,status) => {
 		if (parseInt(status).toString(2).endsWith(0) &window.isExited==false&user==window.nowHostedby )
 		{
 			lobbyFlush(window.nowinBattle, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, document.getElementById("title"+window.nowinBattle).innerHTML, 0, 0);
-			loading(false)
+			unloading()
 		}
 	}
 });
@@ -255,15 +255,35 @@ window.client.on("FRIENDLIST",(userName) => {
 	window.freunds.push(userName.substr(9)) //'userName=someUser'
 });
 
-window.client.on("FRIENDLISTBEGIN",(userName) => {
-	window.freunds=[]
-});
-
-window.client.on("FRIENDLISTEND",(userName) => {
+window.client.on("FRIEND",(userName) => {
+	window.freunds.push(userName.substr(9)) //'userName=someUser'
+	pushSmolNotif('Freund','Added new freund!')
 	mainAllFrdRefresh()
 });
 
+window.client.on("FRIENDREQUEST",(userName,reason) => {
+	pushSmolNotif('Freund','Incoming freund request!')
+	homeEmailAdd2MailList('Greetings','frdReq',userName.substr(9),window.username,"Dr."+window.username+",<br>"+reason.substring(3)+"</br>Best",'')
 
+});
+
+window.client.on("FRIENDREQUESTLIST",(userName,reason) => {
+	
+	homeEmailAdd2MailList('Greetings','frdReq',userName.substr(9),window.username,"Dr."+window.username+",<br>"+reason.substring(3)+"</br>Best",'')
+
+});
+
+window.client.on("FRIENDLISTBEGIN",() => {
+	window.freunds=[]
+});
+
+window.client.on("FRIENDLISTEND",() => {
+	mainAllFrdRefresh()
+});
+
+window.client.on("UNFRIEND",(userName) => {
+	mainAllFrdRefresh()
+});
 
 
 window.client.on("UPDATEBATTLEINFO",(bID, spec, isLocked, hash, mapName) => {

@@ -91,10 +91,11 @@ class Client extends EventEmitter {
 		this.send(message);
 	}
 
-	addFreund(user,reason){
+	addFreund(username){
 		
-		const message ="FRIENDREQUEST userName="+user+'\tmsg='+reason;
+		const message ="FRIENDREQUEST userName="+username+'\tmsg='+document.getElementById("grabberValue").value;
 		this.send(message);
+		pushSmolNotif('Freund','Freund Request Sent')
 	}
 
 	aceptFreund(user){
@@ -174,7 +175,7 @@ class Client extends EventEmitter {
 	const message =
 		"CONFIRMAGREEMENT ";
 		this.send(message);	
-		loading(true)
+		loading()
 
 	}
 	

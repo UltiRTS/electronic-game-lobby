@@ -29,7 +29,7 @@ function ipcGetMap(mapInternalName){
 				preBtlUpdateSelfStats(true)
 				preBtlMoreMapBlowUp()
 				//console.log('ipc response'+String(data)+String(mapInternalName))
-				loading(false)
+				
 				pushSmolNotif('Map ',"Successfully loaded new map!")
 			}
 		}
@@ -53,14 +53,14 @@ function ipcGetMap(mapInternalName){
 						preBtlUpdateSelfStats(true)
 						preBtlMoreMapBlowUp()
 						//console.log('ipc response'+String(data)+String(mapInternalName))
-						loading(false)
+						
 						pushSmolNotif('Map ',"Successfully loaded new map!")
 					}
 				}
 		
 		else if (String(data).startsWith('error|'+mapInternalName)){
 			pushSmolNotif('Map',"Failed to loaded new map!")
-			loading(false)
+			
 				//window.minimapCache[mapInternalName]=data
 				//storage.set('mapCache',window.minimapCache)
 		}

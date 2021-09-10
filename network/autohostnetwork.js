@@ -40,9 +40,9 @@ function autohostNetwork(msgSaid) {
 				try{
 					if (cmdDict['loading'][0]=='false')
 					{
-						loading(false)
+						unloading()
 					}
-					else{loading(true)}
+					else if (cmdDict['loading'][0]=='true'){loading()}
 					}
 				catch(err)
 				{

@@ -15,8 +15,8 @@
 //window.roomPort[bid] returns the port of the room
 //window.roomIP[battleid]=ip
 //removeAllChildNodes(parents)  clears all child node
-//window.isLoading bool, if is loading
 //loading()
+//unloading()
 //window.isLoggedin bool if is logged in
 //window.isLoggingin if is logging in 
 //window.loadingCallback //call back func after a loading ends
@@ -52,3 +52,6 @@
 //window.agreementTOS
 //window.agreementCOC
 //window.freunds[] synced from 
+//window.emailList={}
+//window.activeGems[gemIDName]=Num //when Num is 0 the gem at gemIDName is hidden
+//window.activeLoadings=Num //when num is 0 the loading screen goes away
