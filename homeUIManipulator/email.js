@@ -4,6 +4,7 @@ homeEmailAdd2MailList('Leader awards!','awards','Thea, Inc.',"Dr. Kal'tist","Dea
 
 
 function homeHideMail(){
+    playFX('unfold.wav')
     if(document.getElementById('mailWindow').style.display=='')
     {
     document.getElementById('mailWindow').style.display='none'}
@@ -12,9 +13,14 @@ function homeHideMail(){
 }
 
 function homeSelectEmail(id){
+    playFX('smolButton.wav')
+    if(document.getElementById('rightMailContent').style.display=='none'||document.getElementById('actualrightMailContent').innerHTML!=window.emailList[id]['content'])
+    {
+        document.getElementById('rightMailContent').style.display=''
     document.getElementById('actualrightMailContent').innerHTML=window.emailList[id]['content']
     document.getElementById('emailAcknowledge').setAttribute('onclick','homeEmailProcess('+id+',"ack")')
-    document.getElementById('emailDel').setAttribute('onclick','homeEmailProcess('+id+',"del")')
+    document.getElementById('emailDel').setAttribute('onclick','homeEmailProcess('+id+',"del")')}
+    else{document.getElementById('rightMailContent').style.display='none'}
 }
 
 function homeEmailAdd2MailList(title,type,from,to,content,rewardsID){
@@ -57,7 +63,7 @@ function homeEmailGen(){
 }
 
 function homeEmailProcess(emailID,action){
-    
+    playFX('acknowledge.wav')
     if (action=='del'&&window.emailList[emailID]['type']=='frdReq'){
         window.client.decFreund(window.emailList[emailID]['from'])
         delete window.emailList[emailID];

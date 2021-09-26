@@ -9,7 +9,7 @@
 	<link rel="stylesheet" href="style.css">
 	<link rel="stylesheet" href="lib/visualOverlay.css">
 	<link rel="stylesheet" href="commonstyle.css">
-	<link rel="stylesheet" href="loading.css">
+	
 	<link rel="stylesheet" href="lib/toolTipCSS.css">
 	<link rel="stylesheet" href="lib/loading.css">
 	<link rel="stylesheet" href="lib/gem.css">
@@ -21,14 +21,14 @@
 </head>
 
 <body style="overflow:hidden;">
-<p style="position:absolute;">rendering to visual cortex _</p>
+	<p style="position:absolute;">rendering to visual cortex _</p>
 
 	<div id="preLogin" class="preLogin">
 		<canvas id='c' style=" z-index:100;"></canvas>
 		<div class="bg" style="width:100%; height:100%;position:absolute;top:0%;left:0%;">
 			<div class="loginbtn " id="loginbtn" style="width:100%; height:100%;position:absolute;top:0%;">
 				<a class="btn-outline edgy-link " onclick="loginConnect();this.onclick=''"
-					style="width:30%; height:20%;font-size:4vw;top:50%;left:40%;"><span >CONNECT</span></a>
+					style="width:30%; height:20%;font-size:4vw;top:50%;left:40%;"><span>CONNECT</span></a>
 			</div>
 		</div>
 		<div class="loginbox"
@@ -331,9 +331,13 @@
 
 					<div class="personalStatsQAContent" id="personalStatsQAContent"
 						style="width:100%;position:absolute;height:100%;">
-						<p class='personalStatsQASubContent' style="position:relative;transform:skew(-0.32rad);/* margin:0; */margin: 2px;color: white;width: 213px;text-align:center;left: -34px;padding:2px;font-size: 14px;" onclick='personalStatsSoundtempToggle()'> Toggle
+						<p class='personalStatsQASubContent'
+							style="position:relative;transform:skew(-0.32rad);/* margin:0; */margin: 2px;color: white;width: 213px;text-align:center;left: -34px;padding:2px;font-size: 14px;"
+							onclick='personalStatsSoundtempToggle()'> Toggle
 							Sound</p>
-						<p class='personalStatsQASubContent' style="position:relative;transform:skew(-0.32rad);/* margin:0; */margin: 2px;color: white;width: 213px;text-align:center;left: -34px;padding:2px;font-size: 14px;" onclick="personalToggleFullScreen()"> Toggle full
+						<p class='personalStatsQASubContent'
+							style="position:relative;transform:skew(-0.32rad);/* margin:0; */margin: 2px;color: white;width: 213px;text-align:center;left: -34px;padding:2px;font-size: 14px;"
+							onclick="personalToggleFullScreen()"> Toggle full
 							Screen</p>
 					</div>
 
@@ -358,8 +362,7 @@
 
 				<div class="gemHome" id="gemHome"
 					style="display:none;position:absolute;height:3vh;width:3vh;transform: skew(-0.312rad) rotate(45deg);filter: drop-shadow(7px 0px 3px red);left: 90%;top: 18%;">
-					<div
-						style="position:absolute;background:rgba(243,33,33,1);height:0.5vh;width:0.5vh;top:0vh; ">
+					<div style="position:absolute;background:rgba(243,33,33,1);height:0.5vh;width:0.5vh;top:0vh; ">
 					</div>
 					<div class="gemRing" style="position:absolute;;border: 0.1vh solid rgba(243,33,33,1);"></div>
 				</div>
@@ -474,7 +477,7 @@
 						in progress</span>
 					<div class='killGem' onclick='chatExitGem()'
 						style="left:6.7vw;position:absolute;width:8.3vw;color:white;font-size:1vw;font-weight:600;background:rgba(255,0,0,0.8);">
-						Terminate <span  class="cursorFlash">_</span></div>
+						Terminate <span class="cursorFlash">_</span></div>
 
 					<span style="position:absolute;width:200vw;top:1.7vw;left:1.8vw;font-size:0.8vw;">Click Operation
 						Start to attempt rejoining.</span>
@@ -1107,7 +1110,10 @@
 					<div id="" class="mbgblock3"
 						style="position:absolute;width:25%;left:87.5%;        transform: skew(20deg);height:100%;">
 					</div>
-
+					<div
+						style="position:absolute;margin:0;transform:skew(-0.312rad);color:black;font-size:15px;position:absolute;text-align: center;left: 54%;width:40%;top:40%;">
+						<i class="fa fa-envelope-open" aria-hidden="true"></i><br>-CLASSIFIED-
+					</div>
 				</div>
 				<div class=" leftMailContent" id="leftMailContent"
 					style="height: 98%;width: 48%;position:absolute;top: 1%;filter: drop-shadow(10px 10px 4px rgba(255,255,255,0.5));overflow-x:hidden;overflow-y: auto;background: rgba(150,150,205,0.5);">
@@ -1127,13 +1133,10 @@
 
 
 
-				<div class="rightMailContent"
-					style="padding: 0%;height: 100%;font-weight:900;position:absolute;left: 48%;top: 0px;color:black;overflow:hidden;">
+				<div class="rightMailContent" id='rightMailContent'
+					style="padding: 0%;height: 100%;font-weight:900;position:absolute;top: 0px;color:black;overflow:hidden;width: 52%;display:none">
 
-					<div
-						style="position:absolute;margin:0;transform:skew(-0.312rad);color:black;font-size:15px;position:absolute;text-align: center;left:30%;width:40%;top:40%;">
-						<i class="fa fa-envelope-open" aria-hidden="true"></i><br>-CLASSIFIED-
-					</div>
+
 					<div class="actualrightMailContent" id="actualrightMailContent"
 						style="font-family:JuneBug;/* display:none; */padding: 4%;padding-bottom: 20vh;background: rgba(150,150,171.5,1);height: calc(90% - 25px);overflow:scroll;position:absolute;width: 92%;left: 0%;top: 2px;">
 

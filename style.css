@@ -123,11 +123,9 @@ animation-fill-mode: forwards;
 }
 
 @keyframes headerUpdateAnime {
-	0%   {background: rgba(255,255,255,0);border-radius: 0%;width: 800%;height: 1600%;left:-100%;,top:-100%;}
-	
-	10%   {background: rgba(255,255,255,1);border-radius: 0%;width: 800%;height: 1600%;left:-100%;,top:-100%;}
+	0%   {background: rgba(255,255,255,0);border-radius: 0%;width: 800%;height: 1600%;left:-100%;}
+	10%   {background: rgba(255,255,255,1);border-radius: 0%;width: 800%;height: 1600%;left:-100%;}
 	10.1%   {background: rgba(255,255,255,1);border-radius: 50%;width: 0%;height: 0%;}
-
 	100%   {background: rgba(255,255,255,0);border-radius: 50%;width: 200%;height: 400%;}
 }
 
@@ -369,6 +367,7 @@ animation-fill-mode: forwards;
 	animation-iteration-count: 1;
 	animation-delay:0.4s;
 }
+
 
 @keyframes actualMsgAnime {
 	

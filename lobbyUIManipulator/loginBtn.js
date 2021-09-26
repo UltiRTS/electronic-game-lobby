@@ -57,7 +57,7 @@ function registerMe(){
 }
 
 function logMeIn(){
-	playFX('zoomin.wav')
+	//playFX('zoomin.wav')
 	//loading(true)
 	document.getElementById("logininput").className='logininputGone'
 	document.getElementById("welcomeMsg").style.display=''	

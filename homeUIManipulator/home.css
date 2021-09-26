@@ -123,23 +123,16 @@
 	animation-name: rightMailContent;
 	animation-duration: 1s;
 	animation-iteration-count: 1;
-	animation-delay:1s;
-	 
-	width: 0%;
 	
+	animation-timing-function: cubic-bezier(0.95, 0, 0.24, 0.88);
+	left: 30%;
+	opacity:0;
 }
 
 @keyframes rightMailContent {
-	0%   {opacity:1; width: 0.05%;}
-	10%   {opacity:1; width: 0.05%;}
-	11%   {opacity:0; width: 0.05%;}
-	20%   {opacity:0; width: 0.05%;}
-	21%   {opacity:1; width: 0.05%;}
-	30%   {opacity:1; width: 0.05%;}
-	31%   {opacity:0; width: 0.05%;}
-	40%   {opacity:0; width: 0.05%;}
-	41%   {opacity:1; width: 0.05%;}
-	100%   {opacity:1; width: 52%;}
+	0%   {opacity:0; left: 30%;}
+	20%   {opacity:0;}
+	100%   {opacity:1; left: 48%;}
 }
 
 
